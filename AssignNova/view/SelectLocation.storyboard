@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17122"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+<!--Select Location-->
+<scene sceneID="UcN-Pl-efL">
+<objects>
+<viewController storyboardIdentifier="SelectLocationViewController" id="fRP-FD-AJU" customClass="SelectLocationViewController" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+<view key="view" contentMode="scaleToFill" id="cF8-nz-bx1">
+<rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+<autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+<subviews>
+<searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search here" translatesAutoresizingMaskIntoConstraints="NO" id="UBW-I0-Xjp">
+<rect key="frame" x="0.0" y="59" width="393" height="56"/>
+<textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+<scopeButtonTitles>
+<string>Title</string>
+<string>Title</string>
+</scopeButtonTitles>
+<connections>
+<outlet property="delegate" destination="fRP-FD-AJU" id="fcr-dx-aDW"/>
+</connections>
+</searchBar>
+<tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cQo-Mb-tsR">
+<rect key="frame" x="0.0" y="115" width="393" height="703"/>
+<color key="backgroundColor" systemColor="systemBackgroundColor"/>
+</tableView>
+</subviews>
+<viewLayoutGuide key="safeArea" id="jad-2T-r2t"/>
+<color key="backgroundColor" systemColor="systemBackgroundColor"/>
+<constraints>
+<constraint firstItem="UBW-I0-Xjp" firstAttribute="top" secondItem="jad-2T-r2t" secondAttribute="top" id="EfK-8a-tDI"/>
+<constraint firstItem="jad-2T-r2t" firstAttribute="trailing" secondItem="cQo-Mb-tsR" secondAttribute="trailing" id="Jbu-KR-ohh"/>
+<constraint firstItem="UBW-I0-Xjp" firstAttribute="trailing" secondItem="jad-2T-r2t" secondAttribute="trailing" id="SQF-mZ-Hzb"/>
+<constraint firstItem="jad-2T-r2t" firstAttribute="bottom" secondItem="cQo-Mb-tsR" secondAttribute="bottom" id="cpP-ZV-3H9"/>
+<constraint firstItem="UBW-I0-Xjp" firstAttribute="leading" secondItem="jad-2T-r2t" secondAttribute="leading" id="gI2-yt-Om9"/>
+<constraint firstItem="cQo-Mb-tsR" firstAttribute="top" secondItem="UBW-I0-Xjp" secondAttribute="bottom" id="ggA-98-Gl5"/>
+<constraint firstItem="cQo-Mb-tsR" firstAttribute="leading" secondItem="jad-2T-r2t" secondAttribute="leading" id="pB4-6B-IR0"/>
+</constraints>
+</view>
+<navigationItem key="navigationItem" title="Select Location" leftItemsSupplementBackButton="YES" id="Fbx-lZ-JJD">
+<barButtonItem key="backBarButtonItem" title="Back" id="Wkj-gX-boQ"/>
+</navigationItem>
+<connections>
+<outlet property="searchBar" destination="UBW-I0-Xjp" id="Orp-Sl-Hg1"/>
+<outlet property="tableView" destination="cQo-Mb-tsR" id="QTk-cM-ykn"/>
+</connections>
+</viewController>
+<placeholder placeholderIdentifier="IBFirstResponder" id="m3f-G6-iQ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+</objects>
+<point key="canvasLocation" x="894" y="-13"/>
+</scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
