@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554917B429C4E59E00132051 /* SelectLocation.storyboard */; };
+		554917B929C4F59400132051 /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554917B829C4F59400132051 /* TextInput.xib */; };
+		554917BC29C4F7F400132051 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554917BB29C4F7F400132051 /* TextInput.swift */; };
 		55A91F8F29C4D7A8004576B0 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */; };
 		55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120829C4A0000073A8CD /* AppDelegate.swift */; };
 		55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120A29C4A0000073A8CD /* SceneDelegate.swift */; };
@@ -42,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		554917B429C4E59E00132051 /* SelectLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLocation.storyboard; sourceTree = "<group>"; };
+		554917B829C4F59400132051 /* TextInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInput.xib; sourceTree = "<group>"; };
+		554917BB29C4F7F400132051 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
 		55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		55C4120529C4A0000073A8CD /* AssignNova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssignNova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C4120829C4A0000073A8CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 				554917B429C4E59E00132051 /* SelectLocation.storyboard */,
 				55C4123B29C4A72A0073A8CD /* ScrollView.xib */,
 				55C4121629C4A0010073A8CD /* LaunchScreen.storyboard */,
+				554917B829C4F59400132051 /* TextInput.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -113,6 +118,7 @@
 			children = (
 				55C4120C29C4A0000073A8CD /* ViewController.swift */,
 				55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */,
+				554917BB29C4F7F400132051 /* TextInput.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */,
+				554917B929C4F59400132051 /* TextInput.xib in Resources */,
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
 				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
@@ -361,6 +368,7 @@
 				55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */,
 				55A91F8F29C4D7A8004576B0 /* SelectLocationViewController.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
+				554917BC29C4F7F400132051 /* TextInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
