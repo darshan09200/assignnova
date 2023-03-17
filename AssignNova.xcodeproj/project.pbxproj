@@ -17,6 +17,7 @@
 		55C4122329C4A0010073A8CD /* AssignNovaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4122229C4A0010073A8CD /* AssignNovaTests.swift */; };
 		55C4122D29C4A0010073A8CD /* AssignNovaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4122C29C4A0010073A8CD /* AssignNovaUITests.swift */; };
 		55C4122F29C4A0010073A8CD /* AssignNovaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4122E29C4A0010073A8CD /* AssignNovaUITestsLaunchTests.swift */; };
+		55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55C4123B29C4A72A0073A8CD /* ScrollView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		55C4122829C4A0010073A8CD /* AssignNovaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AssignNovaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C4122C29C4A0010073A8CD /* AssignNovaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignNovaUITests.swift; sourceTree = "<group>"; };
 		55C4122E29C4A0010073A8CD /* AssignNovaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignNovaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		55C4123B29C4A72A0073A8CD /* ScrollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScrollView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				55C4121629C4A0010073A8CD /* LaunchScreen.storyboard */,
 				55C4121929C4A0010073A8CD /* Info.plist */,
 				55C4121129C4A0000073A8CD /* AssignNova.xcdatamodeld */,
+				55C4123B29C4A72A0073A8CD /* ScrollView.xib */,
 			);
 			path = AssignNova;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
+				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
 			);
