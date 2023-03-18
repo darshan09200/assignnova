@@ -13,6 +13,7 @@
 		558DD27629C514D500909594 /* OtpInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DD27429C514D500909594 /* OtpInputViewController.swift */; };
 		55A91F8F29C4D7A8004576B0 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */; };
 		55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3B8C429C60C4000B3DA5E /* UIHelper.swift */; };
+		55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */; };
 		55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120829C4A0000073A8CD /* AppDelegate.swift */; };
 		55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120A29C4A0000073A8CD /* SceneDelegate.swift */; };
 		55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120C29C4A0000073A8CD /* ViewController.swift */; };
@@ -52,6 +53,7 @@
 		558DD27429C514D500909594 /* OtpInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpInputViewController.swift; sourceTree = "<group>"; };
 		55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		55B3B8C429C60C4000B3DA5E /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55C4120529C4A0000073A8CD /* AssignNova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssignNova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C4120829C4A0000073A8CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55C4120A29C4A0000073A8CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				55C4121429C4A0010073A8CD /* Assets.xcassets */,
 				55C4121929C4A0010073A8CD /* Info.plist */,
 				55C4121129C4A0000073A8CD /* AssignNova.xcdatamodeld */,
+				55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */,
 			);
 			path = AssignNova;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */,
+				55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */,
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
 				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
