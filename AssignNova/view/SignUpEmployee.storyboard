@@ -23,30 +23,30 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="oCi-eg-meo">
-                                                <rect key="frame" x="16" y="8" width="361" height="275"/>
+                                                <rect key="frame" x="16" y="8" width="361" height="299.33333333333331"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email address or mobile number and we will check to see if you've been invited to join our team." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1Y-bs-K7d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="29.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email address or mobile number and we will check to see if you've been invited to join our team." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1Y-bs-K7d">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="53.666666666666664"/>
+                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dnt-Xn-y9F">
-                                                        <rect key="frame" x="0.0" y="45.333333333333329" width="361" height="32"/>
+                                                        <rect key="frame" x="0.0" y="69.666666666666657" width="361" height="32"/>
                                                         <segments>
                                                             <segment title="Email"/>
                                                             <segment title="Phone Number"/>
                                                         </segments>
                                                     </segmentedControl>
                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHR-JC-1yT" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="92.333333333333343" width="361" height="50"/>
+                                                        <rect key="frame" x="0.0" y="116.66666666666666" width="361" height="50"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Email"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyH-Li-yXN">
-                                                        <rect key="frame" x="0.0" y="158.33333333333334" width="361" height="50.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="182.66666666666666" width="361" height="50.333333333333343"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Check for Invite" buttonSize="large">
                                                             <color key="baseBackgroundColor" red="0.0" green="0.11076081941033866" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -56,7 +56,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRR-lD-aXv">
-                                                        <rect key="frame" x="0.0" y="224.66666666666669" width="361" height="50.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="249.00000000000003" width="361" height="50.333333333333343"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Continue With Google" buttonSize="large">
                                                             <color key="baseBackgroundColor" red="1" green="0.056992714262536825" blue="0.15604246055105175" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -106,6 +106,117 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75.572519083969468" y="-2.1126760563380285"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Fy2-GZ-gN6">
+            <objects>
+                <viewController id="fd4-IG-eYB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ehH-8X-w5Z">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Aj8-zT-PxC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LF4-Wx-qnL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="795" y="-2"/>
+        </scene>
+        <!--Sign Up Employee Setup View Controller-->
+        <scene sceneID="HaP-mZ-wwp">
+            <objects>
+                <viewController storyboardIdentifier="SignUpSetup" id="MZD-tb-jwW" customClass="SignUpEmployeeSetupViewController" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HUK-UB-nzr">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTF-cU-MkG">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbF-ad-x2g">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Got-wn-O1d">
+                                                <rect key="frame" x="16" y="0.0" width="361" height="284.33333333333331"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to AssignNova, Name! Get Started by creating a password to your account." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9J-AR-rtY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="36"/>
+                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UyJ-FT-RYP" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="48" width="361" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Email"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkb-NK-e60" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="110" width="361" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Password"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbm-wg-zGM" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="172" width="361" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Confirm Password"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ee-4I-elr">
+                                                        <rect key="frame" x="0.0" y="234.00000000000003" width="361" height="50.333333333333343"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Complete Setup" buttonSize="large">
+                                                            <color key="baseBackgroundColor" red="0.023591165432353733" green="0.17532822816802296" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="completeSetupBtnPressed:" destination="MZD-tb-jwW" eventType="touchUpInside" id="mH3-VO-QjS"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Got-wn-O1d" secondAttribute="trailing" constant="16" id="0bE-dU-tqe"/>
+                                            <constraint firstItem="Got-wn-O1d" firstAttribute="leading" secondItem="kbF-ad-x2g" secondAttribute="leading" constant="16" id="YCO-Xa-AWZ"/>
+                                            <constraint firstItem="Got-wn-O1d" firstAttribute="top" secondItem="kbF-ad-x2g" secondAttribute="top" id="zVj-1q-xfo"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="kbF-ad-x2g" firstAttribute="top" secondItem="T1C-Gk-OaY" secondAttribute="top" id="1jk-2J-C1w"/>
+                                    <constraint firstItem="T1C-Gk-OaY" firstAttribute="bottom" secondItem="kbF-ad-x2g" secondAttribute="bottom" id="UK5-XU-lKG"/>
+                                    <constraint firstItem="kbF-ad-x2g" firstAttribute="leading" secondItem="T1C-Gk-OaY" secondAttribute="leading" id="uWP-fr-ngG"/>
+                                    <constraint firstItem="kbF-ad-x2g" firstAttribute="width" secondItem="Pg1-PY-Won" secondAttribute="width" id="v4a-Mv-eny"/>
+                                    <constraint firstItem="T1C-Gk-OaY" firstAttribute="trailing" secondItem="kbF-ad-x2g" secondAttribute="trailing" id="ynR-kM-cMj"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="T1C-Gk-OaY"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Pg1-PY-Won"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cUy-j9-xId"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cTF-cU-MkG" firstAttribute="top" secondItem="cUy-j9-xId" secondAttribute="top" id="1UM-oZ-g8d"/>
+                            <constraint firstItem="cUy-j9-xId" firstAttribute="trailing" secondItem="cTF-cU-MkG" secondAttribute="trailing" id="Xjm-Bp-P9D"/>
+                            <constraint firstItem="cTF-cU-MkG" firstAttribute="leading" secondItem="cUy-j9-xId" secondAttribute="leading" id="eKu-Gn-UHu"/>
+                            <constraint firstItem="cUy-j9-xId" firstAttribute="bottom" secondItem="cTF-cU-MkG" secondAttribute="bottom" id="h0X-xI-SGA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="completeSetupBtn" destination="3ee-4I-elr" id="848-W9-Cjf"/>
+                        <outlet property="confirmPasswordTxt" destination="hbm-wg-zGM" id="sPU-ae-4Ar"/>
+                        <outlet property="emailTxt" destination="UyJ-FT-RYP" id="nEJ-53-yp3"/>
+                        <outlet property="passwordTxt" destination="zkb-NK-e60" id="FR4-cT-thc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gBB-vt-tQy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1536.6412213740457" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>

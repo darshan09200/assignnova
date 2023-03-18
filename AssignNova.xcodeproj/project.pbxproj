@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		330E4D6129C66743008BDE3A /* SignUpEmployee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */; };
 		330E4D6329C66780008BDE3A /* SignUpEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D6229C66780008BDE3A /* SignUpEmployeeViewController.swift */; };
+		330E4D6529C67438008BDE3A /* SignUpEmployeeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D6429C67438008BDE3A /* SignUpEmployeeSetupViewController.swift */; };
 		553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D5BE429C630D600EB46B9 /* AuthHelper.swift */; };
 		554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554917B429C4E59E00132051 /* SelectLocation.storyboard */; };
 		554917B929C4F59400132051 /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554917B829C4F59400132051 /* TextInput.xib */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpEmployee.storyboard; sourceTree = "<group>"; };
 		330E4D6229C66780008BDE3A /* SignUpEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeViewController.swift; sourceTree = "<group>"; };
+		330E4D6429C67438008BDE3A /* SignUpEmployeeSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeSetupViewController.swift; sourceTree = "<group>"; };
 		553D5BE429C630D600EB46B9 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		554917B429C4E59E00132051 /* SelectLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLocation.storyboard; sourceTree = "<group>"; };
 		554917B829C4F59400132051 /* TextInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInput.xib; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				554917BB29C4F7F400132051 /* TextInput.swift */,
 				558DD27429C514D500909594 /* OtpInputViewController.swift */,
 				330E4D6229C66780008BDE3A /* SignUpEmployeeViewController.swift */,
+				330E4D6429C67438008BDE3A /* SignUpEmployeeSetupViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				55A91F8F29C4D7A8004576B0 /* SelectLocationViewController.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
 				330E4D6329C66780008BDE3A /* SignUpEmployeeViewController.swift in Sources */,
+				330E4D6529C67438008BDE3A /* SignUpEmployeeSetupViewController.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
 				554917BC29C4F7F400132051 /* TextInput.swift in Sources */,
 				553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */,
