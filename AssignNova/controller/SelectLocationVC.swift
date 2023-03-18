@@ -13,7 +13,7 @@ protocol SelectLocationDelegate{
 	func onCancel()
 }
 
-class SelectLocationViewController: UIViewController {
+class SelectLocationVC: UIViewController {
 
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
@@ -44,7 +44,7 @@ class SelectLocationViewController: UIViewController {
 	
 	static func getController(selectLocationDelegate: SelectLocationDelegate) -> UINavigationController {
 		let selectLocationController = UIStoryboard(name: "SelectLocation", bundle: nil)
-			.instantiateViewController(withIdentifier: "SelectLocationViewController") as! SelectLocationViewController
+			.instantiateViewController(withIdentifier: "SelectLocationVC") as! SelectLocationVC
 		
 		selectLocationController.selectLocationDelegate = selectLocationDelegate
 		
@@ -53,13 +53,13 @@ class SelectLocationViewController: UIViewController {
 	}
 }
 
-extension SelectLocationViewController: UISearchBarDelegate {
+extension SelectLocationVC: UISearchBarDelegate {
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		tableDataSource.sourceTextHasChanged(searchText)
 	}
 }
 
-extension SelectLocationViewController: GMSAutocompleteTableDataSourceDelegate {
+extension SelectLocationVC: GMSAutocompleteTableDataSourceDelegate {
 	func didUpdateAutocompletePredictions(for tableDataSource: GMSAutocompleteTableDataSource) {
 		// Reload table data.
 		tableView.reloadData()

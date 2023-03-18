@@ -9,7 +9,7 @@ import UIKit
 import AEOTPTextField
 import FirebaseAuth
 
-class OtpInputViewController: UIViewController {
+class OtpInputVC: UIViewController {
 
 	@IBOutlet weak var otpTextField: AEOTPTextField!
 	
@@ -104,7 +104,7 @@ class OtpInputViewController: UIViewController {
 	}
 }
 
-extension OtpInputViewController: AEOTPTextFieldDelegate{
+extension OtpInputVC: AEOTPTextFieldDelegate{
 	func didUserFinishEnter(the code: String) {
 		
 		let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")

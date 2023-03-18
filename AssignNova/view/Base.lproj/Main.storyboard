@@ -17,27 +17,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GAw-22-XDG">
-                                <rect key="frame" x="16" y="59" width="361" height="446"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GAw-22-XDG">
+                                <rect key="frame" x="16" y="59" width="361" height="624.33333333333337"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xy-qe-TQK">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Open Autocomplete" buttonSize="large"/>
                                         <connections>
                                             <action selector="onTestButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ae-xp-0dU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="509-PT-lMV">
-                                        <rect key="frame" x="0.0" y="34.333333333333329" width="361" height="34.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="66.333333333333329" width="361" height="50.333333333333329"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Open Otp Input"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Open Otp Input" buttonSize="large"/>
                                         <connections>
                                             <action selector="onOpenOtpInputPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q4f-7t-OlH"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yo-Ls-fSY">
+                                        <rect key="frame" x="0.0" y="132.66666666666666" width="361" height="50.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Open Sign Up as Business" buttonSize="large"/>
+                                        <connections>
+                                            <action selector="onOpenSignUpBusinessPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sAF-Dh-SAz"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTo-XX-Nl2" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="68.666666666666686" width="361" height="94.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="199" width="361" height="94.333333333333314"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="dollarsign" catalog="system"/>
@@ -47,7 +55,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yd-4e-ncy" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="163" width="361" height="94.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="309.33333333333331" width="361" height="94.333333333333314"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="First Name"/>
@@ -63,14 +71,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yum-Hr-uNS" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="257.33333333333331" width="361" height="94.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="419.66666666666669" width="361" height="94.333333333333314"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Last Name"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ktr-D2-jy7" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="351.66666666666669" width="361" height="94.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="530" width="361" height="94.333333333333371"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
