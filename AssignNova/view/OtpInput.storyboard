@@ -13,17 +13,17 @@
             <objects>
                 <viewController storyboardIdentifier="OtpInputViewController" id="Y6W-OH-hqX" customClass="OtpInputViewController" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kpZ-SL-5e6">
-                                <rect key="frame" x="0.0" y="59" width="393" height="907"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z15-Zt-8HZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="245.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="213.66666666666666"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="caE-xB-BGO">
-                                                <rect key="frame" x="16" y="15.999999999999993" width="361" height="115.33333333333331"/>
+                                                <rect key="frame" x="16" y="16" width="361" height="165.66666666666666"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nbc-Zz-TNj">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="47.333333333333336"/>
@@ -50,24 +50,24 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tcc-F4-Pc7">
+                                                        <rect key="frame" x="0.0" y="131.33333333333334" width="361" height="34.333333333333343"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Resend in 00:30"/>
+                                                        <connections>
+                                                            <action selector="onResendOtpPress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="reZ-j1-uEQ"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWK-lw-q3J">
-                                                <rect key="frame" x="16" y="163.33333333333334" width="361" height="50.333333333333343"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Button" buttonSize="large"/>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="caE-xB-BGO" firstAttribute="leading" secondItem="Z15-Zt-8HZ" secondAttribute="leading" constant="16" id="AJh-Q4-Yyv"/>
                                             <constraint firstAttribute="trailing" secondItem="caE-xB-BGO" secondAttribute="trailing" constant="16" id="EjI-o2-kSb"/>
-                                            <constraint firstItem="iWK-lw-q3J" firstAttribute="top" secondItem="caE-xB-BGO" secondAttribute="bottom" constant="32" id="Nre-29-6yh"/>
-                                            <constraint firstAttribute="trailing" secondItem="iWK-lw-q3J" secondAttribute="trailing" constant="16" id="QSs-bw-Zij"/>
+                                            <constraint firstAttribute="bottom" secondItem="caE-xB-BGO" secondAttribute="bottom" constant="32" id="FPQ-74-j9n"/>
                                             <constraint firstItem="caE-xB-BGO" firstAttribute="top" secondItem="Z15-Zt-8HZ" secondAttribute="top" constant="16" id="cWL-eY-6fn"/>
-                                            <constraint firstAttribute="bottom" secondItem="iWK-lw-q3J" secondAttribute="bottom" constant="32" id="hOV-s3-nY3"/>
-                                            <constraint firstItem="iWK-lw-q3J" firstAttribute="leading" secondItem="Z15-Zt-8HZ" secondAttribute="leading" constant="16" id="hxh-hB-hWj"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -92,13 +92,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Verify Phone Number" largeTitleDisplayMode="always" id="UOn-eE-kPm"/>
-                    <size key="freeformSize" width="393" height="1000"/>
                     <connections>
                         <outlet property="contentView" destination="Z15-Zt-8HZ" id="r32-FW-qLe"/>
                         <outlet property="otpTextField" destination="SPO-8u-mgX" id="Pcy-xW-7pf"/>
-                        <outlet property="topConstraint" destination="Nre-29-6yh" id="Mfp-P7-Rdd"/>
+                        <outlet property="phoneNumberLabel" destination="7yh-ts-HMH" id="vwa-gr-Bcf"/>
+                        <outlet property="resendOtpButton" destination="Tcc-F4-Pc7" id="WVQ-8x-z3l"/>
                         <outlet property="topContent" destination="caE-xB-BGO" id="Hl0-IG-H2I"/>
-                        <outlet property="verifyOtpButton" destination="iWK-lw-q3J" id="yMp-uX-K8C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
