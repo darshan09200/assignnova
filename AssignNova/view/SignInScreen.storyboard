@@ -31,6 +31,9 @@
                                                             <segment title="Email"/>
                                                             <segment title="Phone Number"/>
                                                         </segments>
+                                                        <connections>
+                                                            <action selector="loginModeChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="cYh-QW-Nea"/>
+                                                        </connections>
                                                     </segmentedControl>
                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1C-jn-kcw" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="47" width="361" height="50"/>
@@ -107,7 +110,9 @@
                         <outlet property="emailTxt" destination="O1C-jn-kcw" id="cjH-BW-hw2"/>
                         <outlet property="googleLoginBtn" destination="FSL-Y0-hz6" id="6Q1-Zs-cpA"/>
                         <outlet property="loginBtn" destination="Mxi-OS-YRG" id="L5r-Im-AWN"/>
+                        <outlet property="loginMethodSegment" destination="z9x-VF-dvu" id="x3B-Li-7AZ"/>
                         <outlet property="passwordTxt" destination="6ef-4g-1KG" id="TLm-C2-QDN"/>
+                        <outlet property="phoneNumberTxt" destination="NzE-5S-ejb" id="a2y-f4-Xa2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
