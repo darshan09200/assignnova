@@ -9,6 +9,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import AEOTPTextField
+import FirebaseAuth
 
 class ViewController: UIViewController {
 	
@@ -20,7 +21,6 @@ class ViewController: UIViewController {
 //		let mapView = GMSMapView(frame: .zero, camera: camera)
 //		self.view = mapView
 		
-		
 	}
 
 	@IBAction func onTestButtonPress(_ sender: Any) {
@@ -29,10 +29,17 @@ class ViewController: UIViewController {
 	}
 	
 	@IBAction func onOpenOtpInputPress(_ sender: Any) {
-		let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
-			.instantiateViewController(withIdentifier: "OtpInputViewController") as! OtpInputViewController
-		
-		navigationController?.pushViewController(otpInputController, animated: true)
+		let phoneNumber = "+12345678901"
+//		AuthHelper.sendOtp(phoneNumber: phoneNumber){ error in
+//			if let error = error{
+//				print(error.localizedDescription)
+//				return
+//			}
+			let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
+				.instantiateViewController(withIdentifier: "OtpInputViewController") as! OtpInputViewController
+			UserDefaults.standard.set(phoneNumber, forKey: "authPhoneNumber")
+			self.navigationController?.pushViewController(otpInputController, animated: true)
+//		}
 	}
 	
 }
