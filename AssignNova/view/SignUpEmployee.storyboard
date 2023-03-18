@@ -107,20 +107,88 @@
             </objects>
             <point key="canvasLocation" x="75.572519083969468" y="-2.1126760563380285"/>
         </scene>
-        <!--View Controller-->
+        <!--Confirm Employee Email View Controller-->
         <scene sceneID="Fy2-GZ-gN6">
             <objects>
-                <viewController id="fd4-IG-eYB" sceneMemberID="viewController">
+                <viewController id="fd4-IG-eYB" customClass="ConfirmEmployeeEmailViewController" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ehH-8X-w5Z">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wey-9F-omi">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nKP-Iw-gB9">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="ufO-ce-gx3">
+                                                <rect key="frame" x="16" y="0.0" width="361" height="298"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We have sent you an email to abc@xyz.com again to make it easy for you to find. Open the link to complete your registration." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUS-ND-IRO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="57"/>
+                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1d-LP-HMD">
+                                                        <rect key="frame" x="0.0" y="71" width="361" height="128"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1. Open the link. " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ke-Z2-2La">
+                                                        <rect key="frame" x="0.0" y="213" width="361" height="19"/>
+                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2. Fill the fields to create your account. " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdo-qm-zQV">
+                                                        <rect key="frame" x="0.0" y="246" width="361" height="19"/>
+                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3. Check your schedule." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txZ-aE-cEl">
+                                                        <rect key="frame" x="0.0" y="279" width="361" height="19"/>
+                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ufO-ce-gx3" secondAttribute="trailing" constant="16" id="Vmk-eZ-YPr"/>
+                                            <constraint firstItem="ufO-ce-gx3" firstAttribute="leading" secondItem="nKP-Iw-gB9" secondAttribute="leading" constant="16" id="kv8-9m-kzY"/>
+                                            <constraint firstItem="ufO-ce-gx3" firstAttribute="top" secondItem="nKP-Iw-gB9" secondAttribute="top" id="xZ7-fp-Ytu"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="LHw-jz-u4z" firstAttribute="bottom" secondItem="nKP-Iw-gB9" secondAttribute="bottom" id="Wmu-bf-jHv"/>
+                                    <constraint firstItem="nKP-Iw-gB9" firstAttribute="top" secondItem="LHw-jz-u4z" secondAttribute="top" id="XGU-DZ-AxG"/>
+                                    <constraint firstItem="nKP-Iw-gB9" firstAttribute="leading" secondItem="LHw-jz-u4z" secondAttribute="leading" id="Z2n-MY-rUp"/>
+                                    <constraint firstItem="LHw-jz-u4z" firstAttribute="trailing" secondItem="nKP-Iw-gB9" secondAttribute="trailing" id="ZDj-wp-qjE"/>
+                                    <constraint firstItem="nKP-Iw-gB9" firstAttribute="width" secondItem="T2x-rh-Uef" secondAttribute="width" id="es7-z8-ZZU"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="LHw-jz-u4z"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="T2x-rh-Uef"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Aj8-zT-PxC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wey-9F-omi" firstAttribute="leading" secondItem="Aj8-zT-PxC" secondAttribute="leading" id="EKp-qQ-Axb"/>
+                            <constraint firstItem="Aj8-zT-PxC" firstAttribute="trailing" secondItem="wey-9F-omi" secondAttribute="trailing" id="Tap-9D-kgm"/>
+                            <constraint firstItem="wey-9F-omi" firstAttribute="top" secondItem="Aj8-zT-PxC" secondAttribute="top" id="hhN-rS-p5U"/>
+                            <constraint firstItem="Aj8-zT-PxC" firstAttribute="bottom" secondItem="wey-9F-omi" secondAttribute="bottom" id="zF5-eB-csi"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="confirmEmailImgView" destination="c1d-LP-HMD" id="B5y-2e-dUE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LF4-Wx-qnL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="795" y="-2"/>
+            <point key="canvasLocation" x="794.6564885496183" y="-2.1126760563380285"/>
         </scene>
         <!--Sign Up Employee Setup View Controller-->
         <scene sceneID="HaP-mZ-wwp">
