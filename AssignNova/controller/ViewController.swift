@@ -26,6 +26,7 @@ class ViewController: UIViewController {
 	@IBAction func onTestButtonPress(_ sender: Any) {
 		self.present(SelectLocationViewController.getController(selectLocationDelegate: self),
 					 animated:true, completion: nil)
+//        navigationController?.pushViewController(UIStoryboard(name: "SignUpEmployee", bundle: nil).instantiateViewController(withIdentifier: "SignUpEmployee"), animated: true)
 	}
 	
 	@IBAction func onOpenOtpInputPress(_ sender: Any) {

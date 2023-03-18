@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sign Up Employee View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SignUpEmployee" id="Y6W-OH-hqX" customClass="SignUpEmployeeViewController" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5T-UE-Aw7">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JPg-qG-yTN">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="oCi-eg-meo">
+                                                <rect key="frame" x="16" y="8" width="361" height="275"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email address or mobile number and we will check to see if you've been invited to join our team." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1Y-bs-K7d">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="29.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dnt-Xn-y9F">
+                                                        <rect key="frame" x="0.0" y="45.333333333333329" width="361" height="32"/>
+                                                        <segments>
+                                                            <segment title="Email"/>
+                                                            <segment title="Phone Number"/>
+                                                        </segments>
+                                                    </segmentedControl>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHR-JC-1yT" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="92.333333333333343" width="361" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Email"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyH-Li-yXN">
+                                                        <rect key="frame" x="0.0" y="158.33333333333334" width="361" height="50.333333333333343"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Check for Invite" buttonSize="large">
+                                                            <color key="baseBackgroundColor" red="0.0" green="0.11076081941033866" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="checkForInviteBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Hhv-1u-UTf"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRR-lD-aXv">
+                                                        <rect key="frame" x="0.0" y="224.66666666666669" width="361" height="50.333333333333314"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Continue With Google" buttonSize="large">
+                                                            <color key="baseBackgroundColor" red="1" green="0.056992714262536825" blue="0.15604246055105175" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="continueWithGoogleBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kgW-qO-48R"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="oCi-eg-meo" secondAttribute="trailing" constant="16" id="AAj-oD-tLG"/>
+                                            <constraint firstItem="oCi-eg-meo" firstAttribute="leading" secondItem="JPg-qG-yTN" secondAttribute="leading" constant="16" id="dnn-GX-VZ6"/>
+                                            <constraint firstItem="oCi-eg-meo" firstAttribute="top" secondItem="JPg-qG-yTN" secondAttribute="top" id="yNN-tE-Zvg"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="JPg-qG-yTN" firstAttribute="leading" secondItem="jfg-Oo-Mxm" secondAttribute="leading" id="ASt-H7-7t2"/>
+                                    <constraint firstItem="JPg-qG-yTN" firstAttribute="width" secondItem="Cd6-xC-L9g" secondAttribute="width" id="KyL-LR-VjH"/>
+                                    <constraint firstItem="JPg-qG-yTN" firstAttribute="top" secondItem="jfg-Oo-Mxm" secondAttribute="top" id="QeB-E3-f9Z"/>
+                                    <constraint firstItem="jfg-Oo-Mxm" firstAttribute="trailing" secondItem="JPg-qG-yTN" secondAttribute="trailing" id="SsH-WD-c2b"/>
+                                    <constraint firstItem="jfg-Oo-Mxm" firstAttribute="bottom" secondItem="JPg-qG-yTN" secondAttribute="bottom" id="dAM-4Z-rDS"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="jfg-Oo-Mxm"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Cd6-xC-L9g"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d5T-UE-Aw7" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="7jc-Tk-Tco"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="d5T-UE-Aw7" secondAttribute="bottom" id="Mgy-n4-rTE"/>
+                            <constraint firstItem="d5T-UE-Aw7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jSH-CM-kmJ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="d5T-UE-Aw7" secondAttribute="trailing" id="uHk-H0-ldb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="SignUpModeSegment" destination="Dnt-Xn-y9F" id="cXv-Ez-Ur8"/>
+                        <outlet property="checkForInviteBtn" destination="tyH-Li-yXN" id="vYJ-ia-CzO"/>
+                        <outlet property="emailTxt" destination="iHR-JC-1yT" id="H4R-UO-MPd"/>
+                        <outlet property="googleBtn" destination="XRR-lD-aXv" id="Lf7-aX-OrX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75.572519083969468" y="-2.1126760563380285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
