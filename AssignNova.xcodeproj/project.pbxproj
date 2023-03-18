@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
+		33255D5E29C64576004A49FB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInViewController.swift */; };
 		554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554917B429C4E59E00132051 /* SelectLocation.storyboard */; };
 		554917B929C4F59400132051 /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554917B829C4F59400132051 /* TextInput.xib */; };
 		554917BC29C4F7F400132051 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554917BB29C4F7F400132051 /* TextInput.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
+		33255D5D29C64576004A49FB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		554917B429C4E59E00132051 /* SelectLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLocation.storyboard; sourceTree = "<group>"; };
 		554917B829C4F59400132051 /* TextInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInput.xib; sourceTree = "<group>"; };
 		554917BB29C4F7F400132051 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				55C4123B29C4A72A0073A8CD /* ScrollView.xib */,
 				55C4121629C4A0010073A8CD /* LaunchScreen.storyboard */,
 				554917B829C4F59400132051 /* TextInput.xib */,
+				33255D5B29C6455D004A49FB /* SignInScreen.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 				55C4120C29C4A0000073A8CD /* ViewController.swift */,
 				55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */,
 				554917BB29C4F7F400132051 /* TextInput.swift */,
+				33255D5D29C64576004A49FB /* SignInViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
 				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
+				33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
 			);
@@ -363,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33255D5E29C64576004A49FB /* SignInViewController.swift in Sources */,
 				55C4121329C4A0000073A8CD /* AssignNova.xcdatamodeld in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
 				55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */,
