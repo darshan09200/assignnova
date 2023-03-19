@@ -69,8 +69,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSL-Y0-hz6">
                                                         <rect key="frame" x="0.0" y="245.33333333333334" width="361" height="50.333333333333343"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Login with Google" buttonSize="large">
-                                                            <color key="baseBackgroundColor" red="1" green="0.02582730657088661" blue="0.064164071521797372" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <buttonConfiguration key="configuration" style="filled" image="apple.logo" catalog="system" title="Continue with Google" imagePadding="17" cornerStyle="large" buttonSize="large">
+                                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <action selector="googleLoginBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YOg-fr-MVn"/>
@@ -121,6 +122,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="apple.logo" catalog="system" width="105" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

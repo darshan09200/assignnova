@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 class SignInViewController: UIViewController {
 
@@ -57,6 +60,21 @@ class SignInViewController: UIViewController {
         
         // All validations passed, so allow login to proceed
         // Your code for successful login goes here
+        
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            
+            if let error = error {
+                // An error occurred while attempting to sign in the user
+                strongSelf.showAlert(title: "Error", message: error.localizedDescription)
+                return
+            }
+            
+            // The user was signed in successfully
+            // You can perform any necessary tasks after the user has signed in here
+            
+        }
     }
     
     @IBAction func googleLoginBtnPressed(_ sender: UIButton) {
