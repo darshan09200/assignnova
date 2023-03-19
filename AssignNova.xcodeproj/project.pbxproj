@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D5BE429C630D600EB46B9 /* AuthHelper.swift */; };
 		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
 		33255D5E29C64576004A49FB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInViewController.swift */; };
 		554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554917B429C4E59E00132051 /* SelectLocation.storyboard */; };
 		554917B929C4F59400132051 /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554917B829C4F59400132051 /* TextInput.xib */; };
 		554917BC29C4F7F400132051 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554917BB29C4F7F400132051 /* TextInput.swift */; };
+		558DD27629C514D500909594 /* OtpInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DD27429C514D500909594 /* OtpInputViewController.swift */; };
 		55A91F8F29C4D7A8004576B0 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */; };
+		55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3B8C429C60C4000B3DA5E /* UIHelper.swift */; };
+		55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */; };
 		55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120829C4A0000073A8CD /* AppDelegate.swift */; };
 		55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120A29C4A0000073A8CD /* SceneDelegate.swift */; };
 		55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120C29C4A0000073A8CD /* ViewController.swift */; };
@@ -24,6 +28,7 @@
 		55C4122D29C4A0010073A8CD /* AssignNovaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4122C29C4A0010073A8CD /* AssignNovaUITests.swift */; };
 		55C4122F29C4A0010073A8CD /* AssignNovaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4122E29C4A0010073A8CD /* AssignNovaUITestsLaunchTests.swift */; };
 		55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55C4123B29C4A72A0073A8CD /* ScrollView.xib */; };
+		55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */; };
 		7E0E769B771588EED44D8877 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0A1387ED4CA040130344EE /* Pods_AssignNova.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,12 +50,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		553D5BE429C630D600EB46B9 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
 		33255D5D29C64576004A49FB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		554917B429C4E59E00132051 /* SelectLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLocation.storyboard; sourceTree = "<group>"; };
 		554917B829C4F59400132051 /* TextInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInput.xib; sourceTree = "<group>"; };
 		554917BB29C4F7F400132051 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
+		558DD27429C514D500909594 /* OtpInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpInputViewController.swift; sourceTree = "<group>"; };
 		55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		55B3B8C429C60C4000B3DA5E /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55C4120529C4A0000073A8CD /* AssignNova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssignNova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C4120829C4A0000073A8CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55C4120A29C4A0000073A8CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +75,7 @@
 		55C4122C29C4A0010073A8CD /* AssignNovaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignNovaUITests.swift; sourceTree = "<group>"; };
 		55C4122E29C4A0010073A8CD /* AssignNovaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignNovaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		55C4123B29C4A72A0073A8CD /* ScrollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScrollView.xib; sourceTree = "<group>"; };
+		55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OtpInput.storyboard; sourceTree = "<group>"; };
 		AFE0B8775FAE9BA1AD1D90A5 /* Pods-AssignNova.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.release.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.release.xcconfig"; sourceTree = "<group>"; };
 		BE0A1387ED4CA040130344EE /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2A9A1537EB4F670C7526AC3 /* Pods-AssignNova.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.debug.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +123,7 @@
 				55C4123B29C4A72A0073A8CD /* ScrollView.xib */,
 				55C4121629C4A0010073A8CD /* LaunchScreen.storyboard */,
 				554917B829C4F59400132051 /* TextInput.xib */,
+				55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */,
 				33255D5B29C6455D004A49FB /* SignInScreen.storyboard */,
 			);
 			path = view;
@@ -124,9 +135,19 @@
 				55C4120C29C4A0000073A8CD /* ViewController.swift */,
 				55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */,
 				554917BB29C4F7F400132051 /* TextInput.swift */,
+				558DD27429C514D500909594 /* OtpInputViewController.swift */,
 				33255D5D29C64576004A49FB /* SignInViewController.swift */,
 			);
 			path = controller;
+			sourceTree = "<group>";
+		};
+		55B3B8C329C60BE100B3DA5E /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				55B3B8C429C60C4000B3DA5E /* UIHelper.swift */,
+				553D5BE429C630D600EB46B9 /* AuthHelper.swift */,
+			);
+			path = helper;
 			sourceTree = "<group>";
 		};
 		55C411FC29C4A0000073A8CD = {
@@ -154,6 +175,7 @@
 		55C4120729C4A0000073A8CD /* AssignNova */ = {
 			isa = PBXGroup;
 			children = (
+				55B3B8C329C60BE100B3DA5E /* helper */,
 				554917B329C4E58C00132051 /* view */,
 				55A91F9129C4D837004576B0 /* controller */,
 				55C4120829C4A0000073A8CD /* AppDelegate.swift */,
@@ -161,6 +183,7 @@
 				55C4121429C4A0010073A8CD /* Assets.xcassets */,
 				55C4121929C4A0010073A8CD /* Info.plist */,
 				55C4121129C4A0000073A8CD /* AssignNova.xcdatamodeld */,
+				55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */,
 			);
 			path = AssignNova;
 			sourceTree = "<group>";
@@ -203,6 +226,7 @@
 				55C4120229C4A0000073A8CD /* Frameworks */,
 				55C4120329C4A0000073A8CD /* Resources */,
 				6F223DFC8F19F3D807E6ACFB /* [CP] Copy Pods Resources */,
+				6656848F931B13970B68A0A4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -298,12 +322,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */,
+				55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */,
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
 				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
 				33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
+				55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +372,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6656848F931B13970B68A0A4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6F223DFC8F19F3D807E6ACFB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,13 +413,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558DD27629C514D500909594 /* OtpInputViewController.swift in Sources */,
 				33255D5E29C64576004A49FB /* SignInViewController.swift in Sources */,
 				55C4121329C4A0000073A8CD /* AssignNova.xcdatamodeld in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
 				55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */,
 				55A91F8F29C4D7A8004576B0 /* SelectLocationViewController.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
+				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
 				554917BC29C4F7F400132051 /* TextInput.swift in Sources */,
+				553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
