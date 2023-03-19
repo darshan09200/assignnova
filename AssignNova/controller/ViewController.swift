@@ -47,6 +47,12 @@ class ViewController: UIViewController {
 			.instantiateViewController(withIdentifier: "SignUpBusinessAccountVC") as! SignUpBusinessAccountVC
 		self.navigationController?.pushViewController(signUpBusinessVC, animated: true)
 	}
+	
+	@IBAction func onOpenSetupBusinessPress(_ sender: Any) {
+		let setupBusinessVC = UIStoryboard(name: "SignUpBusiness", bundle: nil)
+			.instantiateViewController(withIdentifier: "SetupBusinessVC") as! SetupBusinessVC
+		self.navigationController?.pushViewController(setupBusinessVC, animated: true)
+	}
 }
 
 extension ViewController: SelectLocationDelegate {

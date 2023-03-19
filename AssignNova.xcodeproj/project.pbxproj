@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		552396DE29C6588400EE9323 /* UIButton+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396DD29C6588400EE9323 /* UIButton+Border.swift */; };
 		552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */; };
+		552396E529C6647700EE9323 /* PlanCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552396E429C6647700EE9323 /* PlanCard.xib */; };
+		552396E729C6665600EE9323 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E629C6665600EE9323 /* UIView+CornerRadius.swift */; };
+		552396E929C6670A00EE9323 /* PlanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E829C6670A00EE9323 /* PlanCard.swift */; };
+		552396EB29C668D500EE9323 /* SetupBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396EA29C668D500EE9323 /* SetupBusinessVC.swift */; };
 		553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D5BE429C630D600EB46B9 /* AuthHelper.swift */; };
 		553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */; };
 		554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554917B429C4E59E00132051 /* SelectLocation.storyboard */; };
@@ -53,6 +57,10 @@
 /* Begin PBXFileReference section */
 		552396DD29C6588400EE9323 /* UIButton+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Border.swift"; sourceTree = "<group>"; };
 		552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBusinessAccountVC.swift; sourceTree = "<group>"; };
+		552396E429C6647700EE9323 /* PlanCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanCard.xib; sourceTree = "<group>"; };
+		552396E629C6665600EE9323 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
+		552396E829C6670A00EE9323 /* PlanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCard.swift; sourceTree = "<group>"; };
+		552396EA29C668D500EE9323 /* SetupBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupBusinessVC.swift; sourceTree = "<group>"; };
 		553D5BE429C630D600EB46B9 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpBusiness.storyboard; sourceTree = "<group>"; };
 		554917B429C4E59E00132051 /* SelectLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLocation.storyboard; sourceTree = "<group>"; };
@@ -121,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				552396DD29C6588400EE9323 /* UIButton+Border.swift */,
+				552396E629C6665600EE9323 /* UIView+CornerRadius.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -135,6 +144,7 @@
 				554917B829C4F59400132051 /* TextInput.xib */,
 				55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */,
 				553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */,
+				552396E429C6647700EE9323 /* PlanCard.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -145,8 +155,10 @@
 				55C4120C29C4A0000073A8CD /* ViewController.swift */,
 				55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */,
 				554917BB29C4F7F400132051 /* TextInput.swift */,
+				552396E829C6670A00EE9323 /* PlanCard.swift */,
 				558DD27429C514D500909594 /* OtpInputVC.swift */,
 				552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */,
+				552396EA29C668D500EE9323 /* SetupBusinessVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -338,6 +350,7 @@
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
 				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
+				552396E529C6647700EE9323 /* PlanCard.xib in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
 				55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */,
@@ -427,13 +440,16 @@
 				558DD27629C514D500909594 /* OtpInputVC.swift in Sources */,
 				552396DE29C6588400EE9323 /* UIButton+Border.swift in Sources */,
 				55C4121329C4A0000073A8CD /* AssignNova.xcdatamodeld in Sources */,
+				552396E929C6670A00EE9323 /* PlanCard.swift in Sources */,
 				552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
 				55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */,
 				55A91F8F29C4D7A8004576B0 /* SelectLocationVC.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
+				552396E729C6665600EE9323 /* UIView+CornerRadius.swift in Sources */,
 				554917BC29C4F7F400132051 /* TextInput.swift in Sources */,
+				552396EB29C668D500EE9323 /* SetupBusinessVC.swift in Sources */,
 				553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

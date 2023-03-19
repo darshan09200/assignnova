@@ -31,6 +31,17 @@ class TextInput: UIView {
 	}
 	
 	@IBInspectable
+	var centerAlignedContent: Bool = false {
+		didSet{
+			if centerAlignedContent{
+				textFieldComponent.textAlignment = .center
+			} else {
+				textFieldComponent.textAlignment = .natural
+			}
+		}
+	}
+	
+	@IBInspectable
 	var leftIcon: UIImage?{
 		didSet{
 			if leftIcon != nil {
@@ -58,7 +69,7 @@ class TextInput: UIView {
 	@IBInspectable
 	var rightIcon: UIImage?{
 		didSet{
-			if leftIcon != nil {
+			if rightIcon != nil {
 				textFieldComponent.rightViewMode = .always
 				let imageView = UIImageView(frame: CGRect(x: 6, y: 0, width: 20, height: 20))
 				imageView.contentMode = .scaleAspectFit
@@ -98,7 +109,6 @@ class TextInput: UIView {
 		contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		
 		addSubview(contentView)
-		
 	}
 	
 }

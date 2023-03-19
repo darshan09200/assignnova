@@ -16,84 +16,103 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BzQ-vt-TQD">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BzQ-vt-TQD">
                                 <rect key="frame" x="0.0" y="59" width="393" height="807"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rr6-rb-SPf">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759.66666666666663"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rr6-rb-SPf">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="857.33333333333337"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YLX-Ub-GhB">
-                                                <rect key="frame" x="16" y="16" width="361" height="727.66666666666663"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YLX-Ub-GhB">
+                                                <rect key="frame" x="16" y="16" width="361" height="825.33333333333337"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coT-lc-nAE" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coT-lc-nAE" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="89.666666666666671"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="First Name"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="John"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqa-7U-dPF" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rqa-7U-dPF" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="97.666666666666657" width="361" height="89.666666666666657"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Last Name"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Doe"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUw-rl-7P9" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sUw-rl-7P9" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="195.33333333333331" width="361" height="89.666666666666686"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Email"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="abc@xyz.com"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P25-8r-aao" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P25-8r-aao" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="293" width="361" height="89.666666666666686"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Phone Number"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="+12345678901"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fni-7u-eob" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fni-7u-eob" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="390.66666666666669" width="361" height="89.666666666666686"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Password"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="eye" catalog="system"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="rightIconColor">
+                                                                <color key="value" systemColor="labelColor"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sL-Y5-vRs">
-                                                        <rect key="frame" x="0.0" y="488.33333333333337" width="361" height="8"/>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cf-RY-aef" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="488.33333333333343" width="361" height="89.666666666666686"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Confirm Password"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="eye" catalog="system"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="rightIconColor">
+                                                                <color key="value" systemColor="labelColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2sL-Y5-vRs">
+                                                        <rect key="frame" x="0.0" y="586" width="361" height="8"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="8" id="RjE-oS-SeY"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqV-gS-mZj">
-                                                        <rect key="frame" x="0.0" y="504.33333333333331" width="361" height="50.333333333333314"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqV-gS-mZj">
+                                                        <rect key="frame" x="0.0" y="602" width="361" height="50.333333333333371"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Create Account" buttonSize="large"/>
                                                     </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEi-Dj-hza">
-                                                        <rect key="frame" x="0.0" y="562.66666666666663" width="361" height="8"/>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vEi-Dj-hza">
+                                                        <rect key="frame" x="0.0" y="660.33333333333337" width="361" height="8"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="8" id="Qji-AT-zLp"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7T-JA-On0">
-                                                        <rect key="frame" x="0.0" y="578.66666666666663" width="361" height="20.333333333333371"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7T-JA-On0">
+                                                        <rect key="frame" x="0.0" y="676.33333333333337" width="361" height="20.333333333333371"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ym3-Vs-IPd">
-                                                        <rect key="frame" x="0.0" y="607" width="361" height="8"/>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ym3-Vs-IPd">
+                                                        <rect key="frame" x="0.0" y="704.66666666666663" width="361" height="8"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="8" id="aLv-Su-xtN"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TN2-kh-lfr">
-                                                        <rect key="frame" x="0.0" y="623" width="361" height="50.333333333333371"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TN2-kh-lfr">
+                                                        <rect key="frame" x="0.0" y="720.66666666666663" width="361" height="50.333333333333371"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" image="google" title="Complete With Google" imagePadding="8" buttonSize="large">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
@@ -112,15 +131,15 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKo-Lq-1Jv">
-                                                        <rect key="frame" x="0.0" y="681.33333333333337" width="361" height="8"/>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKo-Lq-1Jv">
+                                                        <rect key="frame" x="0.0" y="779" width="361" height="8"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="8" id="bmK-XM-hzb"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By clicking Create Account or Complete with Google you agree to our Terms and Conditions and Privacy Statement." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-gE-Awd">
-                                                        <rect key="frame" x="0.0" y="697.33333333333337" width="361" height="30.333333333333371"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="By clicking Create Account or Complete with Google you agree to our Terms and Conditions and Privacy Statement." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-gE-Awd">
+                                                        <rect key="frame" x="0.0" y="795" width="361" height="30.333333333333371"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -164,11 +183,206 @@
             </objects>
             <point key="canvasLocation" x="81.679389312977094" y="3.5211267605633805"/>
         </scene>
+        <!--Setup Business-->
+        <scene sceneID="hud-zR-cRe">
+            <objects>
+                <viewController storyboardIdentifier="SetupBusinessVC" id="LtB-77-Olh" customClass="SetupBusinessVC" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JwY-y9-E1U">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="900"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0M-rr-5Us">
+                                <rect key="frame" x="0.0" y="59" width="393" height="807"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0j-4i-6dq">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ugg-bb-mNa">
+                                                <rect key="frame" x="16" y="0.0" width="361" height="620.66666666666663"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ko8-K7-rML" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="73.666666666666671"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Business Name"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="ABC Company"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hjd-US-NZ4">
+                                                        <rect key="frame" x="0.0" y="81.666666666666657" width="361" height="73.666666666666657"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPq-gy-iU9">
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="15.666666666666666"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPQ-13-ZIq">
+                                                                <rect key="frame" x="0.0" y="19.666666666666686" width="361" height="54"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="54" id="kBc-VU-12f"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Click to Select Location" buttonSize="large">
+                                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="8" bottom="0.0" trailing="0.0"/>
+                                                                    <color key="baseForegroundColor" systemColor="placeholderTextColor"/>
+                                                                </buttonConfiguration>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" red="0.85490196078431369" green="0.87058823529411766" blue="0.8901960784313725" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="0.5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJV-Kz-E4k" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="163.33333333333334" width="361" height="73.666666666666657"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Number of Employees"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="leftIcon" value="minus" catalog="system"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="plus" catalog="system"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="rightIconColor">
+                                                                <color key="value" systemColor="labelColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="leftIconColor">
+                                                                <color key="value" systemColor="labelColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="10"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="centerAlignedContent" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can only be in groups of 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRB-ds-Tsq">
+                                                        <rect key="frame" x="0.0" y="245" width="361" height="14.333333333333314"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xs0-k4-17T">
+                                                        <rect key="frame" x="0.0" y="267.33333333333331" width="361" height="20.333333333333314"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0Vz-n5-Zc3">
+                                                        <rect key="frame" x="0.0" y="295.66666666666669" width="361" height="218.00000000000006"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqd-hD-FTa" customClass="PlanCard" customModule="AssignNova" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="67.333333333333329"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planName" value="Small"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planDetails" value="1 - 50 Employees"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planPrice" value="$40.00"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niI-gU-k3C" customClass="PlanCard" customModule="AssignNova" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="75.333333333333314" width="361" height="67.333333333333314"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planName" value="Business"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planDetails" value="51 - 200 Employees"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planPrice" value="$38.00"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNq-9Y-orb" customClass="PlanCard" customModule="AssignNova" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="150.66666666666663" width="361" height="67.333333333333314"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planName" value="Enterprise"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planDetails" value="200+ Employees"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planPrice" value="$36.00"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The price mentioned is per 10 employee per month." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hju-pY-U7P">
+                                                        <rect key="frame" x="0.0" y="521.66666666666663" width="361" height="15.666666666666629"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You cannot manually select a plan as it is selected by default on the basis of number of employees." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jey-Gj-Yf8">
+                                                        <rect key="frame" x="0.0" y="545.33333333333337" width="361" height="33.666666666666629"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will be charged immediately. Your plan will automatically renew and you can cancel at any time." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kue-2U-IU5">
+                                                        <rect key="frame" x="0.0" y="587" width="361" height="33.666666666666629"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BsE-sP-qS4">
+                                                <rect key="frame" x="16" y="652.66666666666663" width="361" height="50.333333333333371"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Make Payment" buttonSize="large"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="BsE-sP-qS4" secondAttribute="bottom" constant="32" id="0vC-Ie-Yu1"/>
+                                            <constraint firstAttribute="trailing" secondItem="ugg-bb-mNa" secondAttribute="trailing" constant="16" id="BZK-ma-auo"/>
+                                            <constraint firstItem="ugg-bb-mNa" firstAttribute="top" secondItem="S0j-4i-6dq" secondAttribute="top" id="LTE-nv-xTW"/>
+                                            <constraint firstAttribute="trailing" secondItem="BsE-sP-qS4" secondAttribute="trailing" constant="16" id="dcw-Es-aHF"/>
+                                            <constraint firstItem="ugg-bb-mNa" firstAttribute="leading" secondItem="S0j-4i-6dq" secondAttribute="leading" constant="16" id="m0J-re-CwJ"/>
+                                            <constraint firstItem="BsE-sP-qS4" firstAttribute="top" secondItem="ugg-bb-mNa" secondAttribute="bottom" constant="32" id="t5e-2R-18p"/>
+                                            <constraint firstItem="BsE-sP-qS4" firstAttribute="leading" secondItem="S0j-4i-6dq" secondAttribute="leading" constant="16" id="utU-X9-hju"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="S0j-4i-6dq" firstAttribute="leading" secondItem="h1Y-p6-0d4" secondAttribute="leading" id="493-5W-eYi"/>
+                                    <constraint firstItem="h1Y-p6-0d4" firstAttribute="bottom" secondItem="S0j-4i-6dq" secondAttribute="bottom" id="cBv-7O-KQp"/>
+                                    <constraint firstItem="S0j-4i-6dq" firstAttribute="width" secondItem="WVq-Q8-AEZ" secondAttribute="width" id="rFh-ER-hva"/>
+                                    <constraint firstItem="h1Y-p6-0d4" firstAttribute="trailing" secondItem="S0j-4i-6dq" secondAttribute="trailing" id="uzS-jy-vWP"/>
+                                    <constraint firstItem="S0j-4i-6dq" firstAttribute="top" secondItem="h1Y-p6-0d4" secondAttribute="top" id="xAl-sz-oep"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="h1Y-p6-0d4"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="WVq-Q8-AEZ"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Wlg-Ym-577"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Wlg-Ym-577" firstAttribute="bottom" secondItem="X0M-rr-5Us" secondAttribute="bottom" id="1Gs-R8-cHW"/>
+                            <constraint firstItem="X0M-rr-5Us" firstAttribute="leading" secondItem="Wlg-Ym-577" secondAttribute="leading" id="FQs-Vk-aKg"/>
+                            <constraint firstItem="Wlg-Ym-577" firstAttribute="trailing" secondItem="X0M-rr-5Us" secondAttribute="trailing" id="MwK-TJ-0wV"/>
+                            <constraint firstItem="X0M-rr-5Us" firstAttribute="top" secondItem="Wlg-Ym-577" secondAttribute="top" id="s7B-Su-flR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Setup Business" id="aph-Xq-bl8"/>
+                    <size key="freeformSize" width="393" height="900"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PRc-Pm-dzc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="856" y="39"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="eye" catalog="system" width="128" height="79"/>
         <image name="google" width="21" height="20"/>
+        <image name="minus" catalog="system" width="128" height="26"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -38,6 +38,23 @@ class PlanCard: UIView {
 		}
 	}
 	
+	@IBInspectable
+	var isSelected: Bool = false{
+		didSet{
+			if isSelected{
+				contentView.backgroundColor = .systemBlue
+				
+				planNameLabel.textColor = .white
+				planDetailsLabel.textColor = .white
+			} else {
+				contentView.backgroundColor = .secondarySystemBackground
+				
+				planNameLabel.textColor = .label
+				planDetailsLabel.textColor = .label
+			}
+		}
+	}
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		initSubviews()
