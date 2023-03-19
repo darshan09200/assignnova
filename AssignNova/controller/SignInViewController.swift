@@ -56,7 +56,7 @@ class SignInViewController: UIViewController {
                 }
                 showAlert(title: "Error", message: errorMessage)
                 return
-            }
+        }
         
         // All validations passed, so allow login to proceed
         // Your code for successful login goes here

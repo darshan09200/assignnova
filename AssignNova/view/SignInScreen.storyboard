@@ -83,6 +83,7 @@
                                         <constraints>
                                             <constraint firstItem="M1j-zz-BwF" firstAttribute="top" secondItem="dju-6e-bLV" secondAttribute="top" id="1q4-3r-0as"/>
                                             <constraint firstAttribute="trailing" secondItem="M1j-zz-BwF" secondAttribute="trailing" constant="16" id="6IN-WG-MQw"/>
+                                            <constraint firstAttribute="bottom" secondItem="M1j-zz-BwF" secondAttribute="bottom" id="NNH-tc-6Df"/>
                                             <constraint firstItem="M1j-zz-BwF" firstAttribute="leading" secondItem="dju-6e-bLV" secondAttribute="leading" constant="16" id="r58-mA-L6Y"/>
                                         </constraints>
                                     </view>
