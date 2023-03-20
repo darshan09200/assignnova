@@ -46,10 +46,10 @@ class TextInput: UIView {
 		didSet{
 			if leftIcon != nil {
 				textFieldComponent.leftViewMode = .always
-				let imageView = UIImageView(frame: CGRect(x: 6, y: 0, width: 20, height: 20))
+				let imageView = UIImageView(frame: CGRect(x: 6, y: 0, width: 30, height: 30))
 				imageView.contentMode = .scaleAspectFit
 				imageView.image = leftIcon
-				let view = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 20))
+				let view = UIView(frame: CGRect(x: 0, y: 0, width: 42, height: 30))
 				view.addSubview(imageView)
 				textFieldComponent.leftView = view
 			} else {
@@ -71,10 +71,10 @@ class TextInput: UIView {
 		didSet{
 			if rightIcon != nil {
 				textFieldComponent.rightViewMode = .always
-				let imageView = UIImageView(frame: CGRect(x: 6, y: 0, width: 20, height: 20))
+				let imageView = UIImageView(frame: CGRect(x: 6, y: 0, width: 30, height: 30))
 				imageView.contentMode = .scaleAspectFit
 				imageView.image = rightIcon
-				let view = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 20))
+				let view = UIView(frame: CGRect(x: 0, y: 0, width: 42, height: 30))
 				view.addSubview(imageView)
 				textFieldComponent.rightView = view
 			} else {
