@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LetterAvatarKit
 
 class ViewEmployeeViewController: UIViewController {
     
@@ -19,7 +20,14 @@ class ViewEmployeeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Circle avatar image with white border
+        let circleAvatarImage = LetterAvatarMaker()
+            .setCircle(true)
+            .setUsername("Letter Avatar")
+            .setBorderWidth(1.0)
+            .setBackgroundColors([ .red ])
+            .build()
+        Avatar.image = circleAvatarImage
        
     }
     
