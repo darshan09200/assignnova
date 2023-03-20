@@ -24,24 +24,11 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func onTestButtonPress(_ sender: Any) {
-//		self.present(SelectLocationViewController.getController(selectLocationDelegate: self),
-//					 animated:true, completion: nil)
-        //UIStoryboard(name: "SignInScreen", bundle: nil).instantiateViewController(withIdentifier: "SignIn")
-        navigationController?.pushViewController(UIStoryboard(name: "SignInScreen", bundle: nil).instantiateViewController(withIdentifier: "SignInVC"), animated: true)
+        navigationController?.pushViewController(UIStoryboard(name: "SignUpEmployee", bundle: nil).instantiateViewController(withIdentifier: "SignUpEmployeeVC"), animated: true)
 	}
 
 	@IBAction func onOpenOtpInputPress(_ sender: Any) {
-		let phoneNumber = "+12345678901"
-//		AuthHelper.sendOtp(phoneNumber: phoneNumber){ error in
-//			if let error = error{
-//				print(error.localizedDescription)
-//				return
-//			}
-			let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
-				.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
-			UserDefaults.standard.set(phoneNumber, forKey: "authPhoneNumber")
-			self.navigationController?.pushViewController(otpInputController, animated: true)
-//		}
+		navigationController?.pushViewController(UIStoryboard(name: "SignInScreen", bundle: nil).instantiateViewController(withIdentifier: "SignInVC"), animated: true)
 	}
 
 	@IBAction func onOpenSignUpBusinessPress(_ sender: Any) {

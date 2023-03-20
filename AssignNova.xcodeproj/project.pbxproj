@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		330E4D6129C66743008BDE3A /* SignUpEmployee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */; };
-		330E4D6329C66780008BDE3A /* SignUpEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D6229C66780008BDE3A /* SignUpEmployeeViewController.swift */; };
+		330E4D6329C66780008BDE3A /* SignUpEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D6229C66780008BDE3A /* SignUpEmployeeVC.swift */; };
 		330E4D6529C67438008BDE3A /* SignUpEmployeeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D6429C67438008BDE3A /* SignUpEmployeeSetupViewController.swift */; };
 		330E4D6729C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */; };
 		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
@@ -69,7 +69,7 @@
 
 /* Begin PBXFileReference section */
 		330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpEmployee.storyboard; sourceTree = "<group>"; };
-		330E4D6229C66780008BDE3A /* SignUpEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeViewController.swift; sourceTree = "<group>"; };
+		330E4D6229C66780008BDE3A /* SignUpEmployeeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeVC.swift; sourceTree = "<group>"; };
 		330E4D6429C67438008BDE3A /* SignUpEmployeeSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeSetupViewController.swift; sourceTree = "<group>"; };
 		330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmployeeEmailViewController.swift; sourceTree = "<group>"; };
 		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 				552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */,
 				552396EA29C668D500EE9323 /* SetupBusinessVC.swift */,
 				5549DA5729C7E38E00E51828 /* LoadingViewController.swift */,
-				330E4D6229C66780008BDE3A /* SignUpEmployeeViewController.swift */,
+				330E4D6229C66780008BDE3A /* SignUpEmployeeVC.swift */,
 				330E4D6429C67438008BDE3A /* SignUpEmployeeSetupViewController.swift */,
 				330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */,
 				33255D5D29C64576004A49FB /* SignInVC.swift */,
@@ -499,7 +499,7 @@
 				55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */,
 				55A91F8F29C4D7A8004576B0 /* SelectLocationVC.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
-				330E4D6329C66780008BDE3A /* SignUpEmployeeViewController.swift in Sources */,
+				330E4D6329C66780008BDE3A /* SignUpEmployeeVC.swift in Sources */,
 				330E4D6529C67438008BDE3A /* SignUpEmployeeSetupViewController.swift in Sources */,
 				330E4D6729C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
@@ -690,7 +690,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L9Z24WLH63;
+				DEVELOPMENT_TEAM = U3FWUPTG77;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AssignNova/Info.plist;
@@ -721,7 +721,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L9Z24WLH63;
+				DEVELOPMENT_TEAM = U3FWUPTG77;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AssignNova/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AssignNova;
