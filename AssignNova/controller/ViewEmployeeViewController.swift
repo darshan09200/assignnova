@@ -8,22 +8,26 @@
 import UIKit
 
 class ViewEmployeeViewController: UIViewController {
+    
+   
+    @IBOutlet weak var Avatar: UIImageView!
+    @IBOutlet weak var EmpIdLabel: UILabel!
+    @IBOutlet weak var EmpNameLabel: UILabel!
+    @IBOutlet weak var EmailLabel: UILabel!
+    @IBOutlet weak var PhoneLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+       
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func DeleteEmployee(_ sender: Any) {
     }
-    */
-
+    
+    @IBAction func ViewShifts(_ sender: Any) {
+    }
+    
 }
