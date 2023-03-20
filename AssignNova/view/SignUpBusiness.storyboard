@@ -16,16 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BzQ-vt-TQD">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BzQ-vt-TQD">
                                 <rect key="frame" x="0.0" y="59" width="393" height="807"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rr6-rb-SPf">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="761.33333333333337"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rr6-rb-SPf">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="777.33333333333337"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YLX-Ub-GhB">
-                                                <rect key="frame" x="16" y="16" width="361" height="729.33333333333337"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YLX-Ub-GhB">
+                                                <rect key="frame" x="16" y="32" width="361" height="729.33333333333337"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coT-lc-nAE" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coT-lc-nAE" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="73.666666666666671"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -33,7 +33,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="John"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rqa-7U-dPF" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqa-7U-dPF" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="81.666666666666657" width="361" height="73.666666666666657"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -41,7 +41,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Doe"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sUw-rl-7P9" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUw-rl-7P9" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="163.33333333333334" width="361" height="73.666666666666657"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -49,7 +49,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="abc@xyz.com"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P25-8r-aao" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P25-8r-aao" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="244.99999999999997" width="361" height="73.666666666666657"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -57,28 +57,28 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="+12345678901"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fni-7u-eob" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fni-7u-eob" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="326.66666666666669" width="361" height="73.666666666666686"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Password"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cf-RY-aef" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cf-RY-aef" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="408.33333333333331" width="361" height="73.666666666666686"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Confirm Password"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2sL-Y5-vRs">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sL-Y5-vRs">
                                                         <rect key="frame" x="0.0" y="490" width="361" height="8"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="8" id="RjE-oS-SeY"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqV-gS-mZj">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqV-gS-mZj">
                                                         <rect key="frame" x="0.0" y="505.99999999999994" width="361" height="50.333333333333314"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Create Account" buttonSize="large"/>
@@ -86,27 +86,27 @@
                                                             <action selector="onCreateAccountBtnPress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="r2j-JP-o9H"/>
                                                         </connections>
                                                     </button>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vEi-Dj-hza">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEi-Dj-hza">
                                                         <rect key="frame" x="0.0" y="564.33333333333337" width="361" height="8"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="8" id="Qji-AT-zLp"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7T-JA-On0">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7T-JA-On0">
                                                         <rect key="frame" x="0.0" y="580.33333333333337" width="361" height="20.333333333333371"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ym3-Vs-IPd">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ym3-Vs-IPd">
                                                         <rect key="frame" x="0.0" y="608.66666666666663" width="361" height="8"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="8" id="aLv-Su-xtN"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TN2-kh-lfr">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TN2-kh-lfr">
                                                         <rect key="frame" x="0.0" y="624.66666666666663" width="361" height="50.333333333333371"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" image="google" title="Continue With Google" imagePadding="8" buttonSize="large">
@@ -129,14 +129,14 @@
                                                             <action selector="onSignUpWithGooglePress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="NB7-yP-cb9"/>
                                                         </connections>
                                                     </button>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKo-Lq-1Jv">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKo-Lq-1Jv">
                                                         <rect key="frame" x="0.0" y="683" width="361" height="8"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="8" id="bmK-XM-hzb"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="By clicking Create Account or Complete with Google you agree to our Terms and Conditions and Privacy Statement." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-gE-Awd">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By clicking Create Account or Complete with Google you agree to our Terms and Conditions and Privacy Statement." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-gE-Awd">
                                                         <rect key="frame" x="0.0" y="699" width="361" height="30.333333333333371"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                         <nil key="textColor"/>
@@ -149,7 +149,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="YLX-Ub-GhB" secondAttribute="trailing" constant="16" id="3W5-hG-SQr"/>
                                             <constraint firstItem="YLX-Ub-GhB" firstAttribute="leading" secondItem="rr6-rb-SPf" secondAttribute="leading" constant="16" id="XJ1-WG-bG3"/>
-                                            <constraint firstItem="YLX-Ub-GhB" firstAttribute="top" secondItem="rr6-rb-SPf" secondAttribute="top" constant="16" id="i9Z-IX-dXS"/>
+                                            <constraint firstItem="YLX-Ub-GhB" firstAttribute="top" secondItem="rr6-rb-SPf" secondAttribute="top" constant="32" id="i9Z-IX-dXS"/>
                                             <constraint firstAttribute="bottom" secondItem="YLX-Ub-GhB" secondAttribute="bottom" constant="16" id="vff-m2-j6W"/>
                                         </constraints>
                                     </view>
@@ -201,10 +201,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="807"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0j-4i-6dq">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="751"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ugg-bb-mNa">
-                                                <rect key="frame" x="16" y="0.0" width="361" height="620.66666666666663"/>
+                                                <rect key="frame" x="16" y="16" width="361" height="620.66666666666663"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ko8-K7-rML" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="73.666666666666671"/>
@@ -311,7 +311,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNq-9Y-orb" customClass="PlanCard" customModule="AssignNova" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="150.66666666666663" width="361" height="67.333333333333314"/>
+                                                                <rect key="frame" x="0.0" y="150.66666666666669" width="361" height="67.333333333333314"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="planName" value="Enterprise"/>
@@ -342,7 +342,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BsE-sP-qS4">
-                                                <rect key="frame" x="16" y="652.66666666666663" width="361" height="50.333333333333371"/>
+                                                <rect key="frame" x="16" y="668.66666666666663" width="361" height="50.333333333333371"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Make Payment" buttonSize="large"/>
                                                 <connections>
@@ -354,7 +354,7 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="BsE-sP-qS4" secondAttribute="bottom" constant="32" id="0vC-Ie-Yu1"/>
                                             <constraint firstAttribute="trailing" secondItem="ugg-bb-mNa" secondAttribute="trailing" constant="16" id="BZK-ma-auo"/>
-                                            <constraint firstItem="ugg-bb-mNa" firstAttribute="top" secondItem="S0j-4i-6dq" secondAttribute="top" id="LTE-nv-xTW"/>
+                                            <constraint firstItem="ugg-bb-mNa" firstAttribute="top" secondItem="S0j-4i-6dq" secondAttribute="top" constant="16" id="LTE-nv-xTW"/>
                                             <constraint firstAttribute="trailing" secondItem="BsE-sP-qS4" secondAttribute="trailing" constant="16" id="dcw-Es-aHF"/>
                                             <constraint firstItem="ugg-bb-mNa" firstAttribute="leading" secondItem="S0j-4i-6dq" secondAttribute="leading" constant="16" id="m0J-re-CwJ"/>
                                             <constraint firstItem="BsE-sP-qS4" firstAttribute="top" secondItem="ugg-bb-mNa" secondAttribute="bottom" constant="32" id="t5e-2R-18p"/>
