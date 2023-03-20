@@ -209,6 +209,7 @@
 				55C4120229C4A0000073A8CD /* Frameworks */,
 				55C4120329C4A0000073A8CD /* Resources */,
 				6F223DFC8F19F3D807E6ACFB /* [CP] Copy Pods Resources */,
+				919820999AC8109D8AA28B1D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -368,6 +369,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		919820999AC8109D8AA28B1D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
