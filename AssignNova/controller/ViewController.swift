@@ -24,7 +24,7 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func onTestButtonPress(_ sender: Any) {
-		self.present(SelectLocationViewController.getController(selectLocationDelegate: self),
+		self.present(SelectLocationVC.getController(selectLocationDelegate: self),
 					 animated:true, completion: nil)
 	}
 	
@@ -36,12 +36,23 @@ class ViewController: UIViewController {
 //				return
 //			}
 			let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
-				.instantiateViewController(withIdentifier: "OtpInputViewController") as! OtpInputViewController
+				.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
 			UserDefaults.standard.set(phoneNumber, forKey: "authPhoneNumber")
 			self.navigationController?.pushViewController(otpInputController, animated: true)
 //		}
 	}
 	
+	@IBAction func onOpenSignUpBusinessPress(_ sender: Any) {
+		let signUpBusinessVC = UIStoryboard(name: "SignUpBusiness", bundle: nil)
+			.instantiateViewController(withIdentifier: "SignUpBusinessAccountVC") as! SignUpBusinessAccountVC
+		self.navigationController?.pushViewController(signUpBusinessVC, animated: true)
+	}
+	
+	@IBAction func onOpenSetupBusinessPress(_ sender: Any) {
+		let setupBusinessVC = UIStoryboard(name: "SignUpBusiness", bundle: nil)
+			.instantiateViewController(withIdentifier: "SetupBusinessVC") as! SetupBusinessVC
+		self.navigationController?.pushViewController(setupBusinessVC, animated: true)
+	}
 }
 
 extension ViewController: SelectLocationDelegate {

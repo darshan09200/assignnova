@@ -5,7 +5,15 @@ target 'AssignNova' do
   use_frameworks!
   pod 'GoogleMaps', '7.4.0'
 	pod 'GooglePlaces', '7.4.0'
-	pod 'AEOTPTextField'
+	
 	pod 'FirebaseAuth'
 	pod 'FirebaseFirestore'
+	pod 'FirebaseFirestoreSwift'
+	pod 'FirebaseFunctions'
+	
+	pod 'GoogleSignIn'
+	pod 'GeoFire/Utils'
+	
+	pod 'AEOTPTextField'
+	pod 'PhoneNumberKit', :git => 'https://github.com/marmelroy/PhoneNumberKit'
 end
