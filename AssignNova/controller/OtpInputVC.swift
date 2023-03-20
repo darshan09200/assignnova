@@ -9,7 +9,11 @@ import UIKit
 import AEOTPTextField
 import FirebaseAuth
 
-class OtpInputViewController: UIViewController {
+protocol OtpInputDelegate {
+	func onOtpVerified(credential: PhoneAuthCredential, controller: UIViewController)
+}
+
+class OtpInputVC: UIViewController {
 
 	@IBOutlet weak var otpTextField: AEOTPTextField!
 	
@@ -19,8 +23,12 @@ class OtpInputViewController: UIViewController {
 	@IBOutlet weak var phoneNumberLabel: UILabel!
 	@IBOutlet weak var resendOtpButton: UIButton!
 	
+	var delegate: OtpInputDelegate?
+	
 	private var timer: Timer?
 	private var secondsLeft = 0
+	
+	let loadingVC = LoadingViewController()
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +48,9 @@ class OtpInputViewController: UIViewController {
 		otpTextField.configure()
 		
 		restartTimer()
+		
+		loadingVC.modalPresentationStyle = .overCurrentContext
+		loadingVC.modalTransitionStyle = .crossDissolve
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -104,24 +115,38 @@ class OtpInputViewController: UIViewController {
 	}
 }
 
-extension OtpInputViewController: AEOTPTextFieldDelegate{
+extension OtpInputVC: AEOTPTextFieldDelegate{
 	func didUserFinishEnter(the code: String) {
 		
 		let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
 		if let verificationID = verificationID {
+			startLoading()
 			let credential = PhoneAuthProvider.provider().credential(
 				withVerificationID: verificationID,
 				verificationCode: code
 			)
 			
-			Auth.auth().signIn(with: credential) { authResult, error in
-				if let error = error {
-					print(error)
-				} else {
-					print(authResult?.user)
-				}
+			if let delegate = delegate {
+				delegate.onOtpVerified(credential: credential, controller: self)
+			} else {
+				dismiss(animated: true)
 			}
+			stopLoading()
 		}
 	}
 }
 
+
+extension OtpInputVC{
+	func startLoading(){
+		DispatchQueue.main.async {
+			self.present(self.loadingVC, animated: true, completion: nil)
+		}
+	}
+	
+	func stopLoading(){
+		DispatchQueue.main.async {
+			self.loadingVC.dismiss(animated: true)
+		}
+	}
+}

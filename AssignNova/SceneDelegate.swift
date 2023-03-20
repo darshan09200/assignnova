@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,13 +19,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window?.windowScene = windowScene
-		
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		let initialViewController = storyboard.instantiateViewController(withIdentifier: "ViewController")
-		let navViewController = UINavigationController(rootViewController: initialViewController)
-		
-		window?.rootViewController = navViewController
-		
+		let user = Auth.auth().currentUser;
+		if (user == nil) {
+			let storyboard = UIStoryboard(name: "Main", bundle: nil)
+			let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginNavVC")
+			window?.rootViewController = initialViewController
+		} else {
+			let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
+			let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeNavVC")
+			window?.rootViewController = initialViewController
+		}
 		window?.makeKeyAndVisible()
 	}
 
@@ -59,6 +63,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
 	}
 
-
+	func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+		guard let window = self.window else {
+			return
+		}
+		
+		// change the root view controller to your specific view controller
+		window.rootViewController = vc
+		
+		if animated{
+			UIView.transition(with: window,
+							  duration: 0.5,
+							  options: .transitionCrossDissolve,
+							  animations: nil,
+							  completion: nil)
+		}
+	}
+	
 }
 

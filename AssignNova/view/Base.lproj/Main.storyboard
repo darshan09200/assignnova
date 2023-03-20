@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7de-PR-3Mz">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -9,6 +9,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="rn8-gQ-dET">
+            <objects>
+                <navigationController storyboardIdentifier="LoginNavVC" id="7de-PR-3Mz" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l4K-cG-TAc">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="g4g-Yi-5eK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XbH-TC-NRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1147" y="-13"/>
+        </scene>
         <!--Test-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -17,27 +33,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GAw-22-XDG">
-                                <rect key="frame" x="16" y="59" width="361" height="446"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GAw-22-XDG">
+                                <rect key="frame" x="16" y="103" width="361" height="690.66666666666663"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xy-qe-TQK">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Open Autocomplete" buttonSize="large"/>
                                         <connections>
                                             <action selector="onTestButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ae-xp-0dU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="509-PT-lMV">
-                                        <rect key="frame" x="0.0" y="34.333333333333329" width="361" height="34.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="66.333333333333343" width="361" height="50.333333333333343"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Open Otp Input"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Open Otp Input" buttonSize="large"/>
                                         <connections>
                                             <action selector="onOpenOtpInputPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q4f-7t-OlH"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yo-Ls-fSY">
+                                        <rect key="frame" x="0.0" y="132.66666666666666" width="361" height="50.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Open Sign Up as Business" buttonSize="large"/>
+                                        <connections>
+                                            <action selector="onOpenSignUpBusinessPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sAF-Dh-SAz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoq-8C-nXn">
+                                        <rect key="frame" x="0.0" y="199" width="361" height="50.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Open Setup Business" buttonSize="large"/>
+                                        <connections>
+                                            <action selector="onOpenSetupBusinessPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="plQ-fu-lBe"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTo-XX-Nl2" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="68.666666666666686" width="361" height="94.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="265.33333333333331" width="361" height="94.333333333333314"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="dollarsign" catalog="system"/>
@@ -47,7 +79,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yd-4e-ncy" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="163" width="361" height="94.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="375.66666666666669" width="361" height="94.333333333333314"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="First Name"/>
@@ -63,14 +95,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yum-Hr-uNS" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="257.33333333333331" width="361" height="94.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="485.99999999999994" width="361" height="94.333333333333314"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Last Name"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ktr-D2-jy7" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="351.66666666666669" width="361" height="94.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="596.33333333333337" width="361" height="94.333333333333371"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
