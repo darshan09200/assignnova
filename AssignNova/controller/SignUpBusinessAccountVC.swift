@@ -205,7 +205,7 @@ class SignUpBusinessAccountVC: UIViewController {
 				let email = user.profile?.email
 				let firstName = user.profile?.givenName
 				let lastName = user.profile?.familyName
-				AuthHelper.doesEmailExists(email ?? ""){ error in
+				AuthHelper.doesEmailExists(email ?? ""){ error, _  in
 					if let error = error {
 						self.stopLoading(){
 							self.showAlert(title: "Oops", message: error)

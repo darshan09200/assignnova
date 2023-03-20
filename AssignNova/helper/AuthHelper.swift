@@ -66,7 +66,7 @@ class AuthHelper{
 		task.resume()
 	}
 	
-	static func doesEmailExists(_ email: String, completion: @escaping(_ error: String?)->()){
+	static func doesEmailExists(_ email: String, completion: @escaping(_ error: String?, _ exists: Bool? )->()){
 		let url = URL(string:"https://us-central1-assignnova.cloudfunctions.net/doesEmailExists")!
 		var request = URLRequest(url: url)
 		request.httpMethod = "POST"
@@ -81,30 +81,30 @@ class AuthHelper{
 		
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if let error = error {
-				completion("Error validating email")
+				completion("Error validating email", nil)
 				return
 			}
 			
 			guard let httpResponse = response as? HTTPURLResponse,
 				  (200...299).contains(httpResponse.statusCode) else {
-				completion("Error validating email")
+				completion("Error validating email", nil)
 				return
 			}
 			
 			if let data = data,
 			   let accountExistResponse = try? JSONDecoder().decode(AccountExistResponse.self, from: data) {
 				if let exists = accountExistResponse.exists{
-					if exists{
-						completion("Email already linked with different account")
+					if exists {
+						completion("Email already linked with different account", true)
 					} else {
-						completion(nil)
+						completion(nil, false)
 					}
 				} else {
-					completion(accountExistResponse.error)
+					completion(accountExistResponse.error, nil)
 				}
 				return
 			}
-			completion("Error validating email")
+			completion("Error validating email", nil)
 		})
 		task.resume()
 	}

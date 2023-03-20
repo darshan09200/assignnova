@@ -154,14 +154,12 @@ class SetupBusinessVC: UIViewController {
 				print(error.localizedDescription)
 				return
 			}
-			self.stopLoading(){
-				DispatchQueue.main.async {
-					
-					let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
-					let mainTabBarController = storyboard.instantiateViewController(identifier: "HomeNavVC")
-					
-					(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
-				}
+			DispatchQueue.main.async {
+				
+				let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
+				let mainTabBarController = storyboard.instantiateViewController(identifier: "HomeNavVC")
+				
+				(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
 			}
 			
 		}

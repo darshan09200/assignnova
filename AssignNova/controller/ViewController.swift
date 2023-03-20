@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 //		self.present(SelectLocationViewController.getController(selectLocationDelegate: self),
 //					 animated:true, completion: nil)
         //UIStoryboard(name: "SignInScreen", bundle: nil).instantiateViewController(withIdentifier: "SignIn")
-        navigationController?.pushViewController(UIStoryboard(name: "SignInScreen", bundle: nil).instantiateViewController(withIdentifier: "SignIn"), animated: true)
+        navigationController?.pushViewController(UIStoryboard(name: "SignInScreen", bundle: nil).instantiateViewController(withIdentifier: "SignInVC"), animated: true)
 	}
 
 	@IBAction func onOpenOtpInputPress(_ sender: Any) {
