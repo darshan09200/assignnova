@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import LetterAvatarKit
 
 class AddEmployeeViewController: UIViewController {
+    
+    @IBOutlet weak var Avatar: UIImageView!
+    
     
     @IBOutlet weak var FnameTextInput: TextInput!
     @IBOutlet weak var LnameTextInput: TextInput!
@@ -21,7 +25,14 @@ class AddEmployeeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        // Circle avatar image with white border
+        let circleAvatarImage = LetterAvatarMaker()
+            .setCircle(true)
+            .setUsername("Letter Avatar")
+            .setBorderWidth(1.0)
+            .setBackgroundColors([ .red ])
+            .build()
+        Avatar.image = circleAvatarImage
         // Do any additional setup after loading the view.
     }
     
@@ -39,24 +50,22 @@ class AddEmployeeViewController: UIViewController {
             showAlert(title: "Oops", message: "E-mail is required", textInput: EmailTextInput)
             return
         }
-        
-        
+       
     }
-        func showAlert(title: String, message: String, textInput: TextInput? = nil){
-                print("\(title): \(message)")
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
-                    if let textInput = textInput{
-                        DispatchQueue.main.async {
-                            textInput.textFieldComponent.becomeFirstResponder()
-                        }
-                    }
-                }))
-                self.present(alert, animated: true, completion: nil)
-
+    func showAlert(title: String, message: String, textInput: TextInput? = nil){
+        print("\(title): \(message)")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
+            if let textInput = textInput{
+                DispatchQueue.main.async {
+                    textInput.textFieldComponent.becomeFirstResponder()
+                }
             }
+        }))
+        self.present(alert, animated: true, completion: nil)
         
     }
+    
     /*
      // MARK: - Navigation
      
@@ -66,5 +75,5 @@ class AddEmployeeViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
+}
 

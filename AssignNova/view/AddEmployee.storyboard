@@ -72,7 +72,7 @@
                                                         <rect key="frame" x="0.0" y="526.33333333333337" width="361" height="94.333333333333371"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Role"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Role(Optional)"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Branches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qd-dg-3JP">
@@ -140,6 +140,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="Avatar" destination="4hd-ON-2A6" id="PyE-vQ-qps"/>
                         <outlet property="EmailTextInput" destination="bl5-wQ-ncR" id="PLH-uf-rFl"/>
                         <outlet property="EmpIdTextInput" destination="ZeB-7H-71i" id="fpk-pa-FLo"/>
                         <outlet property="FnameTextInput" destination="ey5-Wg-lQl" id="wKI-Ji-2r2"/>
