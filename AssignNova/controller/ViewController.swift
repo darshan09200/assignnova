@@ -30,8 +30,9 @@ class ViewController: UIViewController, SelectLocationDelegate {
 	}
 
 	@IBAction func onTestButtonPress(_ sender: Any) {
-		self.present(SelectLocationViewController.getController(selectLocationDelegate: self),
-					 animated:true, completion: nil)
+        navigationController?.pushViewController(UIStoryboard(name: "HomeScreen", bundle: nil).instantiateViewController(withIdentifier: "HomeScreen"), animated: true)
+//		self.present(SelectLocationViewController.getController(selectLocationDelegate: self),
+//					 animated:true, completion: nil)
 	}
 	
 }
