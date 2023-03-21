@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7de-PR-3Mz">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="rn8-gQ-dET">
+            <objects>
+                <navigationController storyboardIdentifier="LoginNavVC" id="7de-PR-3Mz" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="l4K-cG-TAc">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="g4g-Yi-5eK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XbH-TC-NRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1147" y="-13"/>
+        </scene>
         <!--Test-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -17,27 +32,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GAw-22-XDG">
-                                <rect key="frame" x="16" y="59" width="361" height="128.66666666666666"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GAw-22-XDG">
+                                <rect key="frame" x="16" y="103" width="361" height="116.66666666666669"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xy-qe-TQK">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="34.333333333333336"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="509-PT-lMV">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Login" buttonSize="large"/>
                                         <connections>
-                                            <action selector="onTestButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ae-xp-0dU"/>
+                                            <action selector="onSignInPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sjt-tP-MxP"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTo-XX-Nl2" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="34.333333333333336" width="361" height="94.333333333333314"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="dollarsign" catalog="system"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="leftIconColor">
-                                                <color key="value" name="AccentColor"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yo-Ls-fSY">
+                                        <rect key="frame" x="0.0" y="66.333333333333343" width="361" height="50.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Sign Up as Business" buttonSize="large"/>
+                                        <connections>
+                                            <action selector="onOpenSignUpBusinessPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sAF-Dh-SAz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -49,10 +62,7 @@
                             <constraint firstItem="GAw-22-XDG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="U0u-cP-b1h"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Test" leftItemsSupplementBackButton="YES" id="G8w-zY-DAG"/>
-                    <connections>
-                        <outlet property="testButton" destination="6xy-qe-TQK" id="pfl-En-mUz"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Test" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="G8w-zY-DAG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,10 +70,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dollarsign" catalog="system" width="89" height="128"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
