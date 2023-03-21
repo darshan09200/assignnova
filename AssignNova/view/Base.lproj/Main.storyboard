@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,77 +33,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GAw-22-XDG">
-                                <rect key="frame" x="16" y="103" width="361" height="690.66666666666663"/>
+                                <rect key="frame" x="16" y="103" width="361" height="116.66666666666669"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xy-qe-TQK">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="509-PT-lMV">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Open Autocomplete" buttonSize="large"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Login" buttonSize="large"/>
                                         <connections>
-                                            <action selector="onTestButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ae-xp-0dU"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="509-PT-lMV">
-                                        <rect key="frame" x="0.0" y="66.333333333333343" width="361" height="50.333333333333343"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Open Otp Input" buttonSize="large"/>
-                                        <connections>
-                                            <action selector="onOpenOtpInputPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q4f-7t-OlH"/>
+                                            <action selector="onSignInPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sjt-tP-MxP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yo-Ls-fSY">
-                                        <rect key="frame" x="0.0" y="132.66666666666666" width="361" height="50.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="66.333333333333343" width="361" height="50.333333333333343"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Open Sign Up as Business" buttonSize="large"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Sign Up as Business" buttonSize="large"/>
                                         <connections>
                                             <action selector="onOpenSignUpBusinessPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sAF-Dh-SAz"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoq-8C-nXn">
-                                        <rect key="frame" x="0.0" y="199" width="361" height="50.333333333333343"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Open Setup Business" buttonSize="large"/>
-                                        <connections>
-                                            <action selector="onOpenSetupBusinessPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="plQ-fu-lBe"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTo-XX-Nl2" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="265.33333333333331" width="361" height="94.333333333333314"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="dollarsign" catalog="system"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="leftIconColor">
-                                                <color key="value" name="AccentColor"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yd-4e-ncy" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="375.66666666666669" width="361" height="94.333333333333314"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="First Name"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="John"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftIcon" value="dollarsign" catalog="system"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="leftIconColor">
-                                                <color key="value" systemColor="systemPinkColor"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="trash.circle.fill" catalog="system"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="rightIconColor">
-                                                <color key="value" systemColor="systemBrownColor"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yum-Hr-uNS" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="485.99999999999994" width="361" height="94.333333333333314"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Last Name"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ktr-D2-jy7" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="596.33333333333337" width="361" height="94.333333333333371"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -124,19 +70,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dollarsign" catalog="system" width="89" height="128"/>
-        <image name="trash.circle.fill" catalog="system" width="128" height="123"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
