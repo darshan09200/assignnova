@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Select Color-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ColorPickerVC" id="Y6W-OH-hqX" customClass="ColorPickerVC" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ifc-n3-zIn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search here" translatesAutoresizingMaskIntoConstraints="NO" id="L1W-s5-ZPy">
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1Wc-Fu-y7w">
+                                <rect key="frame" x="0.0" y="115" width="393" height="703"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="oeJ-wk-ukt" imageView="Npy-T0-bwR" style="IBUITableViewCellStyleDefault" id="8sz-da-rwk">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8sz-da-rwk" id="vaE-fa-3ct">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oeJ-wk-ukt">
+                                                    <rect key="frame" x="59.833333333333343" y="0.0" width="313.16666666666669" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="Npy-T0-bwR">
+                                                    <rect key="frame" x="19.166666666666664" y="9.0000000000000018" width="25.666666666666668" height="25.666666666666668"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <imageReference key="image" image="circle.fill" catalog="system" symbolScale="large"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="2qj-zQ-beg"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="c45-gP-JDW"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n6L-As-28A"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1Wc-Fu-y7w" firstAttribute="leading" secondItem="n6L-As-28A" secondAttribute="leading" id="AV1-qO-hy6"/>
+                            <constraint firstItem="L1W-s5-ZPy" firstAttribute="trailing" secondItem="n6L-As-28A" secondAttribute="trailing" id="Inr-qS-DdR"/>
+                            <constraint firstItem="L1W-s5-ZPy" firstAttribute="top" secondItem="n6L-As-28A" secondAttribute="top" id="Jkf-Xt-Ykl"/>
+                            <constraint firstItem="1Wc-Fu-y7w" firstAttribute="top" secondItem="L1W-s5-ZPy" secondAttribute="bottom" id="eQe-DJ-3jh"/>
+                            <constraint firstItem="n6L-As-28A" firstAttribute="bottom" secondItem="1Wc-Fu-y7w" secondAttribute="bottom" id="fw3-AL-hG2"/>
+                            <constraint firstItem="n6L-As-28A" firstAttribute="trailing" secondItem="1Wc-Fu-y7w" secondAttribute="trailing" id="mUo-Dq-MbF"/>
+                            <constraint firstItem="L1W-s5-ZPy" firstAttribute="leading" secondItem="n6L-As-28A" secondAttribute="leading" id="qke-wz-ilG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select Color" id="tN6-Gl-O5c">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pWl-Vu-rwE">
+                            <connections>
+                                <action selector="onCancelPress:" destination="Y6W-OH-hqX" id="2uc-Tl-RUS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="1Wc-Fu-y7w" id="FX9-fW-1ka"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

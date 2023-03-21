@@ -27,9 +27,6 @@ class SetupBusinessVC: UIViewController {
 	
 	var place: GMSPlace?
 	
-	let loadingVC = LoadingViewController()
-
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,29 +52,10 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.rightViewMode = .always
 		numberOfEmployeeInput.textFieldComponent.rightView = addBtnView
 		addButton.addTarget(self, action: #selector(onAddPress(_:)), for: .touchUpInside)
-		
-		loadingVC.modalPresentationStyle = .overCurrentContext
-		loadingVC.modalTransitionStyle = .crossDissolve
 	}
-	
-	@objc func onBackPress(){
-		
-	}
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		navigationController?.navigationBar.prefersLargeTitles = true
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		navigationController?.navigationBar.prefersLargeTitles = false
-	}
-	
 	
 	@IBAction func onSelectLocationButonPress(_ sender: Any) {
-		self.present(SelectLocationVC.getController(selectLocationDelegate: self),
+		self.present(SelectLocationVC.getController(delegate: self),
 					 animated:true, completion: nil)
 	}
 	
@@ -133,7 +111,7 @@ class SetupBusinessVC: UIViewController {
 			return
 		}
 		
-		let business = Business(name: businessName, address: selectedPlace.formattedAddress, noOfEmployees: noOfEmpCount, location: GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude))
+		let business = Business(name: businessName, address: selectedPlace.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude))
 		self.startLoading()
 		FirestoreHelper.saveBusiness(business){ error in
 			if let error = error{
@@ -155,6 +133,7 @@ class SetupBusinessVC: UIViewController {
 				return
 			}
 			DispatchQueue.main.async {
+				AuthHelper.refreshData()
 				
 				let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
 				let mainTabBarController = storyboard.instantiateViewController(identifier: "HomeNavVC")
@@ -163,21 +142,6 @@ class SetupBusinessVC: UIViewController {
 			}
 			
 		}
-	}
-	
-	func showAlert(title: String, message: String, textInput: TextInput? = nil, completion: (() -> Void)? = nil){
-		print("\(title): \(message)")
-		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
-			if let textInput = textInput{
-				DispatchQueue.main.async {
-					textInput.textFieldComponent.becomeFirstResponder()
-				}
-			} else if let completion = completion{
-				completion()
-			}
-		}))
-		self.present(alert, animated: true, completion: nil)
 	}
 }
 
@@ -202,27 +166,8 @@ extension SetupBusinessVC: SelectLocationDelegate{
 		selectLocationLabel.textColor = .label
 	}
 	
-	func onCancel() {
+	func onCancelLocation() {
 		print("cancelled")
 	}
 	
-}
-
-
-extension SetupBusinessVC{
-	func startLoading(){
-		DispatchQueue.main.async {
-			self.present(self.loadingVC, animated: true, completion: nil)
-		}
-	}
-	
-	func stopLoading(completion: (() -> Void)? = nil){
-		DispatchQueue.main.async {
-			if self.loadingVC.isModal{
-				self.loadingVC.dismiss(animated: true, completion: completion)
-			} else if let completion = completion {
-				completion()
-			}
-		}
-	}
 }

@@ -28,8 +28,6 @@ class OtpInputVC: UIViewController {
 	private var timer: Timer?
 	private var secondsLeft = 0
 	
-	let loadingVC = LoadingViewController()
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -48,21 +46,7 @@ class OtpInputVC: UIViewController {
 		otpTextField.configure()
 		
 		restartTimer()
-		
-		loadingVC.modalPresentationStyle = .overCurrentContext
-		loadingVC.modalTransitionStyle = .crossDissolve
     }
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		navigationController?.navigationBar.prefersLargeTitles = true
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		navigationController?.navigationBar.prefersLargeTitles = false
-	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
 		UserDefaults.standard.removeObject(forKey: "authVerificationID")
@@ -132,21 +116,6 @@ extension OtpInputVC: AEOTPTextFieldDelegate{
 				dismiss(animated: true)
 			}
 			stopLoading()
-		}
-	}
-}
-
-
-extension OtpInputVC{
-	func startLoading(){
-		DispatchQueue.main.async {
-			self.present(self.loadingVC, animated: true, completion: nil)
-		}
-	}
-	
-	func stopLoading(){
-		DispatchQueue.main.async {
-			self.loadingVC.dismiss(animated: true)
 		}
 	}
 }

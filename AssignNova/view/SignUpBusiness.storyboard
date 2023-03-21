@@ -20,10 +20,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="807"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rr6-rb-SPf">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="777.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="761.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YLX-Ub-GhB">
-                                                <rect key="frame" x="16" y="32" width="361" height="729.33333333333337"/>
+                                                <rect key="frame" x="16" y="16" width="361" height="729.33333333333337"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coT-lc-nAE" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="73.666666666666671"/>
@@ -116,13 +116,13 @@
                                                         </buttonConfiguration>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                <real key="value" value="0.51000000000000001"/>
+                                                                <real key="value" value="0.5"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                <color key="value" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="value" systemColor="systemGray2Color"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="8"/>
+                                                                <real key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -149,7 +149,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="YLX-Ub-GhB" secondAttribute="trailing" constant="16" id="3W5-hG-SQr"/>
                                             <constraint firstItem="YLX-Ub-GhB" firstAttribute="leading" secondItem="rr6-rb-SPf" secondAttribute="leading" constant="16" id="XJ1-WG-bG3"/>
-                                            <constraint firstItem="YLX-Ub-GhB" firstAttribute="top" secondItem="rr6-rb-SPf" secondAttribute="top" constant="32" id="i9Z-IX-dXS"/>
+                                            <constraint firstItem="YLX-Ub-GhB" firstAttribute="top" secondItem="rr6-rb-SPf" secondAttribute="top" constant="16" id="i9Z-IX-dXS"/>
                                             <constraint firstAttribute="bottom" secondItem="YLX-Ub-GhB" secondAttribute="bottom" constant="16" id="vff-m2-j6W"/>
                                         </constraints>
                                     </view>
@@ -174,7 +174,7 @@
                             <constraint firstItem="BzQ-vt-TQD" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="zSI-fj-FJp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Account" id="XNF-vt-vun"/>
+                    <navigationItem key="navigationItem" title="Create Account" largeTitleDisplayMode="always" id="XNF-vt-vun"/>
                     <size key="freeformSize" width="393" height="900"/>
                     <connections>
                         <outlet property="confirmPwdInput" destination="3cf-RY-aef" id="Zlw-0V-niP"/>
@@ -244,7 +244,7 @@
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                        <color key="value" red="0.85490196078431369" green="0.87058823529411766" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="value" systemColor="systemGray4Color"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                         <real key="value" value="0.5"/>
@@ -382,7 +382,7 @@
                             <constraint firstItem="X0M-rr-5Us" firstAttribute="top" secondItem="Wlg-Ym-577" secondAttribute="top" id="s7B-Su-flR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Setup Business" id="aph-Xq-bl8"/>
+                    <navigationItem key="navigationItem" title="Setup Business" largeTitleDisplayMode="always" id="aph-Xq-bl8"/>
                     <size key="freeformSize" width="393" height="900"/>
                     <connections>
                         <outlet property="businessNameInput" destination="Ko8-K7-rML" id="q0A-3o-BST"/>
@@ -418,6 +418,12 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

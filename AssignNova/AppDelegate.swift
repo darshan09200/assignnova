@@ -10,9 +10,12 @@ import CoreData
 import GoogleMaps
 import GooglePlaces
 import FirebaseCore
+import FirebaseAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+	
+	var handle: AuthStateDidChangeListenerHandle?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
@@ -21,6 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			GMSPlacesClient.provideAPIKey(apiKey)
 		}
 		FirebaseApp.configure()
+		
+		Auth.auth().addStateDidChangeListener { auth, user in
+			print(auth.currentUser)
+			if user == nil {
+				ActiveUser.instance = nil
+			} else {
+				AuthHelper.refreshData()
+			}
+		}
 		
 		return true
 	}

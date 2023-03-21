@@ -31,17 +31,9 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func onOpenOtpInputPress(_ sender: Any) {
-		let phoneNumber = "+12345678901"
-//		AuthHelper.sendOtp(phoneNumber: phoneNumber){ error in
-//			if let error = error{
-//				print(error.localizedDescription)
-//				return
-//			}
-			let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
-				.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
-			UserDefaults.standard.set(phoneNumber, forKey: "authPhoneNumber")
-			self.navigationController?.pushViewController(otpInputController, animated: true)
-//		}
+		let viewController = UIStoryboard(name: "Branch", bundle: nil)
+			.instantiateViewController(withIdentifier: "AddBranchVC")
+		self.present(UINavigationController(rootViewController: viewController), animated: true)
 	}
 
 	@IBAction func onOpenSignUpBusinessPress(_ sender: Any) {
@@ -62,7 +54,7 @@ extension ViewController: SelectLocationDelegate {
 		print(place)
 	}
 
-	func onCancel() {
+	func onCancelLocation() {
 		print("cancelled")
 	}
 }

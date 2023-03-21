@@ -9,6 +9,28 @@ import UIKit
 import FirebaseAuth
 
 class AuthHelper{
+	static var userId: String?{
+		return Auth.auth().currentUser?.uid
+	}
+	
+	static func refreshData(){
+		FirestoreHelper.getUser(){ user in
+			if let user = user{
+				var activeUser = ActiveUser(user: user)
+				FirestoreHelper.getBusiness(){ business in
+					if let business = business, let businessId = business.id{
+						activeUser.business = business
+						ActiveUser.instance = activeUser
+					} else {
+						ActiveUser.instance = activeUser
+					}
+				}
+			} else {
+				ActiveUser.instance = nil
+			}
+		}
+	}
+	
 	static func sendOtp(phoneNumber: String, completion: @escaping(_ error: Error?)->()){
 		PhoneAuthProvider.provider()
 			.verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in

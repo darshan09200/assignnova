@@ -155,7 +155,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="48s-Ve-jaa" secondAttribute="trailing" id="eha-aO-6Og"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="2p3-sk-nlc"/>
+                    <navigationItem key="navigationItem" title="Login" largeTitleDisplayMode="always" id="2p3-sk-nlc"/>
                     <connections>
                         <outlet property="emailTxt" destination="O1C-jn-kcw" id="cjH-BW-hw2"/>
                         <outlet property="googleLoginBtn" destination="qLp-pg-Dbo" id="57X-br-moq"/>
