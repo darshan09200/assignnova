@@ -13,8 +13,8 @@
         <scene sceneID="rn8-gQ-dET">
             <objects>
                 <navigationController storyboardIdentifier="LoginNavVC" id="7de-PR-3Mz" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l4K-cG-TAc">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="l4K-cG-TAc">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -116,7 +116,7 @@
                             <constraint firstItem="GAw-22-XDG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="U0u-cP-b1h"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Test" leftItemsSupplementBackButton="YES" id="G8w-zY-DAG"/>
+                    <navigationItem key="navigationItem" title="Test" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="G8w-zY-DAG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

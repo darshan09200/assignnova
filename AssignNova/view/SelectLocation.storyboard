@@ -44,7 +44,7 @@
                             <constraint firstItem="cQo-Mb-tsR" firstAttribute="leading" secondItem="jad-2T-r2t" secondAttribute="leading" id="pB4-6B-IR0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Select Location" leftItemsSupplementBackButton="YES" id="Fbx-lZ-JJD">
+                    <navigationItem key="navigationItem" title="Select Location" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="Fbx-lZ-JJD">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Wkj-gX-boQ"/>
                     </navigationItem>
                     <connections>

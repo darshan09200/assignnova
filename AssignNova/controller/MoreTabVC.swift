@@ -16,6 +16,12 @@ class MoreTabVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+	@IBAction func onBranchPress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Branch", bundle: nil)
+			.instantiateViewController(withIdentifier: "ViewAllBranchTVC") as! ViewAllBranchTVC
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
+	
 	@IBAction func onLogoutPress(_ sender: UIButton) {
 		let firebaseAuth = Auth.auth()
 		do {

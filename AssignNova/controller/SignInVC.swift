@@ -21,8 +21,6 @@ class SignInVC: UIViewController {
     
     @IBOutlet weak var phoneNumberTxt: TextInput!
 	
-	let loadingVC = LoadingViewController()
-	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -39,21 +37,7 @@ class SignInVC: UIViewController {
 		passwordTxt.textFieldComponent.rightViewMode = .always
 		passwordTxt.textFieldComponent.rightView = pwdBtnView
 		pwdButton.addTarget(self, action: #selector(togglePassword(_:)), for: .touchUpInside)
-		
-		loadingVC.modalPresentationStyle = .overCurrentContext
-		loadingVC.modalTransitionStyle = .crossDissolve
     }
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		navigationController?.navigationBar.prefersLargeTitles = true
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		navigationController?.navigationBar.prefersLargeTitles = false
-	}
 	
 	@objc func togglePassword(_ sender: UIButton){
 		sender.isSelected = !sender.isSelected
@@ -169,20 +153,6 @@ class SignInVC: UIViewController {
 		}
     }
     
-	func showAlert(title: String, message: String, textInput: TextInput? = nil){
-		print("\(title): \(message)")
-		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
-			if let textInput = textInput{
-				DispatchQueue.main.async {
-					textInput.textFieldComponent.becomeFirstResponder()
-				}
-			}
-		}))
-		self.present(alert, animated: true, completion: nil)
-		
-	}
-    
     @IBAction func loginModeChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
             case 0:
@@ -223,26 +193,6 @@ extension SignInVC: OtpInputDelegate{
 			let mainTabBarController = storyboard.instantiateViewController(identifier: "HomeNavVC")
 			
 			(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
-		}
-	}
-}
-
-
-extension SignInVC{
-	
-	func startLoading(){
-		DispatchQueue.main.async {
-			self.present(self.loadingVC, animated: true, completion: nil)
-		}
-	}
-	
-	func stopLoading(completion: (() -> Void)? = nil){
-		DispatchQueue.main.async {
-			if self.loadingVC.isModal{
-				self.loadingVC.dismiss(animated: true, completion: completion)
-			} else if let completion = completion {
-				completion()
-			}
 		}
 	}
 }
