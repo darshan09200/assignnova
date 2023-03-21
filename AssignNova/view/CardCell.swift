@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BranchCell: UITableViewCell {
+class CardCell: UITableViewCell {
 
 	@IBOutlet weak var card: Card!
 	
