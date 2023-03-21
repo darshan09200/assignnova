@@ -34,8 +34,8 @@
                 <navigationController id="80F-dB-OIA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="gg6-cl-8rk"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Oj2-p8-HM5">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Oj2-p8-HM5">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -56,7 +56,7 @@
                         <viewLayoutGuide key="safeArea" id="BJh-Cd-k44"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="AssignNova" id="C57-3s-5jr"/>
+                    <navigationItem key="navigationItem" title="AssignNova" largeTitleDisplayMode="never" id="C57-3s-5jr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCE-i3-5Nt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,7 +73,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Scheduler" image="calendar" catalog="system" id="wha-zh-BrX"/>
-                    <navigationItem key="navigationItem" title="Scheduler" id="3Pv-Pr-2aE"/>
+                    <navigationItem key="navigationItem" title="Scheduler" largeTitleDisplayMode="never" id="3Pv-Pr-2aE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BY9-7V-JKZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,8 +85,8 @@
                 <navigationController id="c1d-TZ-bMv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Request" image="clock" catalog="system" id="CAm-3N-d0X"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yB3-WV-MlR">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="yB3-WV-MlR">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -103,8 +103,8 @@
                 <navigationController id="hJa-3y-I2j" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="More" image="ellipsis" catalog="system" id="Sfi-Pl-BhT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jxO-Uy-ymw">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="jxO-Uy-ymw">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -127,10 +127,10 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVD-wI-Bwm">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="142.33333333333334"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="202.33333333333334"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="V7x-Wi-sal">
-                                                <rect key="frame" x="16" y="15.999999999999993" width="361" height="110.33333333333331"/>
+                                                <rect key="frame" x="16" y="16" width="361" height="170.33333333333334"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-c8-A3j" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="52"/>
@@ -143,8 +143,20 @@
                                                             <outletCollection property="gestureRecognizers" destination="Urj-OV-jGD" appends="YES" id="4Ev-Lt-3c8"/>
                                                         </connections>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlf-us-V4D" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="60" width="361" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Role"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="person.2.fill" catalog="system"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="Fgw-cf-XOo" appends="YES" id="fNL-Qc-jft"/>
+                                                        </connections>
+                                                    </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QwY-Ad-xZA">
-                                                        <rect key="frame" x="0.0" y="60" width="361" height="50.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="119.99999999999999" width="361" height="50.333333333333329"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Logout" buttonSize="large"/>
                                                         <connections>
@@ -184,12 +196,17 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="More" image="ellipsis" catalog="system" id="TAu-iA-HQ6"/>
-                    <navigationItem key="navigationItem" title="More" id="rpH-bP-jo4"/>
+                    <navigationItem key="navigationItem" title="More" largeTitleDisplayMode="never" id="rpH-bP-jo4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irR-Ig-mvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Urj-OV-jGD">
                     <connections>
                         <action selector="onBranchPress:" destination="cVR-a7-XBn" id="Bmz-5h-fYT"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Fgw-cf-XOo">
+                    <connections>
+                        <action selector="onRolePress:" destination="cVR-a7-XBn" id="g4g-Wn-3DS"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -206,7 +223,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Request" image="clock" catalog="system" id="VD5-O2-9hB"/>
-                    <navigationItem key="navigationItem" title="Request" id="M2u-4j-iy1"/>
+                    <navigationItem key="navigationItem" title="Request" largeTitleDisplayMode="never" id="M2u-4j-iy1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u32-SI-GBM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -218,8 +235,8 @@
                 <navigationController id="st2-Ci-ORh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Scheduler" image="calendar" catalog="system" id="NtA-OG-bEA"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9cb-jw-Rc0">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="9cb-jw-Rc0">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -236,6 +253,7 @@
         <image name="clock" catalog="system" width="128" height="123"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="house" catalog="system" width="128" height="104"/>
+        <image name="person.2.fill" catalog="system" width="128" height="81"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

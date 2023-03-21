@@ -39,12 +39,25 @@ class FirestoreHelper{
 	
 	static func saveBranch(_ branch: Branch, completion: @escaping(_ error: Error?)->()){
 		do{
-			print(branch)
 			if let branchId = branch.id{
 				try db.collection("branch").document(branchId).setData(from: branch){ err in FirestoreHelper.completion(err, completion)
 				}
 			} else {
 				try db.collection("branch").addDocument(from: branch){ err in FirestoreHelper.completion(err, completion)
+				}
+			}
+		} catch{
+			completion(error)
+		}
+	}
+	
+	static func saveRole(_ role: Role, completion: @escaping(_ error: Error?)->()){
+		do{
+			if let roleId = role.id{
+				try db.collection("role").document(roleId).setData(from: role){ err in FirestoreHelper.completion(err, completion)
+				}
+			} else {
+				try db.collection("role").addDocument(from: role){ err in FirestoreHelper.completion(err, completion)
 				}
 			}
 		} catch{
@@ -117,6 +130,38 @@ class FirestoreHelper{
 			}
 			do{
 				try completion(snapshot?.data(as: Branch.self))
+			}catch{
+				completion(nil)
+			}
+		}
+	}
+	
+	static func getRoles(businessId: String, completion: @escaping(_ role: [Role]?)->()) -> ListenerRegistration{
+		let docRef = db.collection("role")
+			.whereField("businessId", isEqualTo: businessId)
+			.order(by: "createdAt")
+		return docRef.addSnapshotListener(){ snapshots, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			let roles = snapshots?.documents.compactMap{ document in
+				return try? document.data(as: Role.self)
+			}
+			completion(roles)
+		}
+	}
+	
+	static func getRole(roleId: String, completion: @escaping(_ role: Role?)->()) -> ListenerRegistration{
+		let docRef = db.collection("role")
+			.document(roleId)
+		return docRef.addSnapshotListener(){ snapshot, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			do{
+				try completion(snapshot?.data(as: Role.self))
 			}catch{
 				completion(nil)
 			}

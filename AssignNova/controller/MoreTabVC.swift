@@ -22,6 +22,12 @@ class MoreTabVC: UIViewController {
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
+	@IBAction func onRolePress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Role", bundle: nil)
+			.instantiateViewController(withIdentifier: "ViewAllRoleTVC") as! ViewAllRoleTVC
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
+	
 	@IBAction func onLogoutPress(_ sender: UIButton) {
 		let firebaseAuth = Auth.auth()
 		do {

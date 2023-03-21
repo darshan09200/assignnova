@@ -9,7 +9,6 @@ import UIKit
 
 class BranchDetailCell: UITableViewCell {
 
-	
 	@IBOutlet weak var branchName: UILabel!
 	@IBOutlet weak var branchColor: UIImageView!
 	

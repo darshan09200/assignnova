@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 import FirebaseFirestore
 
-class ViewBrancTVC: UITableViewController {
+class ViewBranchTVC: UITableViewController {
 	
 	var branchId: String?
 	private var branch: Branch?
@@ -39,7 +39,7 @@ class ViewBrancTVC: UITableViewController {
 		self.present(UINavigationController(rootViewController: viewController), animated: true)
 	}
 }
-extension ViewBrancTVC{
+extension ViewBranchTVC{
 
     // MARK: - Table view data source
 
@@ -80,7 +80,7 @@ extension ViewBrancTVC{
 			}
 			return cell
 		}
-		let cell = tableView.dequeueReusableCell(withIdentifier: "branchCard", for: indexPath) as! BranchCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
 		
 		return cell
     }

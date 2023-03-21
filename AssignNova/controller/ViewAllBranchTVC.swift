@@ -58,7 +58,7 @@ extension ViewAllBranchTVC{
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "branchCard", for: indexPath) as! BranchCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
 
 		let branch = branches[indexPath.row]
 		
@@ -72,7 +72,7 @@ extension ViewAllBranchTVC{
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 		let branch = branches[indexPath.row]
-		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewBranchTVC") as! ViewBrancTVC
+		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewBranchTVC") as! ViewBranchTVC
 		viewController.branchId = branch.id
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
