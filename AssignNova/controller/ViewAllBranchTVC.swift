@@ -40,6 +40,8 @@ class ViewAllBranchTVC: UITableViewController {
 	}
 	
 	@IBAction func onShowMapPress(_ sender: UIBarButtonItem) {
+		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "BranchMapVC") as! BranchMapVC
+		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
 }
