@@ -70,7 +70,7 @@ class SignInVC: UIViewController {
 						self.showAlert(title: "Error", message: error.localizedDescription)
 						return
 					}
-					self.navigateToHome()
+//					self.navigateToHome()
 				}
 			}
 		} else if loginMethodSegment.selectedSegmentIndex == 1 {
@@ -132,7 +132,7 @@ class SignInVC: UIViewController {
 									return
 								}
 								
-								self.navigateToHome()
+//								self.navigateToHome()
 							}
 						} else {
 							self.stopLoading(){
@@ -183,7 +183,7 @@ extension SignInVC: OtpInputDelegate{
 				self.showAlert(title: "Oops", message: "Unknown error occured.")
 				return
 			}
-			self.navigateToHome()
+//			self.navigateToHome()
 		}
 	}
 	
