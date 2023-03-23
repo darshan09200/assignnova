@@ -13,22 +13,26 @@ import FirebaseAuth
 class SetupBusinessVC: UIViewController {
 
 	@IBOutlet weak var businessNameInput: TextInput!
-	
+
 	@IBOutlet weak var selectLocationLabel: UILabel!
-	
+
 	@IBOutlet weak var numberOfEmployeeInput: TextInput!
-	
+
 	@IBOutlet weak var smallPlanCard: PlanCard!
 	@IBOutlet weak var businessPlanCard: PlanCard!
 	@IBOutlet weak var enterprisePlanCard: PlanCard!
-	
+
 	let minusButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
 	let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-	
+
 	var place: GMSPlace?
-	
+
 	var showLogout = false
-	
+
+
+	let loadingVC = LoadingViewController()
+
+
 	override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,8 +40,8 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.text = "10"
 		numberOfEmployeeInput.textFieldComponent.delegate = self
 		numberOfEmployeeInput.textFieldComponent.keyboardType = .numberPad
-		
-		
+
+
 		minusButton.tintColor = .label
 		minusButton.setImage(UIImage(systemName: "minus"), for: .normal)
 		let minusBtnView = UIView(frame: CGRect(x: 0, y: 0, width: 42, height: 30))
@@ -46,7 +50,7 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.leftView = minusBtnView
 		minusButton.addTarget(self, action: #selector(onMinusPress(_:)), for: .touchUpInside)
 		minusButton.isEnabled = false
-		
+
 		addButton.tintColor = .label
 		addButton.setImage(UIImage(systemName: "plus"), for: .normal)
 		let addBtnView = UIView(frame: CGRect(x: 0, y: 0, width: 42, height: 30))
@@ -54,22 +58,22 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.rightViewMode = .always
 		numberOfEmployeeInput.textFieldComponent.rightView = addBtnView
 		addButton.addTarget(self, action: #selector(onAddPress(_:)), for: .touchUpInside)
-		
+
 		if showLogout{
 			let logout = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(onLogoutPress))
 			navigationItem.rightBarButtonItem = logout
 		}
 	}
-	
+
 	@objc func onLogoutPress(){
 		AuthHelper.logout()
 	}
-	
+
 	@IBAction func onSelectLocationButonPress(_ sender: Any) {
 		self.present(SelectLocationVC.getController(delegate: self),
 					 animated:true, completion: nil)
 	}
-	
+
 	@objc func onMinusPress(_ sender: UIButton){
 		guard let count = Int(numberOfEmployeeInput.textFieldComponent.text!), count > 10 else {
 			return
@@ -79,7 +83,7 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.text = String(newCount)
 		refreshPlans()
 	}
-	
+
 	@objc func onAddPress(_ sender: UIButton){
 		guard let count = Int(numberOfEmployeeInput.textFieldComponent.text!) else { return }
 		let newCount = 10 * Int(count / 10) + 10
@@ -87,7 +91,7 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.text = String(newCount)
 		refreshPlans()
 	}
-	
+
 	func refreshPlans(){
 		guard let count = Int(numberOfEmployeeInput.textFieldComponent.text!) else { return }
 		let formattedCount = 10 * Int(count / 10)
@@ -102,8 +106,8 @@ class SetupBusinessVC: UIViewController {
 			enterprisePlanCard.isSelected = true
 		}
 	}
-	
-	
+
+
 	@IBAction func onMakePaymentBtnPress(_ sender: UIButton) {
 		guard let businessName = businessNameInput.textFieldComponent.text, !businessName.isEmpty else {
 			showAlert(title: "Oops", message: "Business name is empty", textInput: businessNameInput)
@@ -121,8 +125,9 @@ class SetupBusinessVC: UIViewController {
 			showAlert(title: "Oops", message: "Number of Employees is invalid. It can only be in groups of 10", textInput: businessNameInput)
 			return
 		}
-		
-		let business = Business(name: businessName, address: selectedPlace.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude))
+
+		let userId = ActiveEmployee.instance?.employee.id ?? Auth.auth().currentUser!.uid
+		let business = Business(name: businessName, address: selectedPlace.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude), managedBy: userId)
 		self.startLoading()
 		FirestoreHelper.saveBusiness(business){ error in
 			if let error = error{
@@ -145,13 +150,13 @@ class SetupBusinessVC: UIViewController {
 			}
 			DispatchQueue.main.async {
 				AuthHelper.refreshData()
-				
+
 				let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
 				let mainTabBarController = storyboard.instantiateViewController(identifier: "HomeNavVC")
-				
+
 				(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
 			}
-			
+
 		}
 	}
 }
@@ -176,9 +181,9 @@ extension SetupBusinessVC: SelectLocationDelegate{
 		selectLocationLabel.text = place.formattedAddress
 		selectLocationLabel.textColor = .label
 	}
-	
+
 	func onCancelLocation() {
 		print("cancelled")
 	}
-	
+
 }
