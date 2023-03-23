@@ -20,8 +20,6 @@ class SignUpBusinessAccountVC: UIViewController {
 	@IBOutlet weak var pwdInput: TextInput!
 	@IBOutlet weak var confirmPwdInput: TextInput!
 	
-	let loadingVC = LoadingViewController()
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,21 +50,7 @@ class SignUpBusinessAccountVC: UIViewController {
 		confirmPwdInput.textFieldComponent.rightView = confirmPwdBtnView
 		confirmPwdButton.addTarget(self , action: #selector(toggleConfirmPassword(_:)), for: .touchUpInside)
 		
-		loadingVC.modalPresentationStyle = .overCurrentContext
-		loadingVC.modalTransitionStyle = .crossDissolve
-		
     }
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		navigationController?.navigationBar.prefersLargeTitles = true
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		navigationController?.navigationBar.prefersLargeTitles = false
-	}
 	
 	@objc func togglePassword(_ sender: UIButton){
 		sender.isSelected = !sender.isSelected
@@ -138,6 +122,9 @@ class SignUpBusinessAccountVC: UIViewController {
 						self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberInput)
 					}
 				} else {
+					DispatchQueue.main.async {
+						(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
+					}
 					Auth.auth().createUser(withEmail: email, password: pwd) { authResult, error in
 						if let error = AuthHelper.getErrorMessage(error: error){
 							self.stopLoading(){
@@ -248,19 +235,6 @@ class SignUpBusinessAccountVC: UIViewController {
 		}
 	}
 	
-	func showAlert(title: String, message: String, textInput: TextInput? = nil){
-		print("\(title): \(message)")
-		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {_ in
-			if let textInput = textInput{
-				DispatchQueue.main.async {
-					textInput.textFieldComponent.becomeFirstResponder()
-				}
-			}
-		}))
-		self.present(alert, animated: true, completion: nil)
-		
-	}
 }
 
 extension SignUpBusinessAccountVC: OtpInputDelegate{
@@ -280,7 +254,10 @@ extension SignUpBusinessAccountVC: OtpInputDelegate{
 					return
 				}
 //				self.navigationController?.popViewController(animated: true)
-				self.navigateToSetupBusiness()
+//				self.navigateToSetupBusiness()
+				DispatchQueue.main.async {
+					(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
+				}
 			}
 		}
 	}
@@ -290,24 +267,6 @@ extension SignUpBusinessAccountVC: OtpInputDelegate{
 			let setupBusinessVC = UIStoryboard(name: "SignUpBusiness", bundle: nil)
 				.instantiateViewController(withIdentifier: "SetupBusinessVC") as! SetupBusinessVC
 			self.navigationController?.pushViewController(setupBusinessVC, animated: true)
-		}
-	}
-}
-
-extension SignUpBusinessAccountVC{
-	func startLoading(){
-		DispatchQueue.main.async {
-			self.present(self.loadingVC, animated: true, completion: nil)
-		}
-	}
-	
-	func stopLoading(completion: (() -> Void)? = nil){
-		DispatchQueue.main.async {
-			if self.loadingVC.isModal{
-				self.loadingVC.dismiss(animated: true, completion: completion)
-			} else if let completion = completion {
-				completion()
-			}
 		}
 	}
 }

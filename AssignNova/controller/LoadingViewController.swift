@@ -8,6 +8,8 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
+	static let loadingVC = LoadingViewController()
+	
 	var loadingActivityIndicator: UIActivityIndicatorView = {
 		let indicator = UIActivityIndicatorView()
 		
@@ -62,5 +64,25 @@ class LoadingViewController: UIViewController {
 			y: view.bounds.midY
 		)
 		view.addSubview(loadingActivityIndicator)
+	}
+}
+
+extension UIViewController{
+	func startLoading(){
+		DispatchQueue.main.async {
+			LoadingViewController.loadingVC.modalPresentationStyle = .overCurrentContext
+			LoadingViewController.loadingVC.modalTransitionStyle = .crossDissolve
+			self.present(LoadingViewController.loadingVC, animated: true, completion: nil)
+		}
+	}
+	
+	func stopLoading(completion: (() -> Void)? = nil){
+		DispatchQueue.main.async {
+			if LoadingViewController.loadingVC.isModal{
+				LoadingViewController.loadingVC.dismiss(animated: true, completion: completion)
+			} else if let completion = completion {
+				completion()
+			}
+		}
 	}
 }

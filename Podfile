@@ -16,4 +16,5 @@ target 'AssignNova' do
 	
 	pod 'AEOTPTextField'
 	pod 'PhoneNumberKit', :git => 'https://github.com/marmelroy/PhoneNumberKit'
+	pod 'SDWebImage', '~> 5.0'
 end
