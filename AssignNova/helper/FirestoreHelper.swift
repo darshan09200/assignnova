@@ -10,7 +10,6 @@ import FirebaseFirestore
 
 class FirestoreHelper{
 	static let db = Firestore.firestore()
-	
 	static func completion(_ error: Error?, _ completion: @escaping(_ error: Error?)->()){
 		if let error = error {
 			completion(error)
@@ -18,16 +17,16 @@ class FirestoreHelper{
 			completion(nil)
 		}
 	}
-	
-	static func saveUser(_ user: User, completion: @escaping(_ error: Error?)->()){
+
+	static func saveEmployee(_ employee: Employee, completion: @escaping(_ error: Error?)->()){
 		do{
-			try db.collection("users").document(user.id!).setData(from: user){ err in FirestoreHelper.completion(err, completion)
+			try db.collection("employee").addDocument(from: employee){ err in FirestoreHelper.completion(err, completion)
 			}
 		} catch{
 			completion(error)
 		}
 	}
-	
+
 	static func saveBusiness(_ business: Business, completion: @escaping(_ error: Error?)->()){
 		do{
 			try db.collection("business").addDocument(from: business) { err in FirestoreHelper.completion(err, completion)
@@ -36,7 +35,7 @@ class FirestoreHelper{
 			completion(error)
 		}
 	}
-	
+
 	static func saveBranch(_ branch: Branch, completion: @escaping(_ error: Error?)->()){
 		do{
 			if let branchId = branch.id{
@@ -50,7 +49,7 @@ class FirestoreHelper{
 			completion(error)
 		}
 	}
-	
+
 	static func saveRole(_ role: Role, completion: @escaping(_ error: Error?)->()){
 		do{
 			if let roleId = role.id{
@@ -64,26 +63,14 @@ class FirestoreHelper{
 			completion(error)
 		}
 	}
-	
-	static func getUser(completion: @escaping(_ user: User?)->()){
-		if let userId = AuthHelper.userId{
-			let docRef = db.collection("users").document(userId)
-			docRef.getDocument(as: User.self){ result in
-				switch result {
-					case .success(let user):
-						completion(user)
-					default:
-						completion(nil)
-				}
-			}
-		} else{
-			completion(nil)
-		}
-	}
-	
-	static func getBusiness(completion: @escaping(_ business: Business?)->()){
-		if let userId = AuthHelper.userId{
-			let docRef = db.collection("business").whereField("managedBy", isEqualTo: userId)
+
+	static func getEmployee(userId: String, completion: @escaping(_ employee: Employee?)->()){
+//		if let activeEmployee = ActiveEmployee.instance
+//		   let businessId = activeEmployee.business?.id,
+//		{
+			let docRef = db.collection("employee").whereField("userId", isEqualTo: userId)
+//				.whereField("businessId", isEqualTo: businessId)
+				.limit(to: 1)
 			docRef.getDocuments(){ snapshots, err in
 				if let _ = err {
 					completion(nil)
@@ -91,7 +78,7 @@ class FirestoreHelper{
 				}
 				if let snapshot = snapshots?.documents.first{
 					do{
-						try completion(snapshot.data(as: Business.self))
+						try completion(snapshot.data(as: Employee.self))
 					} catch{
 						completion(nil)
 					}
@@ -99,11 +86,31 @@ class FirestoreHelper{
 					completion(nil)
 				}
 			}
-		} else{
-			completion(nil)
+//		} else{
+//			completion(nil)
+//		}
+	}
+
+	static func getBusiness(employeeId: String, completion: @escaping(_ business: Business?)->()){
+		
+			let docRef = db.collection("business").whereField("managedBy", isEqualTo: employeeId)
+		docRef.getDocuments(){ snapshots, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			if let snapshot = snapshots?.documents.first{
+				do{
+					try completion(snapshot.data(as: Business.self))
+				} catch{
+					completion(nil)
+				}
+			} else{
+				completion(nil)
+			}
 		}
 	}
-	
+
 	static func getBranches(businessId: String, completion: @escaping(_ branch: [Branch]?)->()) -> ListenerRegistration{
 		let docRef = db.collection("branch")
 			.whereField("businessId", isEqualTo: businessId)
@@ -119,7 +126,7 @@ class FirestoreHelper{
 			completion(branches)
 		}
 	}
-	
+
 	static func getBranch(branchId: String, completion: @escaping(_ branch: Branch?)->()) -> ListenerRegistration{
 		let docRef = db.collection("branch")
 			.document(branchId)
@@ -135,7 +142,7 @@ class FirestoreHelper{
 			}
 		}
 	}
-	
+
 	static func getRoles(businessId: String, completion: @escaping(_ role: [Role]?)->()) -> ListenerRegistration{
 		let docRef = db.collection("role")
 			.whereField("businessId", isEqualTo: businessId)
@@ -151,7 +158,7 @@ class FirestoreHelper{
 			completion(roles)
 		}
 	}
-	
+
 	static func getRole(roleId: String, completion: @escaping(_ role: Role?)->()) -> ListenerRegistration{
 		let docRef = db.collection("role")
 			.document(roleId)
@@ -167,5 +174,5 @@ class FirestoreHelper{
 			}
 		}
 	}
-	
+
 }

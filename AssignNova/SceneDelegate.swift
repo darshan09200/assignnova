@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window?.windowScene = windowScene
-		
+
 		let storyboard = UIStoryboard(name: "DecoyLaunchScreen", bundle: nil)
 		let initialViewController = storyboard.instantiateViewController(withIdentifier: "LaunchScreen")
 		window?.rootViewController = initialViewController
@@ -61,10 +61,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let window = self.window else {
 			return
 		}
-		
+
 		// change the root view controller to your specific view controller
 		window.rootViewController = vc
-		
+
 		if animated {
 			UIView.transition(with: window,
 							  duration: 0.5,
@@ -73,12 +73,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 							  completion: nil)
 		}
 	}
-	
+
 	func refreshData(){
 		preventRefresh = false
-		AuthHelper.refreshData(){ activeUser in
-			if let activeUser = activeUser {
-				if activeUser.business == nil {
+		AuthHelper.refreshData(){ activeEmployee in
+			if let activeEmployee = activeEmployee {
+				if activeEmployee.business == nil {
 					let storyboard = UIStoryboard(name: "SignUpBusiness", bundle: nil)
 					let initialViewController = storyboard.instantiateViewController(withIdentifier: "SetupBusinessVC") as! SetupBusinessVC
 					initialViewController.showLogout = true
@@ -97,14 +97,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			}
 		}
 	}
-	
+
 	func addAuthListener(){
 		Auth.auth().addStateDidChangeListener { auth, user in
+			print(auth.currentUser?.uid)
 			if !self.preventRefresh{
 				self.refreshData()
 			}
 		}
 	}
-	
-}
 
+}

@@ -117,8 +117,6 @@ class SignInVC: UIViewController {
 			   let idToken = user.idToken?.tokenString
 			{
 				let email = user.profile?.email
-				let firstName = user.profile?.givenName
-				let lastName = user.profile?.familyName
 				AuthHelper.doesEmailExists(email ?? ""){ error, exists  in
 					if let exists = exists{
 						if exists{
@@ -154,24 +152,24 @@ class SignInVC: UIViewController {
     }
     
     @IBAction func loginModeChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-            case 0:
-                UIView.animate(withDuration: 0.3) {
-                    self.emailTxt.isHidden = false
+		switch sender.selectedSegmentIndex {
+			case 0:
+				UIView.animate(withDuration: 0.3) {
+					self.emailTxt.isHidden = false
 					self.passwordTxt.isHidden = false
-                    
-                    self.phoneNumberTxt.isHidden = true
-                }
-            case 1:
-                UIView.animate(withDuration: 0.3) {
-                    self.emailTxt.isHidden = true
-                    self.passwordTxt.isHidden = true
 					
-                    self.phoneNumberTxt.isHidden = false
-                }
-            default:
-                break
-            }
+					self.phoneNumberTxt.isHidden = true
+				}
+			case 1:
+				UIView.animate(withDuration: 0.3) {
+					self.emailTxt.isHidden = true
+					self.passwordTxt.isHidden = true
+					
+					self.phoneNumberTxt.isHidden = false
+				}
+			default:
+				break
+		}
     }
     
 }

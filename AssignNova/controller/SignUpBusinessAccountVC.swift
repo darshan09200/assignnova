@@ -147,8 +147,8 @@ class SignUpBusinessAccountVC: UIViewController {
 							
 							if let uid = Auth.auth().currentUser?.uid
 							{
-								let user = User(id: uid, firstName: firstName, lastName: lastName )
-								FirestoreHelper.saveUser(user){_ in}
+								let employee = Employee(userId: uid, firstName: firstName, lastName: lastName, appRole: .owner )
+								FirestoreHelper.saveEmployee(employee){_ in}
 							}
 							
 							Auth.auth().currentUser?.sendEmailVerification { error in
@@ -200,6 +200,9 @@ class SignUpBusinessAccountVC: UIViewController {
 					} else {
 						let credential = GoogleAuthProvider.credential(withIDToken: idToken,
 																	   accessToken: user.accessToken.tokenString)
+						DispatchQueue.main.async {
+							(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
+						}
 						Auth.auth().signIn(with: credential) { result, error in
 							if let error = AuthHelper.getErrorMessage(error: error){
 								self.stopLoading(){
@@ -208,14 +211,17 @@ class SignUpBusinessAccountVC: UIViewController {
 								return
 							}
 							if let uid = result?.user.uid{
-								let user = User(id: uid, firstName: firstName ?? "", lastName: lastName ?? "")
-								FirestoreHelper.saveUser(user){ error in
+								let employee = Employee(userId: uid, firstName: firstName ?? "", lastName: lastName ?? "", appRole: .owner)
+								FirestoreHelper.saveEmployee(employee){ error in
 									if let error = error{
 										self.showAlert(title: "Oops", message: error.localizedDescription)
 										return
 									}
-									self.stopLoading(){
-										self.navigateToSetupBusiness()
+//									self.stopLoading(){
+//										self.navigateToSetupBusiness()
+//									}
+									DispatchQueue.main.async {
+										(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
 									}
 								}
 							} else {

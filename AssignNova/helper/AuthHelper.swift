@@ -12,31 +12,31 @@ class AuthHelper{
 	static var userId: String?{
 		return Auth.auth().currentUser?.uid
 	}
-	
-	static func refreshData(completion: ((_ activeUser: ActiveUser?)->())? = nil){
-		FirestoreHelper.getUser(){ user in
-			if let user = user{
-				var activeUser = ActiveUser(user: user)
-				FirestoreHelper.getBusiness(){ business in
+
+	static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil){
+		print(userId)
+		FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
+			if let employee = employee{
+				var activeEmployee = ActiveEmployee(employee: employee)
+				FirestoreHelper.getBusiness(employeeId: employee.id ?? "" ){ business in
 					if let business = business, let _ = business.id{
-						activeUser.business = business
-						ActiveUser.instance = activeUser
+						activeEmployee.business = business
+						ActiveEmployee.instance = activeEmployee
 					} else {
-						ActiveUser.instance = activeUser
+						ActiveEmployee.instance = activeEmployee
 					}
 					if let completion = completion{
-						completion(ActiveUser.instance)
+						completion(ActiveEmployee.instance)
 					}
 				}
 			} else {
-				ActiveUser.instance = nil
+				ActiveEmployee.instance = nil
 				if let completion = completion{
-					completion(ActiveUser.instance)
+					completion(ActiveEmployee.instance)
 				}
 			}
 		}
 	}
-	
 	static func sendOtp(phoneNumber: String, completion: @escaping(_ error: Error?)->()){
 		PhoneAuthProvider.provider()
 			.verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
@@ -46,36 +46,36 @@ class AuthHelper{
 				}
 				UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
 				UserDefaults.standard.set(phoneNumber, forKey: "authPhoneNumber")
-				
+
 				completion(nil)
 			}
 	}
-	
+
 	static func doesPhoneNumberExists(_ phoneNumber: String, completion: @escaping(_ error: String?)->()){
 		let url = URL(string:"https://us-central1-assignnova.cloudfunctions.net/doesPhoneNumberExists")!
 		var request = URLRequest(url: url)
 		request.httpMethod = "POST"
-		
+
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		do{
 			request.httpBody = try JSONSerialization.data(withJSONObject: ["phoneNumber": phoneNumber], options: .prettyPrinted)
 		} catch{
-			
+
 		}
-		
+
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if let error = error {
 				completion("Error validating phone number")
 				return
 			}
-			
+
 			guard let httpResponse = response as? HTTPURLResponse,
 				  (200...299).contains(httpResponse.statusCode) else {
 				completion("Error validating phone number")
 				return
 			}
-			
+
 			if let data = data,
 			   let accountExistResponse = try? JSONDecoder().decode(AccountExistResponse.self, from: data) {
 				if let exists = accountExistResponse.exists{
@@ -93,32 +93,32 @@ class AuthHelper{
 		})
 		task.resume()
 	}
-	
+
 	static func doesEmailExists(_ email: String, completion: @escaping(_ error: String?, _ exists: Bool? )->()){
 		let url = URL(string:"https://us-central1-assignnova.cloudfunctions.net/doesEmailExists")!
 		var request = URLRequest(url: url)
 		request.httpMethod = "POST"
-		
+
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		do{
 			request.httpBody = try JSONSerialization.data(withJSONObject: ["email": email], options: .prettyPrinted)
 		} catch{
-			
+
 		}
-		
+
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if let _ = error {
 				completion("Error validating email", nil)
 				return
 			}
-			
+
 			guard let httpResponse = response as? HTTPURLResponse,
 				  (200...299).contains(httpResponse.statusCode) else {
 				completion("Error validating email", nil)
 				return
 			}
-			
+
 			if let data = data,
 			   let accountExistResponse = try? JSONDecoder().decode(AccountExistResponse.self, from: data) {
 				if let exists = accountExistResponse.exists{
@@ -136,7 +136,7 @@ class AuthHelper{
 		})
 		task.resume()
 	}
-	
+
 	static func getErrorMessage(error: Error?) -> String?{
 		if error == nil { return nil }
 		if let error = error as NSError? {
@@ -151,7 +151,7 @@ class AuthHelper{
 		}
 		return "Unknown error occured"
 	}
-	
+
 	static func logout(){
 		do {
 			try Auth.auth().signOut()

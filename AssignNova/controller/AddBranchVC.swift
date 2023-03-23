@@ -12,18 +12,18 @@ import FirebaseFirestore
 class AddBranchVC: UIViewController {
 
 	@IBOutlet weak var branchNameInput: TextInput!
-	
+
 	@IBOutlet weak var selectLocationLabel: UILabel!
-	
+
 	@IBOutlet weak var colorImage: UIImageView!
 	@IBOutlet weak var colorLabel: UILabel!
-	
+
 	private var place: GMSPlace?
 	private var color: Color = ColorPickerVC.colors.first!
-	
+
 	var isEdit: Bool = false
 	var branch: Branch?
-	
+
 	override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,31 +43,31 @@ class AddBranchVC: UIViewController {
 			}
 		}
     }
-    
+
 	@IBAction func onSelectLocationButonPress(_ sender: Any) {
 		self.present(SelectLocationVC.getController(delegate: self),
 					 animated:true, completion: nil)
 	}
-	
+
 	@IBAction func onSelectColorPress(_ sender: Any) {
 		self.present(ColorPickerVC.getController(delegate: self, selectedColor: color.color),
 					 animated:true, completion: nil)
 	}
-	
-	
+
+
 	@IBAction func onCancelButtonPress(_ sender: Any) {
 		dismiss(animated: true)
 	}
-	
+
 	@IBAction func onSavePress(_ sender: Any) {
 		guard let branchName = branchNameInput.textFieldComponent.text, !branchName.isEmpty else {
 			showAlert(title: "Oops", message: "Branch Name is empty", textInput: branchNameInput)
 			return
 		}
-		
+
 		let location: GeoPoint
 		let address: String
-		
+
 		if let selectedPlace = place {
 			location =  GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude)
 			address = selectedPlace.formattedAddress ?? ""
@@ -78,21 +78,21 @@ class AddBranchVC: UIViewController {
 			showAlert(title: "Oops", message: "Location for branch is not selected")
 			return
 		}
-		
-		
+
+
 		var branch = Branch(
 			name: branchName,
 			address: address,
 			location: location,
-			businessId: ActiveUser.instance?.business?.id ?? "",
+			businessId: ActiveEmployee.instance?.business?.id ?? "",
 			color: color.color.toHex()!
 		)
-		
+
 		branch.id = self.branch?.id
 		if let editBranch = self.branch{
 			branch.createdAt = editBranch.createdAt
 		}
-		
+
 		self.startLoading()
 		FirestoreHelper.saveBranch(branch){ error in
 			if let error = error{
@@ -131,11 +131,11 @@ extension AddBranchVC: SelectLocationDelegate{
 		selectLocationLabel.text = place.formattedAddress
 		selectLocationLabel.textColor = .label
 	}
-	
+
 	func onCancelLocation() {
 		print("cancelled")
 	}
-	
+
 }
 
 
@@ -143,7 +143,7 @@ extension AddBranchVC: ColorPickerDelegate{
 	func onCancelColorPicker() {
 		print("cancelled")
 	}
-	
+
 	func onSelectColor(color: Color) {
 		self.color = color
 		colorLabel.text = color.name
