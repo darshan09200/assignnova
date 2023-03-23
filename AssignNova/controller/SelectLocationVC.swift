@@ -10,15 +10,15 @@ import GooglePlaces
 
 protocol SelectLocationDelegate{
 	func onSelectLocation(place: GMSPlace)
-	func onCancel()
+	func onCancelLocation()
 }
 
-class SelectLocationViewController: UIViewController {
+class SelectLocationVC: UIViewController {
 
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
 	private var tableDataSource: GMSAutocompleteTableDataSource!
-	var selectLocationDelegate: SelectLocationDelegate?
+	var delegate: SelectLocationDelegate?
 
 	
 	override func viewDidLoad() {
@@ -38,28 +38,28 @@ class SelectLocationViewController: UIViewController {
 	}
 	
 	@objc func onCancelPress(){
-		selectLocationDelegate?.onCancel()
+		delegate?.onCancelLocation()
 		dismiss(animated: true)
 	}
 	
-	static func getController(selectLocationDelegate: SelectLocationDelegate) -> UINavigationController {
+	static func getController(delegate: SelectLocationDelegate) -> UINavigationController {
 		let selectLocationController = UIStoryboard(name: "SelectLocation", bundle: nil)
-			.instantiateViewController(withIdentifier: "SelectLocationViewController") as! SelectLocationViewController
+			.instantiateViewController(withIdentifier: "SelectLocationVC") as! SelectLocationVC
 		
-		selectLocationController.selectLocationDelegate = selectLocationDelegate
+		selectLocationController.delegate = delegate
 		
 		let navController = UINavigationController(rootViewController: selectLocationController)
 		return navController
 	}
 }
 
-extension SelectLocationViewController: UISearchBarDelegate {
+extension SelectLocationVC: UISearchBarDelegate {
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		tableDataSource.sourceTextHasChanged(searchText)
 	}
 }
 
-extension SelectLocationViewController: GMSAutocompleteTableDataSourceDelegate {
+extension SelectLocationVC: GMSAutocompleteTableDataSourceDelegate {
 	func didUpdateAutocompletePredictions(for tableDataSource: GMSAutocompleteTableDataSource) {
 		// Reload table data.
 		tableView.reloadData()
@@ -71,7 +71,7 @@ extension SelectLocationViewController: GMSAutocompleteTableDataSourceDelegate {
 	}
 	
 	func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didAutocompleteWith place: GMSPlace) {
-		selectLocationDelegate?.onSelectLocation(place: place)
+		delegate?.onSelectLocation(place: place)
 		dismiss(animated: true)
 	}
 	
