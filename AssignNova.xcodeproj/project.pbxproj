@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330E4D6D29CBD189008BDE3A /* Availability.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6C29CBD189008BDE3A /* Availability.storyboard */; };
+		330E4D7129CBDCE7008BDE3A /* AddAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */; };
 		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
 		33255D5E29C64576004A49FB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInVC.swift */; };
 		552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */; };
@@ -87,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		330E4D6C29CBD189008BDE3A /* Availability.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Availability.storyboard; sourceTree = "<group>"; };
+		330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAvailabilityVC.swift; sourceTree = "<group>"; };
 		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
 		33255D5D29C64576004A49FB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBusinessAccountVC.swift; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */,
 				55B3445929CA687D00CC73DD /* Role.storyboard */,
 				55B3446329CA6C5300CC73DD /* RoleDetailCell.swift */,
+				330E4D6C29CBD189008BDE3A /* Availability.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				55B3445B29CA694800CC73DD /* ViewAllRoleTVC.swift */,
 				55B3445D29CA6A6000CC73DD /* ViewRoleTVC.swift */,
 				55B3445F29CA6AB000CC73DD /* AddRoleVC.swift */,
+				330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -463,6 +469,7 @@
 				552396E529C6647700EE9323 /* PlanCard.xib in Resources */,
 				553D02A629C955EE0076AEBD /* ColorPicker.storyboard in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
+				330E4D6D29CBD189008BDE3A /* Availability.storyboard in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
 				55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */,
 			);
@@ -579,6 +586,7 @@
 				553D02AE29C96F5D0076AEBD /* Color.swift in Sources */,
 				5549DA5429C76E3200E51828 /* ValidationHelper.swift in Sources */,
 				552396E729C6665600EE9323 /* UIView+CornerRadius.swift in Sources */,
+				330E4D7129CBDCE7008BDE3A /* AddAvailabilityVC.swift in Sources */,
 				5549DA6529C8BE3800E51828 /* MoreTabVC.swift in Sources */,
 				554917BC29C4F7F400132051 /* TextInput.swift in Sources */,
 				553D02AA29C956FA0076AEBD /* ColorPickerVC.swift in Sources */,
