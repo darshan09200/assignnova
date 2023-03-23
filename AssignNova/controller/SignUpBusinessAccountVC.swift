@@ -122,6 +122,9 @@ class SignUpBusinessAccountVC: UIViewController {
 						self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberInput)
 					}
 				} else {
+					DispatchQueue.main.async {
+						(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
+					}
 					Auth.auth().createUser(withEmail: email, password: pwd) { authResult, error in
 						if let error = AuthHelper.getErrorMessage(error: error){
 							self.stopLoading(){
@@ -251,7 +254,10 @@ extension SignUpBusinessAccountVC: OtpInputDelegate{
 					return
 				}
 //				self.navigationController?.popViewController(animated: true)
-				self.navigateToSetupBusiness()
+//				self.navigateToSetupBusiness()
+				DispatchQueue.main.async {
+					(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
+				}
 			}
 		}
 	}

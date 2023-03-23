@@ -25,15 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		FirebaseApp.configure()
 		
-		Auth.auth().addStateDidChangeListener { auth, user in
-			print(auth.currentUser)
-			if user == nil {
-				ActiveUser.instance = nil
-			} else {
-				AuthHelper.refreshData()
-			}
-		}
-		
 		return true
 	}
 

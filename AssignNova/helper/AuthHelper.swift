@@ -13,20 +13,26 @@ class AuthHelper{
 		return Auth.auth().currentUser?.uid
 	}
 	
-	static func refreshData(){
+	static func refreshData(completion: ((_ activeUser: ActiveUser?)->())? = nil){
 		FirestoreHelper.getUser(){ user in
 			if let user = user{
 				var activeUser = ActiveUser(user: user)
 				FirestoreHelper.getBusiness(){ business in
-					if let business = business, let businessId = business.id{
+					if let business = business, let _ = business.id{
 						activeUser.business = business
 						ActiveUser.instance = activeUser
 					} else {
 						ActiveUser.instance = activeUser
 					}
+					if let completion = completion{
+						completion(ActiveUser.instance)
+					}
 				}
 			} else {
 				ActiveUser.instance = nil
+				if let completion = completion{
+					completion(ActiveUser.instance)
+				}
 			}
 		}
 	}
@@ -102,7 +108,7 @@ class AuthHelper{
 		}
 		
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-			if let error = error {
+			if let _ = error {
 				completion("Error validating email", nil)
 				return
 			}
@@ -144,6 +150,14 @@ class AuthHelper{
 			}
 		}
 		return "Unknown error occured"
+	}
+	
+	static func logout(){
+		do {
+			try Auth.auth().signOut()
+		} catch let signOutError as NSError {
+			print("Error signing out: %@", signOutError)
+		}
 	}
 }
 

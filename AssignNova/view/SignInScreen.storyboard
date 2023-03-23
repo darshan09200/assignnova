@@ -73,9 +73,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxi-OS-YRG">
                                                         <rect key="frame" x="0.0" y="234.66666666666671" width="361" height="50.333333333333343"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Login" buttonSize="large">
-                                                            <color key="baseBackgroundColor" red="0.0" green="0.064143153030632227" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </buttonConfiguration>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Login" buttonSize="large"/>
                                                         <connections>
                                                             <action selector="loginBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="AY5-GL-3hH"/>
                                                         </connections>

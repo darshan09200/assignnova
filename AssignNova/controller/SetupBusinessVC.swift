@@ -27,6 +27,8 @@ class SetupBusinessVC: UIViewController {
 	
 	var place: GMSPlace?
 	
+	var showLogout = false
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,6 +54,15 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.rightViewMode = .always
 		numberOfEmployeeInput.textFieldComponent.rightView = addBtnView
 		addButton.addTarget(self, action: #selector(onAddPress(_:)), for: .touchUpInside)
+		
+		if showLogout{
+			let logout = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(onLogoutPress))
+			navigationItem.rightBarButtonItem = logout
+		}
+	}
+	
+	@objc func onLogoutPress(){
+		AuthHelper.logout()
 	}
 	
 	@IBAction func onSelectLocationButonPress(_ sender: Any) {

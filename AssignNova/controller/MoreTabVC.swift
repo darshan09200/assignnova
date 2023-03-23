@@ -29,16 +29,6 @@ class MoreTabVC: UIViewController {
 	}
 	
 	@IBAction func onLogoutPress(_ sender: UIButton) {
-		let firebaseAuth = Auth.auth()
-		do {
-			try firebaseAuth.signOut()
-		} catch let signOutError as NSError {
-			print("Error signing out: %@", signOutError)
-		}
-		
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		let loginController = storyboard.instantiateViewController(identifier: "LoginNavVC")
-		
-		(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginController)
+		AuthHelper.logout()
 	}
 }
