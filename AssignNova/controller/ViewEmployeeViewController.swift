@@ -20,6 +20,7 @@ class ViewEmployeeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(addTapped))
         // Circle avatar image with white border
         let circleAvatarImage = LetterAvatarMaker()
             .setCircle(true)
@@ -37,5 +38,7 @@ class ViewEmployeeViewController: UIViewController {
     
     @IBAction func ViewShifts(_ sender: Any) {
     }
-    
+    @objc func addTapped(sender: AnyObject) {
+        print("hjxdbsdhjbv")
+    }
 }
