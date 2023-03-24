@@ -36,6 +36,9 @@
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FPr-Tk-7vD">
                                                                 <rect key="frame" x="312" y="0.0" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="allDaySwitchToggled:" destination="Y6W-OH-hqX" eventType="valueChanged" id="9Tn-p9-wlm"/>
+                                                                </connections>
                                                             </switch>
                                                         </subviews>
                                                     </stackView>
@@ -228,6 +231,9 @@
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YaR-Gd-9XX">
                                                                         <rect key="frame" x="312" y="0.0" width="51" height="31"/>
+                                                                        <connections>
+                                                                            <action selector="allDaySwitchToggled:" destination="NyA-5F-mwy" eventType="valueChanged" id="AiL-jk-WjW"/>
+                                                                        </connections>
                                                                     </switch>
                                                                 </subviews>
                                                             </stackView>
@@ -389,6 +395,7 @@
                     <navigationItem key="navigationItem" title="Edit Availability" id="GgH-Tb-6Mt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVl-O4-gvY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="NyA-5F-mwy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="674" y="-606"/>
         </scene>
