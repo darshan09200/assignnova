@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		330E4D6D29CBD189008BDE3A /* Availability.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6C29CBD189008BDE3A /* Availability.storyboard */; };
 		330E4D7129CBDCE7008BDE3A /* AddAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */; };
+		330E4D7329CCB644008BDE3A /* EditAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */; };
 		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
 		33255D5E29C64576004A49FB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInVC.swift */; };
 		552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */; };
@@ -91,6 +92,7 @@
 /* Begin PBXFileReference section */
 		330E4D6C29CBD189008BDE3A /* Availability.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Availability.storyboard; sourceTree = "<group>"; };
 		330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAvailabilityVC.swift; sourceTree = "<group>"; };
+		330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvailabilityVC.swift; sourceTree = "<group>"; };
 		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
 		33255D5D29C64576004A49FB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBusinessAccountVC.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				55B3445D29CA6A6000CC73DD /* ViewRoleTVC.swift */,
 				55B3445F29CA6AB000CC73DD /* AddRoleVC.swift */,
 				330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */,
+				330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				553D02B029C974A90076AEBD /* UIColor+Hex.swift in Sources */,
 				33255D5E29C64576004A49FB /* SignInVC.swift in Sources */,
 				55C4121329C4A0000073A8CD /* AssignNova.xcdatamodeld in Sources */,
+				330E4D7329CCB644008BDE3A /* EditAvailabilityVC.swift in Sources */,
 				559C7BC029C9B9DC002BE062 /* Card.swift in Sources */,
 				552396E929C6670A00EE9323 /* PlanCard.swift in Sources */,
 				55B3445E29CA6A6000CC73DD /* ViewRoleTVC.swift in Sources */,
