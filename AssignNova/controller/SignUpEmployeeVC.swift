@@ -12,8 +12,8 @@ import FirebaseAuth
 
 class SignUpEmployeeVC: UIViewController {
 
-    @IBOutlet weak var SignUpModeSegment: UISegmentedControl!
-    @IBOutlet weak var input: TextInput!
+    @IBOutlet weak var modeSegment: UISegmentedControl!
+    @IBOutlet weak var textInput: TextInput!
     @IBOutlet weak var checkForInviteBtn: UIButton!
     @IBOutlet weak var googleBtn: UIButton!
 	
@@ -30,6 +30,58 @@ class SignUpEmployeeVC: UIViewController {
     }
     
     @IBAction func checkForInviteBtnPressed(_ sender: UIButton) {
+		guard let inputText = textInput.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines), !inputText.isEmpty else {
+			showAlert(title: "Oops", message: "\(modeSegment.selectedSegmentIndex == 0 ? "Email" : "Phone Number") is empty", textInput: textInput)
+			return
+		}
+		
+		if modeSegment.selectedSegmentIndex == 0{
+			self.startLoading()
+			AuthHelper.isUserInvited(email: inputText){error, invited in
+				if let error = error{
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: error)
+					}
+					return
+				}
+				self.stopLoading(){
+					let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SetupEmployeeVC") as! SetupEmployeeVC
+					viewController.email = inputText
+					self.navigationController?.pushViewController(viewController, animated: true)
+				}
+			}
+		} else {
+			let phoneNumberDetails = ValidationHelper.phoneNumberDetails(inputText)
+			if phoneNumberDetails == nil {
+				showAlert(title: "Oops", message: "Phone Number is invalid", textInput: textInput)
+			} else if let region = phoneNumberDetails?.regionID, region != "US" && region != "CA"{
+				if let regionName = ValidationHelper.getRegionName(phoneNumberDetails!){
+					showAlert(title: "Oops", message: "\(regionName) is not yet supported", textInput: textInput)
+				} else {
+					showAlert(title: "Oops", message: "Country not supported", textInput: textInput)
+				}
+			} else {
+				self.startLoading()
+				let formattedPhoneNumber = ValidationHelper.formatPhoneNumber(phoneNumberDetails!)
+				AuthHelper.isUserInvited(phoneNumber: formattedPhoneNumber){error, invited in
+					if let error = error{
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: error)
+						}
+						return
+					}
+					AuthHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
+						self.stopLoading(){
+							let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
+								.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
+							
+							otpInputController.delegate = self
+							self.navigationController?.pushViewController(otpInputController, animated: true)
+						}
+					}
+				}
+			}
+		}
     }
     
     @IBAction func continueWithGoogleBtnPressed(_ sender: UIButton) {
@@ -49,29 +101,31 @@ class SignUpEmployeeVC: UIViewController {
 			   let idToken = user.idToken?.tokenString
 			{
 				let email = user.profile?.email
-				AuthHelper.doesEmailExists(email ?? ""){ error, exists  in
-					if let exists = exists{
-						if exists{
-							let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-																		   accessToken: user.accessToken.tokenString)
-							Auth.auth().signIn(with: credential) { result, error in
-								if let error = AuthHelper.getErrorMessage(error: error){
-									self.stopLoading(){
-										self.showAlert(title: "Oops", message: error)
-									}
-									return
-								}
-								
-//								self.navigateToHome()
-							}
-						} else {
-							self.stopLoading(){
-								self.showAlert(title: "Oops", message: "Account doesnt exists")
-							}
-						}
-					} else if let error = error {
+				AuthHelper.isUserInvited(email: email){error, invited in
+					if let error = error{
 						self.stopLoading(){
 							self.showAlert(title: "Oops", message: error)
+						}
+						return
+					}
+					
+					let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+																   accessToken: user.accessToken.tokenString)
+					
+					DispatchQueue.main.async {
+						(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
+					}
+					Auth.auth().signIn(with: credential) { result, error in
+						if let error = error{
+							self.stopLoading(){
+								self.showAlert(title: "Oops", message: "Unknown error occured")
+							}
+							return
+						}
+					}
+					AuthHelper.isUserRegistered(email: email){error, registered in
+						DispatchQueue.main.async {
+							(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
 						}
 					}
 				}
@@ -83,14 +137,14 @@ class SignUpEmployeeVC: UIViewController {
 		}
     }
     
-	@IBAction func onAuthMethodChange(_ sender: UISegmentedControl) {
+	@IBAction func onAuthModeChanged(_ sender: UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
 			case 0:
-				input.label = "Email"
-				input.textFieldComponent.keyboardType = .default
+				textInput.label = "Email"
+				textInput.textFieldComponent.keyboardType = .default
 			case 1:
-				input.label = "Phone Number"
-				input.textFieldComponent.keyboardType = .phonePad
+				textInput.label = "Phone Number"
+				textInput.textFieldComponent.keyboardType = .phonePad
 			default:
 				break
 		}
@@ -111,22 +165,25 @@ class SignUpEmployeeVC: UIViewController {
 	}
 }
 
-
-extension SignUpEmployeeVC{
-	
-	func startLoading(){
+extension SignUpEmployeeVC: OtpInputDelegate{
+	func onOtpVerified(credential: PhoneAuthCredential, controller: OtpInputVC) {
 		DispatchQueue.main.async {
-			self.present(self.loadingVC, animated: true, completion: nil)
+			(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
 		}
-	}
-	
-	func stopLoading(completion: (() -> Void)? = nil){
-		DispatchQueue.main.async {
-			if self.loadingVC.isModal{
-				self.loadingVC.dismiss(animated: true, completion: completion)
-			} else if let completion = completion {
-				completion()
+		
+		Auth.auth().signIn(with: credential) { result, error in
+			if error != nil {
+				self.stopLoading(){
+					self.showAlert(title: "Oops", message: "Unknown error occured")
+				}
+				return
+			}
+			AuthHelper.isUserRegistered(phoneNumber: controller.phoneNumber){error, registered in
+				DispatchQueue.main.async {
+					(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
+				}
 			}
 		}
+		
 	}
 }

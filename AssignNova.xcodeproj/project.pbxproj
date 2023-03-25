@@ -45,6 +45,7 @@
 		555F37EA29C91DCE0058EAE6 /* Branch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555F37E929C91DCE0058EAE6 /* Branch.storyboard */; };
 		55624ACE29CA4BFF00B55A7F /* BranchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */; };
 		55788EFE29C9894700C352ED /* NavigationItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55788EFD29C9894700C352ED /* NavigationItem.xib */; };
+		557B933729CF8113006A3FD3 /* SetupEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */; };
 		558DD27629C514D500909594 /* OtpInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DD27429C514D500909594 /* OtpInputVC.swift */; };
 		559C7BBE29C9B781002BE062 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559C7BBD29C9B781002BE062 /* Card.xib */; };
 		559C7BC029C9B9DC002BE062 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7BBF29C9B9DC002BE062 /* Card.swift */; };
@@ -76,6 +77,7 @@
 		55C6374F29CF1C8C00A1570D /* RolePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C6374E29CF1C8C00A1570D /* RolePickerVC.swift */; };
 		55C6375129CF1D2700A1570D /* RolePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C6375029CF1D2700A1570D /* RolePicker.storyboard */; };
 		55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */; };
+		55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */; };
 		55DD7CDE29CA5063006079FF /* ViewBranchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */; };
 		55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */; };
 		55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */; };
@@ -103,8 +105,6 @@
 
 /* Begin PBXFileReference section */
 		330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpEmployee.storyboard; sourceTree = "<group>"; };
-		330E4D6229C66780008BDE3A /* SignUpEmployeeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeVC.swift; sourceTree = "<group>"; };
-		330E4D6429C67438008BDE3A /* SignUpEmployeeSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeSetupViewController.swift; sourceTree = "<group>"; };
 		330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmployeeEmailViewController.swift; sourceTree = "<group>"; };
 		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
 		33255D5D29C64576004A49FB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -144,6 +144,7 @@
 		555F37E929C91DCE0058EAE6 /* Branch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Branch.storyboard; sourceTree = "<group>"; };
 		55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchDetailCell.swift; sourceTree = "<group>"; };
 		55788EFD29C9894700C352ED /* NavigationItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationItem.xib; sourceTree = "<group>"; };
+		557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupEmployeeVC.swift; sourceTree = "<group>"; };
 		558DD27429C514D500909594 /* OtpInputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpInputVC.swift; sourceTree = "<group>"; };
 		559C7BBD29C9B781002BE062 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		559C7BBF29C9B9DC002BE062 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -179,6 +180,8 @@
 		55C6374E29CF1C8C00A1570D /* RolePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RolePickerVC.swift; sourceTree = "<group>"; };
 		55C6375029CF1D2700A1570D /* RolePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RolePicker.storyboard; sourceTree = "<group>"; };
 		55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OtpInput.storyboard; sourceTree = "<group>"; };
+		55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeVC.swift; sourceTree = "<group>"; };
+		55DB509229CF6A130004DCF5 /* AssignNova.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AssignNova.entitlements; sourceTree = "<group>"; };
 		55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBranchTVC.swift; sourceTree = "<group>"; };
 		55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DecoyLaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -292,8 +295,8 @@
 				552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */,
 				552396EA29C668D500EE9323 /* SetupBusinessVC.swift */,
 				5549DA5729C7E38E00E51828 /* LoadingViewController.swift */,
-				330E4D6229C66780008BDE3A /* SignUpEmployeeVC.swift */,
-				330E4D6429C67438008BDE3A /* SignUpEmployeeSetupViewController.swift */,
+				55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */,
+				557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */,
 				330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */,
 				33255D5D29C64576004A49FB /* SignInVC.swift */,
 				5549DA6429C8BE3800E51828 /* MoreTabVC.swift */,
@@ -351,6 +354,7 @@
 		55C4120729C4A0000073A8CD /* AssignNova */ = {
 			isa = PBXGroup;
 			children = (
+				55DB509229CF6A130004DCF5 /* AssignNova.entitlements */,
 				5549DA5B29C7F15200E51828 /* model */,
 				552396DF29C6589400EE9323 /* extensions */,
 				55B3B8C329C60BE100B3DA5E /* helper */,
@@ -631,9 +635,11 @@
 				55624ACE29CA4BFF00B55A7F /* BranchDetailCell.swift in Sources */,
 				55C6374D29CE724000A1570D /* BranchPickerVC.swift in Sources */,
 				55B3446229CA6AD700CC73DD /* Role.swift in Sources */,
+				557B933729CF8113006A3FD3 /* SetupEmployeeVC.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
 				553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
+				55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */,
 				5549DA5F29C88EA900E51828 /* Business.swift in Sources */,
 				55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */,
 				55BDF09429C93FB00050D223 /* AddBranchVC.swift in Sources */,
@@ -830,10 +836,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AssignNova/AssignNova.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U3FWUPTG77;
+				DEVELOPMENT_TEAM = L9Z24WLH63;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AssignNova/Info.plist;
@@ -847,7 +854,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -863,10 +870,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AssignNova/AssignNova.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U3FWUPTG77;
+				DEVELOPMENT_TEAM = L9Z24WLH63;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AssignNova/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AssignNova;
@@ -879,7 +887,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

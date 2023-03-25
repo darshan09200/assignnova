@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFunctions
 
 class AuthHelper{
 	static var userId: String?{
@@ -49,22 +50,26 @@ class AuthHelper{
 				completion(nil)
 			}
 	}
-
-	static func doesPhoneNumberExists(_ phoneNumber: String, completion: @escaping(_ error: String?)->()){
-		let url = URL(string:"https://us-central1-assignnova.cloudfunctions.net/doesPhoneNumberExists")!
+	
+	static func call(apiName: String, with data: Any)-> URLRequest{
+		let url = URL(string:"https://us-central1-assignnova.cloudfunctions.net/\(apiName)")!
 		var request = URLRequest(url: url)
 		request.httpMethod = "POST"
-
+		
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		do{
-			request.httpBody = try JSONSerialization.data(withJSONObject: ["phoneNumber": phoneNumber], options: .prettyPrinted)
-		} catch{
+			request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+		} catch{}
 
-		}
+		return request
+	}
+
+	static func doesPhoneNumberExists(_ phoneNumber: String, completion: @escaping(_ error: String?)->()){
+		let request = call(apiName: "doesPhoneNumberExists", with: ["phoneNumber": phoneNumber])
 
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-			if let error = error {
+			if error != nil {
 				completion("Error validating phone number")
 				return
 			}
@@ -94,18 +99,8 @@ class AuthHelper{
 	}
 
 	static func doesEmailExists(_ email: String, completion: @escaping(_ error: String?, _ exists: Bool? )->()){
-		let url = URL(string:"https://us-central1-assignnova.cloudfunctions.net/doesEmailExists")!
-		var request = URLRequest(url: url)
-		request.httpMethod = "POST"
-
-		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.addValue("application/json", forHTTPHeaderField: "Accept")
-		do{
-			request.httpBody = try JSONSerialization.data(withJSONObject: ["email": email], options: .prettyPrinted)
-		} catch{
-
-		}
-
+		let request = call(apiName: "doesEmailExists", with: ["email": email])
+		
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if let _ = error {
 				completion("Error validating email", nil)
@@ -151,6 +146,85 @@ class AuthHelper{
 		return "Unknown error occured"
 	}
 
+	static func isUserInvited(email: String? = nil, phoneNumber: String? = nil, completion: @escaping(_ error: String?, _ invited: Bool? )->()){
+		
+		var data = [String: String]()
+		if let email = email{
+			data["email"] = email
+		}
+		if let phoneNumber = phoneNumber{
+			data["phoneNumber"] = phoneNumber
+		}
+		print(data)
+		
+		let request = call(apiName: "isUserInvited", with: data)
+		
+		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+			if let error = error {
+				print(error.localizedDescription)
+				completion("Error validating invite", nil)
+				return
+			}
+			
+			guard let httpResponse = response as? HTTPURLResponse,
+				  (200...299).contains(httpResponse.statusCode) else {
+				completion("Error validating invite", nil)
+				return
+			}
+			
+			if let data = data,
+			   let userInvitedResponse = try? JSONDecoder().decode(UserInvitedResponse.self, from: data) {
+				if let invited = userInvitedResponse.invited, invited{
+					completion(nil, false)
+				} else {
+					completion(userInvitedResponse.error, nil)
+				}
+				return
+			}
+			completion("Error validating invite", nil)
+		})
+		task.resume()
+	}
+	
+	static func isUserRegistered(email: String? = nil, phoneNumber: String? = nil, count: Int = 1, completion: @escaping(_ error: String?, _ registered: Bool? )->()){
+		
+		var data = [String: String]()
+		if let email = email{
+			data["email"] = email
+		}
+		if let phoneNumber = phoneNumber{
+			data["phoneNumber"] = phoneNumber
+		}
+		
+		print(data)
+		
+		Functions.functions().httpsCallable("checkIfUserRegistered").call(data){
+			result, error in
+			if let error = error {
+				print(error.localizedDescription)
+				completion("Error signing in", nil)
+				return
+			}
+			
+			if let data = result?.data as? [String: Any]{
+				if let registered = data["registered"] as? Bool, registered{
+					completion(nil, true)
+				} else if count < 3{
+					let deadline = DispatchTime.now() + 1 + DispatchTimeInterval.seconds(count)
+					print(deadline)
+					DispatchQueue.main.asyncAfter(deadline: deadline)
+					{
+						isUserRegistered(email: email, phoneNumber: phoneNumber, count: count + 1, completion: completion)
+					}
+				} else {
+					completion("Error signing in", nil)
+				}
+				return
+			}
+			completion("Error signing in", nil)
+		}
+	}
+	
 	static func logout(){
 		do {
 			try Auth.auth().signOut()
@@ -162,5 +236,10 @@ class AuthHelper{
 
 struct AccountExistResponse: Decodable{
 	var exists: Bool?
+	var error: String?
+}
+
+struct UserInvitedResponse: Decodable{
+	var invited: Bool?
 	var error: String?
 }

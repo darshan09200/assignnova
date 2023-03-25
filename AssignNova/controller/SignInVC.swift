@@ -66,8 +66,9 @@ class SignInVC: UIViewController {
 				self.startLoading()
 				Auth.auth().signIn(withEmail: email, password: pwd) { authResult, error in
 					if let error = error {
-						// An error occurred while attempting to sign in the user
-						self.showAlert(title: "Error", message: error.localizedDescription)
+						self.stopLoading(){
+							self.showAlert(title: "Error", message: error.localizedDescription)
+						}
 						return
 					}
 //					self.navigateToHome()
@@ -175,13 +176,12 @@ class SignInVC: UIViewController {
 }
 
 extension SignInVC: OtpInputDelegate{
-	func onOtpVerified(credential: PhoneAuthCredential, controller: UIViewController) {
+	func onOtpVerified(credential: PhoneAuthCredential, controller: OtpInputVC) {
 		Auth.auth().signIn(with: credential){authResult, error in
 			if let _ = error {
 				self.showAlert(title: "Oops", message: "Unknown error occured.")
 				return
 			}
-//			self.navigateToHome()
 		}
 	}
 	

@@ -244,7 +244,7 @@ class SignUpBusinessAccountVC: UIViewController {
 }
 
 extension SignUpBusinessAccountVC: OtpInputDelegate{
-	func onOtpVerified(credential: PhoneAuthCredential, controller: UIViewController) {
+	func onOtpVerified(credential: PhoneAuthCredential, controller: OtpInputVC) {
 		if let user = Auth.auth().currentUser{
 			user.link(with: credential){authResult, error in
 				if let error = error as NSError? {

@@ -66,30 +66,23 @@ class FirestoreHelper{
 	}
 
 	static func getEmployee(userId: String, completion: @escaping(_ employee: Employee?)->()){
-//		if let activeEmployee = ActiveEmployee.instance
-//		   let businessId = activeEmployee.business?.id,
-//		{
-			let docRef = db.collection("employee").whereField("userId", isEqualTo: userId)
-//				.whereField("businessId", isEqualTo: businessId)
-				.limit(to: 1)
-			docRef.getDocuments(){ snapshots, err in
-				if let _ = err {
-					completion(nil)
-					return
-				}
-				if let snapshot = snapshots?.documents.first{
-					do{
-						try completion(snapshot.data(as: Employee.self))
-					} catch{
-						completion(nil)
-					}
-				} else{
-					completion(nil)
-				}
+		let docRef = db.collection("employee").whereField("userId", isEqualTo: userId)
+			.limit(to: 1)
+		docRef.getDocuments(){ snapshots, err in
+			if let _ = err {
+				completion(nil)
+				return
 			}
-//		} else{
-//			completion(nil)
-//		}
+			if let snapshot = snapshots?.documents.first{
+				do{
+					try completion(snapshot.data(as: Employee.self))
+				} catch{
+					completion(nil)
+				}
+			} else{
+				completion(nil)
+			}
+		}
 	}
 	
 	static func doesEmployeeExist(email: String, phoneNumber: String?, userId: String? = nil, completion: @escaping(_ employee: Employee?)->()){

@@ -31,7 +31,7 @@ class SelectLocationVC: UIViewController {
 		tableDataSource = GMSAutocompleteTableDataSource()
 		tableDataSource.delegate = self
 		
-		tableDataSource.tableCellBackgroundColor = .white
+		tableDataSource.tableCellBackgroundColor = .systemBackground
 		
 		tableView.delegate = tableDataSource
 		tableView.dataSource = tableDataSource

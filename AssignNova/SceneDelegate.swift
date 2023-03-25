@@ -23,6 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let storyboard = UIStoryboard(name: "DecoyLaunchScreen", bundle: nil)
 		let initialViewController = storyboard.instantiateViewController(withIdentifier: "LaunchScreen")
 		window?.rootViewController = initialViewController
+
+		window?.backgroundColor = UIColor.white.withAlphaComponent(0)
+
 		window?.makeKeyAndVisible()
 	}
 
@@ -78,7 +81,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		preventRefresh = false
 		AuthHelper.refreshData(){ activeEmployee in
 			if let activeEmployee = activeEmployee {
-				if activeEmployee.business == nil {
+				print(activeEmployee.employee)
+				if activeEmployee.employee.appRole == .owner && activeEmployee.business == nil {
 					let storyboard = UIStoryboard(name: "SignUpBusiness", bundle: nil)
 					let initialViewController = storyboard.instantiateViewController(withIdentifier: "SetupBusinessVC") as! SetupBusinessVC
 					initialViewController.showLogout = true

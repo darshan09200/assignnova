@@ -14,7 +14,17 @@ class MoreTabVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+		
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		AuthHelper.isUserRegistered(phoneNumber: "+12345678903"){error,registered in
+			print(error)
+			print(registered)
+		}
+	}
 
 	@IBAction func onBranchPress(_ sender: Any) {
 		let viewController = UIStoryboard(name: "Branch", bundle: nil)
