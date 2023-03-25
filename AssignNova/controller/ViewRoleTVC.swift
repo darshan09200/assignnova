@@ -26,6 +26,8 @@ class ViewRoleTVC: UITableViewController {
 			
 		}
 		
+		tableView.sectionHeaderTopPadding = 0
+		
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {

@@ -1,77 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7de-PR-3Mz">
-	<device id="retina6_12" orientation="portrait" appearance="light"/>
-	<dependencies>
-		<plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-		<capability name="Safe area layout guides" minToolsVersion="9.0"/>
-		<capability name="System colors in document resources" minToolsVersion="11.0"/>
-		<capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-	</dependencies>
-	<scenes>
-		<!--Navigation Controller-->
-		<scene sceneID="rn8-gQ-dET">
-			<objects>
-				<navigationController storyboardIdentifier="LoginNavVC" id="7de-PR-3Mz" sceneMemberID="viewController">
-					<navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="l4K-cG-TAc">
-						<rect key="frame" x="0.0" y="59" width="393" height="96"/>
-						<autoresizingMask key="autoresizingMask"/>
-					</navigationBar>
-					<connections>
-						<segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="g4g-Yi-5eK"/>
-					</connections>
-				</navigationController>
-				<placeholder placeholderIdentifier="IBFirstResponder" id="XbH-TC-NRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-			</objects>
-			<point key="canvasLocation" x="-1147" y="-13"/>
-		</scene>
-		<!--Test-->
-		<scene sceneID="tne-QT-ifu">
-			<objects>
-				<viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
-					<view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-						<rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-						<autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-						<subviews>
-							<stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GAw-22-XDG">
-								<rect key="frame" x="16" y="103" width="361" height="116.66666666666669"/>
-								<subviews>
-									<button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="509-PT-lMV">
-										<rect key="frame" x="0.0" y="0.0" width="361" height="50.333333333333336"/>
-										<state key="normal" title="Button"/>
-										<buttonConfiguration key="configuration" style="filled" title="Login" buttonSize="large"/>
-										<connections>
-											<action selector="onSignInPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sjt-tP-MxP"/>
-										</connections>
-									</button>
-									<button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yo-Ls-fSY">
-										<rect key="frame" x="0.0" y="66.333333333333343" width="361" height="50.333333333333343"/>
-										<state key="normal" title="Button"/>
-										<buttonConfiguration key="configuration" style="filled" title="Sign Up as Business" buttonSize="large"/>
-										<connections>
-											<action selector="onOpenSignUpBusinessPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sAF-Dh-SAz"/>
-										</connections>
-									</button>
-								</subviews>
-							</stackView>
-						</subviews>
-						<viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-						<color key="backgroundColor" systemColor="systemBackgroundColor"/>
-						<constraints>
-							<constraint firstItem="GAw-22-XDG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="O6o-xF-Rkh"/>
-							<constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GAw-22-XDG" secondAttribute="trailing" constant="16" id="Ssi-Sh-uok"/>
-							<constraint firstItem="GAw-22-XDG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="U0u-cP-b1h"/>
-						</constraints>
-					</view>
-					<navigationItem key="navigationItem" title="Test" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="G8w-zY-DAG"/>
-				</viewController>
-				<placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-			</objects>
-			<point key="canvasLocation" x="-16" y="-13"/>
-		</scene>
-	</scenes>
-	<resources>
-		<systemColor name="systemBackgroundColor">
-			<color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-		</systemColor>
-	</resources>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="rn8-gQ-dET">
+            <objects>
+                <navigationController storyboardIdentifier="LoginNavVC" id="7de-PR-3Mz" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="l4K-cG-TAc">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="g4g-Yi-5eK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XbH-TC-NRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1147" y="-13"/>
+        </scene>
+        <!--Test-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GAw-22-XDG">
+                                <rect key="frame" x="16" y="103" width="361" height="183"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="509-PT-lMV">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="50.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Login" buttonSize="large"/>
+                                        <connections>
+                                            <action selector="onSignInPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sjt-tP-MxP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yo-Ls-fSY">
+                                        <rect key="frame" x="0.0" y="66.333333333333343" width="361" height="50.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Sign Up as Business" buttonSize="large"/>
+                                        <connections>
+                                            <action selector="onOpenSignUpBusinessPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sAF-Dh-SAz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qT-mN-f3e">
+                                        <rect key="frame" x="0.0" y="132.66666666666666" width="361" height="50.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Sign Up as Employee" buttonSize="large"/>
+                                        <connections>
+                                            <action selector="onSignUpEmployeePress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pdw-yA-Mem"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GAw-22-XDG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="O6o-xF-Rkh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GAw-22-XDG" secondAttribute="trailing" constant="16" id="Ssi-Sh-uok"/>
+                            <constraint firstItem="GAw-22-XDG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="U0u-cP-b1h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Test" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="G8w-zY-DAG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16" y="-13"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
