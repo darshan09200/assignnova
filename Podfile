@@ -18,4 +18,5 @@ target 'AssignNova' do
 	pod 'PhoneNumberKit', :git => 'https://github.com/marmelroy/PhoneNumberKit'
 	pod 'SDWebImage', '~> 5.0'
 	pod "LetterAvatarKit", "1.2.5"
+	pod 'EmptyDataSet-Swift'
 end

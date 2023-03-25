@@ -8,11 +8,11 @@
 import UIKit
 import FirebaseFirestoreSwift
 
-enum AppRole: String, Codable {
-	case owner
-	case manager
-	case shiftSupervisor
-	case employee
+enum AppRole: String, CaseIterable, Codable {
+	case owner = "Owner"
+	case manager = "Manager"
+	case shiftSupervisor = "Shift Supervisor"
+	case employee = "Employee"
 }
 
 struct Employee: Codable{
@@ -26,9 +26,14 @@ struct Employee: Codable{
 	var maxHours: Double = 40
 	var isProfilePrivate = false
 	var profileUrl: String?
+	var email: String
+	var phoneNumber: String?
+	var invited: Bool?
+	var branches = [String]()
+	var roles = [String]()
 	@ServerTimestamp var updatedAt: Date?
 	
-	init(id: String? = nil, userId: String? = nil, employeeId: String? = nil, firstName: String, lastName: String, appRole: AppRole = .employee, maxHours: Double = 40, isProfilePrivate: Bool = false, profileUrl: String? = nil, updatedAt: Date? = nil) {
+	init(id: String? = nil, userId: String? = nil,   employeeId: String? = nil, firstName: String, lastName: String, appRole: AppRole, maxHours: Double = 40, isProfilePrivate: Bool = false, profileUrl: String? = nil, email: String, phoneNumber: String? = nil, invited: Bool? = nil, branches: [String] = [String](), roles: [String] = [String](), updatedAt: Date? = nil) {
 		self.id = id
 		self.userId = userId
 		self.employeeId = employeeId
@@ -38,8 +43,14 @@ struct Employee: Codable{
 		self.maxHours = maxHours
 		self.isProfilePrivate = isProfilePrivate
 		self.profileUrl = profileUrl
+		self.email = email
+		self.phoneNumber = phoneNumber
+		self.invited = invited
+		self.branches = branches
+		self.roles = roles
 		self.updatedAt = updatedAt
 		
 		self.businessId = ActiveEmployee.instance?.business?.id ?? ""
+
 	}
 }

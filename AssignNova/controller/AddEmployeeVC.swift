@@ -8,7 +8,7 @@
 import UIKit
 import LetterAvatarKit
 
-class AddEmployeeViewController: UIViewController {
+class AddEmployeeVC: UIViewController {
     
     @IBOutlet weak var Avatar: UIImageView!
     
