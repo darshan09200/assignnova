@@ -57,6 +57,13 @@ class Card: UIView {
 		}
 	}
 	
+	@IBInspectable
+	var rightIconColor: UIColor?{
+		didSet{
+			rightImageView.tintColor = rightIconColor
+		}
+	}
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		initSubviews()

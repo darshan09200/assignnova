@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class FirestoreHelper{
 	static let db = Firestore.firestore()
@@ -89,6 +90,44 @@ class FirestoreHelper{
 //		} else{
 //			completion(nil)
 //		}
+	}
+	
+	static func doesEmployeeExist(email: String, phoneNumber: String?, userId: String? = nil, completion: @escaping(_ employee: Employee?)->()){
+		if let activeEmployee = ActiveEmployee.instance,
+		   let businessId = activeEmployee.business?.id{
+			var filters = [
+				Filter.whereField("email", isEqualTo: email)
+			]
+			if let phoneNumber = phoneNumber {
+				filters.append(Filter.whereField("phoneNumber", isEqualTo: phoneNumber))
+			}
+			var docRef = db.collection("employee")
+				.whereFilter(Filter.orFilter(filters))
+				.whereField("businessId", isEqualTo: businessId)
+				.limit(to: 1)
+			
+			if let userId = userId{
+				docRef = docRef.whereField("userId", isNotEqualTo: userId)
+			}
+			
+			docRef.getDocuments(){ snapshots, err in
+				if let _ = err {
+					completion(nil)
+					return
+				}
+				if let snapshot = snapshots?.documents.first{
+					do{
+						try completion(snapshot.data(as: Employee.self))
+					} catch{
+						completion(nil)
+					}
+				} else{
+					completion(nil)
+				}
+			}
+		} else{
+			completion(nil)
+		}
 	}
 
 	static func getBusiness(employeeId: String, completion: @escaping(_ business: Business?)->()){

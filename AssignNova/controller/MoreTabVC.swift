@@ -28,6 +28,12 @@ class MoreTabVC: UIViewController {
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
+	@IBAction func onEmployeePress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Employee", bundle: nil)
+			.instantiateViewController(withIdentifier: "AddEmployeeTVC") as! AddEmployeeTVC
+		self.present(UINavigationController(rootViewController: viewController), animated: true)
+	}
+	
 	@IBAction func onLogoutPress(_ sender: UIButton) {
 		AuthHelper.logout()
 	}

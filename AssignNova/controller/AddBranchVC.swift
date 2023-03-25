@@ -95,22 +95,10 @@ class AddBranchVC: UIViewController {
 
 		self.startLoading()
 		FirestoreHelper.saveBranch(branch){ error in
-			if let error = error{
-				if let error = error as NSError?{
-					let errorCode = FirestoreErrorCode(_nsError: error).code
-					if errorCode == .permissionDenied{
-						self.stopLoading(){
-							self.showAlert(title: "Oops", message: "Seems like you are not logged in. Login to setup business"){
-								self.navigationController?.popToRootViewController(animated: true)
-							}
-						}
-						return
-					}
-					self.stopLoading(){
-						self.showAlert(title: "Oops", message: "Unknown error occured")
-					}
+			if let _ = error{
+				self.stopLoading(){
+					self.showAlert(title: "Oops", message: "Unknown error occured")
 				}
-				print(error.localizedDescription)
 				return
 			}
 			self.stopLoading(){

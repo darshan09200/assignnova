@@ -127,10 +127,10 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVD-wI-Bwm">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="202.33333333333334"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="262.33333333333331"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="V7x-Wi-sal">
-                                                <rect key="frame" x="16" y="16" width="361" height="170.33333333333334"/>
+                                                <rect key="frame" x="16" y="16.000000000000014" width="361" height="230.33333333333337"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-c8-A3j" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="52"/>
@@ -155,8 +155,20 @@
                                                             <outletCollection property="gestureRecognizers" destination="Fgw-cf-XOo" appends="YES" id="fNL-Qc-jft"/>
                                                         </connections>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKB-uN-i3w" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="120" width="361" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Employee"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="person.fill" catalog="system"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="9Ep-bp-CFs" appends="YES" id="Zbu-0M-hYJ"/>
+                                                        </connections>
+                                                    </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QwY-Ad-xZA">
-                                                        <rect key="frame" x="0.0" y="119.99999999999999" width="361" height="50.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="180" width="361" height="50.333333333333343"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Logout" buttonSize="large"/>
                                                         <connections>
@@ -209,6 +221,11 @@
                         <action selector="onRolePress:" destination="cVR-a7-XBn" id="g4g-Wn-3DS"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="9Ep-bp-CFs">
+                    <connections>
+                        <action selector="onEmployeePress:" destination="cVR-a7-XBn" id="SuH-lC-uif"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="221" y="1299"/>
         </scene>
@@ -254,6 +271,7 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="person.2.fill" catalog="system" width="128" height="81"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

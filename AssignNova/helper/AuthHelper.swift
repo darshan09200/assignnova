@@ -14,7 +14,6 @@ class AuthHelper{
 	}
 
 	static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil){
-		print(userId)
 		FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
 			if let employee = employee{
 				var activeEmployee = ActiveEmployee(employee: employee)

@@ -147,7 +147,7 @@ class SignUpBusinessAccountVC: UIViewController {
 							
 							if let uid = Auth.auth().currentUser?.uid
 							{
-								let employee = Employee(userId: uid, firstName: firstName, lastName: lastName, appRole: .owner )
+								let employee = Employee(userId: uid, firstName: firstName, lastName: lastName, appRole: .owner, email: email, phoneNumber: phoneNumber)
 								FirestoreHelper.saveEmployee(employee){_ in}
 							}
 							
@@ -211,7 +211,7 @@ class SignUpBusinessAccountVC: UIViewController {
 								return
 							}
 							if let uid = result?.user.uid{
-								let employee = Employee(userId: uid, firstName: firstName ?? "", lastName: lastName ?? "", appRole: .owner)
+								let employee = Employee(userId: uid, firstName: firstName ?? "", lastName: lastName ?? "", appRole: .owner, email: email!)
 								FirestoreHelper.saveEmployee(employee){ error in
 									if let error = error{
 										self.showAlert(title: "Oops", message: error.localizedDescription)
