@@ -15,6 +15,13 @@ enum AppRole: String, CaseIterable, Codable {
 	case employee = "Employee"
 }
 
+extension CaseIterable where Self: Equatable {
+	
+	var index: Self.AllCases.Index? {
+		return Self.allCases.firstIndex { self == $0 }
+	}
+}
+
 struct Employee: Codable{
 	@DocumentID var id: String?
 	var userId: String?
@@ -31,9 +38,10 @@ struct Employee: Codable{
 	var invited: Bool?
 	var branches = [String]()
 	var roles = [String]()
+	var color: String
 	@ServerTimestamp var updatedAt: Date?
 	
-	init(id: String? = nil, userId: String? = nil,   employeeId: String? = nil, firstName: String, lastName: String, appRole: AppRole, maxHours: Double = 40, isProfilePrivate: Bool = false, profileUrl: String? = nil, email: String, phoneNumber: String? = nil, invited: Bool? = nil, branches: [String] = [String](), roles: [String] = [String](), updatedAt: Date? = nil) {
+	init(id: String? = nil, userId: String? = nil, employeeId: String? = nil, firstName: String, lastName: String, appRole: AppRole, maxHours: Double = 40, isProfilePrivate: Bool = false, profileUrl: String? = nil, email: String, phoneNumber: String? = nil, invited: Bool? = nil, branches: [String] = [String](), roles: [String] = [String](), color: String, updatedAt: Date? = nil) {
 		self.id = id
 		self.userId = userId
 		self.employeeId = employeeId
@@ -48,6 +56,7 @@ struct Employee: Codable{
 		self.invited = invited
 		self.branches = branches
 		self.roles = roles
+		self.color = color
 		self.updatedAt = updatedAt
 		
 		self.businessId = ActiveEmployee.instance?.business?.id ?? ""

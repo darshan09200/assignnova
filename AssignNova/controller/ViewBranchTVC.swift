@@ -14,6 +14,7 @@ class ViewBranchTVC: UITableViewController {
 	var branchId: String?
 	private var branch: Branch?
 	private var listener: ListenerRegistration?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -32,6 +33,7 @@ class ViewBranchTVC: UITableViewController {
 		
 		super.viewDidDisappear(animated)
 	}
+	
 	@IBAction func onEditPress(_ sender: Any) {
 		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "AddBranchVC") as! AddBranchVC
 		viewController.isEdit = true

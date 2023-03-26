@@ -16,15 +16,6 @@ class MoreTabVC: UIViewController {
         // Do any additional setup after loading the view.
 		
     }
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		AuthHelper.isUserRegistered(phoneNumber: "+12345678903"){error,registered in
-			print(error)
-			print(registered)
-		}
-	}
 
 	@IBAction func onBranchPress(_ sender: Any) {
 		let viewController = UIStoryboard(name: "Branch", bundle: nil)
@@ -40,8 +31,8 @@ class MoreTabVC: UIViewController {
 	
 	@IBAction func onEmployeePress(_ sender: Any) {
 		let viewController = UIStoryboard(name: "Employee", bundle: nil)
-			.instantiateViewController(withIdentifier: "AddEmployeeTVC") as! AddEmployeeTVC
-		self.present(UINavigationController(rootViewController: viewController), animated: true)
+			.instantiateViewController(withIdentifier: "ViewAllEmployeeTVC") as! ViewAllEmployeeTVC
+		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
 	@IBAction func onLogoutPress(_ sender: UIButton) {

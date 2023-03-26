@@ -10,7 +10,7 @@ import UIKit
 class AvatarCell: UITableViewCell {
 
 	@IBOutlet weak var profileImage: UIImageView!
-	@IBOutlet weak var addImageButton: UIButton!
+	@IBOutlet weak var addImageButton: UIButton?
 	
 	override func awakeFromNib() {
         super.awakeFromNib()

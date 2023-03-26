@@ -13,6 +13,7 @@ class ViewAllRoleTVC: UITableViewController {
 	private let searchController = UISearchController()
 	private var roles = [Role]()
 	private var listener: ListenerRegistration?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		configureSearchBar()
