@@ -65,18 +65,18 @@ class AuthHelper{
 		return request
 	}
 
-	static func doesPhoneNumberExists(_ phoneNumber: String, completion: @escaping(_ error: String?)->()){
+	static func doesPhoneNumberExists(_ phoneNumber: String, completion: @escaping(_ error: String?, _ exists: Bool?)->()){
 		let request = call(apiName: "doesPhoneNumberExists", with: ["phoneNumber": phoneNumber])
 
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if error != nil {
-				completion("Error validating phone number")
+				completion("Error validating phone number", nil)
 				return
 			}
 
 			guard let httpResponse = response as? HTTPURLResponse,
 				  (200...299).contains(httpResponse.statusCode) else {
-				completion("Error validating phone number")
+				completion("Error validating phone number", nil)
 				return
 			}
 
@@ -84,16 +84,16 @@ class AuthHelper{
 			   let accountExistResponse = try? JSONDecoder().decode(AccountExistResponse.self, from: data) {
 				if let exists = accountExistResponse.exists{
 					if exists{
-						completion("Phone number already linked with different account")
+						completion(nil, true)
 					} else {
-						completion(nil)
+						completion(nil, false)
 					}
 				} else {
-					completion(accountExistResponse.error)
+					completion(accountExistResponse.error, nil)
 				}
 				return
 			}
-			completion("Error validating phone number")
+			completion("Error validating phone number", nil)
 		})
 		task.resume()
 	}

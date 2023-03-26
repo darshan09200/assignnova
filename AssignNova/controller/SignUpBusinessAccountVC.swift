@@ -116,12 +116,16 @@ class SignUpBusinessAccountVC: UIViewController {
 			let formattedPhoneNumber = ValidationHelper.formatPhoneNumber(phoneNumberDetails!)
 			print("\(firstName), \(lastName), \(email), \(formattedPhoneNumber), \(pwd), \(confirmPwd)")
 			self.startLoading()
-			AuthHelper.doesPhoneNumberExists(formattedPhoneNumber){ error in
+			AuthHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists in
 				if let error = error {
 					self.stopLoading(){
 						self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberInput)
 					}
-				} else {
+				} else if let exists = exists{
+					if exists {
+						self.showAlert(title: "Oops", message:"Phone number already linked with different account", textInput: self.phoneNumberInput)
+						return
+					}
 					DispatchQueue.main.async {
 						(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
 					}

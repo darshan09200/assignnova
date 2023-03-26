@@ -65,9 +65,9 @@ class SignInVC: UIViewController {
 			} else{
 				self.startLoading()
 				Auth.auth().signIn(withEmail: email, password: pwd) { authResult, error in
-					if let error = error {
+					if error != nil {
 						self.stopLoading(){
-							self.showAlert(title: "Error", message: error.localizedDescription)
+							self.showAlert(title: "Oops", message: "Incorrecnt username or password", textInput: self.emailTxt)
 						}
 						return
 					}
@@ -87,13 +87,25 @@ class SignInVC: UIViewController {
 			} else{
 				self.startLoading()
 				let formattedPhoneNumber = ValidationHelper.formatPhoneNumber(phoneNumberDetails!)
-				AuthHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
-					self.stopLoading(){
-						let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
-							.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
-						
-						otpInputController.delegate = self
-						self.navigationController?.pushViewController(otpInputController, animated: true)
+				AuthHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists  in
+					if let error = error {
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberTxt)
+						}
+					} else if let exists = exists, exists {
+						AuthHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
+							self.stopLoading(){
+								let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
+									.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
+								
+								otpInputController.delegate = self
+								self.navigationController?.pushViewController(otpInputController, animated: true)
+							}
+						}
+					} else {
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: "Phone number not linked with any account", textInput: self.phoneNumberTxt)
+						}
 					}
 				}
 			}
