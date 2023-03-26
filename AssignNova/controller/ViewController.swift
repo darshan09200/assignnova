@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 			.instantiateViewController(withIdentifier: "SignUpBusinessAccountVC") as! SignUpBusinessAccountVC
 		self.navigationController?.pushViewController(signUpBusinessVC, animated: true)
 	}
-	
+
 	@IBAction func onSignUpEmployeePress(_ sender: Any) {
 		let signUpBusinessVC = UIStoryboard(name: "SignUpEmployee", bundle: nil)
 			.instantiateViewController(withIdentifier: "SignUpEmployeeVC") as! SignUpEmployeeVC

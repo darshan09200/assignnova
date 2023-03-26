@@ -1,0 +1,186 @@
+//
+//  ViewEmployeeTVC.swift
+//  AssignNova
+//
+//  Created by Darshan Jain on 2023-03-26.
+//
+
+import UIKit
+import FirebaseFirestore
+
+class ViewEmployeeTVC: UITableViewController {
+	
+	var employeeId: String?
+	private var employee: Employee?
+	private var listener: ListenerRegistration?
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		listener = FirestoreHelper.getEmployee(employeeId: employeeId ?? ""){ employee in
+			if let employee = employee{
+				self.employee = employee
+				self.tableView.reloadData()
+			}
+			
+		}
+	}
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		listener?.remove()
+		
+		super.viewDidDisappear(animated)
+	}
+	
+	@IBAction func onEditPress(_ sender: Any) {
+//		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "AddBranchVC") as! AddBranchVC
+//		viewController.isEdit = true
+//		viewController.branch = branch
+//		self.present(UINavigationController(rootViewController: viewController), animated: true)
+	}
+	
+}
+
+extension ViewEmployeeTVC{
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 4
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if section == 0 || section == 1 {return 1}
+		if section == 3 {return max(employee?.branches.count ?? 0 , 1)}
+		return max(employee?.roles.count ?? 0 , 1)
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		if indexPath.section == 0{
+			let cell = tableView.dequeueReusableCell(withIdentifier: "avatar", for: indexPath) as! AvatarCell
+			
+			
+			let (image, _) = UIImage.makeLetterAvatar(withUsername: "\(employee?.firstName ?? "") \(employee?.lastName ?? "")", backgroundColor: UIColor(hex: employee?.color ?? ""))
+			cell.profileImage.image = image
+			
+			return cell
+		} else if indexPath.section == 1 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "details", for: indexPath) as! EmployeeDetailsCell
+			
+			if let employee = employee{
+				var showEmpIdPrivatePipe = false
+				if let employeeId = employee.employeeId{
+					cell.empIdLabel.isHidden = false
+					cell.empIdLabel.text = employeeId
+					showEmpIdPrivatePipe = true
+				} else {
+					cell.empIdLabel.isHidden = true
+				}
+				if employee.isProfilePrivate{
+					cell.privateLabel.isHidden = false
+				} else {
+					showEmpIdPrivatePipe = false
+					cell.privateLabel.isHidden = true
+				}
+				if showEmpIdPrivatePipe{
+					cell.empIdPrivatePipe.isHidden = false
+				} else {
+					cell.empIdPrivatePipe.isHidden = true
+				}
+				
+				cell.nameLabel.text = "\(employee.firstName) \(employee.lastName)"
+				cell.appRoleLabel.text = employee.appRole.rawValue
+				
+				cell.emailLabel.text = employee.email
+				cell.emailLabel.isHidden = false
+				
+				if let phoneNumber = employee.phoneNumber{
+					cell.phoneNumberLabel.text = phoneNumber
+					cell.phoneNumberLabel.isHidden = false
+					cell.emailPhoneNumberPipe.isHidden = false
+				} else {
+					cell.phoneNumberLabel.isHidden = true
+					cell.emailPhoneNumberPipe.isHidden = true
+				}
+				
+				cell.maxHoursLabel.text = "Max \(employee.maxHours) hours/week"
+			}
+			
+			return cell
+		}
+		let isEmpty: Bool
+		var title: String? = nil
+		var subtitle: String? = nil
+		var barColor: String? = nil
+		if indexPath.section == 2{
+			isEmpty = employee?.branches.count == 0
+			if !isEmpty{
+				let branchId = employee?.branches[indexPath.row]
+				if let branch = getBranch(branchId: branchId){
+					title = branch.name
+					subtitle = branch.address
+					barColor = branch.color
+				}
+			}
+		} else {
+			isEmpty = employee?.roles.count == 0
+			if !isEmpty{
+				let roleId = employee?.roles[indexPath.row]
+				if let role = getRole(roleId: roleId){
+					title = role.name
+					subtitle = nil
+					barColor = role.color
+				}
+			}
+		}
+		if isEmpty{
+			let cell = UITableViewCell()
+			var configuration = cell.defaultContentConfiguration()
+			configuration.text = "No \(indexPath.section == 2 ? "Branch" : "Role") Assigned"
+			configuration.textProperties.font = .preferredFont(forTextStyle: .body)
+			configuration.textProperties.color = .systemGray
+			configuration.textProperties.alignment = .center
+			
+			cell.contentConfiguration = configuration
+			return cell
+		} else {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
+			
+			cell.card.title = title
+			cell.card.subtitle = subtitle
+			cell.card.barView.backgroundColor = UIColor(hex: barColor!)
+			
+			return cell
+		}
+	}
+	
+	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		if section == 0 {
+			return nil
+		}
+		let header = tableView.dequeueReusableCell(withIdentifier: "header") as! SectionHeaderCell
+		
+		if section == 1 {
+			header.sectionTitle.text = "Details"
+		} else if section == 2 {
+			header.sectionTitle.text = "Branch (Optional)"
+		} else if section == 3 {
+			header.sectionTitle.text = "Role (Optional)"
+		}
+		
+		return header.contentView
+	}
+	
+	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		if section == 0{return 0}
+		return 42
+	}
+	
+}
+
+extension ViewEmployeeTVC{
+	func getBranch(branchId: String?)->Branch?{
+		return ActiveEmployee.instance?.branches.first(where: {$0.id == branchId})
+	}
+	
+	func getRole(roleId: String?)->Role?{
+		return ActiveEmployee.instance?.roles.first(where: {$0.id == roleId})
+	}
+}

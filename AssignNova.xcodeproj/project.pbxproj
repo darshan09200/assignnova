@@ -84,6 +84,9 @@
 		77BAD6269B122C1FE4185F99 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */; };
 		B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */; };
 		B7BB6FDB29C7C43D00F4AF8B /* AddEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB6FDA29C7C43D00F4AF8B /* AddEmployeeVC.swift */; };
+		B7BB6FDD29C7E47200F4AF8B /* ViewEmployee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FDC29C7E47200F4AF8B /* ViewEmployee.storyboard */; };
+		B7BB6FE129C7E71200F4AF8B /* ViewEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB6FE029C7E71200F4AF8B /* ViewEmployeeViewController.swift */; };
+		B7BB6FE329C7F0EC00F4AF8B /* AllEmployeeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FE229C7F0EC00F4AF8B /* AllEmployeeList.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +188,9 @@
 		55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBranchTVC.swift; sourceTree = "<group>"; };
 		55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DecoyLaunchScreen.storyboard; sourceTree = "<group>"; };
+		B7BB6FDC29C7E47200F4AF8B /* ViewEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewEmployee.storyboard; sourceTree = "<group>"; };
+		B7BB6FE029C7E71200F4AF8B /* ViewEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEmployeeViewController.swift; sourceTree = "<group>"; };
+		B7BB6FE229C7F0EC00F4AF8B /* AllEmployeeList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AllEmployeeList.storyboard; sourceTree = "<group>"; };
 		807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
 		B7BB6FDA29C7C43D00F4AF8B /* AddEmployeeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeVC.swift; sourceTree = "<group>"; };
@@ -267,6 +273,8 @@
 				551B1D1929CCCE50003B9862 /* AddCardCell.swift */,
 				55C6374429CCD5EF00A1570D /* SectionHeaderCell.swift */,
 				55C6374629CD1F6F00A1570D /* SelectFieldCell.swift */,
+				B7BB6FDC29C7E47200F4AF8B /* ViewEmployee.storyboard */,
+				B7BB6FE229C7F0EC00F4AF8B /* AllEmployeeList.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -314,6 +322,7 @@
 				55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */,
 				B7BB6FDA29C7C43D00F4AF8B /* AddEmployeeVC.swift */,
 				551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */,
+				B7BB6FE029C7E71200F4AF8B /* ViewEmployeeViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -511,8 +520,10 @@
 				55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */,
 				553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */,
 				55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */,
+				B7BB6FDD29C7E47200F4AF8B /* ViewEmployee.storyboard in Resources */,
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
+				B7BB6FE329C7F0EC00F4AF8B /* AllEmployeeList.storyboard in Resources */,
 				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
 				559C7BBE29C9B781002BE062 /* Card.xib in Resources */,
 				55788EFE29C9894700C352ED /* NavigationItem.xib in Resources */,
@@ -627,6 +638,7 @@
 				5549DA5A29C7F11300E51828 /* FirestoreHelper.swift in Sources */,
 				552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */,
 				B7BB6FDB29C7C43D00F4AF8B /* AddEmployeeVC.swift in Sources */,
+				B7BB6FE129C7E71200F4AF8B /* ViewEmployeeViewController.swift in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
 				552EF6AA29CA14D700BF5EDA /* ViewAllBranchTVC.swift in Sources */,
 				55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */,
