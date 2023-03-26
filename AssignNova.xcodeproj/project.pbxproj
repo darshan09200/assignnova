@@ -7,10 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330E4D6129C66743008BDE3A /* SignUpEmployee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */; };
+		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
+		33255D5E29C64576004A49FB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInVC.swift */; };
+		551B1D1429CCCD45003B9862 /* AddEmployeeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */; };
+		551B1D1629CCCE16003B9862 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1529CCCE16003B9862 /* AvatarCell.swift */; };
+		551B1D1829CCCE40003B9862 /* InputFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1729CCCE40003B9862 /* InputFieldCell.swift */; };
+		551B1D1A29CCCE50003B9862 /* AddCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1929CCCE50003B9862 /* AddCardCell.swift */; };
+		552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */; };
+		552396E529C6647700EE9323 /* PlanCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552396E429C6647700EE9323 /* PlanCard.xib */; };
+		552396E729C6665600EE9323 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E629C6665600EE9323 /* UIView+CornerRadius.swift */; };
+		552396E929C6670A00EE9323 /* PlanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E829C6670A00EE9323 /* PlanCard.swift */; };
+		552396EB29C668D500EE9323 /* SetupBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396EA29C668D500EE9323 /* SetupBusinessVC.swift */; };
+		552EF6AA29CA14D700BF5EDA /* ViewAllBranchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552EF6A929CA14D700BF5EDA /* ViewAllBranchTVC.swift */; };
+		552EF6AC29CA159100BF5EDA /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552EF6AB29CA159100BF5EDA /* CardCell.swift */; };
+		5530836B29C98C1800080070 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530836A29C98C1800080070 /* NavigationItem.swift */; };
+		5530836D29C99E0E00080070 /* ActiveEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530836C29C99E0E00080070 /* ActiveEmployee.swift */; };
+		553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02A329C9539B0076AEBD /* UIViewController+Alert.swift */; };
+		553D02A629C955EE0076AEBD /* ColorPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D02A529C955EE0076AEBD /* ColorPicker.storyboard */; };
+		553D02AA29C956FA0076AEBD /* ColorPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02A929C956FA0076AEBD /* ColorPickerVC.swift */; };
+		553D02AC29C96BE90076AEBD /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02AB29C96BE90076AEBD /* Branch.swift */; };
+		553D02AE29C96F5D0076AEBD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02AD29C96F5D0076AEBD /* Color.swift */; };
+		553D02B029C974A90076AEBD /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02AF29C974A90076AEBD /* UIColor+Hex.swift */; };
+		553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D5BE429C630D600EB46B9 /* AuthHelper.swift */; };
+		553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */; };
 		554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554917B429C4E59E00132051 /* SelectLocation.storyboard */; };
 		554917B929C4F59400132051 /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554917B829C4F59400132051 /* TextInput.xib */; };
 		554917BC29C4F7F400132051 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554917BB29C4F7F400132051 /* TextInput.swift */; };
-		55A91F8F29C4D7A8004576B0 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */; };
+		5549DA5429C76E3200E51828 /* ValidationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549DA5329C76E3200E51828 /* ValidationHelper.swift */; };
+		5549DA5829C7E38E00E51828 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549DA5729C7E38E00E51828 /* LoadingViewController.swift */; };
+		5549DA5A29C7F11300E51828 /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549DA5929C7F11300E51828 /* FirestoreHelper.swift */; };
+		5549DA5D29C7F15C00E51828 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549DA5C29C7F15C00E51828 /* Employee.swift */; };
+		5549DA5F29C88EA900E51828 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549DA5E29C88EA900E51828 /* Business.swift */; };
+		5549DA6129C8A80200E51828 /* UIViewController+isModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549DA6029C8A80200E51828 /* UIViewController+isModal.swift */; };
+		5549DA6329C8B06B00E51828 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5549DA6229C8B06B00E51828 /* TabBar.storyboard */; };
+		5549DA6529C8BE3800E51828 /* MoreTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549DA6429C8BE3800E51828 /* MoreTabVC.swift */; };
+		555F37EA29C91DCE0058EAE6 /* Branch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555F37E929C91DCE0058EAE6 /* Branch.storyboard */; };
+		55624ACE29CA4BFF00B55A7F /* BranchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */; };
+		55788EFE29C9894700C352ED /* NavigationItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55788EFD29C9894700C352ED /* NavigationItem.xib */; };
+		557B933729CF8113006A3FD3 /* SetupEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */; };
+		558DD27629C514D500909594 /* OtpInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DD27429C514D500909594 /* OtpInputVC.swift */; };
+		559C7BBE29C9B781002BE062 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559C7BBD29C9B781002BE062 /* Card.xib */; };
+		559C7BC029C9B9DC002BE062 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7BBF29C9B9DC002BE062 /* Card.swift */; };
+		55A91F8F29C4D7A8004576B0 /* SelectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */; };
+		55B3445A29CA687D00CC73DD /* Role.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55B3445929CA687D00CC73DD /* Role.storyboard */; };
+		55B3445C29CA694800CC73DD /* ViewAllRoleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3445B29CA694800CC73DD /* ViewAllRoleTVC.swift */; };
+		55B3445E29CA6A6000CC73DD /* ViewRoleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3445D29CA6A6000CC73DD /* ViewRoleTVC.swift */; };
+		55B3446029CA6AB000CC73DD /* AddRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3445F29CA6AB000CC73DD /* AddRoleVC.swift */; };
+		55B3446229CA6AD700CC73DD /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3446129CA6AD700CC73DD /* Role.swift */; };
+		55B3446429CA6C5300CC73DD /* RoleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3446329CA6C5300CC73DD /* RoleDetailCell.swift */; };
+		55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3B8C429C60C4000B3DA5E /* UIHelper.swift */; };
+		55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */; };
+		55BDF09429C93FB00050D223 /* AddBranchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BDF09329C93FB00050D223 /* AddBranchVC.swift */; };
 		55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120829C4A0000073A8CD /* AppDelegate.swift */; };
 		55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120A29C4A0000073A8CD /* SceneDelegate.swift */; };
 		55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120C29C4A0000073A8CD /* ViewController.swift */; };
@@ -22,9 +70,20 @@
 		55C4122D29C4A0010073A8CD /* AssignNovaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4122C29C4A0010073A8CD /* AssignNovaUITests.swift */; };
 		55C4122F29C4A0010073A8CD /* AssignNovaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4122E29C4A0010073A8CD /* AssignNovaUITestsLaunchTests.swift */; };
 		55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55C4123B29C4A72A0073A8CD /* ScrollView.xib */; };
-		7E0E769B771588EED44D8877 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0A1387ED4CA040130344EE /* Pods_AssignNova.framework */; };
-		B7BB6FD529C7C15700F4AF8B /* AddEmployee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FD429C7C15700F4AF8B /* AddEmployee.storyboard */; };
-		B7BB6FDB29C7C43D00F4AF8B /* AddEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB6FDA29C7C43D00F4AF8B /* AddEmployeeViewController.swift */; };
+		55C6374529CCD5EF00A1570D /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C6374429CCD5EF00A1570D /* SectionHeaderCell.swift */; };
+		55C6374729CD1F6F00A1570D /* SelectFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C6374629CD1F6F00A1570D /* SelectFieldCell.swift */; };
+		55C6374B29CE717F00A1570D /* BranchPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C6374A29CE717F00A1570D /* BranchPicker.storyboard */; };
+		55C6374D29CE724000A1570D /* BranchPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C6374C29CE724000A1570D /* BranchPickerVC.swift */; };
+		55C6374F29CF1C8C00A1570D /* RolePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C6374E29CF1C8C00A1570D /* RolePickerVC.swift */; };
+		55C6375129CF1D2700A1570D /* RolePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C6375029CF1D2700A1570D /* RolePicker.storyboard */; };
+		55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */; };
+		55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */; };
+		55DD7CDE29CA5063006079FF /* ViewBranchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */; };
+		55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */; };
+		55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */; };
+		77BAD6269B122C1FE4185F99 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */; };
+		B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */; };
+		B7BB6FDB29C7C43D00F4AF8B /* AddEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB6FDA29C7C43D00F4AF8B /* AddEmployeeVC.swift */; };
 		B7BB6FDD29C7E47200F4AF8B /* ViewEmployee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FDC29C7E47200F4AF8B /* ViewEmployee.storyboard */; };
 		B7BB6FE129C7E71200F4AF8B /* ViewEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB6FE029C7E71200F4AF8B /* ViewEmployeeViewController.swift */; };
 		B7BB6FE329C7F0EC00F4AF8B /* AllEmployeeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FE229C7F0EC00F4AF8B /* AllEmployeeList.storyboard */; };
@@ -48,10 +107,60 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpEmployee.storyboard; sourceTree = "<group>"; };
+		330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmployeeEmailViewController.swift; sourceTree = "<group>"; };
+		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
+		33255D5D29C64576004A49FB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		50745C79BED7BBF987BAD79D /* Pods-AssignNova.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.release.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.release.xcconfig"; sourceTree = "<group>"; };
+		551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeTVC.swift; sourceTree = "<group>"; };
+		551B1D1529CCCE16003B9862 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
+		551B1D1729CCCE40003B9862 /* InputFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldCell.swift; sourceTree = "<group>"; };
+		551B1D1929CCCE50003B9862 /* AddCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardCell.swift; sourceTree = "<group>"; };
+		552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBusinessAccountVC.swift; sourceTree = "<group>"; };
+		552396E429C6647700EE9323 /* PlanCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanCard.xib; sourceTree = "<group>"; };
+		552396E629C6665600EE9323 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
+		552396E829C6670A00EE9323 /* PlanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCard.swift; sourceTree = "<group>"; };
+		552396EA29C668D500EE9323 /* SetupBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupBusinessVC.swift; sourceTree = "<group>"; };
+		552EF6A929CA14D700BF5EDA /* ViewAllBranchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllBranchTVC.swift; sourceTree = "<group>"; };
+		552EF6AB29CA159100BF5EDA /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		5530836A29C98C1800080070 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
+		5530836C29C99E0E00080070 /* ActiveEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveEmployee.swift; sourceTree = "<group>"; };
+		553D02A329C9539B0076AEBD /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		553D02A529C955EE0076AEBD /* ColorPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorPicker.storyboard; sourceTree = "<group>"; };
+		553D02A929C956FA0076AEBD /* ColorPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerVC.swift; sourceTree = "<group>"; };
+		553D02AB29C96BE90076AEBD /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
+		553D02AD29C96F5D0076AEBD /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		553D02AF29C974A90076AEBD /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		553D5BE429C630D600EB46B9 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
+		553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpBusiness.storyboard; sourceTree = "<group>"; };
 		554917B429C4E59E00132051 /* SelectLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLocation.storyboard; sourceTree = "<group>"; };
 		554917B829C4F59400132051 /* TextInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInput.xib; sourceTree = "<group>"; };
 		554917BB29C4F7F400132051 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
-		55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		5549DA5329C76E3200E51828 /* ValidationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationHelper.swift; sourceTree = "<group>"; };
+		5549DA5729C7E38E00E51828 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		5549DA5929C7F11300E51828 /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
+		5549DA5C29C7F15C00E51828 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		5549DA5E29C88EA900E51828 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		5549DA6029C8A80200E51828 /* UIViewController+isModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+isModal.swift"; sourceTree = "<group>"; };
+		5549DA6229C8B06B00E51828 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		5549DA6429C8BE3800E51828 /* MoreTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabVC.swift; sourceTree = "<group>"; };
+		555F37E929C91DCE0058EAE6 /* Branch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Branch.storyboard; sourceTree = "<group>"; };
+		55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchDetailCell.swift; sourceTree = "<group>"; };
+		55788EFD29C9894700C352ED /* NavigationItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationItem.xib; sourceTree = "<group>"; };
+		557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupEmployeeVC.swift; sourceTree = "<group>"; };
+		558DD27429C514D500909594 /* OtpInputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpInputVC.swift; sourceTree = "<group>"; };
+		559C7BBD29C9B781002BE062 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
+		559C7BBF29C9B9DC002BE062 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationVC.swift; sourceTree = "<group>"; };
+		55B3445929CA687D00CC73DD /* Role.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Role.storyboard; sourceTree = "<group>"; };
+		55B3445B29CA694800CC73DD /* ViewAllRoleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllRoleTVC.swift; sourceTree = "<group>"; };
+		55B3445D29CA6A6000CC73DD /* ViewRoleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRoleTVC.swift; sourceTree = "<group>"; };
+		55B3445F29CA6AB000CC73DD /* AddRoleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoleVC.swift; sourceTree = "<group>"; };
+		55B3446129CA6AD700CC73DD /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
+		55B3446329CA6C5300CC73DD /* RoleDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleDetailCell.swift; sourceTree = "<group>"; };
+		55B3B8C429C60C4000B3DA5E /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55BDF09329C93FB00050D223 /* AddBranchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBranchVC.swift; sourceTree = "<group>"; };
 		55C4120529C4A0000073A8CD /* AssignNova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssignNova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C4120829C4A0000073A8CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55C4120A29C4A0000073A8CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,14 +176,25 @@
 		55C4122C29C4A0010073A8CD /* AssignNovaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignNovaUITests.swift; sourceTree = "<group>"; };
 		55C4122E29C4A0010073A8CD /* AssignNovaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignNovaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		55C4123B29C4A72A0073A8CD /* ScrollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScrollView.xib; sourceTree = "<group>"; };
-		AFE0B8775FAE9BA1AD1D90A5 /* Pods-AssignNova.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.release.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.release.xcconfig"; sourceTree = "<group>"; };
-		B7BB6FD429C7C15700F4AF8B /* AddEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddEmployee.storyboard; sourceTree = "<group>"; };
-		B7BB6FDA29C7C43D00F4AF8B /* AddEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewController.swift; sourceTree = "<group>"; };
+		55C6374429CCD5EF00A1570D /* SectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCell.swift; sourceTree = "<group>"; };
+		55C6374629CD1F6F00A1570D /* SelectFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFieldCell.swift; sourceTree = "<group>"; };
+		55C6374A29CE717F00A1570D /* BranchPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BranchPicker.storyboard; sourceTree = "<group>"; };
+		55C6374C29CE724000A1570D /* BranchPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchPickerVC.swift; sourceTree = "<group>"; };
+		55C6374E29CF1C8C00A1570D /* RolePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RolePickerVC.swift; sourceTree = "<group>"; };
+		55C6375029CF1D2700A1570D /* RolePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RolePicker.storyboard; sourceTree = "<group>"; };
+		55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OtpInput.storyboard; sourceTree = "<group>"; };
+		55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeVC.swift; sourceTree = "<group>"; };
+		55DB509229CF6A130004DCF5 /* AssignNova.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AssignNova.entitlements; sourceTree = "<group>"; };
+		55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBranchTVC.swift; sourceTree = "<group>"; };
+		55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
+		55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DecoyLaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7BB6FDC29C7E47200F4AF8B /* ViewEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewEmployee.storyboard; sourceTree = "<group>"; };
 		B7BB6FE029C7E71200F4AF8B /* ViewEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEmployeeViewController.swift; sourceTree = "<group>"; };
 		B7BB6FE229C7F0EC00F4AF8B /* AllEmployeeList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AllEmployeeList.storyboard; sourceTree = "<group>"; };
-		BE0A1387ED4CA040130344EE /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2A9A1537EB4F670C7526AC3 /* Pods-AssignNova.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.debug.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.debug.xcconfig"; sourceTree = "<group>"; };
+		807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
+		B7BB6FDA29C7C43D00F4AF8B /* AddEmployeeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeVC.swift; sourceTree = "<group>"; };
+		FE72A080CE715E84B0176CE7 /* Pods-AssignNova.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.debug.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E0E769B771588EED44D8877 /* Pods_AssignNova.framework in Frameworks */,
+				77BAD6269B122C1FE4185F99 /* Pods_AssignNova.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,12 +223,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3FD6630CCD6F4507E4F1D1D1 /* Frameworks */ = {
+		2965B113CF417893FBF78DE2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BE0A1387ED4CA040130344EE /* Pods_AssignNova.framework */,
+				807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		552396DF29C6589400EE9323 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				552396E629C6665600EE9323 /* UIView+CornerRadius.swift */,
+				5549DA6029C8A80200E51828 /* UIViewController+isModal.swift */,
+				553D02A329C9539B0076AEBD /* UIViewController+Alert.swift */,
+				553D02AF29C974A90076AEBD /* UIColor+Hex.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		554917B329C4E58C00132051 /* view */ = {
@@ -119,23 +250,92 @@
 				55C4123B29C4A72A0073A8CD /* ScrollView.xib */,
 				55C4121629C4A0010073A8CD /* LaunchScreen.storyboard */,
 				554917B829C4F59400132051 /* TextInput.xib */,
-				B7BB6FD429C7C15700F4AF8B /* AddEmployee.storyboard */,
+				55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */,
+				330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */,
+				33255D5B29C6455D004A49FB /* SignInScreen.storyboard */,
+				553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */,
+				552396E429C6647700EE9323 /* PlanCard.xib */,
+				5549DA6229C8B06B00E51828 /* TabBar.storyboard */,
+				555F37E929C91DCE0058EAE6 /* Branch.storyboard */,
+				553D02A529C955EE0076AEBD /* ColorPicker.storyboard */,
+				55C6374A29CE717F00A1570D /* BranchPicker.storyboard */,
+				55C6375029CF1D2700A1570D /* RolePicker.storyboard */,
+				55788EFD29C9894700C352ED /* NavigationItem.xib */,
+				559C7BBD29C9B781002BE062 /* Card.xib */,
+				552EF6AB29CA159100BF5EDA /* CardCell.swift */,
+				55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */,
+				55B3445929CA687D00CC73DD /* Role.storyboard */,
+				55B3446329CA6C5300CC73DD /* RoleDetailCell.swift */,
+				55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */,
+				B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */,
+				551B1D1529CCCE16003B9862 /* AvatarCell.swift */,
+				551B1D1729CCCE40003B9862 /* InputFieldCell.swift */,
+				551B1D1929CCCE50003B9862 /* AddCardCell.swift */,
+				55C6374429CCD5EF00A1570D /* SectionHeaderCell.swift */,
+				55C6374629CD1F6F00A1570D /* SelectFieldCell.swift */,
 				B7BB6FDC29C7E47200F4AF8B /* ViewEmployee.storyboard */,
 				B7BB6FE229C7F0EC00F4AF8B /* AllEmployeeList.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
 		};
+		5549DA5B29C7F15200E51828 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				5549DA5C29C7F15C00E51828 /* Employee.swift */,
+				5549DA5E29C88EA900E51828 /* Business.swift */,
+				553D02AB29C96BE90076AEBD /* Branch.swift */,
+				553D02AD29C96F5D0076AEBD /* Color.swift */,
+				5530836C29C99E0E00080070 /* ActiveEmployee.swift */,
+				55B3446129CA6AD700CC73DD /* Role.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		55A91F9129C4D837004576B0 /* controller */ = {
 			isa = PBXGroup;
 			children = (
 				55C4120C29C4A0000073A8CD /* ViewController.swift */,
-				55A91F8D29C4D7A8004576B0 /* SelectLocationViewController.swift */,
+				55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */,
 				554917BB29C4F7F400132051 /* TextInput.swift */,
-				B7BB6FDA29C7C43D00F4AF8B /* AddEmployeeViewController.swift */,
+				552396E829C6670A00EE9323 /* PlanCard.swift */,
+				558DD27429C514D500909594 /* OtpInputVC.swift */,
+				552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */,
+				552396EA29C668D500EE9323 /* SetupBusinessVC.swift */,
+				5549DA5729C7E38E00E51828 /* LoadingViewController.swift */,
+				55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */,
+				557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */,
+				330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */,
+				33255D5D29C64576004A49FB /* SignInVC.swift */,
+				5549DA6429C8BE3800E51828 /* MoreTabVC.swift */,
+				55BDF09329C93FB00050D223 /* AddBranchVC.swift */,
+				553D02A929C956FA0076AEBD /* ColorPickerVC.swift */,
+				55C6374C29CE724000A1570D /* BranchPickerVC.swift */,
+				55C6374E29CF1C8C00A1570D /* RolePickerVC.swift */,
+				5530836A29C98C1800080070 /* NavigationItem.swift */,
+				559C7BBF29C9B9DC002BE062 /* Card.swift */,
+				552EF6A929CA14D700BF5EDA /* ViewAllBranchTVC.swift */,
+				55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */,
+				55B3445B29CA694800CC73DD /* ViewAllRoleTVC.swift */,
+				55B3445D29CA6A6000CC73DD /* ViewRoleTVC.swift */,
+				55B3445F29CA6AB000CC73DD /* AddRoleVC.swift */,
+				55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */,
+				B7BB6FDA29C7C43D00F4AF8B /* AddEmployeeVC.swift */,
+				551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */,
 				B7BB6FE029C7E71200F4AF8B /* ViewEmployeeViewController.swift */,
 			);
 			path = controller;
+			sourceTree = "<group>";
+		};
+		55B3B8C329C60BE100B3DA5E /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				55B3B8C429C60C4000B3DA5E /* UIHelper.swift */,
+				553D5BE429C630D600EB46B9 /* AuthHelper.swift */,
+				5549DA5329C76E3200E51828 /* ValidationHelper.swift */,
+				5549DA5929C7F11300E51828 /* FirestoreHelper.swift */,
+			);
+			path = helper;
 			sourceTree = "<group>";
 		};
 		55C411FC29C4A0000073A8CD = {
@@ -146,7 +346,7 @@
 				55C4122B29C4A0010073A8CD /* AssignNovaUITests */,
 				55C4120629C4A0000073A8CD /* Products */,
 				B15CD8872D00593289DD5294 /* Pods */,
-				3FD6630CCD6F4507E4F1D1D1 /* Frameworks */,
+				2965B113CF417893FBF78DE2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +363,10 @@
 		55C4120729C4A0000073A8CD /* AssignNova */ = {
 			isa = PBXGroup;
 			children = (
+				55DB509229CF6A130004DCF5 /* AssignNova.entitlements */,
+				5549DA5B29C7F15200E51828 /* model */,
+				552396DF29C6589400EE9323 /* extensions */,
+				55B3B8C329C60BE100B3DA5E /* helper */,
 				554917B329C4E58C00132051 /* view */,
 				55A91F9129C4D837004576B0 /* controller */,
 				55C4120829C4A0000073A8CD /* AppDelegate.swift */,
@@ -170,6 +374,7 @@
 				55C4121429C4A0010073A8CD /* Assets.xcassets */,
 				55C4121929C4A0010073A8CD /* Info.plist */,
 				55C4121129C4A0000073A8CD /* AssignNova.xcdatamodeld */,
+				55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */,
 			);
 			path = AssignNova;
 			sourceTree = "<group>";
@@ -194,8 +399,8 @@
 		B15CD8872D00593289DD5294 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C2A9A1537EB4F670C7526AC3 /* Pods-AssignNova.debug.xcconfig */,
-				AFE0B8775FAE9BA1AD1D90A5 /* Pods-AssignNova.release.xcconfig */,
+				FE72A080CE715E84B0176CE7 /* Pods-AssignNova.debug.xcconfig */,
+				50745C79BED7BBF987BAD79D /* Pods-AssignNova.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -207,12 +412,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55C4123229C4A0010073A8CD /* Build configuration list for PBXNativeTarget "AssignNova" */;
 			buildPhases = (
-				3455F3A53D31CA47CBB5EC1E /* [CP] Check Pods Manifest.lock */,
+				44B4C950458183804D24F062 /* [CP] Check Pods Manifest.lock */,
 				55C4120129C4A0000073A8CD /* Sources */,
 				55C4120229C4A0000073A8CD /* Frameworks */,
 				55C4120329C4A0000073A8CD /* Resources */,
-				6F223DFC8F19F3D807E6ACFB /* [CP] Copy Pods Resources */,
-				6ADFD4CB50F4812DA1D66540 /* [CP] Embed Pods Frameworks */,
+				FDC82A31124475687D3E631C /* [CP] Embed Pods Frameworks */,
+				CD3A3D1B1289096BB4D9E2E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -308,14 +513,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */,
+				55C6374B29CE717F00A1570D /* BranchPicker.storyboard in Resources */,
+				330E4D6129C66743008BDE3A /* SignUpEmployee.storyboard in Resources */,
+				5549DA6329C8B06B00E51828 /* TabBar.storyboard in Resources */,
+				55C6375129CF1D2700A1570D /* RolePicker.storyboard in Resources */,
+				55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */,
+				553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */,
+				55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */,
 				B7BB6FDD29C7E47200F4AF8B /* ViewEmployee.storyboard in Resources */,
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
 				B7BB6FE329C7F0EC00F4AF8B /* AllEmployeeList.storyboard in Resources */,
 				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
-				B7BB6FD529C7C15700F4AF8B /* AddEmployee.storyboard in Resources */,
+				559C7BBE29C9B781002BE062 /* Card.xib in Resources */,
+				55788EFE29C9894700C352ED /* NavigationItem.xib in Resources */,
+				555F37EA29C91DCE0058EAE6 /* Branch.storyboard in Resources */,
+				55B3445A29CA687D00CC73DD /* Role.storyboard in Resources */,
+				33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */,
+				552396E529C6647700EE9323 /* PlanCard.xib in Resources */,
+				553D02A629C955EE0076AEBD /* ColorPicker.storyboard in Resources */,
+				B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
+				55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +556,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3455F3A53D31CA47CBB5EC1E /* [CP] Check Pods Manifest.lock */ = {
+		44B4C950458183804D24F062 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -358,24 +578,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6ADFD4CB50F4812DA1D66540 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6F223DFC8F19F3D807E6ACFB /* [CP] Copy Pods Resources */ = {
+		CD3A3D1B1289096BB4D9E2E3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -392,6 +595,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FDC82A31124475687D3E631C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -399,14 +619,58 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558DD27629C514D500909594 /* OtpInputVC.swift in Sources */,
+				551B1D1429CCCD45003B9862 /* AddEmployeeTVC.swift in Sources */,
+				5530836D29C99E0E00080070 /* ActiveEmployee.swift in Sources */,
+				5549DA5829C7E38E00E51828 /* LoadingViewController.swift in Sources */,
+				553D02AC29C96BE90076AEBD /* Branch.swift in Sources */,
+				552EF6AC29CA159100BF5EDA /* CardCell.swift in Sources */,
+				553D02B029C974A90076AEBD /* UIColor+Hex.swift in Sources */,
+				33255D5E29C64576004A49FB /* SignInVC.swift in Sources */,
+				55C6374529CCD5EF00A1570D /* SectionHeaderCell.swift in Sources */,
 				55C4121329C4A0000073A8CD /* AssignNova.xcdatamodeld in Sources */,
-				B7BB6FDB29C7C43D00F4AF8B /* AddEmployeeViewController.swift in Sources */,
+				559C7BC029C9B9DC002BE062 /* Card.swift in Sources */,
+				552396E929C6670A00EE9323 /* PlanCard.swift in Sources */,
+				55B3445E29CA6A6000CC73DD /* ViewRoleTVC.swift in Sources */,
+				5549DA6129C8A80200E51828 /* UIViewController+isModal.swift in Sources */,
+				55DD7CDE29CA5063006079FF /* ViewBranchTVC.swift in Sources */,
+				55B3446029CA6AB000CC73DD /* AddRoleVC.swift in Sources */,
+				5549DA5A29C7F11300E51828 /* FirestoreHelper.swift in Sources */,
+				552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */,
+				B7BB6FDB29C7C43D00F4AF8B /* AddEmployeeVC.swift in Sources */,
 				B7BB6FE129C7E71200F4AF8B /* ViewEmployeeViewController.swift in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
+				552EF6AA29CA14D700BF5EDA /* ViewAllBranchTVC.swift in Sources */,
 				55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */,
-				55A91F8F29C4D7A8004576B0 /* SelectLocationViewController.swift in Sources */,
+				55B3446429CA6C5300CC73DD /* RoleDetailCell.swift in Sources */,
+				55A91F8F29C4D7A8004576B0 /* SelectLocationVC.swift in Sources */,
+				55624ACE29CA4BFF00B55A7F /* BranchDetailCell.swift in Sources */,
+				55C6374D29CE724000A1570D /* BranchPickerVC.swift in Sources */,
+				55B3446229CA6AD700CC73DD /* Role.swift in Sources */,
+				557B933729CF8113006A3FD3 /* SetupEmployeeVC.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
+				553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */,
+				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
+				55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */,
+				5549DA5F29C88EA900E51828 /* Business.swift in Sources */,
+				55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */,
+				55BDF09429C93FB00050D223 /* AddBranchVC.swift in Sources */,
+				55C6374729CD1F6F00A1570D /* SelectFieldCell.swift in Sources */,
+				551B1D1A29CCCE50003B9862 /* AddCardCell.swift in Sources */,
+				553D02AE29C96F5D0076AEBD /* Color.swift in Sources */,
+				551B1D1629CCCE16003B9862 /* AvatarCell.swift in Sources */,
+				5549DA5429C76E3200E51828 /* ValidationHelper.swift in Sources */,
+				551B1D1829CCCE40003B9862 /* InputFieldCell.swift in Sources */,
+				55C6374F29CF1C8C00A1570D /* RolePickerVC.swift in Sources */,
+				552396E729C6665600EE9323 /* UIView+CornerRadius.swift in Sources */,
+				5549DA6529C8BE3800E51828 /* MoreTabVC.swift in Sources */,
 				554917BC29C4F7F400132051 /* TextInput.swift in Sources */,
+				553D02AA29C956FA0076AEBD /* ColorPickerVC.swift in Sources */,
+				552396EB29C668D500EE9323 /* SetupBusinessVC.swift in Sources */,
+				553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */,
+				5530836B29C98C1800080070 /* NavigationItem.swift in Sources */,
+				55B3445C29CA694800CC73DD /* ViewAllRoleTVC.swift in Sources */,
+				5549DA5D29C7F15C00E51828 /* Employee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,10 +844,12 @@
 		};
 		55C4123329C4A0010073A8CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2A9A1537EB4F670C7526AC3 /* Pods-AssignNova.debug.xcconfig */;
+			baseConfigurationReference = FE72A080CE715E84B0176CE7 /* Pods-AssignNova.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AssignNova/AssignNova.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L9Z24WLH63;
@@ -600,9 +866,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -611,10 +878,12 @@
 		};
 		55C4123429C4A0010073A8CD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFE0B8775FAE9BA1AD1D90A5 /* Pods-AssignNova.release.xcconfig */;
+			baseConfigurationReference = 50745C79BED7BBF987BAD79D /* Pods-AssignNova.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AssignNova/AssignNova.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L9Z24WLH63;
@@ -630,9 +899,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -646,10 +916,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9Z24WLH63;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.AssignNovaTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnovaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -665,10 +936,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9Z24WLH63;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.AssignNovaTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnovaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -683,9 +955,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9Z24WLH63;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.AssignNovaUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnovaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -700,9 +973,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9Z24WLH63;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.AssignNovaUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnovaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;

@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-
+	var preventRefresh = false
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -18,13 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window?.windowScene = windowScene
-		
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		let initialViewController = storyboard.instantiateViewController(withIdentifier: "ViewController")
-		let navViewController = UINavigationController(rootViewController: initialViewController)
-		
-		window?.rootViewController = navViewController
-		
+
+		let storyboard = UIStoryboard(name: "DecoyLaunchScreen", bundle: nil)
+		let initialViewController = storyboard.instantiateViewController(withIdentifier: "LaunchScreen")
+		window?.rootViewController = initialViewController
+
+		window?.backgroundColor = UIColor.white.withAlphaComponent(0)
+
 		window?.makeKeyAndVisible()
 	}
 
@@ -59,6 +60,54 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
 	}
 
+	func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+		guard let window = self.window else {
+			return
+		}
+
+		// change the root view controller to your specific view controller
+		window.rootViewController = vc
+
+		if animated {
+			UIView.transition(with: window,
+							  duration: 0.5,
+							  options: .transitionCrossDissolve,
+							  animations: nil,
+							  completion: nil)
+		}
+	}
+
+	func refreshData(){
+		preventRefresh = false
+		AuthHelper.refreshData(){ activeEmployee in
+			if let activeEmployee = activeEmployee {
+				print(activeEmployee.employee)
+				if activeEmployee.employee.appRole == .owner && activeEmployee.business == nil {
+					let storyboard = UIStoryboard(name: "SignUpBusiness", bundle: nil)
+					let initialViewController = storyboard.instantiateViewController(withIdentifier: "SetupBusinessVC") as! SetupBusinessVC
+					initialViewController.showLogout = true
+					let navigationController = UINavigationController(rootViewController: initialViewController)
+					navigationController.navigationBar.prefersLargeTitles = true
+					self.changeRootViewController(navigationController, animated: true)
+				} else {
+					let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
+					let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeNavVC")
+					self.changeRootViewController(initialViewController, animated: true)
+				}
+			} else {
+				let storyboard = UIStoryboard(name: "Main", bundle: nil)
+				let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginNavVC")
+				self.changeRootViewController(initialViewController, animated: true)
+			}
+		}
+	}
+
+	func addAuthListener(){
+		Auth.auth().addStateDidChangeListener { auth, user in
+			if !self.preventRefresh{
+				self.refreshData()
+			}
+		}
+	}
 
 }
-

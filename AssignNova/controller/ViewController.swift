@@ -8,32 +8,30 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import AEOTPTextField
+import FirebaseAuth
 
-class ViewController: UIViewController, SelectLocationDelegate {
-	func onSelectLocation(place: GMSPlace) {
-		print(place)
-	}
-	
-	func onCancel() {
-		print("cancelled")
-	}
-	
+class ViewController: UIViewController {
 
-	@IBOutlet weak var testButton: UIButton!
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
-		
-//		let camera = GMSCameraPosition(latitude: 1.285, longitude: 103.848, zoom: 12)
-//		let mapView = GMSMapView(frame: .zero, camera: camera)
-//		self.view = mapView
+
 	}
 
-	@IBAction func onTestButtonPress(_ sender: Any) {
-        navigationController?.pushViewController(UIStoryboard(name: "ViewEmployee", bundle: nil).instantiateViewController(withIdentifier: "ViewEmployee"), animated: true)
-//		self.present(SelectLocationViewController.getController(selectLocationDelegate: self),
-//					 animated:true, completion: nil)
+	@IBAction func onSignInPress(_ sender: Any) {
+        navigationController?.pushViewController(UIStoryboard(name: "SignInScreen", bundle: nil).instantiateViewController(withIdentifier: "SignInVC"), animated: true)
 	}
-	
+
+	@IBAction func onOpenSignUpBusinessPress(_ sender: Any) {
+		let signUpBusinessVC = UIStoryboard(name: "SignUpBusiness", bundle: nil)
+			.instantiateViewController(withIdentifier: "SignUpBusinessAccountVC") as! SignUpBusinessAccountVC
+		self.navigationController?.pushViewController(signUpBusinessVC, animated: true)
+	}
+
+	@IBAction func onSignUpEmployeePress(_ sender: Any) {
+		let signUpBusinessVC = UIStoryboard(name: "SignUpEmployee", bundle: nil)
+			.instantiateViewController(withIdentifier: "SignUpEmployeeVC") as! SignUpEmployeeVC
+		self.navigationController?.pushViewController(signUpBusinessVC, animated: true)
+	}
 }
-

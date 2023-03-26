@@ -1,20 +1,22 @@
 //
-//  AddEmployeeViewController.swift
+//  ConfirmEmployeeEmailViewController.swift
 //  AssignNova
 //
-//  Created by simran mehra on 2023-03-19.
+//  Created by PAVIT KALRA on 2023-03-18.
 //
 
 import UIKit
 
-class AddEmployeeViewController: UIViewController {
+class ConfirmEmployeeEmailViewController: UIViewController {
 
+    @IBOutlet weak var confirmEmailImgView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+
     /*
     // MARK: - Navigation
 

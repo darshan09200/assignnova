@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SignInVC" id="Y6W-OH-hqX" customClass="SignInVC" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="48s-Ve-jaa">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dju-6e-bLV">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="435.66666666666669"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="M1j-zz-BwF">
+                                                <rect key="frame" x="16" y="16" width="361" height="403.66666666666669"/>
+                                                <subviews>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="z9x-VF-dvu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="32"/>
+                                                        <segments>
+                                                            <segment title="Email"/>
+                                                            <segment title="Phone Number"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="loginModeChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="cYh-QW-Nea"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8T-UM-abf">
+                                                        <rect key="frame" x="0.0" y="39" width="361" height="8"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="8" id="zgb-lF-0M5"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1C-jn-kcw" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="55" width="361" height="74"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Email"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ef-4g-1KG" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="137" width="361" height="73.666666666666686"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Password"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NzE-5S-ejb" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="214.66666666666669" width="361" height="58"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Phone Number"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGf-gd-p8M">
+                                                        <rect key="frame" x="0.0" y="218.66666666666669" width="361" height="8"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="8" id="wmQ-Eb-Tt5"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxi-OS-YRG">
+                                                        <rect key="frame" x="0.0" y="234.66666666666671" width="361" height="50.333333333333343"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Login" buttonSize="large"/>
+                                                        <connections>
+                                                            <action selector="loginBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="AY5-GL-3hH"/>
+                                                        </connections>
+                                                    </button>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rnv-Wu-BFS">
+                                                        <rect key="frame" x="0.0" y="293" width="361" height="8"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="8" id="2CR-cM-Olj"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBD-UD-bDE">
+                                                        <rect key="frame" x="0.0" y="309" width="361" height="20.333333333333314"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOl-Gp-484">
+                                                        <rect key="frame" x="0.0" y="337.33333333333331" width="361" height="8"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="8" id="aGa-Ta-9UW"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLp-pg-Dbo">
+                                                        <rect key="frame" x="0.0" y="353.33333333333331" width="361" height="50.333333333333314"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" image="google" title="Continue With Google" imagePadding="8" buttonSize="large">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
+                                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                            <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.51000000000000001"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="googleLoginBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="j6r-rB-Iwl"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="M1j-zz-BwF" firstAttribute="top" secondItem="dju-6e-bLV" secondAttribute="top" constant="16" id="1q4-3r-0as"/>
+                                            <constraint firstAttribute="trailing" secondItem="M1j-zz-BwF" secondAttribute="trailing" constant="16" id="6IN-WG-MQw"/>
+                                            <constraint firstAttribute="bottom" secondItem="M1j-zz-BwF" secondAttribute="bottom" constant="16" id="Lki-MT-vES"/>
+                                            <constraint firstItem="M1j-zz-BwF" firstAttribute="leading" secondItem="dju-6e-bLV" secondAttribute="leading" constant="16" id="r58-mA-L6Y"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="DlG-rO-68w" firstAttribute="bottom" secondItem="dju-6e-bLV" secondAttribute="bottom" id="FGr-hL-Dta"/>
+                                    <constraint firstItem="dju-6e-bLV" firstAttribute="top" secondItem="DlG-rO-68w" secondAttribute="top" id="Ikp-sN-ufE"/>
+                                    <constraint firstItem="dju-6e-bLV" firstAttribute="width" secondItem="LZ4-GN-neK" secondAttribute="width" id="Klj-Cj-oL5"/>
+                                    <constraint firstItem="DlG-rO-68w" firstAttribute="trailing" secondItem="dju-6e-bLV" secondAttribute="trailing" id="Z6z-tB-Bvk"/>
+                                    <constraint firstItem="dju-6e-bLV" firstAttribute="leading" secondItem="DlG-rO-68w" secondAttribute="leading" id="u1f-Tb-qu5"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="DlG-rO-68w"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="LZ4-GN-neK"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="48s-Ve-jaa" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="2bP-w4-MC2"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="48s-Ve-jaa" secondAttribute="bottom" id="4dP-cK-sur"/>
+                            <constraint firstItem="48s-Ve-jaa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cmy-PC-bw7"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="48s-Ve-jaa" secondAttribute="trailing" id="eha-aO-6Og"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Login" largeTitleDisplayMode="always" id="2p3-sk-nlc"/>
+                    <connections>
+                        <outlet property="emailTxt" destination="O1C-jn-kcw" id="cjH-BW-hw2"/>
+                        <outlet property="googleLoginBtn" destination="qLp-pg-Dbo" id="57X-br-moq"/>
+                        <outlet property="loginBtn" destination="Mxi-OS-YRG" id="L5r-Im-AWN"/>
+                        <outlet property="loginMethodSegment" destination="z9x-VF-dvu" id="x3B-Li-7AZ"/>
+                        <outlet property="passwordTxt" destination="6ef-4g-1KG" id="TLm-C2-QDN"/>
+                        <outlet property="phoneNumberTxt" destination="NzE-5S-ejb" id="a2y-f4-Xa2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75.572519083969468" y="-2.1126760563380285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="google" width="21" height="20"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

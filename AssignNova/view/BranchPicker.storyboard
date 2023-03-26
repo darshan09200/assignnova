@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Select Branch-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="BranchPickerVC" id="Y6W-OH-hqX" customClass="BranchPickerVC" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ifc-n3-zIn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search here" translatesAutoresizingMaskIntoConstraints="NO" id="L1W-s5-ZPy">
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1Wc-Fu-y7w">
+                                <rect key="frame" x="0.0" y="115" width="393" height="703"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="card" rowHeight="60" id="8sz-da-rwk" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8sz-da-rwk" id="vaE-fa-3ct">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1t-lD-Daz" customClass="Card" customModule="AssignNova" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="4" width="361" height="52"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Role"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="p1t-lD-Daz" secondAttribute="bottom" constant="4" id="Bpt-3d-gQJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="p1t-lD-Daz" secondAttribute="trailing" constant="16" id="e1u-fg-hjc"/>
+                                                <constraint firstItem="p1t-lD-Daz" firstAttribute="leading" secondItem="vaE-fa-3ct" secondAttribute="leading" constant="16" id="egv-Qy-rPt"/>
+                                                <constraint firstItem="p1t-lD-Daz" firstAttribute="top" secondItem="vaE-fa-3ct" secondAttribute="top" constant="4" id="mce-f8-H9U"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="card" destination="p1t-lD-Daz" id="OzR-Tf-VGT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="0el-sW-0hi"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="S0M-ew-bez"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n6L-As-28A"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1Wc-Fu-y7w" firstAttribute="leading" secondItem="n6L-As-28A" secondAttribute="leading" id="AV1-qO-hy6"/>
+                            <constraint firstItem="L1W-s5-ZPy" firstAttribute="trailing" secondItem="n6L-As-28A" secondAttribute="trailing" id="Inr-qS-DdR"/>
+                            <constraint firstItem="L1W-s5-ZPy" firstAttribute="top" secondItem="n6L-As-28A" secondAttribute="top" id="Jkf-Xt-Ykl"/>
+                            <constraint firstItem="1Wc-Fu-y7w" firstAttribute="top" secondItem="L1W-s5-ZPy" secondAttribute="bottom" id="eQe-DJ-3jh"/>
+                            <constraint firstItem="n6L-As-28A" firstAttribute="bottom" secondItem="1Wc-Fu-y7w" secondAttribute="bottom" id="fw3-AL-hG2"/>
+                            <constraint firstItem="n6L-As-28A" firstAttribute="trailing" secondItem="1Wc-Fu-y7w" secondAttribute="trailing" id="mUo-Dq-MbF"/>
+                            <constraint firstItem="L1W-s5-ZPy" firstAttribute="leading" secondItem="n6L-As-28A" secondAttribute="leading" id="qke-wz-ilG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select Branch" id="tN6-Gl-O5c">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pWl-Vu-rwE">
+                            <connections>
+                                <action selector="onCancelPress:" destination="Y6W-OH-hqX" id="XiN-lK-meH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="1Wc-Fu-y7w" id="V6j-4s-oRd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
