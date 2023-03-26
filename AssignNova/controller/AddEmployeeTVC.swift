@@ -34,12 +34,39 @@ class AddEmployeeTVC: UITableViewController {
 		data.roles.count < ActiveEmployee.instance!.roles.count
 	}
 	
+	var isEdit: Bool = false
+	var employee: Employee?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		tableView.sectionHeaderTopPadding = 0
 		tableView.contentInset.bottom = 16
 		
+		if isEdit, let employee = employee{
+			
+			navigationItem.title = "Edit Branch"
+//
+//			if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell{
+//				cell.inputField.textFieldComponent.text = employee.firstName
+//			}
+//
+//			if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell{
+//				cell.inputField.textFieldComponent.text = employee.lastName
+//			}
+//
+//			if let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as? InputFieldCell{
+//				cell.inputField.textFieldComponent.text = employee.email
+//			}
+//
+//			if let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 1)) as? InputFieldCell{
+//				cell.inputField.textFieldComponent.text = employee.phoneNumber
+//			}
+//
+//			if let cell = tableView.cellForRow(at: IndexPath(row: 4, section: 1)) as? InputFieldCell{
+//				cell.inputField.textFieldComponent.text = employee.employeeId
+//			}
+		}
 	}
 	
 	@IBAction func onCancelPress(_ sender: Any) {
@@ -134,7 +161,7 @@ class AddEmployeeTVC: UITableViewController {
 		}
 		
 		self.startLoading()
-		FirestoreHelper.doesEmployeeExist(email: email, phoneNumber: phoneNumber){ existingEmployee in
+		FirestoreHelper.doesEmployeeExist(email: email, phoneNumber: phoneNumber, employeeId: employee?.id){ existingEmployee in
 			if let existingEmployee = existingEmployee {
 				self.stopLoading(){
 					var message = " already linked with another employee: \(existingEmployee.firstName) \(existingEmployee.lastName)"
@@ -145,8 +172,23 @@ class AddEmployeeTVC: UITableViewController {
 					}
 					self.showAlert(title: "Oops", message: message )
 				}
-			} else{
-				let employee = Employee(employeeId: employeeId, firstName: firstName, lastName: lastName, appRole: role, maxHours: maxHours, email: email, phoneNumber: phoneNumber, invited: true, branches: self.data.branches.compactMap{$0.id}, roles: self.data.roles.compactMap{$0.id})
+			} else {
+				let (_, backgroundColor) = UIImage.makeLetterAvatar(withUsername: "\(firstName) \(lastName)", backgroundColor: UIColor(hex: self.employee?.color ?? ""))
+				let employee = Employee(
+					id: self.employee?.id,
+					userId: self.employee?.userId,
+					employeeId: employeeId,
+					firstName: firstName,
+					lastName: lastName,
+					appRole: role,
+					maxHours: maxHours,
+					isProfilePrivate: self.employee?.isProfilePrivate ?? false,
+					email: email,
+					phoneNumber: phoneNumber,
+					invited: self.employee?.invited ?? true,
+					branches: self.data.branches.compactMap{$0.id},
+					roles: self.data.roles.compactMap{$0.id},
+					color: backgroundColor.toHex ?? "")
 				FirestoreHelper.saveEmployee(employee){error in
 					if let _ = error {
 						self.stopLoading(){
@@ -160,8 +202,6 @@ class AddEmployeeTVC: UITableViewController {
 				}
 			}
 		}
-		
-		
 		
 	}
 }
@@ -187,13 +227,20 @@ extension AddEmployeeTVC{
 		if indexPath.section == 0{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "avatar", for: indexPath) as! AvatarCell
 			
-			let circleAvatarImage = LetterAvatarMaker()
-				.setCircle(true)
-				.setUsername("John Doe")
-				.build()
-			cell.profileImage.image = circleAvatarImage
+			if let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell,
+				  let firstName = firstNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+				  !firstName.isEmpty,
+			   let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell,
+				  let lastName = lastNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+			   !lastName.isEmpty{
+				let (image, _) = UIImage.makeLetterAvatar(withUsername: "\(firstName) \(lastName)")
+				cell.profileImage.image = image
+			} else {
+				let (image, _) = UIImage.makeLetterAvatar(withUsername: "John Doe")
+				cell.profileImage.image = image
+			}
 			
-			cell.addImageButton.addTarget(self, action: #selector(onSelectImagePress), for: .touchUpInside)
+			cell.addImageButton?.addTarget(self, action: #selector(onSelectImagePress), for: .touchUpInside)
 			
 			return cell
 		} else if indexPath.section == 1{
@@ -204,22 +251,27 @@ extension AddEmployeeTVC{
 				case 0:
 					label = "First Name"
 					placeholder = "John"
+					defaultValue = employee?.firstName
 				case 1:
 					label = "Last Name"
 					placeholder = "Doe"
+					defaultValue = employee?.lastName
 				case 2:
 					label = "Email"
 					placeholder = "abc@xyz.com"
+					defaultValue = employee?.email
 				case 3:
 					label = "Phone Number (Optional)"
 					placeholder = "+12345678901"
+					defaultValue = employee?.phoneNumber
 				case 4:
 					label = "Employee Id (Optional)"
+					defaultValue = employee?.employeeId
 				case 5:
 					label = "Role"
 				case 6:
 					label = "Max Hours/Week"
-					defaultValue = "40"
+					defaultValue = String(format: "%.2f", employee?.maxHours ?? 40)
 				default: break
 			}
 			if indexPath.row == 5{
@@ -227,14 +279,19 @@ extension AddEmployeeTVC{
 				cell.picker.delegate = self
 				cell.picker.dataSource = self
 				cell.label.text = label
-				cell.selectButton.setTitle(AppRole.employee.rawValue, for: .normal)
-				cell.picker.selectRow(3, inComponent: 0, animated: true)
+				cell.selectButton.setTitle((employee?.appRole ?? AppRole.employee).rawValue, for: .normal)
+				cell.picker.selectRow((employee?.appRole ?? AppRole.employee).index ?? 0, inComponent: 0, animated: true)
 				return cell
 			}
 			let cell = tableView.dequeueReusableCell(withIdentifier: "inputForm", for: indexPath) as! InputFieldCell
 			cell.inputField.label = label
 			cell.inputField.placeholder = placeholder
 			cell.inputField.textFieldComponent.text = defaultValue
+			
+			if indexPath.row == 0 || indexPath.row == 1{
+				cell.inputField.textFieldComponent.addTarget(self, action: #selector(nameDidChange(_:)), for: .editingChanged)
+			}
+			
 			return cell
 		} else {
 			let isLast: Bool
@@ -265,7 +322,6 @@ extension AddEmployeeTVC{
 					barColor = data.roles[indexPath.row].color
 				}
 			}
-			print(isLast, isEmpty)
 			if isEmpty{
 				let cell = UITableViewCell()
 				var configuration = cell.defaultContentConfiguration()
@@ -345,6 +401,10 @@ extension AddEmployeeTVC{
 	
 	@objc func onSelectImagePress(){
 		print("pressed")
+	}
+	
+	@objc func nameDidChange(_ textField: UITextField) {
+		tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
 	}
 
 	@objc func onDeletePress(_ recongniser: CellTapGestureRecognizer){

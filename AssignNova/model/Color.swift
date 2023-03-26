@@ -10,4 +10,5 @@ import UIKit
 struct Color{
 	var color: UIColor
 	var name: String
+	var forAvatar: Bool = true
 }

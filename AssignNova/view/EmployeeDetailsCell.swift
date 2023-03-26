@@ -9,15 +9,24 @@ import UIKit
 
 class EmployeeDetailsCell: UITableViewCell {
 
-    override func awakeFromNib() {
+	@IBOutlet weak var empIdLabel: UILabel!
+	@IBOutlet weak var empIdPrivatePipe: UILabel!
+	@IBOutlet weak var privateLabel: UILabel!
+	
+	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var appRoleLabel: UILabel!
+	
+	@IBOutlet weak var emailLabel: UILabel!
+	@IBOutlet weak var emailPhoneNumberPipe: UILabel!
+	@IBOutlet weak var phoneNumberLabel: UILabel!
+	
+	@IBOutlet weak var maxHoursLabel: UILabel!
+	
+	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+		
+		selectionStyle = .none
     }
 
 }

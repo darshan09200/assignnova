@@ -15,6 +15,7 @@ class LaunchScreenVC: UIViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+		self.logo.tintColor = .white
     }
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -25,6 +26,7 @@ class LaunchScreenVC: UIViewController {
 				self.logo.transform = CGAffineTransform.identity.scaledBy(x: 50, y: 50)
 				self.gradient.alpha = 0
 				self.view.backgroundColor = .systemBackground
+				self.logo.tintColor = .systemBackground
 			}){ finished in
 				let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
 				delegate?.addAuthListener()

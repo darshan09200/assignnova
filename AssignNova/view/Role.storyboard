@@ -162,15 +162,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" rowHeight="60" id="g3J-l7-Bst" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="393" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" id="g3J-l7-Bst" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="68"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g3J-l7-Bst" id="HwR-9X-m21">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raF-WV-7d6" customClass="Card" customModule="AssignNova" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="4" width="361" height="52"/>
+                                            <rect key="frame" x="16" y="4" width="361" height="60"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="Role"/>
@@ -217,7 +217,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="details" rowHeight="56" id="4tm-cn-cyz" customClass="RoleDetailCell" customModule="AssignNova" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="details" id="4tm-cn-cyz" customClass="RoleDetailCell" customModule="AssignNova" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4tm-cn-cyz" id="ZRl-UC-O0D">
@@ -269,18 +269,18 @@
                                     <outlet property="roleName" destination="Fag-zr-jmc" id="kxI-5b-tja"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" rowHeight="60" id="sj9-JP-1Su" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="106" width="393" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" id="sj9-JP-1Su" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="106" width="393" height="68"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sj9-JP-1Su" id="KZq-Mm-RVj">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYJ-yV-pnF">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6l7-1f-LqS" customClass="Card" customModule="AssignNova" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="4" width="361" height="52"/>
+                                                    <rect key="frame" x="16" y="4" width="361" height="60"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                             </subviews>

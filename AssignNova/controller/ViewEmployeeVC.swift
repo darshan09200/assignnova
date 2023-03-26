@@ -1,5 +1,5 @@
 //
-//  ViewEmployeeTVC.swift
+//  ViewEmployeeVC.swift
 //  AssignNova
 //
 //  Created by Darshan Jain on 2023-03-26.
@@ -8,7 +8,9 @@
 import UIKit
 import FirebaseFirestore
 
-class ViewEmployeeTVC: UITableViewController {
+class ViewEmployeeVC: UIViewController {
+	
+	@IBOutlet weak var tableView: UITableView!
 	
 	var employeeId: String?
 	private var employee: Employee?
@@ -22,8 +24,10 @@ class ViewEmployeeTVC: UITableViewController {
 				self.employee = employee
 				self.tableView.reloadData()
 			}
-			
 		}
+		
+		tableView.sectionHeaderTopPadding = 0
+		tableView.contentInset.bottom = 16
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
@@ -33,26 +37,27 @@ class ViewEmployeeTVC: UITableViewController {
 	}
 	
 	@IBAction func onEditPress(_ sender: Any) {
-//		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "AddBranchVC") as! AddBranchVC
-//		viewController.isEdit = true
-//		viewController.branch = branch
-//		self.present(UINavigationController(rootViewController: viewController), animated: true)
+		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "AddEmployeeTVC") as! AddEmployeeTVC
+		viewController.isEdit = true
+		viewController.employee = employee
+		viewController.data = AddEmployeeModel(branches: employee?.branches.compactMap{getBranch(branchId: $0)} ?? [], roles: employee?.roles.compactMap{getRole(roleId: $0)} ?? [])
+		self.present(UINavigationController(rootViewController: viewController), animated: true)
 	}
 	
 }
 
-extension ViewEmployeeTVC{
-	override func numberOfSections(in tableView: UITableView) -> Int {
+extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
+	func numberOfSections(in tableView: UITableView) -> Int {
 		return 4
 	}
 	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if section == 0 || section == 1 {return 1}
 		if section == 3 {return max(employee?.branches.count ?? 0 , 1)}
 		return max(employee?.roles.count ?? 0 , 1)
 	}
 	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if indexPath.section == 0{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "avatar", for: indexPath) as! AvatarCell
 			
@@ -130,7 +135,7 @@ extension ViewEmployeeTVC{
 				}
 			}
 		}
-		if isEmpty{
+		if isEmpty || employee == nil{
 			let cell = UITableViewCell()
 			var configuration = cell.defaultContentConfiguration()
 			configuration.text = "No \(indexPath.section == 2 ? "Branch" : "Role") Assigned"
@@ -145,13 +150,13 @@ extension ViewEmployeeTVC{
 			
 			cell.card.title = title
 			cell.card.subtitle = subtitle
-			cell.card.barView.backgroundColor = UIColor(hex: barColor!)
+			cell.card.barView.backgroundColor = UIColor(hex: barColor ?? "")
 			
 			return cell
 		}
 	}
 	
-	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		if section == 0 {
 			return nil
 		}
@@ -168,14 +173,14 @@ extension ViewEmployeeTVC{
 		return header.contentView
 	}
 	
-	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		if section == 0{return 0}
 		return 42
 	}
 	
 }
 
-extension ViewEmployeeTVC{
+extension ViewEmployeeVC{
 	func getBranch(branchId: String?)->Branch?{
 		return ActiveEmployee.instance?.branches.first(where: {$0.id == branchId})
 	}

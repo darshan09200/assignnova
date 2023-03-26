@@ -21,7 +21,12 @@ class FirestoreHelper{
 
 	static func saveEmployee(_ employee: Employee, completion: @escaping(_ error: Error?)->()){
 		do{
-			try db.collection("employee").addDocument(from: employee){ err in FirestoreHelper.completion(err, completion)
+			if let employeeId = employee.id{
+				try db.collection("employee").document(employeeId).setData(from: employee){ err in FirestoreHelper.completion(err, completion)
+				}
+			} else {
+				try db.collection("employee").addDocument(from: employee){ err in FirestoreHelper.completion(err, completion)
+				}
 			}
 		} catch{
 			completion(error)
@@ -85,7 +90,22 @@ class FirestoreHelper{
 		}
 	}
 	
-	static func doesEmployeeExist(email: String, phoneNumber: String?, userId: String? = nil, completion: @escaping(_ employee: Employee?)->()){
+	static func getEmployee(employeeId: String, completion: @escaping(_ employee: Employee?)->()) -> ListenerRegistration{
+		let docRef = db.collection("employee").document(employeeId)
+		return docRef.addSnapshotListener(){ snapshot, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			do{
+				try completion(snapshot?.data(as: Employee.self))
+			}catch{
+				completion(nil)
+			}
+		}
+	}
+	
+	static func doesEmployeeExist(email: String, phoneNumber: String?, employeeId: String? = nil, completion: @escaping(_ employee: Employee?)->()){
 		if let activeEmployee = ActiveEmployee.instance,
 		   let businessId = activeEmployee.business?.id{
 			var filters = [
@@ -97,11 +117,13 @@ class FirestoreHelper{
 			var docRef = db.collection("employee")
 				.whereFilter(Filter.orFilter(filters))
 				.whereField("businessId", isEqualTo: businessId)
-				.limit(to: 1)
 			
-			if let userId = userId{
-				docRef = docRef.whereField("userId", isNotEqualTo: userId)
+			if let employeeId = employeeId{
+				print("added employeeId \(employeeId)")
+				docRef = docRef.whereField("__name__", isNotEqualTo: employeeId)
 			}
+			
+			docRef.limit(to: 1)
 			
 			docRef.getDocuments(){ snapshots, err in
 				if let _ = err {
@@ -204,6 +226,23 @@ class FirestoreHelper{
 			}catch{
 				completion(nil)
 			}
+		}
+	}
+	
+	static func getEmployees(businessId: String, completion: @escaping(_ employees: [Employee]?)->()) -> ListenerRegistration{
+		let docRef = db.collection("employee")
+			.whereField("businessId", isEqualTo: businessId)
+			.order(by: "firstName")
+			.order(by: "lastName")
+		return docRef.addSnapshotListener(){ snapshots, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			let employees = snapshots?.documents.compactMap{ document in
+				return try? document.data(as: Employee.self)
+			}
+			completion(employees)
 		}
 	}
 

@@ -151,7 +151,8 @@ class SignUpBusinessAccountVC: UIViewController {
 							
 							if let uid = Auth.auth().currentUser?.uid
 							{
-								let employee = Employee(userId: uid, firstName: firstName, lastName: lastName, appRole: .owner, email: email, phoneNumber: phoneNumber)
+								let (_, backgroundColor) = UIImage.makeLetterAvatar(withUsername: "\(firstName) \(lastName)")
+								let employee = Employee(userId: uid, firstName: firstName, lastName: lastName, appRole: .owner, email: email, phoneNumber: phoneNumber, color: backgroundColor.toHex ?? "")
 								FirestoreHelper.saveEmployee(employee){_ in}
 							}
 							
@@ -215,7 +216,8 @@ class SignUpBusinessAccountVC: UIViewController {
 								return
 							}
 							if let uid = result?.user.uid{
-								let employee = Employee(userId: uid, firstName: firstName ?? "", lastName: lastName ?? "", appRole: .owner, email: email!)
+								let (_, backgroundColor) = UIImage.makeLetterAvatar(withUsername: "\(firstName) \(lastName)")
+								let employee = Employee(userId: uid, firstName: firstName ?? "", lastName: lastName ?? "", appRole: .owner, email: email!, color: backgroundColor.toHex ?? "")
 								FirestoreHelper.saveEmployee(employee){ error in
 									if let error = error{
 										self.showAlert(title: "Oops", message: error.localizedDescription)
