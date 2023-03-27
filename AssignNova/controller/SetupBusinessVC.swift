@@ -41,6 +41,7 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.delegate = self
 		numberOfEmployeeInput.textFieldComponent.keyboardType = .numberPad
 
+        businessNameInput.textFieldComponent.textContentType = .name
 
 		minusButton.tintColor = .label
 		minusButton.setImage(UIImage(systemName: "minus"), for: .normal)

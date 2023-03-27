@@ -27,6 +27,11 @@ class SignInVC: UIViewController {
 		self.phoneNumberTxt.textFieldComponent.keyboardType = .phonePad
 		
 		passwordTxt.textFieldComponent.isSecureTextEntry = true
+        
+        emailTxt.textFieldComponent.textContentType = .emailAddress
+        emailTxt.textFieldComponent.keyboardType = .emailAddress
+        
+        passwordTxt.textFieldComponent.textContentType = .password
 		
 		let pwdButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
 		pwdButton.tintColor = .label

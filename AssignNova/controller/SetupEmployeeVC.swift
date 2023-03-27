@@ -27,6 +27,12 @@ class SetupEmployeeVC: UIViewController {
 		
 		passwordTxt.textFieldComponent.isSecureTextEntry = true
 		confirmPasswordTxt.textFieldComponent.isSecureTextEntry = true
+        
+        emailTxt.textFieldComponent.textContentType = .emailAddress
+        emailTxt.textFieldComponent.keyboardType = .emailAddress
+        
+        passwordTxt.textFieldComponent.textContentType = .password
+        confirmPasswordTxt.textFieldComponent.textContentType = .password
 		
 		let pwdButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
 		pwdButton.tintColor = .label
