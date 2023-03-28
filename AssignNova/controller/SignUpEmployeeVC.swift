@@ -27,6 +27,9 @@ class SignUpEmployeeVC: UIViewController {
 		
 		loadingVC.modalPresentationStyle = .overCurrentContext
 		loadingVC.modalTransitionStyle = .crossDissolve
+        
+        textInput.textFieldComponent.textContentType = .emailAddress;
+        textInput.textFieldComponent.keyboardType = .emailAddress
     }
     
     @IBAction func checkForInviteBtnPressed(_ sender: UIButton) {
