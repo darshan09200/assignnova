@@ -27,6 +27,9 @@ class SignUpEmployeeVC: UIViewController {
 		
 		loadingVC.modalPresentationStyle = .overCurrentContext
 		loadingVC.modalTransitionStyle = .crossDissolve
+        
+        textInput.textFieldComponent.textContentType = .emailAddress;
+        textInput.textFieldComponent.keyboardType = .emailAddress
     }
     
     @IBAction func checkForInviteBtnPressed(_ sender: UIButton) {
@@ -141,10 +144,12 @@ class SignUpEmployeeVC: UIViewController {
 		switch sender.selectedSegmentIndex {
 			case 0:
 				textInput.label = "Email"
-				textInput.textFieldComponent.keyboardType = .default
+				textInput.textFieldComponent.textContentType = .emailAddress;
+				textInput.textFieldComponent.keyboardType = .emailAddress
 			case 1:
 				textInput.label = "Phone Number"
 				textInput.textFieldComponent.keyboardType = .phonePad
+				textInput.textFieldComponent.textContentType = .telephoneNumber
 			default:
 				break
 		}

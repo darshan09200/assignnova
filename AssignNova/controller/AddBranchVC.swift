@@ -27,6 +27,7 @@ class AddBranchVC: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
+		branchNameInput.textFieldComponent.textContentType = .name
 		if isEdit, let branch = branch{
 			navigationItem.title = "Edit Branch"
 			branchNameInput.textFieldComponent.text = branch.name

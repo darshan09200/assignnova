@@ -30,6 +30,15 @@ class SignUpBusinessAccountVC: UIViewController {
 		pwdInput.textFieldComponent.isSecureTextEntry = true
 		confirmPwdInput.textFieldComponent.isSecureTextEntry = true
 		
+        firstNameInput.textFieldComponent.textContentType = .name
+        lastNameInput.textFieldComponent.textContentType = .name
+        emailInput.textFieldComponent.textContentType = .emailAddress
+        emailInput.textFieldComponent.keyboardType = .emailAddress
+        phoneNumberInput.textFieldComponent.textContentType = .telephoneNumber
+        phoneNumberInput.textFieldComponent.keyboardType = .phonePad
+        pwdInput.textFieldComponent.textContentType = .password
+        confirmPwdInput.textFieldComponent.textContentType = .password
+        
 		let pwdButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
 		pwdButton.tintColor = .label
 		pwdButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
