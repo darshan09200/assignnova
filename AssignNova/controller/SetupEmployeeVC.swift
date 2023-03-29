@@ -30,7 +30,7 @@ class SetupEmployeeVC: UIViewController {
         
         emailTxt.textFieldComponent.textContentType = .emailAddress
         emailTxt.textFieldComponent.keyboardType = .emailAddress
-        
+       
         passwordTxt.textFieldComponent.textContentType = .newPassword
         confirmPasswordTxt.textFieldComponent.textContentType = .password
 		

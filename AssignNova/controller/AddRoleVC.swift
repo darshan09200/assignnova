@@ -26,6 +26,7 @@ class AddRoleVC: UIViewController {
 		if isEdit, let role = role{
 			navigationItem.title = "Edit Role"
 			roleNameInput.textFieldComponent.text = role.name
+            roleNameInput.textFieldComponent.textContentType = .name
 			if let color = ColorPickerVC.colors.first(where: {$0.color.toHex == role.color}){
 				print(color)
 				colorLabel.text = color.name

@@ -31,6 +31,7 @@ class AddBranchVC: UIViewController {
 		if isEdit, let branch = branch{
 			navigationItem.title = "Edit Branch"
 			branchNameInput.textFieldComponent.text = branch.name
+            branchNameInput.textFieldComponent.textContentType = .name
 			selectLocationLabel.text = branch.address
 			selectLocationLabel.textColor = .label
 			if let color = ColorPickerVC.colors.first(where: {$0.color.toHex == branch.color}){
