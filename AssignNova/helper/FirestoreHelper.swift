@@ -147,7 +147,7 @@ class FirestoreHelper{
 
 	static func getBusiness(employeeId: String, completion: @escaping(_ business: Business?)->()){
 		
-			let docRef = db.collection("business").whereField("managedBy", isEqualTo: employeeId)
+		let docRef = db.collection("business").whereField("managedBy", isEqualTo: employeeId)
 		docRef.getDocuments(){ snapshots, err in
 			if let _ = err {
 				completion(nil)
@@ -245,5 +245,114 @@ class FirestoreHelper{
 			completion(employees)
 		}
 	}
+	
+	static func saveShifts(_ shifts: [Shift], completion: @escaping(_ error: Error?)->()){
+		do{
+			let batch = db.batch()
+			try shifts.forEach{shift in
+				let ref = db.collection("shift").document()
+				try ref.setData(from: shift)				
+			}
+			batch.commit(){ err in
+				FirestoreHelper.completion(err, completion)
+			}
+		} catch{
+			completion(error)
+		}
+	}
+	
+	static func saveShift(_ shift: Shift, completion: @escaping(_ error: Error?)->()) -> DocumentReference?{
+		do{
+			if let shiftId = shift.id{
+				try db.collection("shift").document(shiftId).setData(from: shift){ err in FirestoreHelper.completion(err, completion)
+				}
+			} else {
+				return try db.collection("shift").addDocument(from: shift){ err in FirestoreHelper.completion(err, completion)
+				}
+			}
+		} catch{
+			completion(error)
+		}
+		return nil
+	}
+	
+	static func getShift(shiftId: String, completion: @escaping(_ shift: Shift?)->()) -> ListenerRegistration{
+		let docRef = db.collection("shift")
+			.document(shiftId)
+		return docRef.addSnapshotListener(){ snapshot, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			do{
+				try completion(snapshot?.data(as: Shift.self))
+			}catch{
+				completion(nil)
+			}
+		}
+	}
+	
+	static func getShifts(businessId: String, startDate: Date, endDate: Date, shiftType: ShiftType, completion: @escaping(_ shifts: [Shift]?)->()) -> ListenerRegistration{
+		var filters = [Filter]()
+		if let activeEmployee = ActiveEmployee.instance{
+			if shiftType == .myShift{
+				filters.append(Filter.whereField("employeeId", isEqualTo: activeEmployee.employee.id!))
+			} else if shiftType == .openShift{
+				filters.append(Filter.whereField("eligibleEmployees", arrayContains: activeEmployee.employee.id!))
+				filters.append(Filter.whereField("eligibleEmployees", isEqualTo: []))
+			}
+		}
+		let docRef = db.collection("shift")
+			.whereField("businessId", isEqualTo: businessId)
+			.whereField("shiftStartDate", isGreaterThanOrEqualTo: startDate)
+			.whereField("shiftStartDate", isLessThanOrEqualTo: endDate)
+			.whereFilter(Filter.orFilter(filters))
+			.order(by: "shiftStartDate")
+			.order(by: "shiftStartTime")
+		return docRef.addSnapshotListener(){ snapshots, err in
+			print(err)
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			let shifts = snapshots?.documents.compactMap{ document in
+				return try? document.data(as: Shift.self)
+			}.filter{$0.noOfOpenShifts == nil || $0.noOfOpenShifts! > 0}
+			completion(shifts)
+		}
+	}
+	
+	static func takeShift(_ shift: Shift, completion: @escaping(_ error: Error?)->()) -> DocumentReference?{
+		if let shiftId = shift.id, let employeeId = ActiveEmployee.instance?.employee.id{
+			var newShift = shift
+			newShift.id = nil
+			newShift.updatedAt = nil
+			newShift.eligibleEmployees = nil
+			newShift.noOfOpenShifts = nil
+			newShift.employeeId = employeeId
+			return saveShift(newShift){ error in
+				if let error = error{
+					completion(error)
+				}
+				db.collection("shift").document(shiftId).updateData([
+					"noOfOpenShifts": FieldValue.increment(Int64(-1)),
+					"eligibleEmployees": FieldValue.arrayRemove([employeeId])
+				], completion: completion)
+			}
+		}
+		return nil
+	}
+	
+	static func deleteShift(_ shiftId: String, completion: @escaping(_ error: Error?)->()){
+		db.collection("shift").document(shiftId).delete(){ err in
+			FirestoreHelper.completion(err, completion)
+		}
+	}
+	
+}
 
+enum ShiftType{
+	case myShift
+	case openShift
+	case allShift
 }

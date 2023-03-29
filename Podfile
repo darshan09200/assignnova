@@ -21,4 +21,5 @@ target 'AssignNova' do
 	pod 'SDWebImage', '~> 5.0'
 	pod "LetterAvatarKit", "1.2.5"
 	pod 'EmptyDataSet-Swift'
+	pod 'FSCalendar'
 end

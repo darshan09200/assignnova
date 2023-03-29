@@ -62,7 +62,7 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "avatar", for: indexPath) as! AvatarCell
 			
 			
-			let (image, _) = UIImage.makeLetterAvatar(withUsername: "\(employee?.firstName ?? "") \(employee?.lastName ?? "")", backgroundColor: UIColor(hex: employee?.color ?? ""))
+			let (image, _) = UIImage.makeLetterAvatar(withName: "\(employee?.firstName ?? "") \(employee?.lastName ?? "")", backgroundColor: UIColor(hex: employee?.color ?? ""))
 			cell.profileImage.image = image
 			
 			return cell

@@ -14,6 +14,7 @@ class ActiveEmployee{
 	
 	var branchListener: ListenerRegistration?
 	var roleListener: ListenerRegistration?
+	var employeeListener: ListenerRegistration?
 	
 	var employee: Employee
 	
@@ -31,12 +32,19 @@ class ActiveEmployee{
 						self.roles = roles
 					}
 				}
+				
+				employeeListener = FirestoreHelper.getEmployees(businessId: businessId){ employees in
+					if let employees = employees{
+						self.employees = employees
+					}
+				}
 			}
 		}
 	}
 	
 	var branches = [Branch]()
 	var roles = [Role]()
+	var employees = [Employee]()
 	
 	init(business: Business? = nil, employee: Employee, branches: [Branch] = [Branch](), roles: [Role] = [Role]()) {
 		self.business = business
@@ -48,5 +56,17 @@ class ActiveEmployee{
 	deinit {
 		branchListener?.remove()
 		roleListener?.remove()
+	}
+	
+	func getBranch(branchId: String)->Branch?{
+		return branches.first(where: {$0.id == branchId})
+	}
+	
+	func getRole(roleId: String)->Role?{
+		return roles.first(where: {$0.id == roleId})
+	}
+	
+	func getEmployee(employeeId: String)->Employee?{
+		return employees.first(where: {$0.id == employeeId})
 	}
 }

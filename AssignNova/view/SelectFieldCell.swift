@@ -7,27 +7,37 @@
 
 import UIKit
 
-protocol SelectFieldDelegate {
+@objc protocol SelectFieldDelegate {
 	func onDonePress(cell: SelectFieldCell)
+	@objc optional func onOpen(cell: SelectFieldCell)
 }
 
 class SelectFieldCell: UITableViewCell {
 
-	let picker = UIPickerView()
+	let dummy = UITextField(frame: .zero)
+	
+	var picker: UIPickerView? {
+		didSet{
+			print("added default")
+			dummy.inputView = picker
+		}
+	}
+	var datePicker: UIDatePicker?{
+		didSet{
+			dummy.inputView = datePicker
+		}
+	}
 	var delegate: SelectFieldDelegate?
 
 	@IBOutlet weak var label: UILabel!
 	@IBOutlet weak var selectButton: UIButton!
-	
-	private let dummy = UITextField(frame: .zero)
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 		
 		addSubview(dummy)
-		
-		dummy.inputView = picker
+		picker = UIPickerView()
 		let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
 		
 		let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -44,6 +54,7 @@ class SelectFieldCell: UITableViewCell {
     }
 	
 	@IBAction func onSelectPress(_ sender: Any) {
+		delegate?.onOpen?(cell: self)
 		dummy.becomeFirstResponder()
 	}
 	
