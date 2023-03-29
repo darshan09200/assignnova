@@ -9,7 +9,7 @@ import UIKit
 import LetterAvatarKit
 
 extension UIImage{
-	static func makeLetterAvatar(withUsername name: String, backgroundColor: UIColor? = nil) -> (UIImage?, UIColor) {
+	static func makeLetterAvatar(withName name: String, backgroundColor: UIColor? = nil) -> (UIImage?, UIColor) {
 		var avatarBackgroundColor: UIColor
 		let configuration = LetterAvatarBuilderConfiguration()
 		configuration.circle = true

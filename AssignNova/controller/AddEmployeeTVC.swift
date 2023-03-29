@@ -117,7 +117,7 @@ class AddEmployeeTVC: UITableViewController {
 		
 		let role: AppRole
 		if let roleCell = tableView.cellForRow(at: IndexPath(row: 5, section: 1)) as? SelectFieldCell{
-			let roleIndex = roleCell.picker.selectedRow(inComponent: 0)
+			let roleIndex = roleCell.picker?.selectedRow(inComponent: 0) ?? 0
 			role = AppRole.allCases[roleIndex]
 		} else {
 			role = .employee
@@ -173,7 +173,7 @@ class AddEmployeeTVC: UITableViewController {
 					self.showAlert(title: "Oops", message: message )
 				}
 			} else {
-				let (_, backgroundColor) = UIImage.makeLetterAvatar(withUsername: "\(firstName) \(lastName)", backgroundColor: UIColor(hex: self.employee?.color ?? ""))
+				let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)", backgroundColor: UIColor(hex: self.employee?.color ?? ""))
 				let employee = Employee(
 					id: self.employee?.id,
 					userId: self.employee?.userId,
@@ -233,10 +233,10 @@ extension AddEmployeeTVC{
 			   let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell,
 				  let lastName = lastNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
 			   !lastName.isEmpty{
-				let (image, _) = UIImage.makeLetterAvatar(withUsername: "\(firstName) \(lastName)")
+				let (image, _) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
 				cell.profileImage.image = image
 			} else {
-				let (image, _) = UIImage.makeLetterAvatar(withUsername: "John Doe")
+				let (image, _) = UIImage.makeLetterAvatar(withName: "John Doe")
 				cell.profileImage.image = image
 			}
 			
@@ -276,11 +276,11 @@ extension AddEmployeeTVC{
 			}
 			if indexPath.row == 5{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "selectForm", for: indexPath) as! SelectFieldCell
-				cell.picker.delegate = self
-				cell.picker.dataSource = self
+				cell.picker?.delegate = self
+				cell.picker?.dataSource = self
 				cell.label.text = label
 				cell.selectButton.setTitle((employee?.appRole ?? AppRole.employee).rawValue, for: .normal)
-				cell.picker.selectRow((employee?.appRole ?? AppRole.employee).index ?? 0, inComponent: 0, animated: true)
+				cell.picker?.selectRow((employee?.appRole ?? AppRole.employee).index ?? 0, inComponent: 0, animated: true)
 				return cell
 			}
 			let cell = tableView.dequeueReusableCell(withIdentifier: "inputForm", for: indexPath) as! InputFieldCell

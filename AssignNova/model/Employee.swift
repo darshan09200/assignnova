@@ -29,6 +29,9 @@ struct Employee: Codable{
 	var employeeId: String?
 	var firstName: String
 	var lastName: String
+	var name: String{
+		"\(firstName) \(lastName)"
+	}
 	var appRole: AppRole
 	var maxHours: Double = 40
 	var isProfilePrivate = false

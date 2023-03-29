@@ -113,11 +113,15 @@
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="O2L-BA-g1B" secondAttribute="height" multiplier="1:1" id="NQe-Qn-QNX"/>
                                 <constraint firstItem="ygy-tL-JOK" firstAttribute="centerX" secondItem="O2L-BA-g1B" secondAttribute="centerX" id="QhG-2S-duY"/>
                                 <constraint firstItem="ygy-tL-JOK" firstAttribute="centerY" secondItem="O2L-BA-g1B" secondAttribute="centerY" id="bju-fk-La6"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="bCb-kD-eu3" appends="YES" id="ACu-xb-Vl9"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -147,6 +151,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="82" y="20"/>
         </view>
+        <tapGestureRecognizer id="bCb-kD-eu3">
+            <connections>
+                <action selector="onRightIconPress:" destination="-1" id="tDA-16-1q3"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">

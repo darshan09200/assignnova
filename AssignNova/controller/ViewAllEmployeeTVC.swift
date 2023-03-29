@@ -60,7 +60,7 @@ extension ViewAllEmployeeTVC {
 		let name = "\(employee.firstName) \(employee.lastName)"
 		cell.card.title = name
 		cell.card.profileAvatarContainer.isHidden = false
-		let (image, _) = UIImage.makeLetterAvatar(withUsername: name, backgroundColor: UIColor(hex: employee.color))
+		let (image, _) = UIImage.makeLetterAvatar(withName: name, backgroundColor: UIColor(hex: employee.color))
 		cell.card.profileAvatar.image = image
 		cell.card.rightIcon = UIImage(systemName: "chevron.right")
 		

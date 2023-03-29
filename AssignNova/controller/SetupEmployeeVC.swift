@@ -30,8 +30,8 @@ class SetupEmployeeVC: UIViewController {
         
         emailTxt.textFieldComponent.textContentType = .emailAddress
         emailTxt.textFieldComponent.keyboardType = .emailAddress
-        
-        passwordTxt.textFieldComponent.textContentType = .password
+       
+        passwordTxt.textFieldComponent.textContentType = .newPassword
         confirmPasswordTxt.textFieldComponent.textContentType = .password
 		
 		let pwdButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))

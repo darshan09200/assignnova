@@ -16,6 +16,13 @@
 		551B1D1629CCCE16003B9862 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1529CCCE16003B9862 /* AvatarCell.swift */; };
 		551B1D1829CCCE40003B9862 /* InputFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1729CCCE40003B9862 /* InputFieldCell.swift */; };
 		551B1D1A29CCCE50003B9862 /* AddCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1929CCCE50003B9862 /* AddCardCell.swift */; };
+		55209CC829D0758A000D5726 /* SchedulerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55209CC729D0758A000D5726 /* SchedulerVC.swift */; };
+		55209CCB29D084A3000D5726 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55209CCA29D084A3000D5726 /* DayCell.swift */; };
+		55212E8A29D178E20094738B /* EmployeePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55212E8929D178E20094738B /* EmployeePicker.storyboard */; };
+		55212E8C29D178ED0094738B /* EmployeePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55212E8B29D178ED0094738B /* EmployeePickerVC.swift */; };
+		55212E8E29D1C6450094738B /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55212E8D29D1C6450094738B /* Shift.swift */; };
+		55212E9029D211610094738B /* ViewShiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55212E8F29D211610094738B /* ViewShiftVC.swift */; };
+		55212E9229D222D10094738B /* ShiftDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55212E9129D222D10094738B /* ShiftDetailsCell.swift */; };
 		552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */; };
 		552396E529C6647700EE9323 /* PlanCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552396E429C6647700EE9323 /* PlanCard.xib */; };
 		552396E729C6665600EE9323 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E629C6665600EE9323 /* UIView+CornerRadius.swift */; };
@@ -51,6 +58,11 @@
 		55788EFE29C9894700C352ED /* NavigationItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55788EFD29C9894700C352ED /* NavigationItem.xib */; };
 		557B933729CF8113006A3FD3 /* SetupEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */; };
 		558DD27629C514D500909594 /* OtpInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DD27429C514D500909594 /* OtpInputVC.swift */; };
+		558DF0BB29D102680012C87E /* Shift.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558DF0BA29D102680012C87E /* Shift.storyboard */; };
+		558DF0BD29D102D60012C87E /* AddShiftTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0BC29D102D60012C87E /* AddShiftTVC.swift */; };
+		558DF0BF29D1255B0012C87E /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0BE29D1255B0012C87E /* Date+Format.swift */; };
+		558DF0C129D127B70012C87E /* TimeRangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0C029D127B70012C87E /* TimeRangePicker.swift */; };
+		558DF0C329D170FD0012C87E /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0C229D170FD0012C87E /* ColorPickerCell.swift */; };
 		559C7BBE29C9B781002BE062 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559C7BBD29C9B781002BE062 /* Card.xib */; };
 		559C7BC029C9B9DC002BE062 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7BBF29C9B9DC002BE062 /* Card.swift */; };
 		55A91F8F29C4D7A8004576B0 /* SelectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */; };
@@ -87,7 +99,6 @@
 		55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */; };
 		77BAD6269B122C1FE4185F99 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */; };
 		B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */; };
-		B7BB6FDD29C7E47200F4AF8B /* ViewEmployee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FDC29C7E47200F4AF8B /* ViewEmployee.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +130,14 @@
 		551B1D1529CCCE16003B9862 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		551B1D1729CCCE40003B9862 /* InputFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldCell.swift; sourceTree = "<group>"; };
 		551B1D1929CCCE50003B9862 /* AddCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardCell.swift; sourceTree = "<group>"; };
+		55209CC729D0758A000D5726 /* SchedulerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerVC.swift; sourceTree = "<group>"; };
+		55209CC929D07A8F000D5726 /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
+		55209CCA29D084A3000D5726 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		55212E8929D178E20094738B /* EmployeePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EmployeePicker.storyboard; sourceTree = "<group>"; };
+		55212E8B29D178ED0094738B /* EmployeePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeePickerVC.swift; sourceTree = "<group>"; };
+		55212E8D29D1C6450094738B /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
+		55212E8F29D211610094738B /* ViewShiftVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewShiftVC.swift; sourceTree = "<group>"; };
+		55212E9129D222D10094738B /* ShiftDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftDetailsCell.swift; sourceTree = "<group>"; };
 		552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBusinessAccountVC.swift; sourceTree = "<group>"; };
 		552396E429C6647700EE9323 /* PlanCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanCard.xib; sourceTree = "<group>"; };
 		552396E629C6665600EE9323 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
@@ -154,6 +173,11 @@
 		55788EFD29C9894700C352ED /* NavigationItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationItem.xib; sourceTree = "<group>"; };
 		557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupEmployeeVC.swift; sourceTree = "<group>"; };
 		558DD27429C514D500909594 /* OtpInputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpInputVC.swift; sourceTree = "<group>"; };
+		558DF0BA29D102680012C87E /* Shift.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shift.storyboard; sourceTree = "<group>"; };
+		558DF0BC29D102D60012C87E /* AddShiftTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShiftTVC.swift; sourceTree = "<group>"; };
+		558DF0BE29D1255B0012C87E /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
+		558DF0C029D127B70012C87E /* TimeRangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangePicker.swift; sourceTree = "<group>"; };
+		558DF0C229D170FD0012C87E /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
 		559C7BBD29C9B781002BE062 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		559C7BBF29C9B9DC002BE062 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationVC.swift; sourceTree = "<group>"; };
@@ -195,7 +219,6 @@
 		55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DecoyLaunchScreen.storyboard; sourceTree = "<group>"; };
 		807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
-		B7BB6FDC29C7E47200F4AF8B /* ViewEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewEmployee.storyboard; sourceTree = "<group>"; };
 		FE72A080CE715E84B0176CE7 /* Pods-AssignNova.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.debug.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -241,6 +264,7 @@
 				553D02A329C9539B0076AEBD /* UIViewController+Alert.swift */,
 				553D02AF29C974A90076AEBD /* UIColor+Hex.swift */,
 				5507D68829CFE209003297B4 /* UIImage+Avatar.swift */,
+				558DF0BE29D1255B0012C87E /* Date+Format.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -262,6 +286,7 @@
 				555F37E929C91DCE0058EAE6 /* Branch.storyboard */,
 				553D02A529C955EE0076AEBD /* ColorPicker.storyboard */,
 				55C6374A29CE717F00A1570D /* BranchPicker.storyboard */,
+				55212E8929D178E20094738B /* EmployeePicker.storyboard */,
 				55C6375029CF1D2700A1570D /* RolePicker.storyboard */,
 				55788EFD29C9894700C352ED /* NavigationItem.xib */,
 				559C7BBD29C9B781002BE062 /* Card.xib */,
@@ -271,13 +296,16 @@
 				55B3446329CA6C5300CC73DD /* RoleDetailCell.swift */,
 				55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */,
 				B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */,
+				558DF0BA29D102680012C87E /* Shift.storyboard */,
 				551B1D1529CCCE16003B9862 /* AvatarCell.swift */,
 				551B1D1729CCCE40003B9862 /* InputFieldCell.swift */,
 				551B1D1929CCCE50003B9862 /* AddCardCell.swift */,
 				55C6374429CCD5EF00A1570D /* SectionHeaderCell.swift */,
 				55C6374629CD1F6F00A1570D /* SelectFieldCell.swift */,
-				B7BB6FDC29C7E47200F4AF8B /* ViewEmployee.storyboard */,
 				554F1A5F29D0420A00875E3E /* EmployeeDetailsCell.swift */,
+				55212E9129D222D10094738B /* ShiftDetailsCell.swift */,
+				55209CCA29D084A3000D5726 /* DayCell.swift */,
+				558DF0C229D170FD0012C87E /* ColorPickerCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -291,6 +319,7 @@
 				553D02AD29C96F5D0076AEBD /* Color.swift */,
 				5530836C29C99E0E00080070 /* ActiveEmployee.swift */,
 				55B3446129CA6AD700CC73DD /* Role.swift */,
+				55212E8D29D1C6450094738B /* Shift.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -314,6 +343,7 @@
 				55BDF09329C93FB00050D223 /* AddBranchVC.swift */,
 				553D02A929C956FA0076AEBD /* ColorPickerVC.swift */,
 				55C6374C29CE724000A1570D /* BranchPickerVC.swift */,
+				55212E8B29D178ED0094738B /* EmployeePickerVC.swift */,
 				55C6374E29CF1C8C00A1570D /* RolePickerVC.swift */,
 				5530836A29C98C1800080070 /* NavigationItem.swift */,
 				559C7BBF29C9B9DC002BE062 /* Card.swift */,
@@ -324,8 +354,12 @@
 				55B3445F29CA6AB000CC73DD /* AddRoleVC.swift */,
 				55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */,
 				551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */,
+				558DF0BC29D102D60012C87E /* AddShiftTVC.swift */,
+				55212E8F29D211610094738B /* ViewShiftVC.swift */,
 				5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */,
 				554F1A5D29D041A900875E3E /* ViewEmployeeVC.swift */,
+				55209CC729D0758A000D5726 /* SchedulerVC.swift */,
+				558DF0C029D127B70012C87E /* TimeRangePicker.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -333,6 +367,7 @@
 		55B3B8C329C60BE100B3DA5E /* helper */ = {
 			isa = PBXGroup;
 			children = (
+				55209CC929D07A8F000D5726 /* Objc-Bridge-Header.h */,
 				55B3B8C429C60C4000B3DA5E /* UIHelper.swift */,
 				553D5BE429C630D600EB46B9 /* AuthHelper.swift */,
 				5549DA5329C76E3200E51828 /* ValidationHelper.swift */,
@@ -523,8 +558,8 @@
 				55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */,
 				553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */,
 				55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */,
-				B7BB6FDD29C7E47200F4AF8B /* ViewEmployee.storyboard in Resources */,
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
+				558DF0BB29D102680012C87E /* Shift.storyboard in Resources */,
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
 				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
 				559C7BBE29C9B781002BE062 /* Card.xib in Resources */,
@@ -534,6 +569,7 @@
 				33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */,
 				552396E529C6647700EE9323 /* PlanCard.xib in Resources */,
 				553D02A629C955EE0076AEBD /* ColorPicker.storyboard in Resources */,
+				55212E8A29D178E20094738B /* EmployeePicker.storyboard in Resources */,
 				B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
@@ -626,6 +662,7 @@
 				551B1D1429CCCD45003B9862 /* AddEmployeeTVC.swift in Sources */,
 				5530836D29C99E0E00080070 /* ActiveEmployee.swift in Sources */,
 				5549DA5829C7E38E00E51828 /* LoadingViewController.swift in Sources */,
+				558DF0C329D170FD0012C87E /* ColorPickerCell.swift in Sources */,
 				553D02AC29C96BE90076AEBD /* Branch.swift in Sources */,
 				552EF6AC29CA159100BF5EDA /* CardCell.swift in Sources */,
 				553D02B029C974A90076AEBD /* UIColor+Hex.swift in Sources */,
@@ -639,6 +676,8 @@
 				55DD7CDE29CA5063006079FF /* ViewBranchTVC.swift in Sources */,
 				55B3446029CA6AB000CC73DD /* AddRoleVC.swift in Sources */,
 				5549DA5A29C7F11300E51828 /* FirestoreHelper.swift in Sources */,
+				558DF0BD29D102D60012C87E /* AddShiftTVC.swift in Sources */,
+				55212E9029D211610094738B /* ViewShiftVC.swift in Sources */,
 				552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
 				552EF6AA29CA14D700BF5EDA /* ViewAllBranchTVC.swift in Sources */,
@@ -653,11 +692,14 @@
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
 				553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
+				55212E8E29D1C6450094738B /* Shift.swift in Sources */,
 				55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */,
 				5549DA5F29C88EA900E51828 /* Business.swift in Sources */,
 				55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */,
 				55BDF09429C93FB00050D223 /* AddBranchVC.swift in Sources */,
 				55C6374729CD1F6F00A1570D /* SelectFieldCell.swift in Sources */,
+				55209CC829D0758A000D5726 /* SchedulerVC.swift in Sources */,
+				55209CCB29D084A3000D5726 /* DayCell.swift in Sources */,
 				551B1D1A29CCCE50003B9862 /* AddCardCell.swift in Sources */,
 				553D02AE29C96F5D0076AEBD /* Color.swift in Sources */,
 				551B1D1629CCCE16003B9862 /* AvatarCell.swift in Sources */,
@@ -668,12 +710,16 @@
 				5549DA6529C8BE3800E51828 /* MoreTabVC.swift in Sources */,
 				554F1A5E29D041A900875E3E /* ViewEmployeeVC.swift in Sources */,
 				5507D68B29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift in Sources */,
+				55212E9229D222D10094738B /* ShiftDetailsCell.swift in Sources */,
 				554917BC29C4F7F400132051 /* TextInput.swift in Sources */,
 				553D02AA29C956FA0076AEBD /* ColorPickerVC.swift in Sources */,
+				558DF0C129D127B70012C87E /* TimeRangePicker.swift in Sources */,
 				552396EB29C668D500EE9323 /* SetupBusinessVC.swift in Sources */,
 				553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */,
 				5530836B29C98C1800080070 /* NavigationItem.swift in Sources */,
+				55212E8C29D178ED0094738B /* EmployeePickerVC.swift in Sources */,
 				55B3445C29CA694800CC73DD /* ViewAllRoleTVC.swift in Sources */,
+				558DF0BF29D1255B0012C87E /* Date+Format.swift in Sources */,
 				5549DA5D29C7F15C00E51828 /* Employee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

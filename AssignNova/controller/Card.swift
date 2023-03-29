@@ -10,6 +10,7 @@ import UIKit
 @IBDesignable
 class Card: UIView {
 	
+	var rightIconClosure: (()->())?
 	static let identifier = "Card"
 	
 	@IBOutlet var contentView: UIView!
@@ -87,5 +88,8 @@ class Card: UIView {
 		titleImageView.isHidden = true
 		rightImageContainer.isHidden = true
 		subtitleLabelComponent.isHidden = true
+	}
+	@IBAction func onRightIconPress(_ sender: UITapGestureRecognizer) {
+		rightIconClosure?()
 	}
 }

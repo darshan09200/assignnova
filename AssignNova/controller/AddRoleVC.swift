@@ -22,6 +22,7 @@ class AddRoleVC: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		roleNameInput.textFieldComponent.textContentType = .name
 		if isEdit, let role = role{
 			navigationItem.title = "Edit Role"
 			roleNameInput.textFieldComponent.text = role.name

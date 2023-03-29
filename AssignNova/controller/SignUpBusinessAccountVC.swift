@@ -160,7 +160,7 @@ class SignUpBusinessAccountVC: UIViewController {
 							
 							if let uid = Auth.auth().currentUser?.uid
 							{
-								let (_, backgroundColor) = UIImage.makeLetterAvatar(withUsername: "\(firstName) \(lastName)")
+								let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
 								let employee = Employee(userId: uid, firstName: firstName, lastName: lastName, appRole: .owner, email: email, phoneNumber: phoneNumber, color: backgroundColor.toHex ?? "")
 								FirestoreHelper.saveEmployee(employee){_ in}
 							}
@@ -225,7 +225,7 @@ class SignUpBusinessAccountVC: UIViewController {
 								return
 							}
 							if let uid = result?.user.uid{
-								let (_, backgroundColor) = UIImage.makeLetterAvatar(withUsername: "\(firstName) \(lastName)")
+								let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
 								let employee = Employee(userId: uid, firstName: firstName ?? "", lastName: lastName ?? "", appRole: .owner, email: email!, color: backgroundColor.toHex ?? "")
 								FirestoreHelper.saveEmployee(employee){ error in
 									if let error = error{
