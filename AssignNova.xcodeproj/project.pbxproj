@@ -12,6 +12,10 @@
 		33255D5E29C64576004A49FB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInVC.swift */; };
 		5507D68929CFE209003297B4 /* UIImage+Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507D68829CFE209003297B4 /* UIImage+Avatar.swift */; };
 		5507D68B29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */; };
+		55162A0E29D634AA00C89431 /* RequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55162A0D29D634AA00C89431 /* RequestVC.swift */; };
+		55162A1029D637C200C89431 /* TimeOff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55162A0F29D637C200C89431 /* TimeOff.swift */; };
+		55162A1229D6390700C89431 /* TimeOff.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55162A1129D6390700C89431 /* TimeOff.storyboard */; };
+		55162A1429D6392000C89431 /* AddTimeOffVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55162A1329D6392000C89431 /* AddTimeOffVC.swift */; };
 		551B1D1429CCCD45003B9862 /* AddEmployeeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */; };
 		551B1D1629CCCE16003B9862 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1529CCCE16003B9862 /* AvatarCell.swift */; };
 		551B1D1829CCCE40003B9862 /* InputFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1729CCCE40003B9862 /* InputFieldCell.swift */; };
@@ -126,6 +130,10 @@
 		50745C79BED7BBF987BAD79D /* Pods-AssignNova.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.release.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.release.xcconfig"; sourceTree = "<group>"; };
 		5507D68829CFE209003297B4 /* UIImage+Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Avatar.swift"; sourceTree = "<group>"; };
 		5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllEmployeeTVC.swift; sourceTree = "<group>"; };
+		55162A0D29D634AA00C89431 /* RequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestVC.swift; sourceTree = "<group>"; };
+		55162A0F29D637C200C89431 /* TimeOff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOff.swift; sourceTree = "<group>"; };
+		55162A1129D6390700C89431 /* TimeOff.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeOff.storyboard; sourceTree = "<group>"; };
+		55162A1329D6392000C89431 /* AddTimeOffVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeOffVC.swift; sourceTree = "<group>"; };
 		551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeTVC.swift; sourceTree = "<group>"; };
 		551B1D1529CCCE16003B9862 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		551B1D1729CCCE40003B9862 /* InputFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldCell.swift; sourceTree = "<group>"; };
@@ -306,6 +314,7 @@
 				55212E9129D222D10094738B /* ShiftDetailsCell.swift */,
 				55209CCA29D084A3000D5726 /* DayCell.swift */,
 				558DF0C229D170FD0012C87E /* ColorPickerCell.swift */,
+				55162A1129D6390700C89431 /* TimeOff.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -320,6 +329,7 @@
 				5530836C29C99E0E00080070 /* ActiveEmployee.swift */,
 				55B3446129CA6AD700CC73DD /* Role.swift */,
 				55212E8D29D1C6450094738B /* Shift.swift */,
+				55162A0F29D637C200C89431 /* TimeOff.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -360,6 +370,8 @@
 				554F1A5D29D041A900875E3E /* ViewEmployeeVC.swift */,
 				55209CC729D0758A000D5726 /* SchedulerVC.swift */,
 				558DF0C029D127B70012C87E /* TimeRangePicker.swift */,
+				55162A0D29D634AA00C89431 /* RequestVC.swift */,
+				55162A1329D6392000C89431 /* AddTimeOffVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -557,6 +569,7 @@
 				55C6375129CF1D2700A1570D /* RolePicker.storyboard in Resources */,
 				55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */,
 				553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */,
+				55162A1229D6390700C89431 /* TimeOff.storyboard in Resources */,
 				55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */,
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
 				558DF0BB29D102680012C87E /* Shift.storyboard in Resources */,
@@ -677,6 +690,7 @@
 				55B3446029CA6AB000CC73DD /* AddRoleVC.swift in Sources */,
 				5549DA5A29C7F11300E51828 /* FirestoreHelper.swift in Sources */,
 				558DF0BD29D102D60012C87E /* AddShiftTVC.swift in Sources */,
+				55162A0E29D634AA00C89431 /* RequestVC.swift in Sources */,
 				55212E9029D211610094738B /* ViewShiftVC.swift in Sources */,
 				552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
@@ -691,6 +705,7 @@
 				557B933729CF8113006A3FD3 /* SetupEmployeeVC.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
 				553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */,
+				55162A1429D6392000C89431 /* AddTimeOffVC.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
 				55212E8E29D1C6450094738B /* Shift.swift in Sources */,
 				55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */,
@@ -720,6 +735,7 @@
 				55212E8C29D178ED0094738B /* EmployeePickerVC.swift in Sources */,
 				55B3445C29CA694800CC73DD /* ViewAllRoleTVC.swift in Sources */,
 				558DF0BF29D1255B0012C87E /* Date+Format.swift in Sources */,
+				55162A1029D637C200C89431 /* TimeOff.swift in Sources */,
 				5549DA5D29C7F15C00E51828 /* Employee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

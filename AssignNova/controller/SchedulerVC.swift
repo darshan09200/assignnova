@@ -17,6 +17,8 @@ struct WeekDay{
 
 class SchedulerVC: UIViewController {
 
+	@IBOutlet weak var monthLabel: UILabel!
+	
 	@IBOutlet weak var calendar: FSCalendar!
 	@IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
 	
@@ -37,7 +39,7 @@ class SchedulerVC: UIViewController {
 	}
 	
 	var selectedDate: Date {
-		calendar.selectedDates.first!
+		calendar.selectedDate!
 	}
 	
 	var firstDayOfWeek: Date {
@@ -81,7 +83,8 @@ class SchedulerVC: UIViewController {
 		
 		refreshData()
 		
-		registerForPreviewing(with: self, sourceView: tableView)
+		refreshMonthLabel()
+		monthLabel.isHidden = true
     }
     
 	func refreshData(){
@@ -112,17 +115,12 @@ class SchedulerVC: UIViewController {
 	}
 	@IBAction func onCalendarTogglePress(_ sender: Any) {
 		if calendar.scope == .week{
-//			calendar.calendarHeaderView.isHidden = false
-//			calendar.headerHeight = FSCalendarAutomaticDimension
-			
+			monthLabel.isHidden = false
 			calendar.setScope(.month, animated: true)
 		} else {
-//			calendar.calendarHeaderView.isHidden = true
-//			calendar.headerHeight = 0
-
+			monthLabel.isHidden = true
 			calendar.setScope(.week, animated: true)
 		}
-//		calendar.updateConstraints()
 	}
 	
 	@IBAction func onAddPress(_ sender: Any) {
@@ -139,6 +137,12 @@ class SchedulerVC: UIViewController {
 			return viewController
 		}
 		return nil
+	}
+	
+	func refreshMonthLabel(){
+		let formatter = DateFormatter()
+		formatter.dateFormat = "MMMM YYYY"
+		monthLabel.text = formatter.string(from: selectedDate)
 	}
 	
 }
@@ -258,6 +262,7 @@ extension SchedulerVC: FSCalendarDataSource, FSCalendarDelegate{
 		calendar.select(calendar.currentPage)
 		self.configureVisibleCells()
 		refreshData()
+		refreshMonthLabel()
 	}
 	
 	func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
@@ -281,13 +286,13 @@ extension SchedulerVC: FSCalendarDataSource, FSCalendarDelegate{
 	
 	private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
 		
-		let diyCell = (cell as! DayCell)
+		let dayCell = (cell as! DayCell)
 		if calendar.selectedDates.contains(date) {
-			diyCell.selectionLayer.isHidden = false
+			dayCell.selectionLayer.isHidden = false
 		} else {
-			diyCell.selectionLayer.isHidden = true
+			dayCell.selectionLayer.isHidden = true
 		}
-		diyCell.setNeedsLayout()
+		dayCell.setNeedsLayout()
 	}
 }
 
@@ -313,22 +318,5 @@ extension SchedulerVC: EmptyDataSetSource{
 			.font: UIFont.preferredFont(forTextStyle: .body)
 		])
 		return message
-	}
-}
-
-extension SchedulerVC: UIViewControllerPreviewingDelegate{
-	func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-		navigationController?.pushViewController(viewControllerToCommit, animated: true)
-	}
-	
-	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-		print(location)
-		if let indexPath = tableView.indexPathForRow(at: location) {
-			print(indexPath)
-			previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
-			return getController(for: indexPath)
-		}
-		
-		return nil
 	}
 }

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Time Off Request-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="AddTimeOffVC" id="Y6W-OH-hqX" customClass="AddTimeOffVC" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujV-e3-fPS">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbr-Il-n7M">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="389.66666666666669"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GJ8-Xn-SCL">
+                                                <rect key="frame" x="16" y="16" width="361" height="357.66666666666669"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRz-Zl-KCZ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="31"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWL-MH-Qyl">
+                                                                <rect key="frame" x="0.0" y="0.0" width="312" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dwS-iu-MNn">
+                                                                <rect key="frame" x="312" y="0.0" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="onAllDayChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="4yK-vQ-Q8Q"/>
+                                                                </connections>
+                                                            </switch>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="C9D-ca-gjt">
+                                                        <rect key="frame" x="0.0" y="39.000000000000007" width="361" height="73.666666666666686"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ca-3K-QmI">
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="15.666666666666666"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-V4-cuS">
+                                                                <rect key="frame" x="0.0" y="19.666666666666657" width="361" height="54"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="54" id="xua-Oe-7IV"/>
+                                                                </constraints>
+                                                                <color key="tintColor" systemColor="labelColor"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Wed, Mar 15th, 2023" buttonSize="large">
+                                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="8" bottom="0.0" trailing="0.0"/>
+                                                                </buttonConfiguration>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray4Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="0.5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onStartDatePress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bBN-NL-6nP"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="LLu-Sc-GtD">
+                                                        <rect key="frame" x="0.0" y="120.66666666666666" width="361" height="73.666666666666657"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzu-4n-i9U">
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="15.666666666666666"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TH-RC-ioO">
+                                                                <rect key="frame" x="0.0" y="19.666666666666686" width="361" height="54"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="54" id="nF6-fH-di9"/>
+                                                                </constraints>
+                                                                <color key="tintColor" systemColor="labelColor"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Wed, Mar 15th, 2023" buttonSize="large">
+                                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="8" bottom="0.0" trailing="0.0"/>
+                                                                </buttonConfiguration>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray4Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="0.5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onEndDatePress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jcX-fk-6XD"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="1vF-6F-0Y0">
+                                                        <rect key="frame" x="0.0" y="202.33333333333331" width="361" height="73.666666666666686"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaT-Gc-dnk">
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="15.666666666666666"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cq8-zY-SKa">
+                                                                <rect key="frame" x="0.0" y="19.666666666666686" width="361" height="54"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="54" id="nlO-gm-JpN"/>
+                                                                </constraints>
+                                                                <color key="tintColor" systemColor="labelColor"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="9:00 am - 1:00 pm" buttonSize="large">
+                                                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="8" bottom="0.0" trailing="0.0"/>
+                                                                </buttonConfiguration>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray4Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="0.5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onSelectTimePress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="CFE-is-lPq"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3XA-rn-Tbw" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="284" width="361" height="73.666666666666686"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Notes (Optional)"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="GJ8-Xn-SCL" secondAttribute="trailing" constant="16" id="38i-Ps-oaI"/>
+                                            <constraint firstItem="GJ8-Xn-SCL" firstAttribute="leading" secondItem="cbr-Il-n7M" secondAttribute="leading" constant="16" id="M50-MP-f6C"/>
+                                            <constraint firstAttribute="bottom" secondItem="GJ8-Xn-SCL" secondAttribute="bottom" constant="16" id="TZV-qV-P70"/>
+                                            <constraint firstItem="GJ8-Xn-SCL" firstAttribute="top" secondItem="cbr-Il-n7M" secondAttribute="top" constant="16" id="ruF-cH-iOy"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="cbr-Il-n7M" firstAttribute="width" secondItem="d8q-pJ-e9F" secondAttribute="width" multiplier="1:1" id="5EB-R5-KUk"/>
+                                    <constraint firstItem="gqe-ea-moX" firstAttribute="bottom" secondItem="cbr-Il-n7M" secondAttribute="bottom" id="HW3-5F-enu"/>
+                                    <constraint firstItem="cbr-Il-n7M" firstAttribute="leading" secondItem="gqe-ea-moX" secondAttribute="leading" id="css-LF-3Tc"/>
+                                    <constraint firstItem="gqe-ea-moX" firstAttribute="trailing" secondItem="cbr-Il-n7M" secondAttribute="trailing" id="hgZ-kR-28p"/>
+                                    <constraint firstItem="cbr-Il-n7M" firstAttribute="top" secondItem="gqe-ea-moX" secondAttribute="top" id="seX-GX-Cpf"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="gqe-ea-moX"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="d8q-pJ-e9F"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ujV-e3-fPS" secondAttribute="bottom" id="4S7-I0-Jew"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ujV-e3-fPS" secondAttribute="trailing" id="59Y-4t-USx"/>
+                            <constraint firstItem="ujV-e3-fPS" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="JMH-FP-uW3"/>
+                            <constraint firstItem="ujV-e3-fPS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ScG-wj-hKX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Time Off Request" id="CZe-tA-4Rq">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="pvx-Fm-yPE"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="allDaySwitch" destination="dwS-iu-MNn" id="iga-Qa-jJc"/>
+                        <outlet property="endDateStack" destination="LLu-Sc-GtD" id="Vve-TJ-M3p"/>
+                        <outlet property="notesTextInput" destination="3XA-rn-Tbw" id="H1o-j9-Daw"/>
+                        <outlet property="startDateLabel" destination="0Ca-3K-QmI" id="mmN-qI-IYr"/>
+                        <outlet property="timeStack" destination="1vF-6F-0Y0" id="rRr-cv-olf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40.458015267175568" y="-2.1126760563380285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
