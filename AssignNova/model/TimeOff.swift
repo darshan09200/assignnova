@@ -20,7 +20,7 @@ struct TimeOff: Codable{
 	var notes: String?
 	var status: Status = .pending
 	@ServerTimestamp var createdOn: Date?
-	
+
 	init(id: String? = nil, shiftStartDate: Date, shiftEndDate: Date? = nil, shiftStartTime: Date? = nil, shiftEndTime: Date? = nil, isAllDay: Bool, notes: String? = nil) {
 		self.id = id
 		self.shiftStartDate = shiftStartDate
@@ -29,9 +29,8 @@ struct TimeOff: Codable{
 		self.shiftEndTime = shiftEndTime
 		self.isAllDay = isAllDay
 		self.notes = notes
-		
+
 		self.employeeId = ActiveEmployee.instance?.employee.id ?? ""
 		self.businessId = ActiveEmployee.instance?.employee.businessId ?? ""
 	}
 }
-

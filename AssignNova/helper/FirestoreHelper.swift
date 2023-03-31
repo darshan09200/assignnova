@@ -302,6 +302,7 @@ class FirestoreHelper{
 				filters.append(Filter.whereField("eligibleEmployees", isEqualTo: []))
 			}
 		}
+        print(businessId)
 		let docRef = db.collection("shift")
 			.whereField("businessId", isEqualTo: businessId)
 			.whereField("shiftStartDate", isGreaterThanOrEqualTo: startDate.startOfDay)

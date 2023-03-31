@@ -54,39 +54,3 @@ class DayCell: FSCalendarCell {
 		}
 	}
 }
-
-extension UIBezierPath {
-	
-	convenience init(roundedPolygonPathWithRect rect: CGRect, lineWidth: CGFloat, sides: NSInteger, cornerRadius: CGFloat) {
-		
-		self.init()
-		
-		let theta = CGFloat(2.0 * M_PI) / CGFloat(sides)
-		let offSet = CGFloat(cornerRadius) / CGFloat(tan(theta/2.0))
-		let squareWidth = min(rect.size.width, rect.size.height)
-		
-		var length = squareWidth - lineWidth
-		
-		if sides%4 != 0 {
-			length = length * CGFloat(cos(theta / 2.0)) + offSet/2.0
-		}
-		let sideLength = length * CGFloat(tan(theta / 2.0))
-		
-		var point = CGPoint(x: squareWidth / 2.0 + sideLength / 2.0 - offSet, y: squareWidth - (squareWidth - length) / 2.0)
-		var angle = CGFloat(M_PI)
-		move(to: point)
-		
-		for _ in 0 ..< sides {
-			point = CGPoint(x: point.x + CGFloat(sideLength - offSet * 2.0) * CGFloat(cos(angle)), y: point.y + CGFloat(sideLength - offSet * 2.0) * CGFloat(sin(angle)))
-			addLine(to: point)
-			
-			let center = CGPoint(x: point.x + cornerRadius * CGFloat(cos(angle + CGFloat(M_PI_2))), y: point.y + cornerRadius * CGFloat(sin(angle + CGFloat(M_PI_2))))
-			addArc(withCenter: center, radius:CGFloat(cornerRadius), startAngle:angle - CGFloat(M_PI_2), endAngle:angle + theta - CGFloat(M_PI_2), clockwise:true)
-			
-			point = currentPoint // we don't have to calculate where the arc ended ... UIBezierPath did that for us
-			angle += theta
-		}
-		
-		close()
-	}
-}
