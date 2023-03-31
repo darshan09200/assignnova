@@ -107,6 +107,7 @@
 		55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */; };
 		55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */; };
 		77BAD6269B122C1FE4185F99 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */; };
+		B7781BCD29D7909500121D16 /* Facts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7781BCC29D7909500121D16 /* Facts.swift */; };
 		B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +237,7 @@
 		55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DecoyLaunchScreen.storyboard; sourceTree = "<group>"; };
 		807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7781BCC29D7909500121D16 /* Facts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facts.swift; sourceTree = "<group>"; };
 		B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
 		FE72A080CE715E84B0176CE7 /* Pods-AssignNova.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.debug.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -383,6 +385,7 @@
 				558DF0C029D127B70012C87E /* TimeRangePicker.swift */,
 				5552C5B529D770CC0035C982 /* AddTimeOffVC.swift */,
 				5552C5BB29D7717A0035C982 /* RequestVC.swift */,
+				B7781BCC29D7909500121D16 /* Facts.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				5549DA6529C8BE3800E51828 /* MoreTabVC.swift in Sources */,
 				554F1A5E29D041A900875E3E /* ViewEmployeeVC.swift in Sources */,
 				5507D68B29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift in Sources */,
+				B7781BCD29D7909500121D16 /* Facts.swift in Sources */,
 				55212E9229D222D10094738B /* ShiftDetailsCell.swift in Sources */,
 				554917BC29C4F7F400132051 /* TextInput.swift in Sources */,
 				553D02AA29C956FA0076AEBD /* ColorPickerVC.swift in Sources */,
