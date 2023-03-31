@@ -247,22 +247,32 @@ extension AddEmployeeTVC{
 			var label: String = ""
 			var placeholder: String = ""
 			var defaultValue: String? = nil
+            var contentType: UITextContentType?
+            var keyType: UIKeyboardType?
 			switch indexPath.row {
 				case 0:
 					label = "First Name"
 					placeholder = "John"
+                    contentType = .name
+                    keyType = .default
 					defaultValue = employee?.firstName
 				case 1:
 					label = "Last Name"
 					placeholder = "Doe"
+                    contentType = .name
+                    keyType = .default
 					defaultValue = employee?.lastName
 				case 2:
 					label = "Email"
 					placeholder = "abc@xyz.com"
+                    contentType = .emailAddress
+                    keyType = .emailAddress
 					defaultValue = employee?.email
 				case 3:
 					label = "Phone Number (Optional)"
 					placeholder = "+12345678901"
+                    contentType = .telephoneNumber
+                    keyType = .phonePad
 					defaultValue = employee?.phoneNumber
 				case 4:
 					label = "Employee Id (Optional)"
@@ -271,6 +281,7 @@ extension AddEmployeeTVC{
 					label = "Role"
 				case 6:
 					label = "Max Hours/Week"
+                    keyType = .decimalPad
 					defaultValue = String(format: "%.2f", employee?.maxHours ?? 40)
 				default: break
 			}
@@ -287,6 +298,8 @@ extension AddEmployeeTVC{
 			cell.inputField.label = label
 			cell.inputField.placeholder = placeholder
 			cell.inputField.textFieldComponent.text = defaultValue
+            cell.inputField.textFieldComponent.textContentType = contentType
+            cell.inputField.textFieldComponent.keyboardType = keyType ?? .default
 			
 			if indexPath.row == 0 || indexPath.row == 1{
 				cell.inputField.textFieldComponent.addTarget(self, action: #selector(nameDidChange(_:)), for: .editingChanged)
