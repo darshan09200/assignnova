@@ -568,9 +568,16 @@ extension AddShiftTVC: SelectFieldDelegate{
 	}
 	
 	@objc func onShiftDateChanged(_ datePicker: UIDatePicker){
-		data.selectedDate = datePicker.date
-		if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SelectFieldCell{
-			cell.selectButton.setTitle(data.selectedDate.format(to: "EEE, MMM dd, yyyy"), for: .normal)
-		}
+        let selectedDate = datePicker.date
+        let currentDate = Date()
+        if selectedDate < currentDate {
+            datePicker.setDate(currentDate, animated: true)
+            data.selectedDate = currentDate
+        } else {
+            data.selectedDate = selectedDate
+        }
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SelectFieldCell{
+        cell.selectButton.setTitle(data.selectedDate.format(to: "EEE, MMM dd, yyyy"), for: .normal)
+        }
 	}
 }
