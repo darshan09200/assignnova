@@ -16,31 +16,9 @@ class ActiveEmployee{
 	var roleListener: ListenerRegistration?
 	var employeeListener: ListenerRegistration?
 	
-	var employee: Employee
+    var employee: Employee
 	
-	var business: Business?{
-		didSet{
-			if let businessId = business?.id{
-				branchListener = FirestoreHelper.getBranches(businessId: businessId){ branches in
-					if let branches = branches{
-						self.branches = branches
-					}
-				}
-
-				roleListener = FirestoreHelper.getRoles(businessId: businessId){ roles in
-					if let roles = roles{
-						self.roles = roles
-					}
-				}
-				
-				employeeListener = FirestoreHelper.getEmployees(businessId: businessId){ employees in
-					if let employees = employees{
-						self.employees = employees
-					}
-				}
-			}
-		}
-	}
+	var business: Business?
 	
 	var branches = [Branch]()
 	var roles = [Role]()
@@ -51,11 +29,30 @@ class ActiveEmployee{
 		self.employee = employee
 		self.branches = branches
 		self.roles = roles
+        
+        self.branchListener = FirestoreHelper.getBranches(businessId: employee.businessId){ branches in
+            if let branches = branches{
+                self.branches = branches
+            }
+        }
+
+        self.roleListener = FirestoreHelper.getRoles(businessId: employee.businessId){ roles in
+            if let roles = roles{
+                self.roles = roles
+            }
+        }
+        
+        self.employeeListener = FirestoreHelper.getEmployees(businessId: employee.businessId){ employees in
+            if let employees = employees{
+                self.employees = employees
+            }
+        }
 	}
 	
 	deinit {
 		branchListener?.remove()
 		roleListener?.remove()
+        employeeListener?.remove()
 	}
 	
 	func getBranch(branchId: String)->Branch?{

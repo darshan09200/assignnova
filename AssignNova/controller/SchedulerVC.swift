@@ -89,7 +89,7 @@ class SchedulerVC: UIViewController {
     
 	func refreshData(){
 		groupedShifts = []
-		if let businessId = ActiveEmployee.instance?.business?.id{
+        if let businessId = ActiveEmployee.instance?.employee.businessId{
 			listener?.remove()
 			listener = FirestoreHelper.getShifts(businessId: businessId, startDate: week.first!, endDate: week.last!, shiftType: shiftType){ shifts in
 				if let shifts = shifts, shifts.count > 0{
