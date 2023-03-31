@@ -57,6 +57,11 @@
 		5549DA6529C8BE3800E51828 /* MoreTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549DA6429C8BE3800E51828 /* MoreTabVC.swift */; };
 		554F1A5E29D041A900875E3E /* ViewEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F1A5D29D041A900875E3E /* ViewEmployeeVC.swift */; };
 		554F1A6029D0420A00875E3E /* EmployeeDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F1A5F29D0420A00875E3E /* EmployeeDetailsCell.swift */; };
+		5552C5B629D770CC0035C982 /* AddTimeOffVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552C5B529D770CC0035C982 /* AddTimeOffVC.swift */; };
+		5552C5B829D771140035C982 /* TimeOff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552C5B729D771140035C982 /* TimeOff.swift */; };
+		5552C5BA29D771380035C982 /* TimeOff.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5552C5B929D771380035C982 /* TimeOff.storyboard */; };
+		5552C5BC29D7717A0035C982 /* RequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552C5BB29D7717A0035C982 /* RequestVC.swift */; };
+		5552C5BE29D781010035C982 /* ApprovalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552C5BD29D781010035C982 /* ApprovalStatus.swift */; };
 		555F37EA29C91DCE0058EAE6 /* Branch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555F37E929C91DCE0058EAE6 /* Branch.storyboard */; };
 		55624ACE29CA4BFF00B55A7F /* BranchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */; };
 		55788EFE29C9894700C352ED /* NavigationItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55788EFD29C9894700C352ED /* NavigationItem.xib */; };
@@ -177,6 +182,11 @@
 		5549DA6429C8BE3800E51828 /* MoreTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabVC.swift; sourceTree = "<group>"; };
 		554F1A5D29D041A900875E3E /* ViewEmployeeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEmployeeVC.swift; sourceTree = "<group>"; };
 		554F1A5F29D0420A00875E3E /* EmployeeDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDetailsCell.swift; sourceTree = "<group>"; };
+		5552C5B529D770CC0035C982 /* AddTimeOffVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTimeOffVC.swift; sourceTree = "<group>"; };
+		5552C5B729D771140035C982 /* TimeOff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOff.swift; sourceTree = "<group>"; };
+		5552C5B929D771380035C982 /* TimeOff.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TimeOff.storyboard; sourceTree = "<group>"; };
+		5552C5BB29D7717A0035C982 /* RequestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestVC.swift; sourceTree = "<group>"; };
+		5552C5BD29D781010035C982 /* ApprovalStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalStatus.swift; sourceTree = "<group>"; };
 		555F37E929C91DCE0058EAE6 /* Branch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Branch.storyboard; sourceTree = "<group>"; };
 		55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchDetailCell.swift; sourceTree = "<group>"; };
 		55788EFD29C9894700C352ED /* NavigationItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationItem.xib; sourceTree = "<group>"; };
@@ -316,7 +326,7 @@
 				55212E9129D222D10094738B /* ShiftDetailsCell.swift */,
 				55209CCA29D084A3000D5726 /* DayCell.swift */,
 				558DF0C229D170FD0012C87E /* ColorPickerCell.swift */,
-				55162A1129D6390700C89431 /* TimeOff.storyboard */,
+				5552C5B929D771380035C982 /* TimeOff.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -331,7 +341,8 @@
 				5530836C29C99E0E00080070 /* ActiveEmployee.swift */,
 				55B3446129CA6AD700CC73DD /* Role.swift */,
 				55212E8D29D1C6450094738B /* Shift.swift */,
-				55162A0F29D637C200C89431 /* TimeOff.swift */,
+				5552C5B729D771140035C982 /* TimeOff.swift */,
+				5552C5BD29D781010035C982 /* ApprovalStatus.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -372,8 +383,8 @@
 				554F1A5D29D041A900875E3E /* ViewEmployeeVC.swift */,
 				55209CC729D0758A000D5726 /* SchedulerVC.swift */,
 				558DF0C029D127B70012C87E /* TimeRangePicker.swift */,
-				55162A0D29D634AA00C89431 /* RequestVC.swift */,
-				55162A1329D6392000C89431 /* AddTimeOffVC.swift */,
+				5552C5B529D770CC0035C982 /* AddTimeOffVC.swift */,
+				5552C5BB29D7717A0035C982 /* RequestVC.swift */,
 				B7781BCC29D7909500121D16 /* Facts.swift */,
 			);
 			path = controller;
@@ -572,7 +583,7 @@
 				55C6375129CF1D2700A1570D /* RolePicker.storyboard in Resources */,
 				55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */,
 				553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */,
-				55162A1229D6390700C89431 /* TimeOff.storyboard in Resources */,
+				5552C5BA29D771380035C982 /* TimeOff.storyboard in Resources */,
 				55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */,
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
 				558DF0BB29D102680012C87E /* Shift.storyboard in Resources */,
@@ -693,7 +704,6 @@
 				55B3446029CA6AB000CC73DD /* AddRoleVC.swift in Sources */,
 				5549DA5A29C7F11300E51828 /* FirestoreHelper.swift in Sources */,
 				558DF0BD29D102D60012C87E /* AddShiftTVC.swift in Sources */,
-				55162A0E29D634AA00C89431 /* RequestVC.swift in Sources */,
 				55212E9029D211610094738B /* ViewShiftVC.swift in Sources */,
 				552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
@@ -708,9 +718,9 @@
 				557B933729CF8113006A3FD3 /* SetupEmployeeVC.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
 				553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */,
-				55162A1429D6392000C89431 /* AddTimeOffVC.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
 				55212E8E29D1C6450094738B /* Shift.swift in Sources */,
+				5552C5BE29D781010035C982 /* ApprovalStatus.swift in Sources */,
 				55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */,
 				5549DA5F29C88EA900E51828 /* Business.swift in Sources */,
 				55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */,
@@ -721,6 +731,7 @@
 				551B1D1A29CCCE50003B9862 /* AddCardCell.swift in Sources */,
 				553D02AE29C96F5D0076AEBD /* Color.swift in Sources */,
 				551B1D1629CCCE16003B9862 /* AvatarCell.swift in Sources */,
+				5552C5B629D770CC0035C982 /* AddTimeOffVC.swift in Sources */,
 				5549DA5429C76E3200E51828 /* ValidationHelper.swift in Sources */,
 				551B1D1829CCCE40003B9862 /* InputFieldCell.swift in Sources */,
 				55C6374F29CF1C8C00A1570D /* RolePickerVC.swift in Sources */,
@@ -739,7 +750,8 @@
 				55212E8C29D178ED0094738B /* EmployeePickerVC.swift in Sources */,
 				55B3445C29CA694800CC73DD /* ViewAllRoleTVC.swift in Sources */,
 				558DF0BF29D1255B0012C87E /* Date+Format.swift in Sources */,
-				55162A1029D637C200C89431 /* TimeOff.swift in Sources */,
+				5552C5BC29D7717A0035C982 /* RequestVC.swift in Sources */,
+				5552C5B829D771140035C982 /* TimeOff.swift in Sources */,
 				5549DA5D29C7F15C00E51828 /* Employee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

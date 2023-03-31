@@ -305,13 +305,12 @@ class FirestoreHelper{
         print(businessId)
 		let docRef = db.collection("shift")
 			.whereField("businessId", isEqualTo: businessId)
-			.whereField("shiftStartDate", isGreaterThanOrEqualTo: startDate)
-			.whereField("shiftStartDate", isLessThanOrEqualTo: endDate)
+			.whereField("shiftStartDate", isGreaterThanOrEqualTo: startDate.startOfDay)
+			.whereField("shiftStartDate", isLessThanOrEqualTo: endDate.endOfDay)
 			.whereFilter(Filter.orFilter(filters))
 			.order(by: "shiftStartDate")
 			.order(by: "shiftStartTime")
 		return docRef.addSnapshotListener(){ snapshots, err in
-			print(err)
 			if let _ = err {
 				completion(nil)
 				return
@@ -331,13 +330,14 @@ class FirestoreHelper{
 			newShift.eligibleEmployees = nil
 			newShift.noOfOpenShifts = nil
 			newShift.employeeId = employeeId
+			newShift.status = .requested
 			return saveShift(newShift){ error in
 				if let error = error{
 					completion(error)
 				}
 				db.collection("shift").document(shiftId).updateData([
 					"noOfOpenShifts": FieldValue.increment(Int64(-1)),
-					"eligibleEmployees": FieldValue.arrayRemove([employeeId])
+					"eligibleEmployees": FieldValue.arrayRemove([employeeId]),
 				], completion: completion)
 			}
 		}
@@ -350,6 +350,53 @@ class FirestoreHelper{
 		}
 	}
 	
+	static func createTimeOff(_ timeOff: TimeOff, completion: @escaping(_ error: Error?)->()){
+		do{
+			if let timeOffId = timeOff.id{
+				try db.collection("timeOff").document(timeOffId).setData(from: timeOff){ err in FirestoreHelper.completion(err, completion)
+				}
+			} else {
+				try db.collection("timeOff").addDocument(from: timeOff){ err in FirestoreHelper.completion(err, completion)
+				}
+			}
+		} catch{
+			completion(error)
+		}
+	}
+	
+	static func getTimeOffs(employeeId: String, completion: @escaping(_ timeOffs: [TimeOff]?)->()) -> ListenerRegistration{
+		let docRef = db.collection("timeOff")
+			.whereField("employeeId", isEqualTo: employeeId)
+			.order(by: "createdOn")
+		return docRef.addSnapshotListener(){ snapshots, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			let timeOffs = snapshots?.documents.compactMap{ document in
+				return try? document.data(as: TimeOff.self)
+			}
+			completion(timeOffs)
+		}
+	}
+
+	static func getOpenShifts(employeeId: String, completion: @escaping(_ shifts: [Shift]?)->()) -> ListenerRegistration{
+		let docRef = db.collection("shift")
+			.whereField("employeeId", isEqualTo: employeeId)
+			.whereField("approvalRequired", isEqualTo: true)
+			.order(by: "shiftStartDate")
+			.order(by: "shiftStartTime")
+		return docRef.addSnapshotListener(){ snapshots, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			let shifts = snapshots?.documents.compactMap{ document in
+				return try? document.data(as: Shift.self)
+			}
+			completion(shifts)
+		}
+	}
 }
 
 enum ShiftType{

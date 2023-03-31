@@ -62,7 +62,7 @@ struct Employee: Codable{
 		self.color = color
 		self.updatedAt = updatedAt
 		
-		self.businessId = ActiveEmployee.instance?.business?.id ?? ""
+		self.businessId = ActiveEmployee.instance?.employee.businessId ?? ""
 
 	}
 }

@@ -84,9 +84,9 @@ class TimeRangePicker: NSObject {
 		var times = [Date]()
 		var currentDate = date
 		
-		currentDate = Calendar.current.date(bySetting: .hour, value: 7, of: currentDate)!
+		currentDate = Calendar.current.date(bySetting: .hour, value: 00, of: currentDate)!
 		currentDate = Calendar.current.date(bySetting: .minute, value: 00, of: currentDate)!
-		
+		times.append(currentDate)
 		let calendar = Calendar.current
 		
 		let interval = 15
@@ -94,14 +94,16 @@ class TimeRangePicker: NSObject {
 		var nextDate = calendar.date(byAdding: .minute, value: nextDiff, to: currentDate) ?? Date()
 		
 		var hour = Calendar.current.component(.hour, from: nextDate)
+		var minute = Calendar.current.component(.minute, from: nextDate)
 		
-		while(hour < 23) {
+		while(hour == 00 ? minute != 00 : hour > 00) {
 			times.append(nextDate)
 			
 			nextDiff = interval - calendar.component(.minute, from: nextDate) % interval
 			nextDate = calendar.date(byAdding: .minute, value: nextDiff, to: nextDate) ?? Date()
 			
 			hour = Calendar.current.component(.hour, from: nextDate)
+			minute = Calendar.current.component(.minute, from: nextDate)
 		}
 		
 		return times
@@ -149,5 +151,16 @@ extension Date {
 	func add(minute: Int) -> Date{
 		let calendar = Calendar.current
 		return calendar.date(byAdding: .minute, value: minute, to: self) ?? self
+	}
+	
+	var startOfDay: Date {
+		return Calendar.current.startOfDay(for: self)
+	}
+	
+	var endOfDay: Date {
+		var components = DateComponents()
+		components.day = 1
+		components.second = -1
+		return Calendar.current.date(byAdding: components, to: startOfDay)!
 	}
 }
