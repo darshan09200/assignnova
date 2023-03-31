@@ -18,7 +18,7 @@ class ViewAllEmployeeTVC: UITableViewController {
 		super.viewDidLoad()
 		configureSearchBar()
 		
-		if let businessId = ActiveEmployee.instance?.business?.id{
+		if let businessId = ActiveEmployee.instance?.employee.businessId{
 			listener = FirestoreHelper.getEmployees(businessId: businessId){ employees in
 				self.employees = employees ?? []
 				self.tableView.reloadData()

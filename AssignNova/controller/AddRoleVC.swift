@@ -54,7 +54,6 @@ class AddRoleVC: UIViewController {
 
 		var role = Role(
 			name: roleName,
-			businessId: ActiveEmployee.instance?.business?.id ?? "",
 			color: color.color.toHex()!
 		)
 

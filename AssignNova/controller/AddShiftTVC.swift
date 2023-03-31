@@ -96,7 +96,7 @@ class AddShiftTVC: UITableViewController {
 	}
 	
 	@IBAction func onSavePress(_ sender: Any) {
-		let shiftDate = data.selectedDate
+		let shiftDate = data.selectedDate.startOfDay
 		
 		let startTime = data.startTime
 		let endTime = data.endTime
