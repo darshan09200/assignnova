@@ -127,8 +127,7 @@ class SetupBusinessVC: UIViewController {
 			return
 		}
 
-		let userId = ActiveEmployee.instance?.employee.id ?? Auth.auth().currentUser!.uid
-		let business = Business(name: businessName, address: selectedPlace.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude), managedBy: userId)
+		let business = Business(name: businessName, address: selectedPlace.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude))
 		self.startLoading()
 		FirestoreHelper.saveBusiness(business){ error in
 			if let error = error{

@@ -11,6 +11,14 @@ import FirebaseFirestore
 
 enum ActionType{
 	case takeShift
+	case approve
+	case deny
+	case clockIn
+	case startBreak
+	case endBreak
+	case clockOut
+	case declined
+	case completed
 	case none
 }
 
@@ -33,6 +41,7 @@ class ViewShiftVC: UIViewController {
 	var shiftId: String?
 	var shift: Shift?
 	var leftActionType: ActionType = .none
+	var rightActionType: ActionType = .none
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -55,17 +64,64 @@ class ViewShiftVC: UIViewController {
 			if let shift = shift{
 				self.shift = shift
 				self.tableView.reloadData()
-				if let employeeId = ActiveEmployee.instance?.employee.id{
-					if let noOfShifts = shift.noOfOpenShifts, noOfShifts > 0, let eligibleEmployee = shift.eligibleEmployees, (eligibleEmployee.count == 0) || (eligibleEmployee.contains(employeeId)){
-						self.leftActionType = .takeShift
-						self.leftActionButton.isHidden = false
-						self.leftActionButton.setTitle("Take Shift", for: .normal)
-						self.leftActionButton.tintColor = UIColor(named: "AccentColor")
-						return
-					}
-				}
+				
 				self.leftActionButton.isHidden = true
 				self.rightActionButton.isHidden = true
+				
+				let action = ActionsHelper.getAction(for: shift)
+				if action == .takeShift{
+					self.leftActionType = .takeShift
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("Take Shift", for: .normal)
+					self.leftActionButton.tintColor = UIColor(named: "AccentColor")
+				} else if action == .approve{
+					self.leftActionType = .deny
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("Deny", for: .normal)
+					self.leftActionButton.tintColor = .systemRed
+					
+					self.rightActionType = .approve
+					self.rightActionButton.isHidden = false
+					self.rightActionButton.setTitle("Approve", for: .normal)
+					self.rightActionButton.tintColor = UIColor(named: "AccentColor")
+				} else if action == .declined{
+					self.leftActionType = .none
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("Declined", for: .normal)
+					self.leftActionButton.tintColor = .systemRed
+					self.leftActionButton.isUserInteractionEnabled = false
+				} else if action == .clockIn{
+					self.rightActionType = .clockIn
+					self.rightActionButton.isHidden = false
+					self.rightActionButton.setTitle("Clock In", for: .normal)
+					self.rightActionButton.tintColor = UIColor(named: "AccentColor")
+				} else if action == .clockOut{
+					self.leftActionType = .startBreak
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("Start Break", for: .normal)
+					self.leftActionButton.tintColor = .systemGreen
+					if let attendance = shift.attendance, let allowedBreakTime = shift.unpaidBreak, allowedBreakTime > attendance.totalBreakTime {
+						self.leftActionButton.isEnabled = true
+					} else {
+						self.leftActionButton.isEnabled = false
+					}
+					
+					self.rightActionType = .clockOut
+					self.rightActionButton.isHidden = false
+					self.rightActionButton.setTitle("Clock Out", for: .normal)
+					self.rightActionButton.tintColor = UIColor(named: "AccentColor")
+				} else if action == .endBreak{
+					self.leftActionType = .endBreak
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("End Break", for: .normal)
+					self.leftActionButton.tintColor =  UIColor(named: "AccentColor")
+				} else if action == .completed{
+					self.leftActionType = .none
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("Completed", for: .normal)
+					self.leftActionButton.tintColor = UIColor(named: "AccentColor")
+					self.leftActionButton.isUserInteractionEnabled = false
+				}
 			}
 		}
 	}
@@ -79,10 +135,10 @@ class ViewShiftVC: UIViewController {
 	}
 	
 	@IBAction func onLeftActionButtonPress(_ sender: UIButton) {
-		if let shift = shift{
-			print("inside")
-			if leftActionType == .takeShift{
+		if leftActionType == .takeShift{
+			if let shift = shift{
 				self.startLoading()
+				listener?.remove()
 				self.reference = FirestoreHelper.takeShift(shift){error in
 					if let _ = error {
 						self.stopLoading(){
@@ -91,14 +147,82 @@ class ViewShiftVC: UIViewController {
 						return
 					}
 					self.shiftId = self.reference?.documentID
-					self.stopLoading()
-					self.refreshData()
+					self.stopLoading(){
+						self.refreshData()
+					}
 				}
+			}
+		} else if leftActionType == .deny{
+			self.startLoading()
+			FirestoreHelper.updateShiftStatus(shiftId: shiftId!, status: .declined){ error in
+				if let _ = error{
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: "Unknown error occured")
+					}
+					return
+				}
+				self.stopLoading()
+			}
+		} else if leftActionType == .startBreak{
+			self.startLoading()
+			FirestoreHelper.startBreak(for: shift!){ error in
+				if let _ = error{
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: "Unknown error occured")
+					}
+					return
+				}
+				self.stopLoading()
+			}
+		} else if leftActionType == .endBreak{
+			self.startLoading()
+			FirestoreHelper.endBreak(for: shift!){ error in
+				if let _ = error{
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: "Unknown error occured")
+					}
+					return
+				}
+				self.stopLoading()
 			}
 		}
 	}
 	
 	@IBAction func onRightActionButtonPress(_ sender: UIButton) {
+		if rightActionType == .approve{
+			self.startLoading()
+			FirestoreHelper.updateShiftStatus(shiftId: shiftId!, status: .approved){ error in
+				if let _ = error{
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: "Unknown error occured")
+					}
+					return
+				}
+				self.stopLoading()
+			}
+		} else if rightActionType == .clockIn{
+			self.startLoading()
+			FirestoreHelper.clockIn(for: shift!){ error in
+				if let _ = error{
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: "Unknown error occured")
+					}
+					return
+				}
+				self.stopLoading()
+			}
+		} else if rightActionType == .clockOut{
+			self.startLoading()
+			FirestoreHelper.clockOut(for: shift!){ error in
+				if let _ = error{
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: "Unknown error occured")
+					}
+					return
+				}
+				self.stopLoading()
+			}
+		}
 	}
 }
 
@@ -163,14 +287,19 @@ extension ViewShiftVC: UITableViewDelegate, UITableViewDataSource{
 				if isOpenShifts{
 					cell.card.title = "Open Shift (\(shift?.noOfOpenShifts ?? 0) remaining)"
 					cell.card.barView.backgroundColor = ColorPickerVC.colors.first?.color
-					cell.card.profileAvatar.image = .makeLetterAvatar(withName: "Open Shift").0
-					cell.card.profileAvatarContainer.isHidden = false
+					cell.card.setProfileImage(withName: "Open Shift")
 					cell.card.rightImageContainer.isHidden = true
 				} else {
 					let employeeId = shift?.employeeId ?? ""
 					let item = ActiveEmployee.instance?.getEmployee(employeeId: employeeId)
+					if let employee = item{
+						if let profileUrl = employee.profileUrl{
+							cell.card.setProfileImage(withUrl: profileUrl)
+						} else {
+							cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
+						}
+					}
 					cell.card.title = item?.name
-					cell.card.profileAvatarContainer.isHidden = true
 					cell.card.barView.backgroundColor = UIColor(hex: item?.color ?? "")
 					cell.card.rightImageContainer.isHidden = false
 				}

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 @IBDesignable
 class Card: UIView {
@@ -65,6 +66,12 @@ class Card: UIView {
 		}
 	}
 	
+	var urlForProfileImage: String?{
+		didSet{
+			
+		}
+	}
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		initSubviews()
@@ -91,5 +98,16 @@ class Card: UIView {
 	}
 	@IBAction func onRightIconPress(_ sender: UITapGestureRecognizer) {
 		rightIconClosure?()
+	}
+	
+	func setProfileImage(withName name: String, backgroundColor: String? = nil){
+		profileAvatar.image = UIImage.makeLetterAvatar(withName: name, backgroundColor: backgroundColor != nil ? UIColor(hex: backgroundColor!) : nil).0
+		profileAvatarContainer.isHidden = false
+	}
+	
+	func setProfileImage(withUrl url: String){
+		profileAvatar.sd_imageTransition = .fade
+		profileAvatar.sd_setImage(with: URL(string: url))
+		profileAvatarContainer.isHidden = false
 	}
 }

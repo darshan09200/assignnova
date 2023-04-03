@@ -29,25 +29,26 @@ class EmployeePickerVC: UIViewController {
         // Do any additional setup after loading the view.
 		tableView.emptyDataSetSource = self
 		
-		if let businessId = ActiveEmployee.instance?.business?.id{
-			listener = FirestoreHelper.getEmployees(businessId: businessId){ employees in
-				self.employees = employees ?? []
-				self.tableView.reloadData()
-				
-				for (index, employee) in self.employees.enumerated(){
-					if self.selectedEmployees.contains(where: {$0.id ==  employee.id}){
-						self.tableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .none)
-					}
-				}
-			}
-		}
+//		if let businessId = ActiveEmployee.instance?.business?.id{
+//			listener = FirestoreHelper.getEmployees(businessId: businessId){ employees in
+//				self.employees = employees ?? []
+//				self.tableView.reloadData()
+//
+//				for (index, employee) in self.employees.enumerated(){
+//					if self.selectedEmployees.contains(where: {$0.id ==  employee.id}){
+//						self.tableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .none)
+//					}
+//				}
+//			}
+//		}
     }
 	
-	static func getController(delegate: EmployeePickerDelegate, selectedEmployees: [Employee]? = nil) -> UINavigationController {
+	static func getController(delegate: EmployeePickerDelegate, employees: [Employee], selectedEmployees: [Employee]? = nil) -> UINavigationController {
 		let employeePickerController = UIStoryboard(name: "EmployeePicker", bundle: nil)
 			.instantiateViewController(withIdentifier: "EmployeePickerVC") as! EmployeePickerVC
 		
 		employeePickerController.delegate = delegate
+		employeePickerController.employees = employees
 		employeePickerController.selectedEmployees = selectedEmployees ?? [Employee]()
 		
 		let navController = UINavigationController(rootViewController: employeePickerController)
@@ -75,7 +76,8 @@ extension EmployeePickerVC: UITableViewDelegate, UITableViewDataSource{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "card") as! CardCell
 		cell.cardCellType = .selection
 		let item = employees[indexPath.row]
-		cell.card.title = "\(item.firstName) \(item.lastName)"
+		cell.card.title = item.name
+		cell.card.setProfileImage(withName: item.name)
 		cell.card.barView.backgroundColor = UIColor(hex: item.color)
 		return cell
 	}
@@ -89,7 +91,7 @@ extension EmployeePickerVC: UITableViewDelegate, UITableViewDataSource{
 
 extension EmployeePickerVC: EmptyDataSetSource{
 	func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-		let message = NSMutableAttributedString(string: "No Records Found", attributes: [
+		let message = NSMutableAttributedString(string: "No Eligible Employees Found for the shift", attributes: [
 			.font: UIFont.preferredFont(forTextStyle: .body)
 		])
 		return message
