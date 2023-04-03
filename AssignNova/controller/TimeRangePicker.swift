@@ -141,11 +141,17 @@ extension Date {
 					  endTimeFormatter.string(from: endDate))
 	}
 	
+	var zeroSeconds: Date {
+		let calendar = Calendar.current
+		let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: self)
+		return calendar.date(from: dateComponents) ?? self
+	}
+	
 	func getNearest15() -> Date{
 		let calendar = Calendar.current
 		let comp = calendar.dateComponents([.minute], from: self)
 		let remainder = 15 - (comp.minute ?? 0) % 15
-		return add(minute: remainder)
+		return add(minute: remainder).zeroSeconds
 	}
 	
 	func add(minute: Int) -> Date{

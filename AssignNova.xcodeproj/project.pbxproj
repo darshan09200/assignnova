@@ -12,10 +12,6 @@
 		33255D5E29C64576004A49FB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInVC.swift */; };
 		5507D68929CFE209003297B4 /* UIImage+Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507D68829CFE209003297B4 /* UIImage+Avatar.swift */; };
 		5507D68B29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */; };
-		55162A0E29D634AA00C89431 /* RequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55162A0D29D634AA00C89431 /* RequestVC.swift */; };
-		55162A1029D637C200C89431 /* TimeOff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55162A0F29D637C200C89431 /* TimeOff.swift */; };
-		55162A1229D6390700C89431 /* TimeOff.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55162A1129D6390700C89431 /* TimeOff.storyboard */; };
-		55162A1429D6392000C89431 /* AddTimeOffVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55162A1329D6392000C89431 /* AddTimeOffVC.swift */; };
 		551B1D1429CCCD45003B9862 /* AddEmployeeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */; };
 		551B1D1629CCCE16003B9862 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1529CCCE16003B9862 /* AvatarCell.swift */; };
 		551B1D1829CCCE40003B9862 /* InputFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B1D1729CCCE40003B9862 /* InputFieldCell.swift */; };
@@ -44,6 +40,7 @@
 		553D02B029C974A90076AEBD /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02AF29C974A90076AEBD /* UIColor+Hex.swift */; };
 		553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D5BE429C630D600EB46B9 /* AuthHelper.swift */; };
 		553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */; };
+		5546CDE129D798EA00AECE62 /* ViewTimeOffVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546CDE029D798EA00AECE62 /* ViewTimeOffVC.swift */; };
 		554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554917B429C4E59E00132051 /* SelectLocation.storyboard */; };
 		554917B929C4F59400132051 /* TextInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554917B829C4F59400132051 /* TextInput.xib */; };
 		554917BC29C4F7F400132051 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554917BB29C4F7F400132051 /* TextInput.swift */; };
@@ -106,6 +103,8 @@
 		55DD7CDE29CA5063006079FF /* ViewBranchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */; };
 		55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */; };
 		55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */; };
+		55FE062429DA1A0A00DAAA99 /* ActionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE062329DA1A0A00DAAA99 /* ActionsHelper.swift */; };
+		55FE062629DA21BE00DAAA99 /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE062529DA21BE00DAAA99 /* Attendance.swift */; };
 		77BAD6269B122C1FE4185F99 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */; };
 		B7781BCD29D7909500121D16 /* Facts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7781BCC29D7909500121D16 /* Facts.swift */; };
 		B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */; };
@@ -136,10 +135,6 @@
 		50745C79BED7BBF987BAD79D /* Pods-AssignNova.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.release.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.release.xcconfig"; sourceTree = "<group>"; };
 		5507D68829CFE209003297B4 /* UIImage+Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Avatar.swift"; sourceTree = "<group>"; };
 		5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllEmployeeTVC.swift; sourceTree = "<group>"; };
-		55162A0D29D634AA00C89431 /* RequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestVC.swift; sourceTree = "<group>"; };
-		55162A0F29D637C200C89431 /* TimeOff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOff.swift; sourceTree = "<group>"; };
-		55162A1129D6390700C89431 /* TimeOff.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeOff.storyboard; sourceTree = "<group>"; };
-		55162A1329D6392000C89431 /* AddTimeOffVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeOffVC.swift; sourceTree = "<group>"; };
 		551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeTVC.swift; sourceTree = "<group>"; };
 		551B1D1529CCCE16003B9862 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		551B1D1729CCCE40003B9862 /* InputFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldCell.swift; sourceTree = "<group>"; };
@@ -169,6 +164,7 @@
 		553D02AF29C974A90076AEBD /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		553D5BE429C630D600EB46B9 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpBusiness.storyboard; sourceTree = "<group>"; };
+		5546CDE029D798EA00AECE62 /* ViewTimeOffVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTimeOffVC.swift; sourceTree = "<group>"; };
 		554917B429C4E59E00132051 /* SelectLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLocation.storyboard; sourceTree = "<group>"; };
 		554917B829C4F59400132051 /* TextInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInput.xib; sourceTree = "<group>"; };
 		554917BB29C4F7F400132051 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
@@ -236,6 +232,8 @@
 		55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBranchTVC.swift; sourceTree = "<group>"; };
 		55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DecoyLaunchScreen.storyboard; sourceTree = "<group>"; };
+		55FE062329DA1A0A00DAAA99 /* ActionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsHelper.swift; sourceTree = "<group>"; };
+		55FE062529DA21BE00DAAA99 /* Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendance.swift; sourceTree = "<group>"; };
 		807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7781BCC29D7909500121D16 /* Facts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facts.swift; sourceTree = "<group>"; };
 		B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
@@ -343,6 +341,7 @@
 				55212E8D29D1C6450094738B /* Shift.swift */,
 				5552C5B729D771140035C982 /* TimeOff.swift */,
 				5552C5BD29D781010035C982 /* ApprovalStatus.swift */,
+				55FE062529DA21BE00DAAA99 /* Attendance.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -386,6 +385,7 @@
 				5552C5B529D770CC0035C982 /* AddTimeOffVC.swift */,
 				5552C5BB29D7717A0035C982 /* RequestVC.swift */,
 				B7781BCC29D7909500121D16 /* Facts.swift */,
+				5546CDE029D798EA00AECE62 /* ViewTimeOffVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -398,6 +398,7 @@
 				553D5BE429C630D600EB46B9 /* AuthHelper.swift */,
 				5549DA5329C76E3200E51828 /* ValidationHelper.swift */,
 				5549DA5929C7F11300E51828 /* FirestoreHelper.swift */,
+				55FE062329DA1A0A00DAAA99 /* ActionsHelper.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -687,6 +688,7 @@
 				554F1A6029D0420A00875E3E /* EmployeeDetailsCell.swift in Sources */,
 				558DD27629C514D500909594 /* OtpInputVC.swift in Sources */,
 				551B1D1429CCCD45003B9862 /* AddEmployeeTVC.swift in Sources */,
+				55FE062429DA1A0A00DAAA99 /* ActionsHelper.swift in Sources */,
 				5530836D29C99E0E00080070 /* ActiveEmployee.swift in Sources */,
 				5549DA5829C7E38E00E51828 /* LoadingViewController.swift in Sources */,
 				558DF0C329D170FD0012C87E /* ColorPickerCell.swift in Sources */,
@@ -694,6 +696,7 @@
 				552EF6AC29CA159100BF5EDA /* CardCell.swift in Sources */,
 				553D02B029C974A90076AEBD /* UIColor+Hex.swift in Sources */,
 				33255D5E29C64576004A49FB /* SignInVC.swift in Sources */,
+				5546CDE129D798EA00AECE62 /* ViewTimeOffVC.swift in Sources */,
 				55C6374529CCD5EF00A1570D /* SectionHeaderCell.swift in Sources */,
 				55C4121329C4A0000073A8CD /* AssignNova.xcdatamodeld in Sources */,
 				559C7BC029C9B9DC002BE062 /* Card.swift in Sources */,
@@ -724,6 +727,7 @@
 				55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */,
 				5549DA5F29C88EA900E51828 /* Business.swift in Sources */,
 				55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */,
+				55FE062629DA21BE00DAAA99 /* Attendance.swift in Sources */,
 				55BDF09429C93FB00050D223 /* AddBranchVC.swift in Sources */,
 				55C6374729CD1F6F00A1570D /* SelectFieldCell.swift in Sources */,
 				55209CC829D0758A000D5726 /* SchedulerVC.swift in Sources */,

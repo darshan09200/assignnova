@@ -13,6 +13,7 @@ class FirestoreHelper{
 	static let db = Firestore.firestore()
 	static func completion(_ error: Error?, _ completion: @escaping(_ error: Error?)->()){
 		if let error = error {
+			print(error)
 			completion(error)
 		} else {
 			completion(nil)
@@ -35,7 +36,20 @@ class FirestoreHelper{
 
 	static func saveBusiness(_ business: Business, completion: @escaping(_ error: Error?)->()){
 		do{
-			try db.collection("business").addDocument(from: business) { err in FirestoreHelper.completion(err, completion)
+			var reference: DocumentReference?
+			reference = try db.collection("business").addDocument(from: business) { err in
+				if let error = err{
+					print(error)
+					completion(error)
+					return
+				}
+				if let businessId = reference?.documentID{
+					let branch = Branch(name: business.name, address: business.address, location: business.location, businessId: businessId, color: ColorPickerVC.colors.first!.color.toHex!)
+					print(branch)
+					saveBranch(branch, completion: completion)
+				} else {
+					completion(nil)
+				}
 			}
 		} catch{
 			completion(error)
@@ -123,9 +137,7 @@ class FirestoreHelper{
 				docRef = docRef.whereField("__name__", isNotEqualTo: employeeId)
 			}
 			
-			docRef.limit(to: 1)
-			
-			docRef.getDocuments(){ snapshots, err in
+			docRef.limit(to: 1).getDocuments(){ snapshots, err in
 				if let _ = err {
 					completion(nil)
 					return
@@ -229,11 +241,17 @@ class FirestoreHelper{
 		}
 	}
 	
-	static func getEmployees(businessId: String, completion: @escaping(_ employees: [Employee]?)->()) -> ListenerRegistration{
-		let docRef = db.collection("employee")
+	static func getEmployees(businessId: String, branchId: String? = nil, roleId: String? = nil, completion: @escaping(_ employees: [Employee]?)->()) -> ListenerRegistration{
+		var docRef = db.collection("employee")
 			.whereField("businessId", isEqualTo: businessId)
 			.order(by: "firstName")
 			.order(by: "lastName")
+		if let branchId = branchId{
+			docRef = docRef.whereField("branches", arrayContains: branchId)
+		}
+		if let roleId = roleId{
+			docRef = docRef.whereField("roles", arrayContains: roleId)
+		}
 		return docRef.addSnapshotListener(){ snapshots, err in
 			if let _ = err {
 				completion(nil)
@@ -243,6 +261,22 @@ class FirestoreHelper{
 				return try? document.data(as: Employee.self)
 			}
 			completion(employees)
+		}
+	}
+	
+	static func registerFCMToken(){
+		if let employeeId = ActiveEmployee.instance?.employee.id, let fcmToken = ActiveEmployee.fcmToken{
+			db.collection("employee").document(employeeId).updateData([
+				"fcmTokens": FieldValue.arrayUnion([fcmToken])
+			])
+		}
+	}
+	
+	static func deregisterFCMToken(){
+		if let employeeId = ActiveEmployee.instance?.employee.id, let fcmToken = ActiveEmployee.fcmToken{
+			db.collection("employee").document(employeeId).updateData([
+				"fcmTokens": FieldValue.arrayRemove([fcmToken])
+			])
 		}
 	}
 	
@@ -330,7 +364,12 @@ class FirestoreHelper{
 			newShift.eligibleEmployees = nil
 			newShift.noOfOpenShifts = nil
 			newShift.employeeId = employeeId
-			newShift.status = .requested
+			if ActionsHelper.hasPrivileges(branchId: shift.branchId){
+				newShift.status = .approved
+				newShift.acceptedBy = employeeId
+			} else {
+				newShift.status = .requested
+			}
 			return saveShift(newShift){ error in
 				if let error = error{
 					completion(error)
@@ -367,7 +406,7 @@ class FirestoreHelper{
 	static func getTimeOffs(employeeId: String, completion: @escaping(_ timeOffs: [TimeOff]?)->()) -> ListenerRegistration{
 		let docRef = db.collection("timeOff")
 			.whereField("employeeId", isEqualTo: employeeId)
-			.order(by: "createdOn")
+			.order(by: "createdOn", descending: true)
 		return docRef.addSnapshotListener(){ snapshots, err in
 			if let _ = err {
 				completion(nil)
@@ -384,8 +423,8 @@ class FirestoreHelper{
 		let docRef = db.collection("shift")
 			.whereField("employeeId", isEqualTo: employeeId)
 			.whereField("approvalRequired", isEqualTo: true)
-			.order(by: "shiftStartDate")
-			.order(by: "shiftStartTime")
+			.order(by: "shiftStartDate", descending: true)
+			.order(by: "shiftStartTime", descending: true)
 		return docRef.addSnapshotListener(){ snapshots, err in
 			if let _ = err {
 				completion(nil)
@@ -397,10 +436,98 @@ class FirestoreHelper{
 			completion(shifts)
 		}
 	}
+	
+	static func getTimeOff(timeOffId: String, completion: @escaping(_ timeOff: TimeOff?)->()) -> ListenerRegistration{
+		let docRef = db.collection("timeOff")
+			.document(timeOffId)
+		return docRef.addSnapshotListener(){ snapshot, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			do{
+				try completion(snapshot?.data(as: TimeOff.self))
+			}catch{
+				completion(nil)
+			}
+		}
+	}
+	
+	static func updateTimeOffStatus(timeOffId: String, status: Status, completion: @escaping(_ error: Error?)->()){
+		db.collection("timeOff").document(timeOffId).updateData([
+			"status": status.rawValue
+		], completion: completion)
+	}
+	
+	static func updateShiftStatus(shiftId: String, status: Status, completion: @escaping(_ error: Error?)->()){
+		db.collection("shift").document(shiftId).updateData([
+			"status": status.rawValue
+		], completion: completion)
+	}
+	
+	static func clockIn(for shift: Shift, completion: @escaping(_ error: Error?)->()){
+		var updatedShift = shift
+		updatedShift.attendance = Attendance(clockedInAt: .now)
+		do{
+			try db.collection("shift").document(updatedShift.id!).setData(from: updatedShift){ error in
+				FirestoreHelper.completion(error, completion)
+			}
+		}
+		catch{
+			completion(error)
+		}
+	}
+	
+	static func clockOut(for shift: Shift, completion: @escaping(_ error: Error?)->()){
+		var updatedShift = shift
+		updatedShift.attendance?.clockedOutAt = .now
+		do{
+			try db.collection("shift").document(updatedShift.id!).setData(from: updatedShift){ error in
+				FirestoreHelper.completion(error, completion)
+			}
+		}
+		catch{
+			completion(error)
+		}
+	}
+	
+	static func startBreak(for shift: Shift, completion: @escaping(_ error: Error?)->()){
+		var updatedShift = shift
+		updatedShift.attendance?.breaks.append(Break(start: .now))
+		do{
+			try db.collection("shift").document(updatedShift.id!).setData(from: updatedShift){ error in
+				FirestoreHelper.completion(error, completion)
+			}
+		}
+		catch{
+			completion(error)
+		}
+	}
+	
+	static func endBreak(for shift: Shift, completion: @escaping(_ error: Error?)->()){
+		var updatedShift = shift
+		if let index = updatedShift.attendance?.breaks.endIndex{
+			updatedShift.attendance?.breaks[index - 1].end = .now
+			do{
+				try db.collection("shift").document(updatedShift.id!).setData(from: updatedShift){ error in
+					FirestoreHelper.completion(error, completion)
+				}
+			}
+			catch{
+				completion(error)
+			}
+		} else {
+			completion(FirestoreError.breakNoteStarted)
+		}
+	}
 }
 
 enum ShiftType{
 	case myShift
 	case openShift
 	case allShift
+}
+
+enum FirestoreError: String, Error{
+	case breakNoteStarted = "Break Not Started"
 }

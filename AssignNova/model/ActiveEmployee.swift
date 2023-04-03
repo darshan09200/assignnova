@@ -10,7 +10,14 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class ActiveEmployee{
-	public static var instance: ActiveEmployee? = nil
+	static var fcmToken: String?
+	public static var instance: ActiveEmployee? = nil{
+		didSet{
+			if instance != nil {
+				FirestoreHelper.registerFCMToken()
+			}
+		}
+	}
 	
 	var branchListener: ListenerRegistration?
 	var roleListener: ListenerRegistration?

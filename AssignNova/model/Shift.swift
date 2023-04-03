@@ -24,6 +24,15 @@ struct Shift: Codable{
 	var noOfOpenShifts: Int?
 	var approvalRequired: Bool = false
 	var status: Status?
+	var attendance: Attendance?
+	var acceptedBy: String?{
+		didSet{
+			acceptedOn = .now
+		}
+	}
+	var acceptedOn: Date?
+	var createdBy: String
+	@ServerTimestamp var createdAt: Date?
 	@ServerTimestamp var updatedAt: Date?
 	
 	init(id: String? = nil, shiftStartDate: Date, shiftStartTime: Date, shiftEndTime: Date, unpaidBreak: Int? = nil, branchId: String, roleId: String, color: String, notes: String? = nil, employeeId: String? = nil, eligibleEmployees: [String]? = nil, noOfOpenShifts: Int? = nil, updatedAt: Date? = nil) {
@@ -41,6 +50,7 @@ struct Shift: Codable{
 		self.noOfOpenShifts = noOfOpenShifts
 		self.updatedAt = updatedAt
 		
+		self.createdBy = ActiveEmployee.instance?.employee.id ?? ""
 		self.businessId = ActiveEmployee.instance?.employee.businessId ?? ""
 		
 		if eligibleEmployees != nil{

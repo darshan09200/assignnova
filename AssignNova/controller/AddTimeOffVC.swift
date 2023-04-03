@@ -18,7 +18,7 @@ class AddTimeOffVC: UIViewController {
 	@IBOutlet weak var endDateBtn: UIButton!
 
 	@IBOutlet weak var timeStack: UIStackView!
-	@IBOutlet weak var shiftTimeBtn: UIButton!
+	@IBOutlet weak var timeButton: UIButton!
 
 	@IBOutlet weak var notesTextInput: TextInput!
 
@@ -28,13 +28,13 @@ class AddTimeOffVC: UIViewController {
 	let endDateDummy = UITextField(frame: .zero)
 	let endDatePicker = UIDatePicker()
 
-	let shiftTimeDummy = UITextField(frame: .zero)
-	let shiftTimePicker = UIPickerView()
+	let timeDummy = UITextField(frame: .zero)
+	let timePicker = UIPickerView()
 
 	var startDate: Date = .now.startOfDay
 	var endDate: Date = .now.startOfDay
-	var shiftStartTime: Date = .now.getNearest15()
-	var shiftEndTime: Date = .now.getNearest15().add(minute: 15)
+	var startTime: Date = .now.getNearest15()
+	var endTime: Date = .now.getNearest15().add(minute: 15)
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,19 +65,19 @@ class AddTimeOffVC: UIViewController {
 		endDateDummy.inputAccessoryView = toolbar
 		endDatePicker.addTarget(self, action: #selector(onEndDateValueChanged), for: .valueChanged)
 
-		shiftTimeDummy.inputView = shiftTimePicker
-		shiftTimePicker.delegate = self
-		shiftTimePicker.dataSource = self
-		shiftTimeDummy.inputAccessoryView = toolbar
+		timeDummy.inputView = timePicker
+		timePicker.delegate = self
+		timePicker.dataSource = self
+		timeDummy.inputAccessoryView = toolbar
 
 		view.addSubview(startDateDummy)
 		view.addSubview(endDateDummy)
-		view.addSubview(shiftTimeDummy)
+		view.addSubview(timeDummy)
 
 
 		startDateBtn.setTitle(startDate.format(to: "EEE, MMM dd, yyyy"), for: .normal)
 		endDateBtn.setTitle(endDate.format(to: "EEE, MMM dd, yyyy"), for: .normal)
-		shiftTimeBtn.setTitle(Date.buildTimeRangeString(startDate: shiftStartTime, endDate: shiftEndTime), for: .normal)
+		timeButton.setTitle(Date.buildTimeRangeString(startDate: startTime, endDate: endTime), for: .normal)
     }
 
 	@IBAction func onAllDayChanged(_ sender: UISwitch) {
@@ -102,10 +102,10 @@ class AddTimeOffVC: UIViewController {
 	}
 
 	@IBAction func onSelectTimePress(_ sender: UIButton) {
-		shiftTimeDummy.becomeFirstResponder()
+		timeDummy.becomeFirstResponder()
 
-		let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: shiftStartTime)
-		let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: shiftEndTime)
+		let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
+		let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
 
 		let startTimeIndex = TimeRangePicker.startTimes.firstIndex(where: {
 			let components = Calendar.current.dateComponents([.hour, .year, .minute], from: $0)
@@ -117,17 +117,17 @@ class AddTimeOffVC: UIViewController {
 			return components.minute == endTimeComponents.minute && components.hour == endTimeComponents.hour
 		}) ?? 0
 
-		shiftTimePicker.selectRow(startTimeIndex, inComponent: 0, animated: true)
-		shiftTimePicker.selectRow(endTimeIndex, inComponent: 1, animated: true)
+		timePicker.selectRow(startTimeIndex, inComponent: 0, animated: true)
+		timePicker.selectRow(endTimeIndex, inComponent: 1, animated: true)
 	}
 
 	@IBAction func onSavePress(_ sender: Any) {
-		var timeOff = TimeOff(shiftStartDate: startDate, isAllDay: allDaySwitch.isOn, notes: notesTextInput.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines))
+		var timeOff = TimeOff(startDate: startDate, isAllDay: allDaySwitch.isOn, notes: notesTextInput.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines))
 		if timeOff.isAllDay{
-			timeOff.shiftEndDate = endDate
+			timeOff.endDate = endDate
 		} else {
-			timeOff.shiftStartTime = shiftStartTime
-			timeOff.shiftEndTime = shiftEndTime
+			timeOff.startTime = startTime
+			timeOff.endTime = endTime
 		}
 		self.startLoading()
 		FirestoreHelper.createTimeOff(timeOff){ error in
@@ -148,7 +148,7 @@ extension AddTimeOffVC{
 	@objc func onDoneButton(){
 		self.startDateDummy.resignFirstResponder()
 		self.endDateDummy.resignFirstResponder()
-		self.shiftTimeDummy.resignFirstResponder()
+		self.timeDummy.resignFirstResponder()
 	}
 
 	@objc func onStartDateValueChanged(_ datePicker: UIDatePicker){
@@ -177,9 +177,9 @@ extension AddTimeOffVC: UIPickerViewDelegate, UIPickerViewDataSource{
 
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		if let (startTime, endTime) = TimeRangePicker.pickerView(pickerView, didSelectRow: row, inComponent: component){
-			shiftStartTime = startTime
-			shiftEndTime = endTime
-			shiftTimeBtn.setTitle(Date.buildTimeRangeString(startDate: shiftStartTime, endDate: shiftEndTime), for: .normal)
+			self.startTime = startTime
+			self.endTime = endTime
+			timeButton.setTitle(Date.buildTimeRangeString(startDate: startTime, endDate: endTime), for: .normal)
 		}
 	}
 

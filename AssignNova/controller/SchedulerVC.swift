@@ -38,6 +38,8 @@ class SchedulerVC: UIViewController {
 		}
 	}
 	
+	lazy var previousSelectedDate: Date? = calendar.selectedDate
+	
 	var selectedDate: Date {
 		calendar.selectedDate!
 	}
@@ -88,6 +90,7 @@ class SchedulerVC: UIViewController {
     }
     
 	func refreshData(){
+		previousSelectedDate = selectedDate
 		groupedShifts = []
         if let businessId = ActiveEmployee.instance?.employee.businessId{
 			listener?.remove()
@@ -106,6 +109,11 @@ class SchedulerVC: UIViewController {
 				}
 				self.tableView.reloadData()
 				self.calendar.reloadData()
+				self.tableView.layoutIfNeeded()
+				if self.groupedShifts.count > 0{
+					self.tableView.scrollToRow(at: IndexPath(row: 0, section: self.selectedDate.dayOfTheWeek), at: .top, animated: true)
+				}
+				
 			}
 		}
 	}
@@ -176,15 +184,25 @@ extension SchedulerVC: UITableViewDelegate, UITableViewDataSource{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "card") as! CardCell
 		let shift = groupedShifts[indexPath.section].shifts[indexPath.row]
 		cell.card.title = Date.buildTimeRangeString(startDate: shift.shiftStartTime, endDate: shift.shiftEndTime)
-		var employeeName: String?
+		var employeeName = "Open Shift"
 		if let employeeId = shift.employeeId{
-			employeeName = ActiveEmployee.instance?.getEmployee(employeeId: employeeId)?.name
+			let employee = ActiveEmployee.instance?.getEmployee(employeeId: employeeId)
+			if let employee = employee{
+				employeeName = employee.name
+				if let profileUrl = employee.profileUrl{
+					cell.card.setProfileImage(withUrl: profileUrl)
+				} else {
+					cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
+				}
+			}
+		} else {
+			cell.card.setProfileImage(withName: employeeName)
 		}
 		var roleName: String = ""
 		if let role = ActiveEmployee.instance?.getRole(roleId: shift.roleId){
 			roleName = "as \(role.name)"
 		}
-		cell.card.subtitle = "\(employeeName ?? "Open Shift") \(roleName)"
+		cell.card.subtitle = "\(employeeName) \(roleName)"
 		cell.card.barView.backgroundColor = UIColor(hex: shift.color)
 		return cell
 	}
@@ -271,8 +289,13 @@ extension SchedulerVC: FSCalendarDataSource, FSCalendarDelegate{
 	
 	func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 		self.configureVisibleCells()
-		if groupedShifts.count > 0{
-			tableView.scrollToRow(at: IndexPath(row: 0, section: date.dayOfTheWeek), at: .top, animated: true)
+		if calendar.scope == .week{
+			if groupedShifts.count > 0{
+				tableView.scrollToRow(at: IndexPath(row: 0, section: date.dayOfTheWeek), at: .top, animated: true)
+			}
+		} else if previousSelectedDate?.startOfWeek() != selectedDate.startOfWeek(){
+			print("called")
+			refreshData()
 		}
 	}
 	

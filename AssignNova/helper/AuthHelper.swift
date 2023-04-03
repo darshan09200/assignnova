@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFunctions
+import FirebaseSharedSwift
 
 class AuthHelper{
 	static var userId: String?{
@@ -17,7 +18,7 @@ class AuthHelper{
 	static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil){
 		FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
 			if let employee = employee{
-				var activeEmployee = ActiveEmployee(employee: employee)
+				let activeEmployee = ActiveEmployee(employee: employee)
 				FirestoreHelper.getBusiness(employeeId: employee.id ?? "" ){ business in
 					if let business = business, let _ = business.id{
 						activeEmployee.business = business
@@ -226,10 +227,49 @@ class AuthHelper{
 	}
 	
 	static func logout(){
+		FirestoreHelper.deregisterFCMToken()
 		do {
 			try Auth.auth().signOut()
 		} catch let signOutError as NSError {
 			print("Error signing out: %@", signOutError)
+		}
+	}
+	
+	static func getEligibleEmployees(branchId: String?, roleId: String?, shiftDate: Date, startTime: Date, endTime: Date, completion: @escaping(_ groupedEmployees: [GroupedEmployee]? )->()){
+		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+		
+		var data = EligibleEmployeesRequest(
+			shiftDate: shiftDate.startOfDay.timeIntervalSince1970,
+			startTime: Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
+			endTime: Date.combineDateWithTime(date: shiftDate, time: endTime).timeIntervalSince1970)
+		let employee = ActiveEmployee.instance?.employee
+		if let businessId = employee?.businessId{
+			data.businessId = businessId
+		}
+		if let branchId = branchId{
+			data.branchId = branchId
+		}
+		if let roleId = roleId{
+			data.roleId = roleId
+		}
+		let callable: Callable<EligibleEmployeesRequest, GroupedEmployees> = Functions.functions().httpsCallable("getEligibleEmployees")
+		callable.call(data){result in
+			if let groupedEmployees = try? result.get() {
+				completion(groupedEmployees.groupedEmployees)
+				return
+			}
+			completion(nil)
+		}
+	}
+	
+	static func getAssignedHours(employeeIds: [String], shiftDate: Date, completion: @escaping(_ assignedHours: [AssignedHour]? )->()){
+		let callable: Callable<AssignedHoursRequest, AssignedHoursResponse> = Functions.functions().httpsCallable("getAssignedHours")
+		callable.call(AssignedHoursRequest(employeeIds: employeeIds, shiftDate: shiftDate.timeIntervalSince1970)){ result in
+			if let assignedHours = try? result.get(){
+				completion(assignedHours.assignedHours)
+				return
+			}
+			completion(nil)
 		}
 	}
 }
@@ -243,3 +283,43 @@ struct UserInvitedResponse: Decodable{
 	var invited: Bool?
 	var error: String?
 }
+
+enum EmployeeEligibility: String, Decodable{
+	case notEligible = "Not Eligible"
+	case notConfirmed = "Not Confirmed"
+	case eligible = "Eligible"
+}
+
+struct GroupedEmployee: Decodable{
+	var type: EmployeeEligibility
+	var employees: [String]
+}
+
+struct GroupedEmployees: Decodable{
+	var groupedEmployees: [GroupedEmployee]
+}
+
+struct EligibleEmployeesRequest:Codable{
+	var businessId: String?
+	var branchId: String?
+	var roleId: String?
+	var shiftDate: TimeInterval
+	var startTime: TimeInterval
+	var endTime: TimeInterval
+}
+
+struct AssignedHoursRequest: Codable{
+	var employeeIds: [String]
+	var shiftDate: TimeInterval
+}
+
+struct AssignedHoursResponse: Codable{
+	var assignedHours: [AssignedHour]
+	
+}
+
+struct AssignedHour: Codable{
+	var employeeId: String
+	var assignedHour: Double
+}
+

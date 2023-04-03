@@ -23,7 +23,7 @@ struct Business: Codable{
 	@ServerTimestamp var createdAt: Date?
 	@ServerTimestamp var updatedAt: Date?
 
-	init(id: String? = nil, name: String, address: String, noOfEmployees: Int, location: GeoPoint, subscriptionId: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, managedBy: String) {
+	init(id: String? = nil, name: String, address: String, noOfEmployees: Int, location: GeoPoint, subscriptionId: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
 		self.id = id
 		self.name = name
 		self.address = address
@@ -32,8 +32,8 @@ struct Business: Codable{
 		self.subscriptionId = subscriptionId
 		self.createdAt = createdAt
 		self.updatedAt = updatedAt
-		self.managedBy = managedBy
-
+		
+		self.managedBy = ActiveEmployee.instance?.employee.id ?? ""
 		self.geohash = GFUtils.geoHash(forLocation: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
 	}
 }
