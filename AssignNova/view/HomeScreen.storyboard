@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home Screen View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="HomeScreen" id="Y6W-OH-hqX" customClass="HomeScreenViewController" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vFd-gI-Xmv">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmb-U1-qjm">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mF7-kx-0PM">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="YMW-hi-arp">
+                                                <rect key="frame" x="16" y="16" width="361" height="495.33333333333326"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Get Started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s00-z3-ez4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjY-Mq-h8l">
+                                                        <rect key="frame" x="0.0" y="31.333333333333332" width="361" height="50.333333333333343"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="building.fill" catalog="system" imagePlacement="leading" title="Add Branch" imagePadding="0.0" buttonSize="large" titleAlignment="leading">
+                                                            <backgroundConfiguration key="background">
+                                                                <color key="strokeColor" red="0.92156863209999995" green="0.92156863209999995" blue="0.92156863209999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </backgroundConfiguration>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="AddBranchBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="DTz-TF-gEB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUT-ce-omV">
+                                                        <rect key="frame" x="0.0" y="92.666666666666657" width="361" height="50.333333333333343"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Add Roles" buttonSize="large">
+                                                            <imageReference key="image" image="person.text.rectangle.fill" catalog="system" symbolScale="large"/>
+                                                            <backgroundConfiguration key="background">
+                                                                <color key="strokeColor" red="0.92156863209999995" green="0.92156863209999995" blue="0.92156863209999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </backgroundConfiguration>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="AddRoleBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="C0q-yq-K0j"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGy-gF-mSm">
+                                                        <rect key="frame" x="0.0" y="154" width="361" height="50.333333333333343"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="person.circle.fill" catalog="system" title="Add Employee" buttonSize="large">
+                                                            <backgroundConfiguration key="background">
+                                                                <color key="strokeColor" red="0.92156863209999995" green="0.92156863209999995" blue="0.92156863209999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </backgroundConfiguration>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="AddEmployeeBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9Tj-zq-M8J"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Shifts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqy-fI-bl1">
+                                                        <rect key="frame" x="0.0" y="215.33333333333331" width="361" height="20.333333333333343"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DvQ-vN-yfZ">
+                                                        <rect key="frame" x="0.0" y="246.66666666666669" width="361" height="128"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <prototypes>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Gnn-Yt-biH">
+                                                                <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gnn-Yt-biH" id="wSv-tT-P0a">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="43.666667938232422"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                </tableViewCellContentView>
+                                                            </tableViewCell>
+                                                        </prototypes>
+                                                    </tableView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LVD-qf-ZkW">
+                                                        <rect key="frame" x="0.0" y="385.66666666666669" width="361" height="109.66666666666669"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bulb" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-UG-VdG">
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="64"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do You Know " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4g-gu-L1F">
+                                                                <rect key="frame" x="0.0" y="63.99999999999995" width="361" height="25.333333333333336"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIw-ii-RjQ">
+                                                                <rect key="frame" x="0.0" y="89.333333333333314" width="361" height="20.333333333333329"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="YMW-hi-arp" secondAttribute="trailing" constant="16" id="1bD-cg-RlS"/>
+                                            <constraint firstItem="YMW-hi-arp" firstAttribute="leading" secondItem="mF7-kx-0PM" secondAttribute="leading" constant="16" id="7zy-aJ-ODs"/>
+                                            <constraint firstAttribute="height" constant="759" id="9fN-kU-xml"/>
+                                            <constraint firstItem="YMW-hi-arp" firstAttribute="top" secondItem="mF7-kx-0PM" secondAttribute="top" constant="16" id="dtu-aA-11U"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mF7-kx-0PM" firstAttribute="top" secondItem="dCS-Cp-X37" secondAttribute="top" id="16Z-xh-yZZ"/>
+                                    <constraint firstItem="dCS-Cp-X37" firstAttribute="bottom" secondItem="mF7-kx-0PM" secondAttribute="bottom" id="RUq-He-aUy"/>
+                                    <constraint firstItem="mF7-kx-0PM" firstAttribute="centerX" secondItem="fmb-U1-qjm" secondAttribute="centerX" id="S3O-rY-QeK"/>
+                                    <constraint firstItem="dCS-Cp-X37" firstAttribute="trailing" secondItem="mF7-kx-0PM" secondAttribute="trailing" id="UK0-bO-CP3"/>
+                                    <constraint firstItem="mF7-kx-0PM" firstAttribute="leading" secondItem="dCS-Cp-X37" secondAttribute="leading" id="jJI-kz-QCD"/>
+                                    <constraint firstItem="mF7-kx-0PM" firstAttribute="width" secondItem="xbR-zp-THp" secondAttribute="width" id="kP8-Sc-ksu"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="dCS-Cp-X37"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="xbR-zp-THp"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qZn-jY-l7k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fmb-U1-qjm" firstAttribute="bottom" secondItem="qZn-jY-l7k" secondAttribute="bottom" id="BHG-cV-sBB"/>
+                            <constraint firstItem="fmb-U1-qjm" firstAttribute="top" secondItem="qZn-jY-l7k" secondAttribute="top" id="SAe-Ct-ltS"/>
+                            <constraint firstItem="fmb-U1-qjm" firstAttribute="leading" secondItem="qZn-jY-l7k" secondAttribute="leading" id="UNC-NG-2MQ"/>
+                            <constraint firstItem="fmb-U1-qjm" firstAttribute="trailing" secondItem="qZn-jY-l7k" secondAttribute="trailing" id="tfH-TV-bVp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="NextShiftTable" destination="DvQ-vN-yfZ" id="MEz-9D-d4m"/>
+                        <outlet property="doYouKnow" destination="hIw-ii-RjQ" id="6g9-jl-LTz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="109" y="22"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="building.fill" catalog="system" width="106" height="128"/>
+        <image name="bulb" width="64" height="64"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="person.text.rectangle.fill" catalog="system" width="128" height="93"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

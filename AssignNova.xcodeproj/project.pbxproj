@@ -108,6 +108,8 @@
 		77BAD6269B122C1FE4185F99 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */; };
 		B7781BCD29D7909500121D16 /* Facts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7781BCC29D7909500121D16 /* Facts.swift */; };
 		B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */; };
+		B7DAB7FD29DB759F00207B4A /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7DAB7FC29DB759F00207B4A /* HomeScreen.storyboard */; };
+		B7DAB7FF29DB75FB00207B4A /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DAB7FE29DB75FB00207B4A /* HomeScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +239,8 @@
 		807ACEB990721CAD6D0AFB9D /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7781BCC29D7909500121D16 /* Facts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facts.swift; sourceTree = "<group>"; };
 		B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
+		B7DAB7FC29DB759F00207B4A /* HomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreen.storyboard; sourceTree = "<group>"; };
+		B7DAB7FE29DB75FB00207B4A /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		FE72A080CE715E84B0176CE7 /* Pods-AssignNova.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.debug.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -325,6 +329,7 @@
 				55209CCA29D084A3000D5726 /* DayCell.swift */,
 				558DF0C229D170FD0012C87E /* ColorPickerCell.swift */,
 				5552C5B929D771380035C982 /* TimeOff.storyboard */,
+				B7DAB7FC29DB759F00207B4A /* HomeScreen.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -386,6 +391,7 @@
 				5552C5BB29D7717A0035C982 /* RequestVC.swift */,
 				B7781BCC29D7909500121D16 /* Facts.swift */,
 				5546CDE029D798EA00AECE62 /* ViewTimeOffVC.swift */,
+				B7DAB7FE29DB75FB00207B4A /* HomeScreenViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -600,6 +606,7 @@
 				55212E8A29D178E20094738B /* EmployeePicker.storyboard in Resources */,
 				B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
+				B7DAB7FD29DB759F00207B4A /* HomeScreen.storyboard in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
 				55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */,
 			);
@@ -728,6 +735,7 @@
 				5549DA5F29C88EA900E51828 /* Business.swift in Sources */,
 				55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */,
 				55FE062629DA21BE00DAAA99 /* Attendance.swift in Sources */,
+				B7DAB7FF29DB75FB00207B4A /* HomeScreenViewController.swift in Sources */,
 				55BDF09429C93FB00050D223 /* AddBranchVC.swift in Sources */,
 				55C6374729CD1F6F00A1570D /* SelectFieldCell.swift in Sources */,
 				55209CC829D0758A000D5726 /* SchedulerVC.swift in Sources */,

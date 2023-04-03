@@ -30,7 +30,7 @@ class ActiveEmployee{
 	var branches = [Branch]()
 	var roles = [Role]()
 	var employees = [Employee]()
-	
+    var factOfTheDay = Facts.randomElement()
 	init(business: Business? = nil, employee: Employee, branches: [Branch] = [Branch](), roles: [Role] = [Role]()) {
 		self.business = business
 		self.employee = employee
