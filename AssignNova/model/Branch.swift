@@ -24,18 +24,16 @@ struct Branch: Codable{
 	@ServerTimestamp var createdAt: Date?
 	@ServerTimestamp var updatedAt: Date?
 	
-	init(id: String? = nil, name: String, address: String, location: GeoPoint, businessId: String, color: String, createdAt: Date? = nil, updatedAt: Date? = nil) {
+	init(id: String? = nil, name: String, address: String, location: GeoPoint, businessId: String, color: String) {
 		self.id = id
 		self.name = name
 		self.address = address
 		self.location = location
 		self.businessId = businessId
 		self.color = color
-		self.createdAt = createdAt
-		self.updatedAt = updatedAt
 
 		self.geohash = GFUtils.geoHash(forLocation: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
 		
-		self.createdBy = Auth.auth().currentUser?.uid ?? ""
+		self.createdBy = ActiveEmployee.instance?.employee.id ?? ""
 	}
 }

@@ -42,6 +42,9 @@ struct Employee: Codable{
 	var branches = [String]()
 	var roles = [String]()
 	var color: String
+	var fcmToken: [String]?
+	var createdBy: String
+	@ServerTimestamp var createdAt: Date?
 	@ServerTimestamp var updatedAt: Date?
 	
 	init(id: String? = nil, userId: String? = nil, employeeId: String? = nil, firstName: String, lastName: String, appRole: AppRole, maxHours: Double = 40, isProfilePrivate: Bool = false, profileUrl: String? = nil, email: String, phoneNumber: String? = nil, invited: Bool? = nil, branches: [String] = [String](), roles: [String] = [String](), color: String, updatedAt: Date? = nil) {
@@ -62,6 +65,7 @@ struct Employee: Codable{
 		self.color = color
 		self.updatedAt = updatedAt
 		
+		self.createdBy = ActiveEmployee.instance?.employee.userId ?? ""
 		self.businessId = ActiveEmployee.instance?.employee.businessId ?? ""
 
 	}
