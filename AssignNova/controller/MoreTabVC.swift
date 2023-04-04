@@ -17,6 +17,13 @@ class MoreTabVC: UIViewController {
 		
     }
 
+	@IBAction func onProfilePress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Employee", bundle: nil).instantiateViewController(withIdentifier: "ViewEmployeeVC") as! ViewEmployeeVC
+		viewController.isProfile = true
+		viewController.employeeId = ActiveEmployee.instance?.employee.id
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
+	
 	@IBAction func onBranchPress(_ sender: Any) {
 		let viewController = UIStoryboard(name: "Branch", bundle: nil)
 			.instantiateViewController(withIdentifier: "ViewAllBranchTVC") as! ViewAllBranchTVC

@@ -156,8 +156,8 @@ class AddShiftTVC: UITableViewController {
 			noOfShifts = nil
 		}
 		
+		self.startLoading()
 		AuthHelper.getAssignedHours(employeeIds: (isOpenShifts ? data.eligibileEmployees : data.employees).compactMap{$0.id}, shiftDate: data.selectedDate){ assignedHours in
-			
 			if let assignedHours = assignedHours{
 				let diff = Int(self.data.endTime.timeIntervalSince1970 - self.data.startTime.timeIntervalSince1970)
 				
@@ -170,9 +170,16 @@ class AddShiftTVC: UITableViewController {
 					return true
 				}.compactMap{ActiveEmployee.instance?.getEmployee(employeeId:$0.employeeId)}
 				if overtimeEmployees.count > 0{
-					let message = overtimeEmployees.reduce("The below employees are going overtime"){$0+"\n\($1.name)"}
-					self.showAlert(title: "Warning", message: message){
+					var message = overtimeEmployees.reduce("The below employees are going overtime"){$0+"\n\($1.name)"}
+					message += "\nDo you want to continue?"
+					let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+					alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {_ in
+						self.startLoading()
 						onComplete()
+					}))
+					self.stopLoading(){
+						self.present(alert, animated: true, completion: nil)
 					}
 				} else {
 					onComplete()
@@ -181,9 +188,21 @@ class AddShiftTVC: UITableViewController {
 			
 		}
 		func onComplete(){
-			self.startLoading()
-			if self.isOpenShifts{
-				let shift = Shift(id: self.shift?.id, shiftStartDate: shiftDate, shiftStartTime: startTime, shiftEndTime: endTime, unpaidBreak: unpaidBreak, branchId: branch.id!, roleId: role.id!, color: color.color.toHex ?? "", notes: notes, eligibleEmployees: self.data.eligibileEmployees.compactMap{$0.id}, noOfOpenShifts: noOfShifts, updatedAt: self.shift?.updatedAt)
+			var shouldDelete = false
+			var employeeId: String?
+			if let oldEmployeeId = shift?.employeeId, let newEmployeeId = data.employees.first?.id{
+				if oldEmployeeId != newEmployeeId{
+					shouldDelete = true
+				} else {
+					employeeId = oldEmployeeId
+				}
+			} else if data.employees.count > 1{
+				shouldDelete = true
+			} else if let newEmployeeId = data.employees.first?.id{
+				employeeId = newEmployeeId
+			}
+			if self.isOpenShifts || !shouldDelete{
+				let shift = Shift(id: self.shift?.id, shiftStartDate: shiftDate, shiftStartTime: startTime, shiftEndTime: endTime, unpaidBreak: unpaidBreak, branchId: branch.id!, roleId: role.id!, color: color.color.toHex ?? "", notes: notes, employeeId: employeeId, eligibleEmployees: isOpenShifts ? self.data.eligibileEmployees.compactMap{$0.id} : nil, noOfOpenShifts: noOfShifts, updatedAt: self.shift?.updatedAt)
 				
 				FirestoreHelper.saveShift(shift){error in
 					if let _ = error {
@@ -378,7 +397,7 @@ extension AddShiftTVC{
 					} else {
 						let item = data.employees[indexPath.row]
 						cell.card.title = item.name
-						cell.card.setProfileImage(withName: item.name)
+						cell.card.setProfileImage(withName: item.name, backgroundColor: item.color)
 						cell.card.barView.backgroundColor = UIColor(hex: item.color)
 						cell.card.rightImageContainer.isHidden = false
 					}
@@ -391,7 +410,7 @@ extension AddShiftTVC{
 					} else {
 						let item = data.eligibileEmployees[indexPath.row]
 						cell.card.title = item.name
-						cell.card.setProfileImage(withName: item.name)
+						cell.card.setProfileImage(withName: item.name, backgroundColor: item.color)
 						cell.card.barView.backgroundColor = UIColor(hex: item.color)
 						cell.card.rightImageContainer.isHidden = false
 					}

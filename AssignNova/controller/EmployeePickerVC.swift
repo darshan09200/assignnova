@@ -77,7 +77,7 @@ extension EmployeePickerVC: UITableViewDelegate, UITableViewDataSource{
 		cell.cardCellType = .selection
 		let item = employees[indexPath.row]
 		cell.card.title = item.name
-		cell.card.setProfileImage(withName: item.name)
+		cell.card.setProfileImage(withName: item.name, backgroundColor: item.color)
 		cell.card.barView.backgroundColor = UIColor(hex: item.color)
 		return cell
 	}

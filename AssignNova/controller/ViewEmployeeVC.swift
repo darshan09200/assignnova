@@ -12,12 +12,17 @@ class ViewEmployeeVC: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	
+	var isProfile = false
 	var employeeId: String?
 	private var employee: Employee?
 	private var listener: ListenerRegistration?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		if isProfile {
+			navigationItem.title = "View Profile"
+		}
 		
 		listener = FirestoreHelper.getEmployee(employeeId: employeeId ?? ""){ employee in
 			if let employee = employee{
