@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		application.registerForRemoteNotifications()
 		
+		UIViewController.swizzle()
 		return true
 	}
 	
