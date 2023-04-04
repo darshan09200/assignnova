@@ -16,21 +16,31 @@ class AuthHelper{
 	}
 
 	static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil){
-		FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
-			if let employee = employee{
-				let activeEmployee = ActiveEmployee(employee: employee)
-				FirestoreHelper.getBusiness(employeeId: employee.id ?? "" ){ business in
-					if let business = business, let _ = business.id{
-						activeEmployee.business = business
-						ActiveEmployee.instance = activeEmployee
+		Auth.auth().currentUser?.getIDToken(){ token, error in
+			if error == nil{
+				FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
+					if let employee = employee{
+						let activeEmployee = ActiveEmployee(employee: employee)
+						FirestoreHelper.getBusiness(employeeId: employee.id ?? "" ){ business in
+							if let business = business, let _ = business.id{
+								activeEmployee.business = business
+								ActiveEmployee.instance = activeEmployee
+							} else {
+								ActiveEmployee.instance = activeEmployee
+							}
+							if let completion = completion{
+								completion(ActiveEmployee.instance)
+							}
+						}
 					} else {
-						ActiveEmployee.instance = activeEmployee
-					}
-					if let completion = completion{
-						completion(ActiveEmployee.instance)
+						ActiveEmployee.instance = nil
+						if let completion = completion{
+							completion(ActiveEmployee.instance)
+						}
 					}
 				}
-			} else {
+			}
+			else {
 				ActiveEmployee.instance = nil
 				if let completion = completion{
 					completion(ActiveEmployee.instance)
@@ -236,10 +246,10 @@ class AuthHelper{
 	}
 	
 	static func getEligibleEmployees(branchId: String?, roleId: String?, shiftDate: Date, startTime: Date, endTime: Date, completion: @escaping(_ groupedEmployees: [GroupedEmployee]? )->()){
-		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+//		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
 		
 		var data = EligibleEmployeesRequest(
-			shiftDate: shiftDate.startOfDay.timeIntervalSince1970,
+			shiftDate:  Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
 			startTime: Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
 			endTime: Date.combineDateWithTime(date: shiftDate, time: endTime).timeIntervalSince1970)
 		let employee = ActiveEmployee.instance?.employee
@@ -263,8 +273,12 @@ class AuthHelper{
 	}
 	
 	static func getAssignedHours(employeeIds: [String], shiftDate: Date, completion: @escaping(_ assignedHours: [AssignedHour]? )->()){
+		if employeeIds.count == 0 {
+			completion([])
+			return
+		}
 		let callable: Callable<AssignedHoursRequest, AssignedHoursResponse> = Functions.functions().httpsCallable("getAssignedHours")
-		callable.call(AssignedHoursRequest(employeeIds: employeeIds, shiftDate: shiftDate.timeIntervalSince1970)){ result in
+		callable.call(AssignedHoursRequest(employeeIds: employeeIds, shiftDate: shiftDate.startOfDay.timeIntervalSince1970)){ result in
 			if let assignedHours = try? result.get(){
 				completion(assignedHours.assignedHours)
 				return
