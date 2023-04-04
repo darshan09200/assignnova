@@ -15,39 +15,46 @@ class AuthHelper{
 		return Auth.auth().currentUser?.uid
 	}
 
-	static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil){
-		Auth.auth().currentUser?.getIDToken(){ token, error in
-			if error == nil{
-				FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
-					if let employee = employee{
-						let activeEmployee = ActiveEmployee(employee: employee)
-						FirestoreHelper.getBusiness(employeeId: employee.id ?? "" ){ business in
-							if let business = business, let _ = business.id{
-								activeEmployee.business = business
-								ActiveEmployee.instance = activeEmployee
-							} else {
-								ActiveEmployee.instance = activeEmployee
-							}
-							if let completion = completion{
-								completion(ActiveEmployee.instance)
-							}
-						}
-					} else {
-						ActiveEmployee.instance = nil
-						if let completion = completion{
-							completion(ActiveEmployee.instance)
-						}
-					}
-				}
-			}
-			else {
-				ActiveEmployee.instance = nil
-				if let completion = completion{
-					completion(ActiveEmployee.instance)
-				}
-			}
-		}
-	}
+    static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil){
+        if let currentUser = Auth.auth().currentUser{
+            currentUser.getIDToken(){ token, error in
+                print(error?.localizedDescription)
+                if error == nil{
+                    FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
+                        if let employee = employee{
+                            let activeEmployee = ActiveEmployee(employee: employee)
+                            FirestoreHelper.getBusiness(employeeId: employee.id ?? "" ){ business in
+                                if let business = business, let _ = business.id{
+                                    activeEmployee.business = business
+                                    ActiveEmployee.instance = activeEmployee
+                                } else {
+                                    ActiveEmployee.instance = activeEmployee
+                                }
+                                if let completion = completion{
+                                    completion(ActiveEmployee.instance)
+                                }
+                            }
+                        } else {
+                            ActiveEmployee.instance = nil
+                            if let completion = completion{
+                                completion(ActiveEmployee.instance)
+                            }
+                        }
+                    }
+                } else{
+                    ActiveEmployee.instance = nil
+                    if let completion = completion{
+                        completion(ActiveEmployee.instance)
+                    }
+                }
+            }
+        } else {
+            ActiveEmployee.instance = nil
+            if let completion = completion{
+                completion(ActiveEmployee.instance)
+            }
+        }
+    }
 	static func sendOtp(phoneNumber: String, completion: @escaping(_ error: Error?)->()){
 		PhoneAuthProvider.provider()
 			.verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
