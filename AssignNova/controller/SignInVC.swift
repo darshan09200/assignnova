@@ -27,6 +27,11 @@ class SignInVC: UIViewController {
 		self.phoneNumberTxt.textFieldComponent.keyboardType = .phonePad
 		
 		passwordTxt.textFieldComponent.isSecureTextEntry = true
+        
+        emailTxt.textFieldComponent.textContentType = .emailAddress
+        emailTxt.textFieldComponent.keyboardType = .emailAddress
+        
+        passwordTxt.textFieldComponent.textContentType = .password
 		
 		let pwdButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
 		pwdButton.tintColor = .label
@@ -65,12 +70,13 @@ class SignInVC: UIViewController {
 			} else{
 				self.startLoading()
 				Auth.auth().signIn(withEmail: email, password: pwd) { authResult, error in
-					if let error = error {
-						// An error occurred while attempting to sign in the user
-						self.showAlert(title: "Error", message: error.localizedDescription)
+					if error != nil {
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: "Incorrecnt username or password", textInput: self.emailTxt)
+						}
 						return
 					}
-					self.navigateToHome()
+//					self.navigateToHome()
 				}
 			}
 		} else if loginMethodSegment.selectedSegmentIndex == 1 {
@@ -86,13 +92,25 @@ class SignInVC: UIViewController {
 			} else{
 				self.startLoading()
 				let formattedPhoneNumber = ValidationHelper.formatPhoneNumber(phoneNumberDetails!)
-				AuthHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
-					self.stopLoading(){
-						let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
-							.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
-						
-						otpInputController.delegate = self
-						self.navigationController?.pushViewController(otpInputController, animated: true)
+				AuthHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists  in
+					if let error = error {
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberTxt)
+						}
+					} else if let exists = exists, exists {
+						AuthHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
+							self.stopLoading(){
+								let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
+									.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
+								
+								otpInputController.delegate = self
+								self.navigationController?.pushViewController(otpInputController, animated: true)
+							}
+						}
+					} else {
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: "Phone number not linked with any account", textInput: self.phoneNumberTxt)
+						}
 					}
 				}
 			}
@@ -117,8 +135,6 @@ class SignInVC: UIViewController {
 			   let idToken = user.idToken?.tokenString
 			{
 				let email = user.profile?.email
-				let firstName = user.profile?.givenName
-				let lastName = user.profile?.familyName
 				AuthHelper.doesEmailExists(email ?? ""){ error, exists  in
 					if let exists = exists{
 						if exists{
@@ -132,7 +148,7 @@ class SignInVC: UIViewController {
 									return
 								}
 								
-								self.navigateToHome()
+//								self.navigateToHome()
 							}
 						} else {
 							self.stopLoading(){
@@ -154,36 +170,35 @@ class SignInVC: UIViewController {
     }
     
     @IBAction func loginModeChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-            case 0:
-                UIView.animate(withDuration: 0.3) {
-                    self.emailTxt.isHidden = false
+		switch sender.selectedSegmentIndex {
+			case 0:
+				UIView.animate(withDuration: 0.3) {
+					self.emailTxt.isHidden = false
 					self.passwordTxt.isHidden = false
-                    
-                    self.phoneNumberTxt.isHidden = true
-                }
-            case 1:
-                UIView.animate(withDuration: 0.3) {
-                    self.emailTxt.isHidden = true
-                    self.passwordTxt.isHidden = true
 					
-                    self.phoneNumberTxt.isHidden = false
-                }
-            default:
-                break
-            }
+					self.phoneNumberTxt.isHidden = true
+				}
+			case 1:
+				UIView.animate(withDuration: 0.3) {
+					self.emailTxt.isHidden = true
+					self.passwordTxt.isHidden = true
+					
+					self.phoneNumberTxt.isHidden = false
+				}
+			default:
+				break
+		}
     }
     
 }
 
 extension SignInVC: OtpInputDelegate{
-	func onOtpVerified(credential: PhoneAuthCredential, controller: UIViewController) {
+	func onOtpVerified(credential: PhoneAuthCredential, controller: OtpInputVC) {
 		Auth.auth().signIn(with: credential){authResult, error in
 			if let _ = error {
 				self.showAlert(title: "Oops", message: "Unknown error occured.")
 				return
 			}
-			self.navigateToHome()
 		}
 	}
 	

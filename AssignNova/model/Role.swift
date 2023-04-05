@@ -18,14 +18,12 @@ struct Role: Codable{
 	@ServerTimestamp var createdAt: Date?
 	@ServerTimestamp var updatedAt: Date?
 	
-	init(id: String? = nil, name: String, businessId: String, color: String, createdAt: Date? = nil, updatedAt: Date? = nil) {
+	init(id: String? = nil, name: String, color: String) {
 		self.id = id
 		self.name = name
-		self.businessId = businessId
 		self.color = color
-		self.createdAt = createdAt
-		self.updatedAt = updatedAt
 		
-		self.createdBy = Auth.auth().currentUser?.uid ?? ""
+		self.createdBy = ActiveEmployee.instance?.employee.id ?? ""
+		self.businessId = ActiveEmployee.instance?.employee.businessId ?? ""
 	}
 }

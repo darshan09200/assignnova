@@ -10,7 +10,7 @@ import AEOTPTextField
 import FirebaseAuth
 
 protocol OtpInputDelegate {
-	func onOtpVerified(credential: PhoneAuthCredential, controller: UIViewController)
+	func onOtpVerified(credential: PhoneAuthCredential, controller: OtpInputVC)
 }
 
 class OtpInputVC: UIViewController {
@@ -25,13 +25,14 @@ class OtpInputVC: UIViewController {
 	
 	var delegate: OtpInputDelegate?
 	
+	let phoneNumber = UserDefaults.standard.string(forKey: "authPhoneNumber")
+	
 	private var timer: Timer?
 	private var secondsLeft = 0
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		let phoneNumber = UserDefaults.standard.string(forKey: "authPhoneNumber")
 		if let phoneNumber = phoneNumber{
 			phoneNumberLabel.isHidden = false
 			phoneNumberLabel.text = phoneNumber
@@ -114,8 +115,8 @@ extension OtpInputVC: AEOTPTextFieldDelegate{
 				delegate.onOtpVerified(credential: credential, controller: self)
 			} else {
 				dismiss(animated: true)
+				stopLoading()
 			}
-			stopLoading()
 		}
 	}
 }

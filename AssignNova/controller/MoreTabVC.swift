@@ -14,8 +14,16 @@ class MoreTabVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+		
     }
 
+	@IBAction func onProfilePress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Employee", bundle: nil).instantiateViewController(withIdentifier: "ViewEmployeeVC") as! ViewEmployeeVC
+		viewController.isProfile = true
+		viewController.employeeId = ActiveEmployee.instance?.employee.id
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
+	
 	@IBAction func onBranchPress(_ sender: Any) {
 		let viewController = UIStoryboard(name: "Branch", bundle: nil)
 			.instantiateViewController(withIdentifier: "ViewAllBranchTVC") as! ViewAllBranchTVC
@@ -28,17 +36,13 @@ class MoreTabVC: UIViewController {
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
+	@IBAction func onEmployeePress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Employee", bundle: nil)
+			.instantiateViewController(withIdentifier: "ViewAllEmployeeTVC") as! ViewAllEmployeeTVC
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
+	
 	@IBAction func onLogoutPress(_ sender: UIButton) {
-		let firebaseAuth = Auth.auth()
-		do {
-			try firebaseAuth.signOut()
-		} catch let signOutError as NSError {
-			print("Error signing out: %@", signOutError)
-		}
-		
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		let loginController = storyboard.instantiateViewController(identifier: "LoginNavVC")
-		
-		(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginController)
+		AuthHelper.logout()
 	}
 }

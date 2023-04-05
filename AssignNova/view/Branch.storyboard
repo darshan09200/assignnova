@@ -213,15 +213,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" rowHeight="60" id="HJo-Sl-UFM" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="393" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" rowHeight="68" id="HJo-Sl-UFM" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="68"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HJo-Sl-UFM" id="SDt-qw-eZA">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR8-7g-Sdn" customClass="Card" customModule="AssignNova" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="4" width="361" height="52"/>
+                                            <rect key="frame" x="16" y="4" width="361" height="60"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="Role"/>
@@ -276,38 +276,38 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="details" id="4QI-o3-keY" customClass="BranchDetailCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="393" height="305"/>
+                                <rect key="frame" x="0.0" y="50" width="393" height="306.66665649414062"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4QI-o3-keY" id="IkS-Le-imM">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="305"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="306.66665649414062"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztG-PF-dmK">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="305"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="306.66666666666669"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fOg-vt-b58">
-                                                    <rect key="frame" x="16" y="16" width="361" height="273"/>
+                                                    <rect key="frame" x="16" y="16" width="361" height="274.66666666666669"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6P-aY-wzZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="56.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="58"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dYT-x6-AB7">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="81.666666666666671" height="56.333333333333336"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="81.666666666666671" height="58"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q17-Cu-qkB">
-                                                                            <rect key="frame" x="0.0" y="18" width="41.333333333333336" height="20.333333333333329"/>
+                                                                            <rect key="frame" x="0.0" y="18.666666666666664" width="41.333333333333336" height="20.333333333333336"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1r-jr-3Se">
-                                                                            <rect key="frame" x="49.333333333333329" y="16" width="4.6666666666666643" height="24"/>
+                                                                            <rect key="frame" x="49.333333333333329" y="17" width="4.6666666666666643" height="24"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bw3-Wk-On2">
-                                                                            <rect key="frame" x="61.999999999999993" y="19" width="19.666666666666664" height="19"/>
+                                                                            <rect key="frame" x="61.999999999999993" y="19.666666666666664" width="19.666666666666664" height="19"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                 </stackView>
@@ -321,13 +321,13 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yr-mo-kcD">
-                                                            <rect key="frame" x="0.0" y="64.333333333333329" width="361" height="20.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="66" width="361" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp-map" translatesAutoresizingMaskIntoConstraints="NO" id="GDR-ac-nFK">
-                                                            <rect key="frame" x="0.0" y="92.666666666666671" width="361" height="180.33333333333331"/>
+                                                            <rect key="frame" x="0.0" y="94.333333333333329" width="361" height="180.33333333333337"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="GDR-ac-nFK" secondAttribute="height" multiplier="2:1" id="FI3-qk-lh6"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="QcO-Ij-fSj"/>
@@ -364,18 +364,18 @@
                                     <outlet property="branchName" destination="Q17-Cu-qkB" id="HsN-zd-20X"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" rowHeight="60" id="0Sq-eJ-FO3" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="355" width="393" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" id="0Sq-eJ-FO3" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="356.66665649414062" width="393" height="8"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Sq-eJ-FO3" id="eXU-Yn-2EB">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="8"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nob-FP-0u9">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="8"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJd-fN-c9E" customClass="Card" customModule="AssignNova" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="4" width="361" height="52"/>
+                                                    <rect key="frame" x="16" y="4" width="361" height="0.0"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                             </subviews>

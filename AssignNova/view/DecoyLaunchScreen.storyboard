@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3PY-4Q-cbp">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Launch ScreenVC-->
+        <scene sceneID="oXr-oO-409">
+            <objects>
+                <viewController storyboardIdentifier="LaunchScreen" id="3PY-4Q-cbp" customClass="LaunchScreenVC" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RPH-gt-k4z">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen-gradient" translatesAutoresizingMaskIntoConstraints="NO" id="Bqn-nQ-I3V">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-screen-logo" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWA-mU-P3c">
+                                <rect key="frame" x="144" y="373.66666666666669" width="105" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iWA-mU-P3c" secondAttribute="height" multiplier="1:1" id="gUk-dG-dLu"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VaC-Nf-bfQ"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Bqn-nQ-I3V" secondAttribute="trailing" id="5qv-Kd-XfW"/>
+                            <constraint firstItem="Bqn-nQ-I3V" firstAttribute="top" secondItem="RPH-gt-k4z" secondAttribute="top" id="64n-HM-NzY"/>
+                            <constraint firstAttribute="bottom" secondItem="Bqn-nQ-I3V" secondAttribute="bottom" id="DF1-oo-itR"/>
+                            <constraint firstItem="iWA-mU-P3c" firstAttribute="centerX" secondItem="RPH-gt-k4z" secondAttribute="centerX" id="DO2-J1-A7d"/>
+                            <constraint firstItem="iWA-mU-P3c" firstAttribute="centerY" secondItem="RPH-gt-k4z" secondAttribute="centerY" id="PN9-KM-aol"/>
+                            <constraint firstItem="iWA-mU-P3c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RPH-gt-k4z" secondAttribute="leadingMargin" constant="128" id="U4E-eb-mtl"/>
+                            <constraint firstItem="Bqn-nQ-I3V" firstAttribute="leading" secondItem="RPH-gt-k4z" secondAttribute="leading" id="ou5-iK-u8x"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="iWA-mU-P3c" secondAttribute="trailing" constant="128" id="wCX-QG-86I"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gradient" destination="Bqn-nQ-I3V" id="SVt-xz-YLF"/>
+                        <outlet property="logo" destination="iWA-mU-P3c" id="rW5-Pr-Rdt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dJL-CH-Hke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="850" y="271"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="splash-screen-gradient" width="430" height="932"/>
+        <image name="splash-screen-logo" width="128" height="128"/>
+    </resources>
+</document>

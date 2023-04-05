@@ -13,18 +13,19 @@ class ViewAllRoleTVC: UITableViewController {
 	private let searchController = UISearchController()
 	private var roles = [Role]()
 	private var listener: ListenerRegistration?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		configureSearchBar()
-		
-		if let businessId = ActiveUser.instance?.business?.id{
+
+		if let businessId = ActiveEmployee.instance?.business?.id{
 			listener = FirestoreHelper.getRoles(businessId: businessId){ roles in
 				self.roles = roles ?? []
 				self.tableView.reloadData()
 			}
 		}
 	}
-	
+
 	private func configureSearchBar() {
 		navigationItem.searchController = searchController
 		searchController.obscuresBackgroundDuringPresentation = false
@@ -33,38 +34,38 @@ class ViewAllRoleTVC: UITableViewController {
 		definesPresentationContext = true
 		searchController.searchResultsUpdater = self
 	}
-	
+
 	@IBAction func onAddRolePress(_ sender: UIBarButtonItem) {
 		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "AddRoleVC")
 		self.present(UINavigationController(rootViewController: viewController), animated: true)
 	}
-	
+
 }
 
 extension ViewAllRoleTVC{
 	// MARK: - Table view data source
-	
+
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		// #warning Incomplete implementation, return the number of sections
 		return 1
 	}
-	
+
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// #warning Incomplete implementation, return the number of rows
 		return roles.count
 	}
-	
+
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
-		
+
 		let role = roles[indexPath.row]
-		
+
 		cell.card.barView.backgroundColor = UIColor(hex: role.color)
 		cell.card.title = role.name
-		
+
 		return cell
 	}
-	
+
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 		let role = roles[indexPath.row]
@@ -72,7 +73,7 @@ extension ViewAllRoleTVC{
 		viewController.roleId = role.id
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
-	
+
 	/*
 	 // Override to support editing the table view.
 	 override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -84,21 +85,21 @@ extension ViewAllRoleTVC{
 	 }
 	 }
 	 */
-	
+
 }
 
 extension ViewAllRoleTVC: UISearchBarDelegate{
-	
+
 }
 
 extension ViewAllRoleTVC: UISearchControllerDelegate{
-	
+
 }
 
 extension ViewAllRoleTVC: UISearchResultsUpdating{
 	func updateSearchResults(for searchController: UISearchController) {
-		
+
 	}
-	
-	
+
+
 }

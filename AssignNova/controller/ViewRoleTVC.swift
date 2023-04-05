@@ -10,7 +10,6 @@ import FirebaseFirestore
 
 class ViewRoleTVC: UITableViewController {
 
-    
 	var roleId: String?
 	private var role: Role?
 	private var listener: ListenerRegistration?
@@ -25,6 +24,8 @@ class ViewRoleTVC: UITableViewController {
 			}
 			
 		}
+		
+		tableView.sectionHeaderTopPadding = 0
 		
 	}
 	

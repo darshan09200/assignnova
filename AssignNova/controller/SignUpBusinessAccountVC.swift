@@ -30,6 +30,15 @@ class SignUpBusinessAccountVC: UIViewController {
 		pwdInput.textFieldComponent.isSecureTextEntry = true
 		confirmPwdInput.textFieldComponent.isSecureTextEntry = true
 		
+        firstNameInput.textFieldComponent.textContentType = .name
+        lastNameInput.textFieldComponent.textContentType = .name
+        emailInput.textFieldComponent.textContentType = .emailAddress
+        emailInput.textFieldComponent.keyboardType = .emailAddress
+        phoneNumberInput.textFieldComponent.textContentType = .telephoneNumber
+        phoneNumberInput.textFieldComponent.keyboardType = .phonePad
+        pwdInput.textFieldComponent.textContentType = .password
+        confirmPwdInput.textFieldComponent.textContentType = .password
+        
 		let pwdButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
 		pwdButton.tintColor = .label
 		pwdButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
@@ -116,12 +125,19 @@ class SignUpBusinessAccountVC: UIViewController {
 			let formattedPhoneNumber = ValidationHelper.formatPhoneNumber(phoneNumberDetails!)
 			print("\(firstName), \(lastName), \(email), \(formattedPhoneNumber), \(pwd), \(confirmPwd)")
 			self.startLoading()
-			AuthHelper.doesPhoneNumberExists(formattedPhoneNumber){ error in
+			AuthHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists in
 				if let error = error {
 					self.stopLoading(){
 						self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberInput)
 					}
-				} else {
+				} else if let exists = exists{
+					if exists {
+						self.showAlert(title: "Oops", message:"Phone number already linked with different account", textInput: self.phoneNumberInput)
+						return
+					}
+					DispatchQueue.main.async {
+						(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
+					}
 					Auth.auth().createUser(withEmail: email, password: pwd) { authResult, error in
 						if let error = AuthHelper.getErrorMessage(error: error){
 							self.stopLoading(){
@@ -144,8 +160,9 @@ class SignUpBusinessAccountVC: UIViewController {
 							
 							if let uid = Auth.auth().currentUser?.uid
 							{
-								let user = User(id: uid, firstName: firstName, lastName: lastName )
-								FirestoreHelper.saveUser(user){_ in}
+								let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
+								let employee = Employee(userId: uid, firstName: firstName, lastName: lastName, appRole: .owner, email: email, phoneNumber: phoneNumber, color: backgroundColor.toHex ?? "")
+								FirestoreHelper.saveEmployee(employee){_ in}
 							}
 							
 							Auth.auth().currentUser?.sendEmailVerification { error in
@@ -197,6 +214,9 @@ class SignUpBusinessAccountVC: UIViewController {
 					} else {
 						let credential = GoogleAuthProvider.credential(withIDToken: idToken,
 																	   accessToken: user.accessToken.tokenString)
+						DispatchQueue.main.async {
+							(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
+						}
 						Auth.auth().signIn(with: credential) { result, error in
 							if let error = AuthHelper.getErrorMessage(error: error){
 								self.stopLoading(){
@@ -205,14 +225,18 @@ class SignUpBusinessAccountVC: UIViewController {
 								return
 							}
 							if let uid = result?.user.uid{
-								let user = User(id: uid, firstName: firstName ?? "", lastName: lastName ?? "")
-								FirestoreHelper.saveUser(user){ error in
+								let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
+								let employee = Employee(userId: uid, firstName: firstName ?? "", lastName: lastName ?? "", appRole: .owner, email: email!, color: backgroundColor.toHex ?? "")
+								FirestoreHelper.saveEmployee(employee){ error in
 									if let error = error{
 										self.showAlert(title: "Oops", message: error.localizedDescription)
 										return
 									}
-									self.stopLoading(){
-										self.navigateToSetupBusiness()
+//									self.stopLoading(){
+//										self.navigateToSetupBusiness()
+//									}
+									DispatchQueue.main.async {
+										(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
 									}
 								}
 							} else {
@@ -235,7 +259,7 @@ class SignUpBusinessAccountVC: UIViewController {
 }
 
 extension SignUpBusinessAccountVC: OtpInputDelegate{
-	func onOtpVerified(credential: PhoneAuthCredential, controller: UIViewController) {
+	func onOtpVerified(credential: PhoneAuthCredential, controller: OtpInputVC) {
 		if let user = Auth.auth().currentUser{
 			user.link(with: credential){authResult, error in
 				if let error = error as NSError? {
@@ -251,7 +275,10 @@ extension SignUpBusinessAccountVC: OtpInputDelegate{
 					return
 				}
 //				self.navigationController?.popViewController(animated: true)
-				self.navigateToSetupBusiness()
+//				self.navigateToSetupBusiness()
+				DispatchQueue.main.async {
+					(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
+				}
 			}
 		}
 	}
