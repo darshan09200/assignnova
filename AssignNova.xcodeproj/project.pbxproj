@@ -69,6 +69,7 @@
 		558DF0BF29D1255B0012C87E /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0BE29D1255B0012C87E /* Date+Format.swift */; };
 		558DF0C129D127B70012C87E /* TimeRangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0C029D127B70012C87E /* TimeRangePicker.swift */; };
 		558DF0C329D170FD0012C87E /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0C229D170FD0012C87E /* ColorPickerCell.swift */; };
+		5593F5EF29DCC42800E1F278 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593F5EE29DCC42800E1F278 /* UIViewController+Keyboard.swift */; };
 		559C7BBE29C9B781002BE062 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559C7BBD29C9B781002BE062 /* Card.xib */; };
 		559C7BC029C9B9DC002BE062 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7BBF29C9B9DC002BE062 /* Card.swift */; };
 		55A91F8F29C4D7A8004576B0 /* SelectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */; };
@@ -193,6 +194,7 @@
 		558DF0BE29D1255B0012C87E /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		558DF0C029D127B70012C87E /* TimeRangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangePicker.swift; sourceTree = "<group>"; };
 		558DF0C229D170FD0012C87E /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
+		5593F5EE29DCC42800E1F278 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		559C7BBD29C9B781002BE062 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		559C7BBF29C9B9DC002BE062 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationVC.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				553D02AF29C974A90076AEBD /* UIColor+Hex.swift */,
 				5507D68829CFE209003297B4 /* UIImage+Avatar.swift */,
 				558DF0BE29D1255B0012C87E /* Date+Format.swift */,
+				5593F5EE29DCC42800E1F278 /* UIViewController+Keyboard.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				558DF0C329D170FD0012C87E /* ColorPickerCell.swift in Sources */,
 				553D02AC29C96BE90076AEBD /* Branch.swift in Sources */,
 				552EF6AC29CA159100BF5EDA /* CardCell.swift in Sources */,
+				5593F5EF29DCC42800E1F278 /* UIViewController+Keyboard.swift in Sources */,
 				553D02B029C974A90076AEBD /* UIColor+Hex.swift in Sources */,
 				33255D5E29C64576004A49FB /* SignInVC.swift in Sources */,
 				5546CDE129D798EA00AECE62 /* ViewTimeOffVC.swift in Sources */,
