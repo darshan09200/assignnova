@@ -10,7 +10,6 @@
 		330E4D6D29CBD189008BDE3A /* Availability.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6C29CBD189008BDE3A /* Availability.storyboard */; };
 		330E4D7129CBDCE7008BDE3A /* AddAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */; };
 		330E4D7329CCB644008BDE3A /* EditAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */; };
-		330E4D7729CD33B4008BDE3A /* TimeIntervalPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7629CD33B4008BDE3A /* TimeIntervalPickerVC.swift */; };
 		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
 		33255D5E29C64576004A49FB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInVC.swift */; };
 		552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */; };
@@ -94,7 +93,6 @@
 		330E4D6C29CBD189008BDE3A /* Availability.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Availability.storyboard; sourceTree = "<group>"; };
 		330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAvailabilityVC.swift; sourceTree = "<group>"; };
 		330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvailabilityVC.swift; sourceTree = "<group>"; };
-		330E4D7629CD33B4008BDE3A /* TimeIntervalPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalPickerVC.swift; sourceTree = "<group>"; };
 		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
 		33255D5D29C64576004A49FB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBusinessAccountVC.swift; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				55B3445F29CA6AB000CC73DD /* AddRoleVC.swift */,
 				330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */,
 				330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */,
-				330E4D7629CD33B4008BDE3A /* TimeIntervalPickerVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -597,7 +594,6 @@
 				5549DA6529C8BE3800E51828 /* MoreTabVC.swift in Sources */,
 				554917BC29C4F7F400132051 /* TextInput.swift in Sources */,
 				553D02AA29C956FA0076AEBD /* ColorPickerVC.swift in Sources */,
-				330E4D7729CD33B4008BDE3A /* TimeIntervalPickerVC.swift in Sources */,
 				552396EB29C668D500EE9323 /* SetupBusinessVC.swift in Sources */,
 				553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */,
 				5530836B29C98C1800080070 /* NavigationItem.swift in Sources */,
