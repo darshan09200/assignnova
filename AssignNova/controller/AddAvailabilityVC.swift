@@ -12,24 +12,59 @@ class AddAvailabilityVC: UIViewController{
     @IBOutlet weak var AllDaySwitch: UISwitch!
     @IBOutlet weak var unavailableBtn: UIButton!
     @IBOutlet weak var availableBtn: UIButton!
-    @IBOutlet weak var dateLbl: UILabel!
-    @IBOutlet weak var timeLbl: UILabel!
+    
+    @IBOutlet weak var dateBtn: UIButton!
+    @IBOutlet weak var timeBtn: UIButton!
     
     
     @IBOutlet weak var notesField: TextInput!
     
-    let datePicker = UIDatePicker() // Create a date picker instance
+    let DateDummy = UITextField(frame: .zero)
+    let DatePicker = UIDatePicker()
         
+    let timeDummy = UITextField(frame: .zero)
+    let timePicker = UIPickerView()
+    
+    var startDate: Date = .now.startOfDay
+    var endDate: Date = .now.startOfDay
+    var startTime: Date = .now.getNearest15()
+    var endTime: Date = .now.getNearest15().add(minute: 15)
+    
     override func viewDidLoad() {
             super.viewDidLoad()
             
-            availableBtn.addTarget(self, action: #selector(availableBtnTapped), for: .touchUpInside)
-            unavailableBtn.addTarget(self, action: #selector(unavailableBtnTapped), for: .touchUpInside)
+        availableBtn.addTarget(self, action: #selector(availableBtnTapped), for: .touchUpInside)
+        unavailableBtn.addTarget(self, action: #selector(unavailableBtnTapped), for: .touchUpInside)
         
-        // Add a tap gesture recognizer to the timeLbl
-               let timeTapGesture = UITapGestureRecognizer(target: self, action: #selector(showTimeIntervalPicker))
-               timeLbl.isUserInteractionEnabled = true
-               timeLbl.addGestureRecognizer(timeTapGesture)
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDoneButton))
+
+        let items = [flexSpace, doneButton]
+        toolbar.items = items
+        toolbar.sizeToFit()
+        
+        DateDummy.inputView = DatePicker
+        DatePicker.minimumDate = .now
+        DatePicker.datePickerMode = .date
+        DatePicker.preferredDatePickerStyle = .wheels
+        DateDummy.inputAccessoryView = toolbar
+        DatePicker.addTarget(self, action: #selector(onStartDateValueChanged), for: .valueChanged)
+
+
+        timeDummy.inputView = timePicker
+        timePicker.delegate = self
+        timePicker.dataSource = self
+        timeDummy.inputAccessoryView = toolbar
+
+        view.addSubview(DateDummy)
+        view.addSubview(timeDummy)
+
+
+        dateBtn.setTitle(startDate.format(to: "EEE, MMM dd, yyyy"), for: .normal)
+        timeBtn.setTitle(Date.buildTimeRangeString(startDate: startTime, endDate: endTime), for: .normal)
+        
         }
             
         @objc func availableBtnTapped() {
@@ -46,66 +81,68 @@ class AddAvailabilityVC: UIViewController{
             unavailableBtn.tintColor = .blue
         }
             
-    @objc func showTimeIntervalPicker() {
-            // Create an alert controller instance
-            let alertController = UIAlertController(title: "Select Time Interval", message: nil, preferredStyle: .alert)
-
-        // Create a horizontal stack view to hold the time pickers
-                let stackView = UIStackView()
-                stackView.axis = .horizontal
-                stackView.distribution = .fillEqually
-                stackView.spacing = 12
-                stackView.translatesAutoresizingMaskIntoConstraints = false
-
-                // Create a start time picker instance
-                let startTimePicker = UIDatePicker()
-                startTimePicker.datePickerMode = .time
-                startTimePicker.minuteInterval = 15
-                stackView.addArrangedSubview(startTimePicker)
-
-                // Create an end time picker instance
-                let endTimePicker = UIDatePicker()
-                endTimePicker.datePickerMode = .time
-                endTimePicker.minuteInterval = 15
-                stackView.addArrangedSubview(endTimePicker)
-
-                // Add the stack view to the alert controller
-                alertController.view.addSubview(stackView)
-
-                // Set up constraints for the stack view
-                let margin: CGFloat = 20
-                let _: CGFloat = 20
-                NSLayoutConstraint.activate([
-                    stackView.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: margin),
-                    stackView.leadingAnchor.constraint(equalTo: alertController.view.leadingAnchor, constant: margin),
-                    stackView.trailingAnchor.constraint(equalTo: alertController.view.trailingAnchor, constant: -margin),
-                    stackView.bottomAnchor.constraint(equalTo: alertController.view.bottomAnchor, constant: -margin)
-                ])
-        
-            // Add an "OK" button to the alert controller
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "h:mm a"
-                self.timeLbl.text = dateFormatter.string(from: startTimePicker.date) + " - " + dateFormatter.string(from: endTimePicker.date)
-            }
-            alertController.addAction(okAction)
-
-            // Add a "Cancel" button to the alert controller
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
-
-            // Present the alert controller
-            present(alertController, animated: true, completion: nil)
-        }
-    
-    @IBAction func allDaySwitchToggled(_ sender: UISwitch) {
-        if sender.isOn {
-                timeLbl.text = "12:00 AM - 11:59 PM"
-                timeLbl.isUserInteractionEnabled = false
-            } else {
-                timeLbl.isUserInteractionEnabled = true
-            }
+   
+    @IBAction func onDatePressed(_ sender: UIButton) {
+        DateDummy.becomeFirstResponder()
     }
     
+    @IBAction func allDaySwitchToggled(_ sender: UISwitch) {
+       
+    }
     
+    @IBAction func onTimePress(_ sender: UIButton) {
+        timeDummy.becomeFirstResponder()
+
+        let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
+        let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
+
+        let startTimeIndex = TimeRangePicker.startTimes.firstIndex(where: {
+            let components = Calendar.current.dateComponents([.hour, .year, .minute], from: $0)
+            return components.minute == startTimeComponents.minute && components.hour == startTimeComponents.hour
+        }) ?? 0
+
+        let endTimeIndex = TimeRangePicker.endTimes.firstIndex(where:{
+            let components = Calendar.current.dateComponents([.hour, .year, .minute], from: $0)
+            return components.minute == endTimeComponents.minute && components.hour == endTimeComponents.hour
+        }) ?? 0
+
+        timePicker.selectRow(startTimeIndex, inComponent: 0, animated: true)
+        timePicker.selectRow(endTimeIndex, inComponent: 1, animated: true)
+    }
+    
+}
+
+extension AddAvailabilityVC{
+    @objc func onDoneButton(){
+        self.DateDummy.resignFirstResponder()
+        self.timeDummy.resignFirstResponder()
+    }
+
+    @objc func onStartDateValueChanged(_ datePicker: UIDatePicker){
+        startDate = datePicker.date
+        dateBtn.setTitle(startDate.format(to: "EEE, MMM dd, yyyy"), for: .normal)
+    }
+}
+
+extension AddAvailabilityVC: UIPickerViewDelegate, UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return TimeRangePicker.numberOfComponents(in: pickerView)
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return TimeRangePicker.pickerView(pickerView, numberOfRowsInComponent: component)
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return TimeRangePicker.pickerView(pickerView, titleForRow: row, forComponent: component)
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if let (startTime, endTime) = TimeRangePicker.pickerView(pickerView, didSelectRow: row, inComponent: component){
+            self.startTime = startTime
+            self.endTime = endTime
+            timeBtn.setTitle(Date.buildTimeRangeString(startDate: startTime, endDate: endTime), for: .normal)
+        }
+    }
+
 }
