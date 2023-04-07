@@ -93,7 +93,7 @@ class SetupEmployeeVC: UIViewController {
 					}
 					return
 				}
-				AuthHelper.isUserRegistered(email: self.email){error, registered in
+				CloudFunctionsHelper.isUserRegistered(email: self.email){error, registered in
 					DispatchQueue.main.async {
 						(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
 					}

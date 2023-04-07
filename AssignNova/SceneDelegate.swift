@@ -79,7 +79,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	func refreshData(){
 		preventRefresh = false
-		AuthHelper.refreshData(){ activeEmployee in
+		CloudFunctionsHelper.refreshData(){ activeEmployee in
 			if let activeEmployee = activeEmployee {
 				print(activeEmployee.employee)
 				if activeEmployee.employee.appRole == .owner && activeEmployee.business == nil {

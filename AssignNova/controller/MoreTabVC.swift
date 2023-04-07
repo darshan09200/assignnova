@@ -43,6 +43,6 @@ class MoreTabVC: UIViewController {
 	}
 	
 	@IBAction func onLogoutPress(_ sender: UIButton) {
-		AuthHelper.logout()
+		CloudFunctionsHelper.logout()
 	}
 }

@@ -9,6 +9,7 @@ import UIKit
 import GooglePlaces
 import FirebaseFirestore
 import FirebaseAuth
+import StripePaymentSheet
 
 class SetupBusinessVC: UIViewController {
 
@@ -21,6 +22,8 @@ class SetupBusinessVC: UIViewController {
 	@IBOutlet weak var smallPlanCard: PlanCard!
 	@IBOutlet weak var businessPlanCard: PlanCard!
 	@IBOutlet weak var enterprisePlanCard: PlanCard!
+	
+	var businessReference: DocumentReference?
 
 	let minusButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
 	let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -28,11 +31,9 @@ class SetupBusinessVC: UIViewController {
 	var place: GMSPlace?
 
 	var showLogout = false
-
-
-	let loadingVC = LoadingViewController()
-
-
+	var paymentDetails: UpdateSubscriptionResponse?
+	var business: Business?
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,7 +68,7 @@ class SetupBusinessVC: UIViewController {
 	}
 
 	@objc func onLogoutPress(){
-		AuthHelper.logout()
+		CloudFunctionsHelper.logout()
 	}
 
 	@IBAction func onSelectLocationButonPress(_ sender: Any) {
@@ -110,53 +111,50 @@ class SetupBusinessVC: UIViewController {
 
 
 	@IBAction func onMakePaymentBtnPress(_ sender: UIButton) {
-		guard let businessName = businessNameInput.textFieldComponent.text, !businessName.isEmpty else {
-			showAlert(title: "Oops", message: "Business name is empty", textInput: businessNameInput)
-			return
-		}
-		guard let selectedPlace = place else {
-			showAlert(title: "Oops", message: "Location for business is not selected")
-			return
-		}
-		guard let numberOfEmployees = numberOfEmployeeInput.textFieldComponent.text, !numberOfEmployees.isEmpty else {
-			showAlert(title: "Oops", message: "Number of Employees is empty", textInput: businessNameInput)
-			return
-		}
-		guard let noOfEmpCount = Int(numberOfEmployees), noOfEmpCount % 10 == 0 else {
-			showAlert(title: "Oops", message: "Number of Employees is invalid. It can only be in groups of 10", textInput: businessNameInput)
-			return
-		}
-
-		let business = Business(name: businessName, address: selectedPlace.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude))
-		self.startLoading()
-		FirestoreHelper.saveBusiness(business){ error in
-			if let error = error{
-				if let error = error as NSError?{
-					let errorCode = FirestoreErrorCode(_nsError: error).code
-					if errorCode == .permissionDenied{
-						self.stopLoading(){
-							self.showAlert(title: "Oops", message: "Seems like you are not logged in. Login to setup business"){
-								self.navigationController?.popToRootViewController(animated: true)
-							}
-						}
-						return
-					}
-					self.stopLoading(){
-						self.showAlert(title: "Oops", message: "Unknown error occured")
-					}
-				}
-				print(error.localizedDescription)
+		if business == nil{
+			guard let businessName = businessNameInput.textFieldComponent.text, !businessName.isEmpty else {
+				showAlert(title: "Oops", message: "Business name is empty", textInput: businessNameInput)
 				return
 			}
-			DispatchQueue.main.async {
-				AuthHelper.refreshData()
-
-				let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
-				let mainTabBarController = storyboard.instantiateViewController(identifier: "HomeNavVC")
-
-				(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+			guard let selectedPlace = place else {
+				showAlert(title: "Oops", message: "Location for business is not selected")
+				return
 			}
-
+			guard let numberOfEmployees = numberOfEmployeeInput.textFieldComponent.text, !numberOfEmployees.isEmpty else {
+				showAlert(title: "Oops", message: "Number of Employees is empty", textInput: businessNameInput)
+				return
+			}
+			guard let noOfEmpCount = Int(numberOfEmployees), noOfEmpCount % 10 == 0 else {
+				showAlert(title: "Oops", message: "Number of Employees is invalid. It can only be in groups of 10", textInput: businessNameInput)
+				return
+			}
+			
+			var business = Business(name: businessName, address: selectedPlace.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude))
+			self.startLoading()
+			self.businessReference = FirestoreHelper.saveBusiness(business){ error in
+				if let error = error{
+					if let error = error as NSError?{
+						let errorCode = FirestoreErrorCode(_nsError: error).code
+						if errorCode == .permissionDenied{
+							self.stopLoading(){
+								self.showAlert(title: "Oops", message: "Seems like you are not logged in. Login to setup business"){
+									self.navigationController?.popToRootViewController(animated: true)
+								}
+							}
+							return
+						}
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: "Unknown error occured")
+						}
+					}
+					print(error.localizedDescription)
+					return
+				}
+				business.id = self.businessReference?.documentID
+				self.authorizePayment(business)
+			}
+		} else {
+			self.authorizePayment(business!)
 		}
 	}
 }
@@ -186,4 +184,64 @@ extension SetupBusinessVC: SelectLocationDelegate{
 		print("cancelled")
 	}
 
+}
+
+extension SetupBusinessVC{
+	
+	func getPaymentDetails(_ business: Business, completion: @escaping(_ paymentDetails: UpdateSubscriptionResponse? )->()){
+		if let paymentDetails = self.paymentDetails{
+			completion(paymentDetails)
+		} else {
+			CloudFunctionsHelper.updateSubscription(business: business){ paymentDetails in
+				self.paymentDetails = paymentDetails
+				completion(self.paymentDetails)
+			}
+		}
+	}
+	
+	func authorizePayment(_ business: Business){
+		getPaymentDetails(business){ paymentDetails in
+			if let paymentDetails = paymentDetails, let clientSecret = paymentDetails.clientSecret{
+				let customerId = paymentDetails.customerId
+				let customerEphemeralKeySecret = paymentDetails.ephemeralKey
+				let setupIntentClientSecret = clientSecret
+				let publishableKey = paymentDetails.publishableKey
+				
+				STPAPIClient.shared.publishableKey = publishableKey
+				
+				var configuration = PaymentSheet.Configuration()
+				configuration.defaultBillingDetails.address = .init(country: "CA", state: "ON")
+				configuration.appearance.colors.primary = UIColor(named: "AccentColor")!
+				configuration.merchantDisplayName = "AssignNova"
+				configuration.savePaymentMethodOptInBehavior = .requiresOptIn
+				configuration.customer = .init(id: customerId, ephemeralKeySecret: customerEphemeralKeySecret)
+				configuration.allowsDelayedPaymentMethods = false
+				let paymentSheet = PaymentSheet(setupIntentClientSecret: setupIntentClientSecret, configuration: configuration)
+				self.stopLoading(){
+					paymentSheet.present(from: self) { paymentResult in
+						var title = "Oops"
+						var message = ""
+						switch paymentResult {
+							case .completed:
+								title = "Congrats"
+								message = "Your order is confirmed"
+							case .canceled:
+								message = "Canceled!"
+							case .failed(let error):
+								message = "Payment failed: \(error)"
+						}
+						self.showAlert(title: title, message: message){
+							DispatchQueue.main.async {
+								(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
+							}
+						}
+					}
+				}
+			} else {
+				self.stopLoading(){
+					self.showAlert(title: "Oops", message: "Error creating subscription")
+				}
+			}
+		}
+	}
 }

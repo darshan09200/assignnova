@@ -40,7 +40,7 @@ class SignUpEmployeeVC: UIViewController {
 		
 		if modeSegment.selectedSegmentIndex == 0{
 			self.startLoading()
-			AuthHelper.isUserInvited(email: inputText){error, invited in
+			CloudFunctionsHelper.isUserInvited(email: inputText){error, invited in
 				if let error = error{
 					self.stopLoading(){
 						self.showAlert(title: "Oops", message: error)
@@ -66,14 +66,14 @@ class SignUpEmployeeVC: UIViewController {
 			} else {
 				self.startLoading()
 				let formattedPhoneNumber = ValidationHelper.formatPhoneNumber(phoneNumberDetails!)
-				AuthHelper.isUserInvited(phoneNumber: formattedPhoneNumber){error, invited in
+				CloudFunctionsHelper.isUserInvited(phoneNumber: formattedPhoneNumber){error, invited in
 					if let error = error{
 						self.stopLoading(){
 							self.showAlert(title: "Oops", message: error)
 						}
 						return
 					}
-					AuthHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
+					CloudFunctionsHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
 						self.stopLoading(){
 							let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
 								.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
@@ -104,7 +104,7 @@ class SignUpEmployeeVC: UIViewController {
 			   let idToken = user.idToken?.tokenString
 			{
 				let email = user.profile?.email
-				AuthHelper.isUserInvited(email: email){error, invited in
+				CloudFunctionsHelper.isUserInvited(email: email){error, invited in
 					if let error = error{
 						self.stopLoading(){
 							self.showAlert(title: "Oops", message: error)
@@ -126,7 +126,7 @@ class SignUpEmployeeVC: UIViewController {
 							return
 						}
 					}
-					AuthHelper.isUserRegistered(email: email){error, registered in
+					CloudFunctionsHelper.isUserRegistered(email: email){error, registered in
 						DispatchQueue.main.async {
 							(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
 						}
@@ -183,7 +183,7 @@ extension SignUpEmployeeVC: OtpInputDelegate{
 				}
 				return
 			}
-			AuthHelper.isUserRegistered(phoneNumber: controller.phoneNumber){error, registered in
+			CloudFunctionsHelper.isUserRegistered(phoneNumber: controller.phoneNumber){error, registered in
 				DispatchQueue.main.async {
 					(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
 				}
