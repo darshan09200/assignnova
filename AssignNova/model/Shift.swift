@@ -37,9 +37,9 @@ struct Shift: Codable{
 	
 	init(id: String? = nil, shiftStartDate: Date, shiftStartTime: Date, shiftEndTime: Date, unpaidBreak: Int? = nil, branchId: String, roleId: String, color: String, notes: String? = nil, employeeId: String? = nil, eligibleEmployees: [String]? = nil, noOfOpenShifts: Int? = nil, updatedAt: Date? = nil) {
 		self.id = id
-		self.shiftStartDate = shiftStartDate
-		self.shiftStartTime = shiftStartTime
-		self.shiftEndTime = shiftEndTime
+		self.shiftStartDate = Date.combineDateWithTime(date: shiftStartDate, time: shiftStartTime)
+		self.shiftStartTime = Date.combineDateWithTime(date: shiftStartDate, time: shiftStartTime)
+		self.shiftEndTime = Date.combineDateWithTime(date: shiftStartDate, time: shiftEndTime)
 		self.unpaidBreak = unpaidBreak
 		self.branchId = branchId
 		self.roleId = roleId

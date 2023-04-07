@@ -34,7 +34,7 @@ class FirestoreHelper{
 		}
 	}
 
-	static func saveBusiness(_ business: Business, completion: @escaping(_ error: Error?)->()){
+	static func saveBusiness(_ business: Business, completion: @escaping(_ error: Error?)->()) -> DocumentReference?{
 		do{
 			var reference: DocumentReference?
 			reference = try db.collection("business").addDocument(from: business) { err in
@@ -44,16 +44,17 @@ class FirestoreHelper{
 					return
 				}
 				if let businessId = reference?.documentID{
-					let branch = Branch(name: business.name, address: business.address, location: business.location, businessId: businessId, color: ColorPickerVC.colors.first!.color.toHex!)
-					print(branch)
+					let branch = Branch(name: business.name, address: business.address, location: business.location, businessId: businessId, color: ColorPickerVC.colors.first!.color.toHex!)					
 					saveBranch(branch, completion: completion)
 				} else {
 					completion(nil)
 				}
 			}
+			return reference
 		} catch{
 			completion(error)
 		}
+		return nil
 	}
 
 	static func saveBranch(_ branch: Branch, completion: @escaping(_ error: Error?)->()){
@@ -157,23 +158,23 @@ class FirestoreHelper{
 		}
 	}
 
-	static func getBusiness(employeeId: String, completion: @escaping(_ business: Business?)->()){
-		
-		let docRef = db.collection("business").whereField("managedBy", isEqualTo: employeeId)
-		docRef.getDocuments(){ snapshots, err in
+	static func getBusiness(businessId: String, completion: @escaping(_ business: Business?)->()){
+		if businessId.isEmpty{
+			completion(nil)
+			return
+		}
+		let docRef = db.collection("business").document(businessId)
+		docRef.getDocument(){ document, err in
 			if let _ = err {
 				completion(nil)
 				return
 			}
-			if let snapshot = snapshots?.documents.first{
-				do{
-					try completion(snapshot.data(as: Business.self))
-				} catch{
-					completion(nil)
-				}
-			} else{
+			do{
+				try completion(document?.data(as: Business.self))
+			} catch{
 				completion(nil)
 			}
+			
 		}
 	}
 

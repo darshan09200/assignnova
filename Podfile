@@ -22,6 +22,7 @@ target 'AssignNova' do
 	pod "LetterAvatarKit", "1.2.5"
 	pod 'EmptyDataSet-Swift'
 	pod 'FSCalendar'
+	pod 'StripePaymentSheet'
 end
 
 post_install do |installer|

@@ -38,7 +38,7 @@
 		553D02AC29C96BE90076AEBD /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02AB29C96BE90076AEBD /* Branch.swift */; };
 		553D02AE29C96F5D0076AEBD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02AD29C96F5D0076AEBD /* Color.swift */; };
 		553D02B029C974A90076AEBD /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02AF29C974A90076AEBD /* UIColor+Hex.swift */; };
-		553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D5BE429C630D600EB46B9 /* AuthHelper.swift */; };
+		553D5BE529C630D600EB46B9 /* CloudFunctionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D5BE429C630D600EB46B9 /* CloudFunctionsHelper.swift */; };
 		553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */; };
 		5546CDE129D798EA00AECE62 /* ViewTimeOffVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546CDE029D798EA00AECE62 /* ViewTimeOffVC.swift */; };
 		554917B529C4E59E00132051 /* SelectLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554917B429C4E59E00132051 /* SelectLocation.storyboard */; };
@@ -69,6 +69,7 @@
 		558DF0BF29D1255B0012C87E /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0BE29D1255B0012C87E /* Date+Format.swift */; };
 		558DF0C129D127B70012C87E /* TimeRangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0C029D127B70012C87E /* TimeRangePicker.swift */; };
 		558DF0C329D170FD0012C87E /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0C229D170FD0012C87E /* ColorPickerCell.swift */; };
+		5593F5EF29DCC42800E1F278 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593F5EE29DCC42800E1F278 /* UIViewController+Keyboard.swift */; };
 		559C7BBE29C9B781002BE062 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559C7BBD29C9B781002BE062 /* Card.xib */; };
 		559C7BC029C9B9DC002BE062 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7BBF29C9B9DC002BE062 /* Card.swift */; };
 		55A91F8F29C4D7A8004576B0 /* SelectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */; };
@@ -101,6 +102,8 @@
 		55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */; };
 		55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */; };
 		55DD7CDE29CA5063006079FF /* ViewBranchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */; };
+		55F2B06A29DD447300F213D0 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F2B06829DD447300F213D0 /* CheckoutViewController.swift */; };
+		55F2B06F29DD46E400F213D0 /* CheckoutViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F2B06E29DD46E400F213D0 /* CheckoutViewController.storyboard */; };
 		55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */; };
 		55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */; };
 		55FE062429DA1A0A00DAAA99 /* ActionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE062329DA1A0A00DAAA99 /* ActionsHelper.swift */; };
@@ -164,7 +167,7 @@
 		553D02AB29C96BE90076AEBD /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
 		553D02AD29C96F5D0076AEBD /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		553D02AF29C974A90076AEBD /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
-		553D5BE429C630D600EB46B9 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
+		553D5BE429C630D600EB46B9 /* CloudFunctionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFunctionsHelper.swift; sourceTree = "<group>"; };
 		553D5BE629C654A300EB46B9 /* SignUpBusiness.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpBusiness.storyboard; sourceTree = "<group>"; };
 		5546CDE029D798EA00AECE62 /* ViewTimeOffVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTimeOffVC.swift; sourceTree = "<group>"; };
 		554917B429C4E59E00132051 /* SelectLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectLocation.storyboard; sourceTree = "<group>"; };
@@ -195,6 +198,7 @@
 		558DF0BE29D1255B0012C87E /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		558DF0C029D127B70012C87E /* TimeRangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangePicker.swift; sourceTree = "<group>"; };
 		558DF0C229D170FD0012C87E /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
+		5593F5EE29DCC42800E1F278 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		559C7BBD29C9B781002BE062 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		559C7BBF29C9B9DC002BE062 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		55A91F8D29C4D7A8004576B0 /* SelectLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationVC.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 		55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeVC.swift; sourceTree = "<group>"; };
 		55DB509229CF6A130004DCF5 /* AssignNova.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AssignNova.entitlements; sourceTree = "<group>"; };
 		55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBranchTVC.swift; sourceTree = "<group>"; };
+		55F2B06829DD447300F213D0 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		55F2B06E29DD46E400F213D0 /* CheckoutViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckoutViewController.storyboard; sourceTree = "<group>"; };
 		55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DecoyLaunchScreen.storyboard; sourceTree = "<group>"; };
 		55FE062329DA1A0A00DAAA99 /* ActionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsHelper.swift; sourceTree = "<group>"; };
@@ -287,6 +293,7 @@
 				553D02AF29C974A90076AEBD /* UIColor+Hex.swift */,
 				5507D68829CFE209003297B4 /* UIImage+Avatar.swift */,
 				558DF0BE29D1255B0012C87E /* Date+Format.swift */,
+				5593F5EE29DCC42800E1F278 /* UIViewController+Keyboard.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -330,6 +337,7 @@
 				558DF0C229D170FD0012C87E /* ColorPickerCell.swift */,
 				5552C5B929D771380035C982 /* TimeOff.storyboard */,
 				B7DAB7FC29DB759F00207B4A /* HomeScreen.storyboard */,
+				55F2B06E29DD46E400F213D0 /* CheckoutViewController.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -392,6 +400,7 @@
 				B7781BCC29D7909500121D16 /* Facts.swift */,
 				5546CDE029D798EA00AECE62 /* ViewTimeOffVC.swift */,
 				B7DAB7FE29DB75FB00207B4A /* HomeScreenViewController.swift */,
+				55F2B06829DD447300F213D0 /* CheckoutViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -401,7 +410,7 @@
 			children = (
 				55209CC929D07A8F000D5726 /* Objc-Bridge-Header.h */,
 				55B3B8C429C60C4000B3DA5E /* UIHelper.swift */,
-				553D5BE429C630D600EB46B9 /* AuthHelper.swift */,
+				553D5BE429C630D600EB46B9 /* CloudFunctionsHelper.swift */,
 				5549DA5329C76E3200E51828 /* ValidationHelper.swift */,
 				5549DA5929C7F11300E51828 /* FirestoreHelper.swift */,
 				55FE062329DA1A0A00DAAA99 /* ActionsHelper.swift */,
@@ -596,6 +605,7 @@
 				558DF0BB29D102680012C87E /* Shift.storyboard in Resources */,
 				55C4121829C4A0010073A8CD /* LaunchScreen.storyboard in Resources */,
 				55C4123C29C4A72A0073A8CD /* ScrollView.xib in Resources */,
+				55F2B06F29DD46E400F213D0 /* CheckoutViewController.storyboard in Resources */,
 				559C7BBE29C9B781002BE062 /* Card.xib in Resources */,
 				55788EFE29C9894700C352ED /* NavigationItem.xib in Resources */,
 				555F37EA29C91DCE0058EAE6 /* Branch.storyboard in Resources */,
@@ -701,6 +711,7 @@
 				558DF0C329D170FD0012C87E /* ColorPickerCell.swift in Sources */,
 				553D02AC29C96BE90076AEBD /* Branch.swift in Sources */,
 				552EF6AC29CA159100BF5EDA /* CardCell.swift in Sources */,
+				5593F5EF29DCC42800E1F278 /* UIViewController+Keyboard.swift in Sources */,
 				553D02B029C974A90076AEBD /* UIColor+Hex.swift in Sources */,
 				33255D5E29C64576004A49FB /* SignInVC.swift in Sources */,
 				5546CDE129D798EA00AECE62 /* ViewTimeOffVC.swift in Sources */,
@@ -727,6 +738,7 @@
 				55B3446229CA6AD700CC73DD /* Role.swift in Sources */,
 				557B933729CF8113006A3FD3 /* SetupEmployeeVC.swift in Sources */,
 				55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */,
+				55F2B06A29DD447300F213D0 /* CheckoutViewController.swift in Sources */,
 				553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
 				55212E8E29D1C6450094738B /* Shift.swift in Sources */,
@@ -757,7 +769,7 @@
 				553D02AA29C956FA0076AEBD /* ColorPickerVC.swift in Sources */,
 				558DF0C129D127B70012C87E /* TimeRangePicker.swift in Sources */,
 				552396EB29C668D500EE9323 /* SetupBusinessVC.swift in Sources */,
-				553D5BE529C630D600EB46B9 /* AuthHelper.swift in Sources */,
+				553D5BE529C630D600EB46B9 /* CloudFunctionsHelper.swift in Sources */,
 				5530836B29C98C1800080070 /* NavigationItem.swift in Sources */,
 				55212E8C29D178ED0094738B /* EmployeePickerVC.swift in Sources */,
 				55B3445C29CA694800CC73DD /* ViewAllRoleTVC.swift in Sources */,
