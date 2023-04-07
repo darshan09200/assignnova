@@ -1,9 +1,8 @@
 //
 //  Objc-Bridge-Header.h
-//  FSCalendarSwiftExample
+//  AssignNova
 //
-//  Created by Wenchao Ding on 9/3/15.
-//  Copyright (c) 2015 wenchao. All rights reserved.
+//  Created by Darshan Jain on 2023-03-18.
 //
 
 #ifndef FSCalendarSwiftExample_Objc_Bridge_Header_h

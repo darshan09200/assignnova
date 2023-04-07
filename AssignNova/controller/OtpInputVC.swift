@@ -60,7 +60,7 @@ class OtpInputVC: UIViewController {
 		if let isValid = timer?.isValid, !isValid {
 			let phoneNumber = UserDefaults.standard.string(forKey: "authPhoneNumber")
 			if let phoneNumber = phoneNumber{
-				AuthHelper.sendOtp(phoneNumber: phoneNumber){ error in
+				CloudFunctionsHelper.sendOtp(phoneNumber: phoneNumber){ error in
 					if let error = error{
 						print(error.localizedDescription)
 						return

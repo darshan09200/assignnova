@@ -92,13 +92,13 @@ class SignInVC: UIViewController {
 			} else{
 				self.startLoading()
 				let formattedPhoneNumber = ValidationHelper.formatPhoneNumber(phoneNumberDetails!)
-				AuthHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists  in
+				CloudFunctionsHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists  in
 					if let error = error {
 						self.stopLoading(){
 							self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberTxt)
 						}
 					} else if let exists = exists, exists {
-						AuthHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
+						CloudFunctionsHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
 							self.stopLoading(){
 								let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
 									.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
@@ -135,13 +135,13 @@ class SignInVC: UIViewController {
 			   let idToken = user.idToken?.tokenString
 			{
 				let email = user.profile?.email
-				AuthHelper.doesEmailExists(email ?? ""){ error, exists  in
+				CloudFunctionsHelper.doesEmailExists(email ?? ""){ error, exists  in
 					if let exists = exists{
 						if exists{
 							let credential = GoogleAuthProvider.credential(withIDToken: idToken,
 																		   accessToken: user.accessToken.tokenString)
 							Auth.auth().signIn(with: credential) { result, error in
-								if let error = AuthHelper.getErrorMessage(error: error){
+								if let error = CloudFunctionsHelper.getErrorMessage(error: error){
 									self.stopLoading(){
 										self.showAlert(title: "Oops", message: error)
 									}

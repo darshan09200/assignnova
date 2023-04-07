@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFunctions
 import FirebaseSharedSwift
 
-class AuthHelper{
+class CloudFunctionsHelper{
 	static var userId: String?{
 		return Auth.auth().currentUser?.uid
 	}
@@ -23,7 +23,7 @@ class AuthHelper{
                     FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
                         if let employee = employee{
                             let activeEmployee = ActiveEmployee(employee: employee)
-                            FirestoreHelper.getBusiness(employeeId: employee.id ?? "" ){ business in
+                            FirestoreHelper.getBusiness(businessId: employee.businessId ){ business in
                                 if let business = business, let _ = business.id{
                                     activeEmployee.business = business
                                     ActiveEmployee.instance = activeEmployee
@@ -253,8 +253,6 @@ class AuthHelper{
 	}
 	
 	static func getEligibleEmployees(branchId: String?, roleId: String?, shiftDate: Date, startTime: Date, endTime: Date, completion: @escaping(_ groupedEmployees: [GroupedEmployee]? )->()){
-//		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
-		
 		var data = EligibleEmployeesRequest(
 			shiftDate:  Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
 			startTime: Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
@@ -288,6 +286,19 @@ class AuthHelper{
 		callable.call(AssignedHoursRequest(employeeIds: employeeIds, shiftDate: shiftDate.startOfDay.timeIntervalSince1970)){ result in
 			if let assignedHours = try? result.get(){
 				completion(assignedHours.assignedHours)
+				return
+			}
+			completion(nil)
+		}
+	}
+	
+	static func updateSubscription(business: Business, completion: @escaping(_ paymentDetails: UpdateSubscriptionResponse? )->()){
+		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+		
+		let callable: Callable<UpdateSubscriptionRequest, UpdateSubscriptionResponse> = Functions.functions().httpsCallable("updateSubscription")
+		callable.call(UpdateSubscriptionRequest(employeeId: business.managedBy, noOfEmployees: business.noOfEmployees, businessId: business.id!)){ result in
+			if let paymentDetails = try? result.get(){
+				completion(paymentDetails)
 				return
 			}
 			completion(nil)
@@ -344,3 +355,16 @@ struct AssignedHour: Codable{
 	var assignedHour: Double
 }
 
+struct UpdateSubscriptionRequest: Encodable{
+	var employeeId: String
+	var noOfEmployees: Int
+	var businessId: String
+}
+
+struct UpdateSubscriptionResponse: Decodable{
+	var subscriptionId: String
+	var clientSecret: String?
+	var ephemeralKey: String
+	var customerId: String
+	var publishableKey: String
+}

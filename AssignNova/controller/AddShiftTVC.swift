@@ -157,7 +157,7 @@ class AddShiftTVC: UITableViewController {
 		}
 		
 		self.startLoading()
-		AuthHelper.getAssignedHours(employeeIds: (isOpenShifts ? data.eligibileEmployees : data.employees).compactMap{$0.id}, shiftDate: data.selectedDate){ assignedHours in
+		CloudFunctionsHelper.getAssignedHours(employeeIds: (isOpenShifts ? data.eligibileEmployees : data.employees).compactMap{$0.id}, shiftDate: data.selectedDate){ assignedHours in
 			if let assignedHours = assignedHours{
 				let diff = Int(self.data.endTime.timeIntervalSince1970 - self.data.startTime.timeIntervalSince1970)
 				
@@ -241,7 +241,7 @@ class AddShiftTVC: UITableViewController {
 	}
 	
 	func refreshEligibleEmployees(){
-		AuthHelper.getEligibleEmployees(branchId: data.branch?.id, roleId: data.role?.id, shiftDate: data.selectedDate, startTime: data.startTime, endTime: data.endTime){groupedEmployees in
+		CloudFunctionsHelper.getEligibleEmployees(branchId: data.branch?.id, roleId: data.role?.id, shiftDate: data.selectedDate, startTime: data.startTime, endTime: data.endTime){groupedEmployees in
 			var employees = [Employee]()
 			if let eligibleEmployees = groupedEmployees?.last?.employees{
 				employees = eligibleEmployees.compactMap{ActiveEmployee.instance?.getEmployee(employeeId: $0)}

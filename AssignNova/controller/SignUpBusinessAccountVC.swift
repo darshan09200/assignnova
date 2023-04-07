@@ -125,7 +125,7 @@ class SignUpBusinessAccountVC: UIViewController {
 			let formattedPhoneNumber = ValidationHelper.formatPhoneNumber(phoneNumberDetails!)
 			print("\(firstName), \(lastName), \(email), \(formattedPhoneNumber), \(pwd), \(confirmPwd)")
 			self.startLoading()
-			AuthHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists in
+			CloudFunctionsHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists in
 				if let error = error {
 					self.stopLoading(){
 						self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberInput)
@@ -139,7 +139,7 @@ class SignUpBusinessAccountVC: UIViewController {
 						(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
 					}
 					Auth.auth().createUser(withEmail: email, password: pwd) { authResult, error in
-						if let error = AuthHelper.getErrorMessage(error: error){
+						if let error = CloudFunctionsHelper.getErrorMessage(error: error){
 							self.stopLoading(){
 								self.showAlert(title: "Oops", message: error, textInput: self.emailInput)
 							}
@@ -171,7 +171,7 @@ class SignUpBusinessAccountVC: UIViewController {
 								}
 							}
 							
-							AuthHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
+							CloudFunctionsHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
 								self.stopLoading(){
 									let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
 										.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
@@ -206,7 +206,7 @@ class SignUpBusinessAccountVC: UIViewController {
 				let email = user.profile?.email
 				let firstName = user.profile?.givenName
 				let lastName = user.profile?.familyName
-				AuthHelper.doesEmailExists(email ?? ""){ error, _  in
+				CloudFunctionsHelper.doesEmailExists(email ?? ""){ error, _  in
 					if let error = error {
 						self.stopLoading(){
 							self.showAlert(title: "Oops", message: error)
@@ -218,7 +218,7 @@ class SignUpBusinessAccountVC: UIViewController {
 							(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
 						}
 						Auth.auth().signIn(with: credential) { result, error in
-							if let error = AuthHelper.getErrorMessage(error: error){
+							if let error = CloudFunctionsHelper.getErrorMessage(error: error){
 								self.stopLoading(){
 									self.showAlert(title: "Oops", message: error)
 								}

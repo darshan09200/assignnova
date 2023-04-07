@@ -22,7 +22,7 @@ class LaunchScreenVC: UIViewController {
 		super.viewDidAppear(animated)
 
 		
-		AuthHelper.refreshData(){ activeEmployee in
+		CloudFunctionsHelper.refreshData(){ activeEmployee in
             print(activeEmployee)
 			UIView.animate(withDuration: 0.5, delay: activeEmployee == nil ? 0.2 :0, options: .transitionCrossDissolve ,animations: {
 				self.logo.transform = CGAffineTransform.identity.scaledBy(x: 50, y: 50)
