@@ -10,11 +10,34 @@ import FirebaseAuth
 
 class MoreTabVC: UIViewController {
 
-    override func viewDidLoad() {
+	@IBOutlet weak var profileButton: NavigationItem!
+	@IBOutlet weak var branchButton: NavigationItem!
+	@IBOutlet weak var roleButton: NavigationItem!
+	@IBOutlet weak var employeeButton: NavigationItem!
+	@IBOutlet weak var paymentButton: NavigationItem!
+	
+	var employee: Employee?
+	override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-		
+		if let employee = ActiveEmployee.instance?.employee{
+			self.employee = employee
+			profileButton.isHidden = false
+			branchButton.isHidden = true
+			roleButton.isHidden = true
+			employeeButton.isHidden = true
+			paymentButton.isHidden = true
+			if employee.appRole == .manager || employee.appRole == .shiftSupervisor{
+				branchButton.isHidden = false
+				roleButton.isHidden = false
+				employeeButton.isHidden = false
+			} else if employee.appRole == .owner{
+				branchButton.isHidden = false
+				roleButton.isHidden = false
+				employeeButton.isHidden = false
+				paymentButton.isHidden = false
+			}
+		}
     }
 
 	@IBAction func onProfilePress(_ sender: Any) {
@@ -41,6 +64,8 @@ class MoreTabVC: UIViewController {
 			.instantiateViewController(withIdentifier: "ViewAllEmployeeTVC") as! ViewAllEmployeeTVC
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
+	
+	@IBOutlet weak var onPaymentPress: NavigationItem!
 	
 	@IBAction func onLogoutPress(_ sender: UIButton) {
 		CloudFunctionsHelper.logout()
