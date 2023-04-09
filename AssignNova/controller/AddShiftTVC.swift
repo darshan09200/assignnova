@@ -278,6 +278,8 @@ extension AddShiftTVC{
 			var defaultValue: String? = nil
 			var tintColor: UIColor? = nil
 			var isMultiline = false
+            var contentType: UITextContentType?
+            var keyType: UIKeyboardType?
 			switch indexPath.row {
 				case 0:
 					label = "Date"
@@ -292,10 +294,12 @@ extension AddShiftTVC{
 				case 3:
 					label = "Unpaid Break(minutes)"
 					placeholder = "30"
+                    keyType = .numberPad
 				case 4:
 					label = "Notes"
-					isMultiline = true
-				default: break
+                    contentType = .none
+                    isMultiline = true
+                default: break
 			}
 			if indexPath.row == 0 {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "selectForm", for: indexPath) as! SelectFieldCell
@@ -332,6 +336,8 @@ extension AddShiftTVC{
 			cell.inputField.label = label
 			cell.inputField.placeholder = placeholder
 			cell.inputField.textFieldComponent.text = defaultValue
+            cell.inputField.textFieldComponent.keyboardType = keyType ?? .default
+            cell.inputField.textFieldComponent.textContentType = contentType
 			if isMultiline{
 				
 			}
@@ -368,7 +374,7 @@ extension AddShiftTVC{
 				cell.inputField.label = "Number of Open Shifts"
 				cell.inputField.placeholder = "1"
 				cell.inputField.textFieldComponent.text = "1"
-				
+                cell.inputField.textFieldComponent.keyboardType = .numberPad
 				return cell
 			} else {
 				print(indexPath)
