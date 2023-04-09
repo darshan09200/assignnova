@@ -37,6 +37,7 @@ class SignUpBusinessAccountVC: UIViewController {
         emailInput.textFieldComponent.textContentType = .emailAddress
         emailInput.textFieldComponent.keyboardType = .emailAddress
         phoneNumberInput.textFieldComponent.textContentType = .telephoneNumber
+        phoneNumberInput.textFieldComponent.textContentType = .none
         phoneNumberInput.textFieldComponent.keyboardType = .phonePad
         pwdInput.textFieldComponent.textContentType = .password
         confirmPwdInput.textFieldComponent.textContentType = .password
