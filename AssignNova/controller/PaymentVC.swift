@@ -7,6 +7,7 @@
 
 import UIKit
 import EmptyDataSet_Swift
+import SafariServices
 
 class PaymentVC: UIViewController {
 	
@@ -125,7 +126,12 @@ extension PaymentVC: UITableViewDelegate, UITableViewDataSource{
 		let downloadAction = UIContextualAction(style: .normal, title: "", handler: {
 			(action, sourceView, completionHandler) in
 			
-			UIApplication.shared.open(URL(string: item.hostedUrl!)!)
+			if let url = URL(string: item.hostedUrl!) {
+				let vc = SFSafariViewController(url: url)
+				vc.delegate = self
+				
+				self.present(vc, animated: true)
+			}
 			
 			completionHandler(true)
 		}
@@ -145,5 +151,11 @@ extension PaymentVC: EmptyDataSetSource{
 			.font: UIFont.preferredFont(forTextStyle: .body)
 		])
 		return message
+	}
+}
+
+extension PaymentVC: SFSafariViewControllerDelegate{
+	func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+		dismiss(animated: true)
 	}
 }

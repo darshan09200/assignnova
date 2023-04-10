@@ -169,7 +169,7 @@ class AddEmployeeTVC: UITableViewController {
 		FirestoreHelper.doesEmployeeExist(email: email, phoneNumber: phoneNumber, employeeId: employee?.id){ existingEmployee in
 			if let existingEmployee = existingEmployee {
 				self.stopLoading(){
-					var message = " already linked with another employee: \(existingEmployee.firstName) \(existingEmployee.lastName)"
+					var message = " already linked with another employee: \(existingEmployee.name)"
 					if existingEmployee.phoneNumber == phoneNumber{
 						message = "Phone Number"+message
 					} else {

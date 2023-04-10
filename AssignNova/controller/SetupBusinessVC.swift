@@ -25,6 +25,8 @@ class SetupBusinessVC: UIViewController {
 	@IBOutlet weak var businessPlanCard: PlanCard!
 	@IBOutlet weak var enterprisePlanCard: PlanCard!
 	
+	@IBOutlet weak var makePaymentButton: UIButton!
+	
 	var businessReference: DocumentReference?
 
 	let minusButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -40,7 +42,7 @@ class SetupBusinessVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-		numberOfEmployeeInput.textFieldComponent.text = "10"
+		numberOfEmployeeInput.textFieldComponent.text = "5"
 		numberOfEmployeeInput.textFieldComponent.delegate = self
 		numberOfEmployeeInput.textFieldComponent.keyboardType = .numberPad
 
@@ -67,6 +69,8 @@ class SetupBusinessVC: UIViewController {
 			let logout = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(onLogoutPress))
 			navigationItem.rightBarButtonItem = logout
 		}
+		
+		refreshPlans()
 	}
 
 	@objc func onLogoutPress(){
@@ -79,18 +83,20 @@ class SetupBusinessVC: UIViewController {
 	}
 
 	@objc func onMinusPress(_ sender: UIButton){
-		guard let count = Int(numberOfEmployeeInput.textFieldComponent.text!), count > 10 else {
+		view.endEditing(false)
+		guard let count = Int(numberOfEmployeeInput.textFieldComponent.text!), count > 5 else {
 			return
 		}
-		let newCount = 10 * Int(count / 10) - 10
-		if newCount <= 10 { minusButton.isEnabled = false }
+		let newCount = count - 1
+		if newCount <= 5 { minusButton.isEnabled = false }
 		numberOfEmployeeInput.textFieldComponent.text = String(newCount)
 		refreshPlans()
 	}
 
 	@objc func onAddPress(_ sender: UIButton){
+		view.endEditing(false)
 		guard let count = Int(numberOfEmployeeInput.textFieldComponent.text!) else { return }
-		let newCount = 10 * Int(count / 10) + 10
+		let newCount = count + 1
 		minusButton.isEnabled = true
 		numberOfEmployeeInput.textFieldComponent.text = String(newCount)
 		refreshPlans()
@@ -98,17 +104,30 @@ class SetupBusinessVC: UIViewController {
 
 	func refreshPlans(){
 		guard let count = Int(numberOfEmployeeInput.textFieldComponent.text!) else { return }
-		let formattedCount = 10 * Int(count / 10)
 		smallPlanCard.isSelected = false
 		businessPlanCard.isSelected = false
 		enterprisePlanCard.isSelected = false
-		if formattedCount < 51{
+		if count < 51{
 			smallPlanCard.isSelected = true
-		} else if formattedCount  < 201{
+		} else if count  < 201{
+			smallPlanCard.isSelected = true
 			businessPlanCard.isSelected = true
 		} else {
+			smallPlanCard.isSelected = true
+			businessPlanCard.isSelected = true
 			enterprisePlanCard.isSelected = true
 		}
+		
+		var price = 0.0
+		if count < 51 {
+			price = Double(count) * 4
+		} else if count < 251 {
+			price = 50 * 4 + (Double(count) - 50) * 3.8
+		} else {
+			price = 50 * 4 + 150 * 3.8 + (Double(count) - 150) * 3.6
+		}
+		
+		makePaymentButton.setTitle("Authorize Payment - $\(String(format: "%.2f", price))", for: .normal)
 	}
 
 
@@ -170,8 +189,11 @@ class SetupBusinessVC: UIViewController {
 
 extension SetupBusinessVC: UITextFieldDelegate{
 	func textFieldDidEndEditing(_ textField: UITextField) {
-		guard let count = Int(textField.text!), count % 10 != 0 else { return }
-		let newCount = 10 * Int(count / 10)
+		guard let count = Int(textField.text!), count < 5 else {
+			refreshPlans()
+			return
+		}
+		let newCount = 5
 		textField.text = String(newCount)
 		refreshPlans()
 	}
@@ -211,7 +233,9 @@ extension SetupBusinessVC{
 	func authorizePayment(_ business: Business){
 		getPaymentDetails(business){ paymentDetails in
 			PaymentHelper.authorizePayment(controller: self, paymentDetails: paymentDetails){paymentResult in
-				
+				DispatchQueue.main.async {
+					(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
+				}
 			}
 		}
 	}

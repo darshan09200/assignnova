@@ -205,7 +205,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="751"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ugg-bb-mNa">
-                                                <rect key="frame" x="16" y="16" width="361" height="620.66666666666663"/>
+                                                <rect key="frame" x="16" y="16" width="361" height="598.33333333333337"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ko8-K7-rML" customClass="TextInput" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="73.666666666666671"/>
@@ -277,20 +277,20 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="centerAlignedContent" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Can only be in groups of 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRB-ds-Tsq">
-                                                        <rect key="frame" x="0.0" y="245" width="361" height="14.333333333333314"/>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can only be in groups of 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRB-ds-Tsq">
+                                                        <rect key="frame" x="0.0" y="241" width="361" height="0.0"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Plan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xs0-k4-17T">
-                                                        <rect key="frame" x="0.0" y="267.33333333333331" width="361" height="20.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="245" width="361" height="20.333333333333314"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0Vz-n5-Zc3">
-                                                        <rect key="frame" x="0.0" y="295.66666666666669" width="361" height="218.00000000000006"/>
+                                                        <rect key="frame" x="0.0" y="273.33333333333331" width="361" height="218"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cqd-hD-FTa" customClass="PlanCard" customModule="AssignNova" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="67.333333333333329"/>
@@ -298,17 +298,17 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="planName" value="Small"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="planDetails" value="1 - 50 Employees"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planPrice" value="$40.00"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planPrice" value="$4.00"/>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="niI-gU-k3C" customClass="PlanCard" customModule="AssignNova" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="75.333333333333314" width="361" height="67.333333333333314"/>
+                                                                <rect key="frame" x="0.0" y="75.333333333333371" width="361" height="67.333333333333314"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="planName" value="Business"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="planDetails" value="51 - 200 Employees"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planPrice" value="$38.00"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planPrice" value="$3.80"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uNq-9Y-orb" customClass="PlanCard" customModule="AssignNova" customModuleProvider="target">
@@ -317,25 +317,25 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="planName" value="Enterprise"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="planDetails" value="200+ Employees"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planPrice" value="$36.00"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="planPrice" value="$3.60"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="The price mentioned is per 10 employee per month." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hju-pY-U7P">
-                                                        <rect key="frame" x="0.0" y="521.66666666666663" width="361" height="15.666666666666629"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="The price mentioned is per employee per month." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hju-pY-U7P">
+                                                        <rect key="frame" x="0.0" y="499.33333333333337" width="361" height="15.666666666666629"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You cannot manually select a plan as it is selected by default on the basis of number of employees." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jey-Gj-Yf8">
-                                                        <rect key="frame" x="0.0" y="545.33333333333337" width="361" height="33.666666666666629"/>
+                                                        <rect key="frame" x="0.0" y="523" width="361" height="33.666666666666629"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You will be charged immediately. Your plan will automatically renew and you can cancel at any time." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kue-2U-IU5">
-                                                        <rect key="frame" x="0.0" y="587" width="361" height="33.666666666666629"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You will be charged after 7 days of trial. Your plan will automatically renew and you can cancel at any time." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kue-2U-IU5">
+                                                        <rect key="frame" x="0.0" y="564.66666666666663" width="361" height="33.666666666666629"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                         <nil key="highlightedColor"/>
@@ -389,6 +389,7 @@
                         <outlet property="businessNameInput" destination="Ko8-K7-rML" id="q0A-3o-BST"/>
                         <outlet property="businessPlanCard" destination="niI-gU-k3C" id="Nvw-dL-nIO"/>
                         <outlet property="enterprisePlanCard" destination="uNq-9Y-orb" id="CBE-xO-AfR"/>
+                        <outlet property="makePaymentButton" destination="BsE-sP-qS4" id="2Mj-Sq-haE"/>
                         <outlet property="numberOfEmployeeInput" destination="fJV-Kz-E4k" id="25a-tX-HXO"/>
                         <outlet property="selectLocationGesture" destination="OBD-S6-2iu" id="SgG-yb-cDM"/>
                         <outlet property="selectLocationLabel" destination="Pbu-Vn-cS6" id="ZbB-k2-ycC"/>

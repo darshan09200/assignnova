@@ -134,7 +134,6 @@ class FirestoreHelper{
 			}
 			var docRef = db.collection("employee")
 				.whereFilter(Filter.orFilter(filters))
-				.whereField("businessId", isEqualTo: businessId)
 			
 			if let employeeId = employeeId{
 				print("added employeeId \(employeeId)")
