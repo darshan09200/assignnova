@@ -253,7 +253,6 @@ class ViewShiftVC: UIViewController {
 	}
 	
 	func clockIn(){
-		print(currentLocation)
 		if let currentLocation = currentLocation  {
 			if let branch = ActiveEmployee.instance?.branches.first(where: {$0.id == shift?.branchId}){
 				let shiftLocation = CLLocation(latitude: branch.location.latitude, longitude: branch.location.longitude)
@@ -395,6 +394,28 @@ extension ViewShiftVC: UITableViewDelegate, UITableViewDataSource{
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		if section == 0{return 0}
 		return 42
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+		if indexPath.section == 1{
+			let viewController = UIStoryboard(name: "Branch", bundle: nil).instantiateViewController(withIdentifier: "ViewBranchTVC") as! ViewBranchTVC
+			viewController.branchId = shift?.branchId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		} else if indexPath.section == 2 {
+			let viewController = UIStoryboard(name: "Role", bundle: nil).instantiateViewController(withIdentifier: "ViewRoleTVC") as! ViewRoleTVC
+			viewController.roleId = shift?.roleId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		} else if indexPath.section == 3 && !isOpenShifts{
+			let viewController = UIStoryboard(name: "Employee", bundle: nil).instantiateViewController(withIdentifier: "ViewEmployeeVC") as! ViewEmployeeVC
+			viewController.employeeId = shift?.employeeId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		} else if indexPath.section == 4 {
+			let employeeId = shift?.eligibleEmployees?[indexPath.row] ?? ""
+			let viewController = UIStoryboard(name: "Employee", bundle: nil).instantiateViewController(withIdentifier: "ViewEmployeeVC") as! ViewEmployeeVC
+			viewController.employeeId = employeeId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		}
 	}
 }
 

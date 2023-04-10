@@ -15,6 +15,8 @@ class ViewBranchTVC: UITableViewController {
 	private var branch: Branch?
 	private var listener: ListenerRegistration?
 	
+	@IBOutlet weak var editBranchItem: UIBarButtonItem!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -22,6 +24,9 @@ class ViewBranchTVC: UITableViewController {
 			if let branch = branch{
 				self.branch = branch
 				self.tableView.reloadData()
+				
+				let canEdit = ActionsHelper.canEdit(branch: branch)
+				self.editBranchItem.isHidden = !canEdit
 			}
 			
 		}
@@ -47,7 +52,7 @@ extension ViewBranchTVC{
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

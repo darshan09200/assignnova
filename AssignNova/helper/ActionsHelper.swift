@@ -18,6 +18,10 @@ class ActionsHelper{
 		return false
 	}
 	
+	static func hasPrivileges(branchIds: [String]) -> Bool{
+		return branchIds.compactMap{hasPrivileges(branchId:$0)}.reduce(true){result, acc in result || acc}
+	}
+	
 	static func getAction(for shift: Shift) -> ActionType{
 		guard let employee = ActiveEmployee.instance?.employee,
 			  let employeeId = employee.id else {return .none}
@@ -60,5 +64,49 @@ class ActionsHelper{
 		let reducedProfileUrl = "profileImages/\(filename.first ?? "")_200x200.jpeg"
 		print(reducedProfileUrl)
 		return Storage.storage().reference().child(reducedProfileUrl)
+	}
+	
+	static func isTrialActive() -> Bool{
+		 guard let subscriptionDetail = ActiveEmployee.instance?.subscriptionDetail, let _ = subscriptionDetail.paymentMethod, subscriptionDetail.canceledAt == nil else {
+			 return false
+		 }
+		 return true
+	}
+	
+	static func canEdit() -> Bool{
+		if isTrialActive(){
+			guard let employee = ActiveEmployee.instance?.employee else {return false}
+			if employee.appRole == .owner || employee.appRole == .manager {return true}
+		}
+		return false
+	}
+	
+	static func canEdit(shift: Shift) -> Bool{
+		if canEdit(){
+			return hasPrivileges(branchId: shift.branchId)
+		}
+		return false
+	}
+	
+	static func canEdit(role: Role) -> Bool{
+		return canEdit()
+	}
+	
+	static func canEdit(employee: Employee) -> Bool{
+		if canEdit(){
+			return hasPrivileges(branchIds: employee.branches)
+		}
+		return false
+	}
+	
+	static func canEdit(branch : Branch) -> Bool{
+		if canEdit(){
+			return hasPrivileges(branchId: branch.id)
+		}
+		return false
+	}
+	
+	static func canAdd() -> Bool{
+		return canEdit()
 	}
 }

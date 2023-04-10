@@ -16,6 +16,8 @@ class ViewAllBranchTVC: UITableViewController {
 	private var filteredBranches = [Branch]()
 	private var listener: ListenerRegistration?
 	
+	@IBOutlet weak var mapItem: UIBarButtonItem!
+	@IBOutlet weak var addBranchItem: UIBarButtonItem!
 	var searchText: String{
 		(
 			searchController.searchBar.text?
@@ -27,12 +29,18 @@ class ViewAllBranchTVC: UITableViewController {
 		super.viewDidLoad()
 		configureSearchBar()
 
+		mapItem.isHidden = true
+		
 		tableView.emptyDataSetSource = self
 		if let businessId = ActiveEmployee.instance?.business?.id{
 			listener = FirestoreHelper.getBranches(businessId: businessId){ branches in
 				self.branches = branches ?? []
 				self.filterData()
 				self.tableView.reloadData()
+				
+				let canAdd = ActionsHelper.canAdd()
+				
+				self.addBranchItem.isHidden = !canAdd
 			}
 		}
 	}

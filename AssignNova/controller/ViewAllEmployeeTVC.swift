@@ -15,6 +15,7 @@ class ViewAllEmployeeTVC: UITableViewController {
 	private var employees = [Employee]()
 	private var filteredEmployees = [Employee]()
 	private var listener: ListenerRegistration?
+	@IBOutlet weak var addEmployeeItem: UIBarButtonItem!
 	
 	var searchText: String{
 		(
@@ -33,6 +34,10 @@ class ViewAllEmployeeTVC: UITableViewController {
 				self.employees = employees ?? []
 				self.filterData()
 				self.tableView.reloadData()
+				
+				let canAdd = ActionsHelper.canAdd()
+				
+				self.addEmployeeItem.isHidden = !canAdd
 			}
 		}
 	}

@@ -60,20 +60,21 @@ class HomeScreenVC:  UIViewController {
 				paymentButton.isHidden = false
 				letsGetStartedLabel.isHidden = false
 			}
-			
-			if activeEmployee.branches.count == 0 {
-				branchButton.isHidden = false
-				letsGetStartedLabel.isHidden = false
-			}
-			
-			if activeEmployee.roles.count == 0{
-				roleButton.isHidden = false
-				letsGetStartedLabel.isHidden = false
-			}
-			
-			if activeEmployee.employees.count <= 1{
-				employeeButton.isHidden = false
-				letsGetStartedLabel.isHidden = false
+			if ActionsHelper.canAdd(){
+				if activeEmployee.branches.count == 0 {
+					branchButton.isHidden = false
+					letsGetStartedLabel.isHidden = false
+				}
+				
+				if activeEmployee.roles.count == 0{
+					roleButton.isHidden = false
+					letsGetStartedLabel.isHidden = false
+				}
+				
+				if activeEmployee.employees.count <= 1{
+					employeeButton.isHidden = false
+					letsGetStartedLabel.isHidden = false
+				}
 			}
 			
 			if let factOfTheDay = activeEmployee.factOfTheDay{

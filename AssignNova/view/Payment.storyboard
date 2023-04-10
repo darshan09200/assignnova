@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CJc-1L-4fk">
-                                <rect key="frame" x="16" y="75" width="361" height="264.66666666666669"/>
+                                <rect key="frame" x="16" y="75" width="361" height="293"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="09X-PV-N43">
                                         <rect key="frame" x="8" y="8" width="345" height="190.33333333333334"/>
@@ -37,11 +37,17 @@
                                             <action selector="onUpdateCardPress:" destination="6w0-NX-WER" eventType="touchUpInside" id="VDn-UO-Lzu"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60j-qm-Fmx">
+                                        <rect key="frame" x="8" y="264.66666666666669" width="345" height="20.333333333333314"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OYM-Sg-Tun">
-                                <rect key="frame" x="0.0" y="355.66666666666674" width="393" height="462.33333333333326"/>
+                                <rect key="frame" x="0.0" y="384" width="393" height="434"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="header" id="aAb-kX-rwf" customClass="SectionHeaderCell" customModule="AssignNova" customModuleProvider="target">
@@ -127,6 +133,7 @@
                     <navigationItem key="navigationItem" title="Invoices" id="v8s-81-0Vo"/>
                     <connections>
                         <outlet property="creditCardView" destination="09X-PV-N43" id="9qg-Tv-zBu"/>
+                        <outlet property="renewalOn" destination="60j-qm-Fmx" id="RhQ-Yq-xTK"/>
                         <outlet property="stackView" destination="CJc-1L-4fk" id="GNZ-gO-sb5"/>
                         <outlet property="tableView" destination="OYM-Sg-Tun" id="sqA-fh-RIP"/>
                         <outlet property="updateCardButton" destination="Pds-EY-QUn" id="H2U-2i-zi4"/>
@@ -142,6 +149,9 @@
         <namedColor name="AccentColor">
             <color red="0.11800000071525574" green="0.24300000071525574" blue="0.62000000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

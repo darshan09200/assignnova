@@ -15,6 +15,7 @@ class PaymentVC: UIViewController {
 	@IBOutlet weak var creditCardView: UIView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var updateCardButton: UIButton!
+	@IBOutlet weak var renewalOn: UILabel!
 	
 	var invoices = [Invoice]()
 	
@@ -59,6 +60,12 @@ class PaymentVC: UIViewController {
 			card.brandImageView.image = UIImage()
 			
 			updateCardButton.isHidden = true
+			
+			if let canceledAt = subscriptionDetail.canceledAt{
+				renewalOn.text = "Cancelled on \(Date(timeIntervalSince1970: canceledAt).format(to: "EEE, MMM dd, yyyy"))"
+			} else {
+				renewalOn.text = "Renews on \(Date(timeIntervalSince1970: subscriptionDetail.renewalDate).format(to: "EEE, MMM dd, yyyy"))"
+			}
 		} else {
 			card.nameLabel.text = "---- ----"
 			card.expLabel.text = "--/--"

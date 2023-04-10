@@ -14,6 +14,7 @@ struct SubscriptionDetailRequest: Encodable{
 struct SubscriptionDetail: Decodable{
 	var currentPeriodStart: TimeInterval
 	var currentPeriodEnd: TimeInterval
+	var canceledAt: TimeInterval?
 	var renewalDate: TimeInterval
 	var subscriptionStartDate: TimeInterval
 	var trialEnd: TimeInterval

@@ -47,6 +47,8 @@ class ActiveEmployee{
 			self.isFetchingSubscription = false
 			self.subscriptionDetail = subscriptionDetail
 			NotificationCenter.default.post(name: Notification.Name("getSubscriptionDetails"), object: nil)
+			
+			print(subscriptionDetail)
 		}
         
         self.branchListener = FirestoreHelper.getBranches(businessId: employee.businessId){ branches in

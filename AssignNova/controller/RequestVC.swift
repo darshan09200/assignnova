@@ -33,6 +33,8 @@ class RequestVC: UIViewController {
 		tableView.sectionHeaderTopPadding = 0
 
 		fetchData()
+		
+		addRequestButton.isHidden = !ActionsHelper.isTrialActive()
     }
 
 	func fetchData(){
@@ -65,7 +67,7 @@ class RequestVC: UIViewController {
 
 	@IBAction func onRequestTypeChanged(_ sender: UISegmentedControl) {
 		if sender.selectedSegmentIndex == 0 {
-			addRequestButton.isHidden = false
+			addRequestButton.isHidden = !ActionsHelper.isTrialActive()
 		} else {
 			addRequestButton.isHidden = true
 		}
@@ -107,7 +109,7 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 		if requestTypeSegment.selectedSegmentIndex == 0{
 			return groupedTimeOffs.count
 		}
-		return 1
+		return openShifts.count > 0 ? 1 : 0
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

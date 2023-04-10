@@ -13,6 +13,7 @@ class ViewRoleTVC: UITableViewController {
 	var roleId: String?
 	private var role: Role?
 	private var listener: ListenerRegistration?
+	@IBOutlet weak var editItem: UIBarButtonItem!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -21,6 +22,9 @@ class ViewRoleTVC: UITableViewController {
 			if let role = role{
 				self.role = role
 				self.tableView.reloadData()
+				
+				let canEdit = ActionsHelper.canEdit(role: role)
+				self.editItem.isHidden = !canEdit
 			}
 			
 		}
@@ -47,7 +51,7 @@ extension ViewRoleTVC{
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		// #warning Incomplete implementation, return the number of sections
-		return 2
+		return 1
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

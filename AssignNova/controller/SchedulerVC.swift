@@ -101,11 +101,7 @@ class SchedulerVC: UIViewController {
 		refreshMonthLabel()
 		monthLabel.isHidden = true
 		
-		if let appRole = ActiveEmployee.instance?.employee.appRole, appRole == .owner || appRole == .manager || appRole == .shiftSupervisor{
-			addShiftButton.isHidden = false
-		} else {
-			addShiftButton.isHidden = true
-		}
+		addShiftButton.isHidden = !ActionsHelper.canAdd()
     }
     
 	func refreshData(){

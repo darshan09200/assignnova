@@ -15,6 +15,7 @@ class ViewAllRoleTVC: UITableViewController {
 	private var roles = [Role]()
 	private var filteredRoles = [Role]()
 	private var listener: ListenerRegistration?
+	@IBOutlet weak var addRoleItem: UIBarButtonItem!
 	
 	var searchText: String{
 		(
@@ -33,6 +34,10 @@ class ViewAllRoleTVC: UITableViewController {
 				self.roles = roles ?? []
 				self.filterData()
 				self.tableView.reloadData()
+				
+				let canAdd = ActionsHelper.canAdd()
+				
+				self.addRoleItem.isHidden = !canAdd
 			}
 		}
 	}

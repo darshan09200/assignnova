@@ -246,7 +246,7 @@ class AddEmployeeTVC: UITableViewController {
 extension AddEmployeeTVC{
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+		return ActionsHelper.canEdit() ? 4 : 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -339,6 +339,7 @@ extension AddEmployeeTVC{
 			}
 			if indexPath.row == 5{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "selectForm", for: indexPath) as! SelectFieldCell
+				cell.selectButton.isEnabled = ActionsHelper.canEdit()
 				cell.picker?.delegate = self
 				cell.picker?.dataSource = self
 				cell.label.text = label
@@ -349,6 +350,9 @@ extension AddEmployeeTVC{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "inputForm", for: indexPath) as! InputFieldCell
 			cell.inputField.label = label
 			cell.inputField.placeholder = placeholder
+			if indexPath.row == 4 || indexPath.row == 6 {
+				cell.inputField.textFieldComponent.isEnabled = ActionsHelper.canEdit()
+			}
 			cell.inputField.textFieldComponent.text = defaultValue
             cell.inputField.textFieldComponent.textContentType = contentType
             cell.inputField.textFieldComponent.keyboardType = keyType ?? .default

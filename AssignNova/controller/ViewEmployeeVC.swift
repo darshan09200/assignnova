@@ -18,6 +18,7 @@ class ViewEmployeeVC: UIViewController {
 	var employeeId: String?
 	private var employee: Employee?
 	private var listener: ListenerRegistration?
+	@IBOutlet weak var editItem: UIBarButtonItem!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,6 +31,11 @@ class ViewEmployeeVC: UIViewController {
 			if let employee = employee{
 				self.employee = employee
 				self.tableView.reloadData()
+				
+				if !self.isProfile {
+					let canEdit = ActionsHelper.canEdit(employee: employee)
+					self.editItem.isHidden = !canEdit
+				}
 			}
 		}
 		
@@ -104,13 +110,13 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 					cell.empIdPrivatePipe.isHidden = true
 				}
 				
-				cell.nameLabel.text = "\(employee.firstName) \(employee.lastName)"
+				cell.nameLabel.text = employee.name
 				cell.appRoleLabel.text = employee.appRole.rawValue
 				
 				cell.emailLabel.text = employee.email
 				cell.emailLabel.isHidden = false
 				
-				if let phoneNumber = employee.phoneNumber{
+				if let phoneNumber = employee.phoneNumber, !phoneNumber.isEmpty{
 					cell.phoneNumberLabel.text = phoneNumber
 					cell.phoneNumberLabel.isHidden = false
 					cell.emailPhoneNumberPipe.isHidden = false
