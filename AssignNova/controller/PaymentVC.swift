@@ -40,14 +40,21 @@ class PaymentVC: UIViewController {
 		
 		updateCardDetails()
 		
+		tableView.sectionHeaderTopPadding = 0
+		
+		tableView.emptyDataSetSource = self
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		self.startLoading()
 		CloudFunctionsHelper.getSubscriptionInvoices(){ invoices in
+			self.stopLoading()
 			self.invoices = invoices ?? []
 			self.tableView.reloadData()
 		}
 		
-		tableView.sectionHeaderTopPadding = 0
-		
-		tableView.emptyDataSetSource = self
 	}
 	
 	func updateCardDetails(){

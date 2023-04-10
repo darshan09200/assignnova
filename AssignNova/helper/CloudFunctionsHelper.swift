@@ -67,12 +67,12 @@ class CloudFunctionsHelper{
 				completion(nil)
 			}
 	}
-	
+
 	static func call(apiName: String, with data: Any)-> URLRequest{
 		let url = URL(string:"https://us-central1-assignnova.cloudfunctions.net/\(apiName)")!
 		var request = URLRequest(url: url)
 		request.httpMethod = "POST"
-		
+
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		do{
@@ -117,7 +117,7 @@ class CloudFunctionsHelper{
 
 	static func doesEmailExists(_ email: String, completion: @escaping(_ error: String?, _ exists: Bool? )->()){
 		let request = call(apiName: "doesEmailExists", with: ["email": email])
-		
+
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if let _ = error {
 				completion("Error validating email", nil)
@@ -164,7 +164,7 @@ class CloudFunctionsHelper{
 	}
 
 	static func isUserInvited(email: String? = nil, phoneNumber: String? = nil, completion: @escaping(_ error: String?, _ invited: Bool? )->()){
-		
+
 		var data = [String: String]()
 		if let email = email{
 			data["email"] = email
@@ -173,22 +173,22 @@ class CloudFunctionsHelper{
 			data["phoneNumber"] = phoneNumber
 		}
 		print(data)
-		
+
 		let request = call(apiName: "isUserInvited", with: data)
-		
+
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if let error = error {
 				print(error.localizedDescription)
 				completion("Error validating invite", nil)
 				return
 			}
-			
+
 			guard let httpResponse = response as? HTTPURLResponse,
 				  (200...299).contains(httpResponse.statusCode) else {
 				completion("Error validating invite", nil)
 				return
 			}
-			
+
 			if let data = data,
 			   let userInvitedResponse = try? JSONDecoder().decode(UserInvitedResponse.self, from: data) {
 				if let invited = userInvitedResponse.invited, invited{
@@ -202,9 +202,9 @@ class CloudFunctionsHelper{
 		})
 		task.resume()
 	}
-	
+
 	static func isUserRegistered(email: String? = nil, phoneNumber: String? = nil, count: Int = 1, completion: @escaping(_ error: String?, _ registered: Bool? )->()){
-		
+
 		var data = [String: String]()
 		if let email = email{
 			data["email"] = email
@@ -212,9 +212,9 @@ class CloudFunctionsHelper{
 		if let phoneNumber = phoneNumber{
 			data["phoneNumber"] = phoneNumber
 		}
-		
+
 		print(data)
-		
+
 		Functions.functions().httpsCallable("checkIfUserRegistered").call(data){
 			result, error in
 			if let error = error {
@@ -222,7 +222,7 @@ class CloudFunctionsHelper{
 				completion("Error signing in", nil)
 				return
 			}
-			
+
 			if let data = result?.data as? [String: Any]{
 				if let registered = data["registered"] as? Bool, registered{
 					completion(nil, true)
@@ -241,7 +241,7 @@ class CloudFunctionsHelper{
 			completion("Error signing in", nil)
 		}
 	}
-	
+
 	static func logout(){
 		FirestoreHelper.deregisterFCMToken()
 		do {
@@ -250,7 +250,7 @@ class CloudFunctionsHelper{
 			print("Error signing out: %@", signOutError)
 		}
 	}
-	
+
 	static func getEligibleEmployees(branchId: String?, roleId: String?, shiftDate: Date, startTime: Date, endTime: Date, completion: @escaping(_ groupedEmployees: [GroupedEmployee]? )->()){
 		var data = EligibleEmployeesRequest(
 			shiftDate:  Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
@@ -275,7 +275,7 @@ class CloudFunctionsHelper{
 			completion(nil)
 		}
 	}
-	
+
 	static func getAssignedHours(employeeIds: [String], shiftDate: Date, completion: @escaping(_ assignedHours: [AssignedHour]? )->()){
 		if employeeIds.count == 0 {
 			completion([])
@@ -290,10 +290,10 @@ class CloudFunctionsHelper{
 			completion(nil)
 		}
 	}
-	
+
 	static func updateSubscription(business: Business, completion: @escaping(_ paymentDetails: PaymentDetails? )->()){
 //		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
-		
+
 		let callable: Callable<UpdateSubscriptionRequest, PaymentDetails> = Functions.functions().httpsCallable("updateSubscription")
 		callable.call(UpdateSubscriptionRequest(employeeId: business.managedBy, noOfEmployees: business.noOfEmployees, businessId: business.id!)){ result in
 			if let paymentDetails = try? result.get(){
@@ -303,9 +303,10 @@ class CloudFunctionsHelper{
 			completion(nil)
 		}
 	}
-	
+
 	static func getSubscriptionDetails(completion: @escaping(_ subscriptionDetail: SubscriptionDetail? )->()){
 		if let businessId = ActiveEmployee.instance?.employee.businessId{
+			// Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
 			let callable: Callable<SubscriptionDetailRequest, SubscriptionDetail> = Functions.functions().httpsCallable("getSubscriptionDetails")
 			callable.call(SubscriptionDetailRequest(businessId: businessId)){ result in
 				if let subscriptionDetail = try? result.get(){
@@ -316,10 +317,10 @@ class CloudFunctionsHelper{
 			}
 		}
 	}
-	
+
 	static func getSubscriptionInvoices(completion: @escaping(_ invoices: [Invoice]? )->()){
 		if let businessId = ActiveEmployee.instance?.employee.businessId{
-//			Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+
 			let callable: Callable<SubscriptionDetailRequest, SubscriptionInvoices> = Functions.functions().httpsCallable("getSubscriptionInvoices")
 			callable.call(SubscriptionDetailRequest(businessId: businessId)){ result in
 				if let subscriptionInvoices = try? result.get(){

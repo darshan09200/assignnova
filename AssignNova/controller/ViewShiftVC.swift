@@ -48,6 +48,8 @@ class ViewShiftVC: UIViewController {
 	var locManager = CLLocationManager()
 	var currentLocation: CLLocation?
 
+	@IBOutlet weak var editItem: UIBarButtonItem!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -58,6 +60,7 @@ class ViewShiftVC: UIViewController {
 				
 		locManager.delegate = self
 		locManager.desiredAccuracy = kCLLocationAccuracyBest
+			
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
@@ -75,6 +78,12 @@ class ViewShiftVC: UIViewController {
 				
 				self.leftActionButton.isHidden = true
 				self.rightActionButton.isHidden = true
+				
+				if ActionsHelper.canEdit(shift: shift){
+					self.editItem.isHidden = true
+				} else {
+					self.editItem.isHidden = false
+				}
 				
 				let action = ActionsHelper.getAction(for: shift)
 				if action == .takeShift{
