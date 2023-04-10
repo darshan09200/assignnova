@@ -17,6 +17,7 @@ class MoreTabVC: UIViewController {
 	@IBOutlet weak var paymentButton: NavigationItem!
 	
 	var employee: Employee?
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,6 +48,8 @@ class MoreTabVC: UIViewController {
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
+	
+	
 	@IBAction func onBranchPress(_ sender: Any) {
 		let viewController = UIStoryboard(name: "Branch", bundle: nil)
 			.instantiateViewController(withIdentifier: "ViewAllBranchTVC") as! ViewAllBranchTVC
@@ -62,6 +65,12 @@ class MoreTabVC: UIViewController {
 	@IBAction func onEmployeePress(_ sender: Any) {
 		let viewController = UIStoryboard(name: "Employee", bundle: nil)
 			.instantiateViewController(withIdentifier: "ViewAllEmployeeTVC") as! ViewAllEmployeeTVC
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
+	
+	@IBAction func onAvailabilityPress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Availability", bundle: nil)
+			.instantiateViewController(withIdentifier: "ViewAllAvailabilityVC") as! ViewAllAvailabilityVC
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	

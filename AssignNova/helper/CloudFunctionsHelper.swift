@@ -306,7 +306,6 @@ class CloudFunctionsHelper{
 	
 	static func getSubscriptionDetails(completion: @escaping(_ subscriptionDetail: SubscriptionDetail? )->()){
 		if let businessId = ActiveEmployee.instance?.employee.businessId{
-//			Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
 			let callable: Callable<SubscriptionDetailRequest, SubscriptionDetail> = Functions.functions().httpsCallable("getSubscriptionDetails")
 			callable.call(SubscriptionDetailRequest(businessId: businessId)){ result in
 				if let subscriptionDetail = try? result.get(){

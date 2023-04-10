@@ -246,7 +246,8 @@ class AddEmployeeTVC: UITableViewController {
 extension AddEmployeeTVC{
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-		return ActionsHelper.canEdit() ? 4 : 2
+//		return ActionsHelper.canEdit() ? 4 : 2
+		return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

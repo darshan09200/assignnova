@@ -573,6 +573,48 @@ class FirestoreHelper{
 			completion(nil)
 		}
 	}
+	
+	static func saveAvailability(_ availability: Availability, completion: @escaping(_ error: Error?)->()) {
+		do{
+			if let availabilityId = availability.id{
+				try db.collection("availability").document(availabilityId).setData(from: availability){ err in FirestoreHelper.completion(err, completion)
+				}
+			} else {
+				try db.collection("availability").addDocument(from: availability){ err in FirestoreHelper.completion(err, completion)
+				}
+			}
+		} catch{
+			completion(error)
+		}
+	}
+	
+	static func getAvailbilities(startDate: Date, endDate: Date, completion: @escaping(_ availabilities: [Availability]?)->()) -> ListenerRegistration{
+		let docRef = db.collection("availability")
+			.whereField("businessId", isEqualTo: ActiveEmployee.instance!.employee.businessId)
+			.whereField("date", isGreaterThanOrEqualTo: startDate.startOfDay)
+			.whereField("date", isLessThanOrEqualTo: endDate.endOfDay)
+			.whereField("employeeId", isEqualTo: ActiveEmployee.instance!.employee.id!)
+			.order(by: "date")
+			.order(by: "startTime")
+		return docRef.addSnapshotListener(){ snapshots, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			let availabilities = snapshots?.documents.compactMap{ document in
+				return try? document.data(as: Availability.self)
+			}
+			completion(availabilities)
+		}
+	}
+	
+	static func deleteAvailability(_ availabilityId: String, completion: @escaping(_ error: Error?)->()){
+		db.collection("availability").document(availabilityId).delete(){ err in
+			FirestoreHelper.completion(err, completion)
+		}
+	}
+	
+	
 }
 
 enum ShiftType{

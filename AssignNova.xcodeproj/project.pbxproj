@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		330E4D6129C66743008BDE3A /* SignUpEmployee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */; };
+		330E4D6D29CBD189008BDE3A /* Availability.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6C29CBD189008BDE3A /* Availability.storyboard */; };
+		330E4D7129CBDCE7008BDE3A /* AddAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */; };
+		330E4D7329CCB644008BDE3A /* EditAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */; };
 		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
 		33255D5E29C64576004A49FB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInVC.swift */; };
 		4279AD138642C5F9FB5498E4 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F9DE35043EA4BBDDA60684 /* Pods_AssignNova.framework */; };
@@ -114,6 +117,8 @@
 		55C6375129CF1D2700A1570D /* RolePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C6375029CF1D2700A1570D /* RolePicker.storyboard */; };
 		55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */; };
 		55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */; };
+		55DBD91829E4A25D003F31A4 /* ViewAllAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DBD91729E4A25D003F31A4 /* ViewAllAvailabilityVC.swift */; };
+		55DBD91A29E4A3B4003F31A4 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DBD91929E4A3B4003F31A4 /* Availability.swift */; };
 		55DD7CDE29CA5063006079FF /* ViewBranchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */; };
 		55F2B06A29DD447300F213D0 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F2B06829DD447300F213D0 /* CheckoutViewController.swift */; };
 		55F2B06F29DD46E400F213D0 /* CheckoutViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F2B06E29DD46E400F213D0 /* CheckoutViewController.storyboard */; };
@@ -147,6 +152,9 @@
 /* Begin PBXFileReference section */
 		330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpEmployee.storyboard; sourceTree = "<group>"; };
 		330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmployeeEmailViewController.swift; sourceTree = "<group>"; };
+		330E4D6C29CBD189008BDE3A /* Availability.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Availability.storyboard; sourceTree = "<group>"; };
+		330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAvailabilityVC.swift; sourceTree = "<group>"; };
+		330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvailabilityVC.swift; sourceTree = "<group>"; };
 		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
 		33255D5D29C64576004A49FB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		33F9DE35043EA4BBDDA60684 /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +267,8 @@
 		55D95F2B29C514FC0098B3CC /* OtpInput.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OtpInput.storyboard; sourceTree = "<group>"; };
 		55DB509029CF60610004DCF5 /* SignUpEmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpEmployeeVC.swift; sourceTree = "<group>"; };
 		55DB509229CF6A130004DCF5 /* AssignNova.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AssignNova.entitlements; sourceTree = "<group>"; };
+		55DBD91729E4A25D003F31A4 /* ViewAllAvailabilityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAllAvailabilityVC.swift; sourceTree = "<group>"; };
+		55DBD91929E4A3B4003F31A4 /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
 		55DD7CDD29CA5063006079FF /* ViewBranchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBranchTVC.swift; sourceTree = "<group>"; };
 		55F2B06829DD447300F213D0 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		55F2B06E29DD46E400F213D0 /* CheckoutViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckoutViewController.storyboard; sourceTree = "<group>"; };
@@ -350,6 +360,7 @@
 				55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */,
 				55B3445929CA687D00CC73DD /* Role.storyboard */,
 				55B3446329CA6C5300CC73DD /* RoleDetailCell.swift */,
+				330E4D6C29CBD189008BDE3A /* Availability.storyboard */,
 				55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */,
 				B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */,
 				558DF0BA29D102680012C87E /* Shift.storyboard */,
@@ -387,6 +398,7 @@
 				553F5F5D29E20535000D0B26 /* PaymentDetails.swift */,
 				553F5F5F29E20562000D0B26 /* AssignedHour.swift */,
 				553F5F6129E205AC000D0B26 /* Invoice.swift */,
+				55DBD91929E4A3B4003F31A4 /* Availability.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -419,6 +431,8 @@
 				55B3445B29CA694800CC73DD /* ViewAllRoleTVC.swift */,
 				55B3445D29CA6A6000CC73DD /* ViewRoleTVC.swift */,
 				55B3445F29CA6AB000CC73DD /* AddRoleVC.swift */,
+				330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */,
+				330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */,
 				55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */,
 				551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */,
 				558DF0BC29D102D60012C87E /* AddShiftTVC.swift */,
@@ -426,6 +440,7 @@
 				5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */,
 				554F1A5D29D041A900875E3E /* ViewEmployeeVC.swift */,
 				55209CC729D0758A000D5726 /* SchedulerVC.swift */,
+				55DBD91729E4A25D003F31A4 /* ViewAllAvailabilityVC.swift */,
 				558DF0C029D127B70012C87E /* TimeRangePicker.swift */,
 				5552C5B529D770CC0035C982 /* AddTimeOffVC.swift */,
 				5552C5BB29D7717A0035C982 /* RequestVC.swift */,
@@ -662,6 +677,7 @@
 				B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */,
 				55C4121529C4A0010073A8CD /* Assets.xcassets in Resources */,
 				B7DAB7FD29DB759F00207B4A /* HomeScreen.storyboard in Resources */,
+				330E4D6D29CBD189008BDE3A /* Availability.storyboard in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
 				55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */,
 			);
@@ -764,6 +780,7 @@
 				5546CDE129D798EA00AECE62 /* ViewTimeOffVC.swift in Sources */,
 				55C6374529CCD5EF00A1570D /* SectionHeaderCell.swift in Sources */,
 				55C4121329C4A0000073A8CD /* AssignNova.xcdatamodeld in Sources */,
+				330E4D7329CCB644008BDE3A /* EditAvailabilityVC.swift in Sources */,
 				559C7BC029C9B9DC002BE062 /* Card.swift in Sources */,
 				552396E929C6670A00EE9323 /* PlanCard.swift in Sources */,
 				55B3445E29CA6A6000CC73DD /* ViewRoleTVC.swift in Sources */,
@@ -784,6 +801,7 @@
 				55624ACE29CA4BFF00B55A7F /* BranchDetailCell.swift in Sources */,
 				5507D68929CFE209003297B4 /* UIImage+Avatar.swift in Sources */,
 				55C6374D29CE724000A1570D /* BranchPickerVC.swift in Sources */,
+				55DBD91829E4A25D003F31A4 /* ViewAllAvailabilityVC.swift in Sources */,
 				55B3446229CA6AD700CC73DD /* Role.swift in Sources */,
 				5559EE9A29E44CF700F10C74 /* ImagePicker.swift in Sources */,
 				553F5F5C29E20520000D0B26 /* SubscriptionDetail.swift in Sources */,
@@ -793,6 +811,7 @@
 				552DC82029E0CF4D00301312 /* PaymentHelper.swift in Sources */,
 				55F2B06A29DD447300F213D0 /* CheckoutViewController.swift in Sources */,
 				553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */,
+				55DBD91A29E4A3B4003F31A4 /* Availability.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
 				55212E8E29D1C6450094738B /* Shift.swift in Sources */,
 				5552C5BE29D781010035C982 /* ApprovalStatus.swift in Sources */,
@@ -814,6 +833,7 @@
 				551B1D1829CCCE40003B9862 /* InputFieldCell.swift in Sources */,
 				55C6374F29CF1C8C00A1570D /* RolePickerVC.swift in Sources */,
 				552396E729C6665600EE9323 /* UIView+CornerRadius.swift in Sources */,
+				330E4D7129CBDCE7008BDE3A /* AddAvailabilityVC.swift in Sources */,
 				5549DA6529C8BE3800E51828 /* MoreTabVC.swift in Sources */,
 				550DF21229E2250300DAF6ED /* PaymentVC.swift in Sources */,
 				554F1A5E29D041A900875E3E /* ViewEmployeeVC.swift in Sources */,

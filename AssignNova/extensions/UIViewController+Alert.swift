@@ -22,4 +22,16 @@ extension UIViewController{
 		}))
 		self.present(alert, animated: true, completion: nil)
 	}
+	
+	func showConfirmation(title: String, message: String, completion: (() -> Void)? = nil){
+		print("\(title): \(message)")
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "No", style: .cancel))
+		alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {_ in
+			if let completion = completion{
+				completion()
+			}
+		}))
+		self.present(alert, animated: true, completion: nil)
+	}
 }
