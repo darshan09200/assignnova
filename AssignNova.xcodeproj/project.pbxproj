@@ -13,6 +13,9 @@
 		330E4D7329CCB644008BDE3A /* EditAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */; };
 		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
 		33255D5E29C64576004A49FB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInVC.swift */; };
+		33BD185629E4A93F00DC628B /* DisplayScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BD185529E4A93F00DC628B /* DisplayScreen.storyboard */; };
+		33BD185829E4A97900DC628B /* DisplayScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD185729E4A97900DC628B /* DisplayScreenVC.swift */; };
+		33BD185A29E4B73600DC628B /* SignUpCardsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD185929E4B73600DC628B /* SignUpCardsVC.swift */; };
 		4279AD138642C5F9FB5498E4 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F9DE35043EA4BBDDA60684 /* Pods_AssignNova.framework */; };
 		5507D68929CFE209003297B4 /* UIImage+Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507D68829CFE209003297B4 /* UIImage+Avatar.swift */; };
 		5507D68B29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */; };
@@ -157,6 +160,9 @@
 		330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvailabilityVC.swift; sourceTree = "<group>"; };
 		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
 		33255D5D29C64576004A49FB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		33BD185529E4A93F00DC628B /* DisplayScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DisplayScreen.storyboard; sourceTree = "<group>"; };
+		33BD185729E4A97900DC628B /* DisplayScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayScreenVC.swift; sourceTree = "<group>"; };
+		33BD185929E4B73600DC628B /* SignUpCardsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCardsVC.swift; sourceTree = "<group>"; };
 		33F9DE35043EA4BBDDA60684 /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5507D68829CFE209003297B4 /* UIImage+Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Avatar.swift"; sourceTree = "<group>"; };
 		5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllEmployeeTVC.swift; sourceTree = "<group>"; };
@@ -377,6 +383,7 @@
 				B7DAB7FC29DB759F00207B4A /* HomeScreen.storyboard */,
 				55F2B06E29DD46E400F213D0 /* CheckoutViewController.storyboard */,
 				553F5F6329E209C1000D0B26 /* Payment.storyboard */,
+				33BD185529E4A93F00DC628B /* DisplayScreen.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -449,6 +456,8 @@
 				B7DAB7FE29DB75FB00207B4A /* HomeScreenVC.swift */,
 				55F2B06829DD447300F213D0 /* CheckoutViewController.swift */,
 				550DF21129E2250300DAF6ED /* PaymentVC.swift */,
+				33BD185729E4A97900DC628B /* DisplayScreenVC.swift */,
+				33BD185929E4B73600DC628B /* SignUpCardsVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -658,6 +667,7 @@
 				55C6375129CF1D2700A1570D /* RolePicker.storyboard in Resources */,
 				55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */,
 				553D5BE729C654A300EB46B9 /* SignUpBusiness.storyboard in Resources */,
+				33BD185629E4A93F00DC628B /* DisplayScreen.storyboard in Resources */,
 				5552C5BA29D771380035C982 /* TimeOff.storyboard in Resources */,
 				55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */,
 				554917B929C4F59400132051 /* TextInput.xib in Resources */,
@@ -790,6 +800,7 @@
 				5549DA5A29C7F11300E51828 /* FirestoreHelper.swift in Sources */,
 				558DF0BD29D102D60012C87E /* AddShiftTVC.swift in Sources */,
 				55212E9029D211610094738B /* ViewShiftVC.swift in Sources */,
+				33BD185A29E4B73600DC628B /* SignUpCardsVC.swift in Sources */,
 				553F5F6029E20562000D0B26 /* AssignedHour.swift in Sources */,
 				552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
@@ -819,6 +830,7 @@
 				5549DA5F29C88EA900E51828 /* Business.swift in Sources */,
 				55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */,
 				55FE062629DA21BE00DAAA99 /* Attendance.swift in Sources */,
+				33BD185829E4A97900DC628B /* DisplayScreenVC.swift in Sources */,
 				B7DAB7FF29DB75FB00207B4A /* HomeScreenVC.swift in Sources */,
 				55BDF09429C93FB00050D223 /* AddBranchVC.swift in Sources */,
 				55C6374729CD1F6F00A1570D /* SelectFieldCell.swift in Sources */,
