@@ -157,7 +157,7 @@ class AddShiftTVC: UITableViewController {
 		}
 		
 		self.startLoading()
-		AuthHelper.getAssignedHours(employeeIds: (isOpenShifts ? data.eligibileEmployees : data.employees).compactMap{$0.id}, shiftDate: data.selectedDate){ assignedHours in
+		CloudFunctionsHelper.getAssignedHours(employeeIds: (isOpenShifts ? data.eligibileEmployees : data.employees).compactMap{$0.id}, shiftDate: data.selectedDate){ assignedHours in
 			if let assignedHours = assignedHours{
 				let diff = Int(self.data.endTime.timeIntervalSince1970 - self.data.startTime.timeIntervalSince1970)
 				
@@ -241,7 +241,7 @@ class AddShiftTVC: UITableViewController {
 	}
 	
 	func refreshEligibleEmployees(){
-		AuthHelper.getEligibleEmployees(branchId: data.branch?.id, roleId: data.role?.id, shiftDate: data.selectedDate, startTime: data.startTime, endTime: data.endTime){groupedEmployees in
+		CloudFunctionsHelper.getEligibleEmployees(branchId: data.branch?.id, roleId: data.role?.id, shiftDate: data.selectedDate, startTime: data.startTime, endTime: data.endTime){groupedEmployees in
 			var employees = [Employee]()
 			if let eligibleEmployees = groupedEmployees?.last?.employees{
 				employees = eligibleEmployees.compactMap{ActiveEmployee.instance?.getEmployee(employeeId: $0)}
@@ -278,6 +278,8 @@ extension AddShiftTVC{
 			var defaultValue: String? = nil
 			var tintColor: UIColor? = nil
 			var isMultiline = false
+            var contentType: UITextContentType?
+            var keyType: UIKeyboardType?
 			switch indexPath.row {
 				case 0:
 					label = "Date"
@@ -292,10 +294,12 @@ extension AddShiftTVC{
 				case 3:
 					label = "Unpaid Break(minutes)"
 					placeholder = "30"
+                    keyType = .numberPad
 				case 4:
 					label = "Notes"
-					isMultiline = true
-				default: break
+                    contentType = .none
+                    isMultiline = true
+                default: break
 			}
 			if indexPath.row == 0 {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "selectForm", for: indexPath) as! SelectFieldCell
@@ -332,6 +336,8 @@ extension AddShiftTVC{
 			cell.inputField.label = label
 			cell.inputField.placeholder = placeholder
 			cell.inputField.textFieldComponent.text = defaultValue
+            cell.inputField.textFieldComponent.keyboardType = keyType ?? .default
+            cell.inputField.textFieldComponent.textContentType = contentType
 			if isMultiline{
 				
 			}
@@ -368,7 +374,7 @@ extension AddShiftTVC{
 				cell.inputField.label = "Number of Open Shifts"
 				cell.inputField.placeholder = "1"
 				cell.inputField.textFieldComponent.text = "1"
-				
+                cell.inputField.textFieldComponent.keyboardType = .numberPad
 				return cell
 			} else {
 				print(indexPath)
@@ -397,7 +403,12 @@ extension AddShiftTVC{
 					} else {
 						let item = data.employees[indexPath.row]
 						cell.card.title = item.name
-						cell.card.setProfileImage(withName: item.name, backgroundColor: item.color)
+						if let profileUrl = item.profileUrl{
+							let (image, _) = UIImage.makeLetterAvatar(withName: item.name , backgroundColor: UIColor(hex: item.color))
+							cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
+						} else {
+							cell.card.setProfileImage(withName: item.name, backgroundColor: item.color)
+						}
 						cell.card.barView.backgroundColor = UIColor(hex: item.color)
 						cell.card.rightImageContainer.isHidden = false
 					}

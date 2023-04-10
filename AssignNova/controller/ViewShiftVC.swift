@@ -8,6 +8,7 @@
 import UIKit
 import LetterAvatarKit
 import FirebaseFirestore
+import CoreLocation
 
 enum ActionType{
 	case takeShift
@@ -28,6 +29,7 @@ class ViewShiftVC: UIViewController {
 	@IBOutlet weak var leftActionButton: UIButton!
 	@IBOutlet weak var rightActionButton: UIButton!
 	
+	
 	private var reference: DocumentReference?
 	var isOpenShifts: Bool{
 		if let employees = shift?.eligibleEmployees{
@@ -43,6 +45,9 @@ class ViewShiftVC: UIViewController {
 	var leftActionType: ActionType = .none
 	var rightActionType: ActionType = .none
 	
+	var locManager = CLLocationManager()
+	var currentLocation: CLLocation?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -50,6 +55,9 @@ class ViewShiftVC: UIViewController {
 		tableView.contentInset.bottom = 16
 		
 		refreshData()
+				
+		locManager.delegate = self
+		locManager.desiredAccuracy = kCLLocationAccuracyBest
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
@@ -91,6 +99,10 @@ class ViewShiftVC: UIViewController {
 					self.leftActionButton.tintColor = .systemRed
 					self.leftActionButton.isUserInteractionEnabled = false
 				} else if action == .clockIn{
+					if self.currentLocation == nil{
+						self.locManager.requestWhenInUseAuthorization()
+					}
+					
 					self.rightActionType = .clockIn
 					self.rightActionButton.isHidden = false
 					self.rightActionButton.setTitle("Clock In", for: .normal)
@@ -183,8 +195,16 @@ class ViewShiftVC: UIViewController {
 					}
 					return
 				}
-				self.stopLoading()
+				self.stopLoading(){
+					if let shift = self.shift,
+						let unpaidBreak = shift.unpaidBreak,
+						let totalBreakTime = shift.attendance?.totalBreakTime,
+						unpaidBreak < totalBreakTime {
+						self.showAlert(title: "Warning", message: "You went above your specified duration for break")
+					}
+				}
 			}
+			
 		}
 	}
 	
@@ -201,27 +221,62 @@ class ViewShiftVC: UIViewController {
 				self.stopLoading()
 			}
 		} else if rightActionType == .clockIn{
-			self.startLoading()
-			FirestoreHelper.clockIn(for: shift!){ error in
-				if let _ = error{
-					self.stopLoading(){
-						self.showAlert(title: "Oops", message: "Unknown error occured")
-					}
-					return
-				}
-				self.stopLoading()
-			}
+			clockIn()
 		} else if rightActionType == .clockOut{
-			self.startLoading()
-			FirestoreHelper.clockOut(for: shift!){ error in
-				if let _ = error{
-					self.stopLoading(){
-						self.showAlert(title: "Oops", message: "Unknown error occured")
-					}
-					return
-				}
-				self.stopLoading()
+			let clockedOutAt = Date().zeroSeconds
+			if let shift = self.shift,
+			   shift.shiftEndTime > clockedOutAt {
+				let alert = UIAlertController(title: "Warning", message: "You are going to clock out before your shift end time. Do you want to continue?", preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
+				alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
+					completion()
+				}))
+				self.present(alert, animated: true, completion: nil)
+			} else {
+				completion()
 			}
+			func completion(){
+				self.startLoading()
+				FirestoreHelper.clockOut(for: shift!){ error in
+					if let _ = error{
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: "Unknown error occured")
+						}
+						return
+					}
+					self.stopLoading(){
+						
+					}
+				}
+			}
+		}
+	}
+	
+	func clockIn(){
+		if let currentLocation = currentLocation  {
+			if let branch = ActiveEmployee.instance?.branches.first(where: {$0.id == shift?.branchId}){
+				let shiftLocation = CLLocation(latitude: branch.location.latitude, longitude: branch.location.longitude)
+				let distance = currentLocation.distance(from: shiftLocation)
+				print(distance)
+				if distance < 50{
+					self.startLoading()
+					FirestoreHelper.clockIn(for: shift!){ error in
+						if let _ = error{
+							self.stopLoading(){
+								self.showAlert(title: "Oops", message: "Unknown error occured")
+							}
+							return
+						}
+						self.stopLoading()
+					}
+				} else {
+					self.showAlert(title: "Oops", message: "You should be within 50 meters radius of the branch where you have been assigned.")
+				}
+			} else {
+				self.showAlert(title: "Oops", message: "Unable to detect your location")
+			}
+		} else {
+			locManager.requestWhenInUseAuthorization()
 		}
 	}
 }
@@ -294,7 +349,8 @@ extension ViewShiftVC: UITableViewDelegate, UITableViewDataSource{
 					let item = ActiveEmployee.instance?.getEmployee(employeeId: employeeId)
 					if let employee = item{
 						if let profileUrl = employee.profileUrl{
-							cell.card.setProfileImage(withUrl: profileUrl)
+							let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
+							cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
 						} else {
 							cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
 						}
@@ -339,10 +395,40 @@ extension ViewShiftVC: UITableViewDelegate, UITableViewDataSource{
 		if section == 0{return 0}
 		return 42
 	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+		if indexPath.section == 1{
+			let viewController = UIStoryboard(name: "Branch", bundle: nil).instantiateViewController(withIdentifier: "ViewBranchTVC") as! ViewBranchTVC
+			viewController.branchId = shift?.branchId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		} else if indexPath.section == 2 {
+			let viewController = UIStoryboard(name: "Role", bundle: nil).instantiateViewController(withIdentifier: "ViewRoleTVC") as! ViewRoleTVC
+			viewController.roleId = shift?.roleId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		} else if indexPath.section == 3 && !isOpenShifts{
+			let viewController = UIStoryboard(name: "Employee", bundle: nil).instantiateViewController(withIdentifier: "ViewEmployeeVC") as! ViewEmployeeVC
+			viewController.employeeId = shift?.employeeId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		} else if indexPath.section == 4 {
+			let employeeId = shift?.eligibleEmployees?[indexPath.row] ?? ""
+			let viewController = UIStoryboard(name: "Employee", bundle: nil).instantiateViewController(withIdentifier: "ViewEmployeeVC") as! ViewEmployeeVC
+			viewController.employeeId = employeeId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		}
+	}
 }
 
 extension ViewShiftVC: AddShiftDelegate{
 	func dismissScreen() {
 		navigationController?.popViewController(animated: true)
+	}
+}
+
+extension ViewShiftVC: CLLocationManagerDelegate{
+	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+		if(manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse) {
+			currentLocation = manager.location
+		}
 	}
 }

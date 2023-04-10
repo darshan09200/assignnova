@@ -11,6 +11,7 @@ class AvatarCell: UITableViewCell {
 
 	@IBOutlet weak var profileImage: UIImageView!
 	@IBOutlet weak var addImageButton: UIButton?
+	@IBOutlet weak var removeImageButton: UIButton!
 	
 	override func awakeFromNib() {
         super.awakeFromNib()

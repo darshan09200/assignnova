@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -163,14 +164,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" id="g3J-l7-Bst" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="393" height="68"/>
+                                <rect key="frame" x="0.0" y="50" width="393" height="8"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g3J-l7-Bst" id="HwR-9X-m21">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="8"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raF-WV-7d6" customClass="Card" customModule="AssignNova" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="4" width="361" height="60"/>
+                                            <rect key="frame" x="16" y="4" width="361" height="0.0"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="Role"/>
@@ -203,6 +204,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addRoleItem" destination="23O-YV-sUy" id="iMs-BR-cCM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wHT-NG-ykY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -270,17 +274,17 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" id="sj9-JP-1Su" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="106" width="393" height="68"/>
+                                <rect key="frame" x="0.0" y="106" width="393" height="8"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sj9-JP-1Su" id="KZq-Mm-RVj">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="8"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYJ-yV-pnF">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="8"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6l7-1f-LqS" customClass="Card" customModule="AssignNova" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="4" width="361" height="60"/>
+                                                    <rect key="frame" x="16" y="4" width="361" height="0.0"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                             </subviews>
@@ -317,6 +321,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="editItem" destination="c24-8l-YXY" id="tss-ze-RWC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZ3-o1-YGt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

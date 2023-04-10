@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFunctions
 import FirebaseSharedSwift
 
-class AuthHelper{
+class CloudFunctionsHelper{
 	static var userId: String?{
 		return Auth.auth().currentUser?.uid
 	}
@@ -18,12 +18,11 @@ class AuthHelper{
     static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil){
         if let currentUser = Auth.auth().currentUser{
             currentUser.getIDToken(){ token, error in
-                print(error?.localizedDescription)
                 if error == nil{
                     FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
                         if let employee = employee{
                             let activeEmployee = ActiveEmployee(employee: employee)
-                            FirestoreHelper.getBusiness(employeeId: employee.id ?? "" ){ business in
+                            FirestoreHelper.getBusiness(businessId: employee.businessId ){ business in
                                 if let business = business, let _ = business.id{
                                     activeEmployee.business = business
                                     ActiveEmployee.instance = activeEmployee
@@ -253,8 +252,6 @@ class AuthHelper{
 	}
 	
 	static func getEligibleEmployees(branchId: String?, roleId: String?, shiftDate: Date, startTime: Date, endTime: Date, completion: @escaping(_ groupedEmployees: [GroupedEmployee]? )->()){
-//		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
-		
 		var data = EligibleEmployeesRequest(
 			shiftDate:  Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
 			startTime: Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
@@ -290,6 +287,48 @@ class AuthHelper{
 				completion(assignedHours.assignedHours)
 				return
 			}
+			completion(nil)
+		}
+	}
+	
+	static func updateSubscription(business: Business, completion: @escaping(_ paymentDetails: PaymentDetails? )->()){
+//		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+		
+		let callable: Callable<UpdateSubscriptionRequest, PaymentDetails> = Functions.functions().httpsCallable("updateSubscription")
+		callable.call(UpdateSubscriptionRequest(employeeId: business.managedBy, noOfEmployees: business.noOfEmployees, businessId: business.id!)){ result in
+			if let paymentDetails = try? result.get(){
+				completion(paymentDetails)
+				return
+			}
+			completion(nil)
+		}
+	}
+	
+	static func getSubscriptionDetails(completion: @escaping(_ subscriptionDetail: SubscriptionDetail? )->()){
+		if let businessId = ActiveEmployee.instance?.employee.businessId{
+			let callable: Callable<SubscriptionDetailRequest, SubscriptionDetail> = Functions.functions().httpsCallable("getSubscriptionDetails")
+			callable.call(SubscriptionDetailRequest(businessId: businessId)){ result in
+				if let subscriptionDetail = try? result.get(){
+					completion(subscriptionDetail)
+					return
+				}
+				completion(nil)
+			}
+		}
+	}
+	
+	static func getSubscriptionInvoices(completion: @escaping(_ invoices: [Invoice]? )->()){
+		if let businessId = ActiveEmployee.instance?.employee.businessId{
+//			Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+			let callable: Callable<SubscriptionDetailRequest, SubscriptionInvoices> = Functions.functions().httpsCallable("getSubscriptionInvoices")
+			callable.call(SubscriptionDetailRequest(businessId: businessId)){ result in
+				if let subscriptionInvoices = try? result.get(){
+					completion(subscriptionInvoices.invoices)
+					return
+				}
+				completion(nil)
+			}
+		} else {
 			completion(nil)
 		}
 	}
@@ -329,18 +368,8 @@ struct EligibleEmployeesRequest:Codable{
 	var endTime: TimeInterval
 }
 
-struct AssignedHoursRequest: Codable{
-	var employeeIds: [String]
-	var shiftDate: TimeInterval
-}
-
-struct AssignedHoursResponse: Codable{
-	var assignedHours: [AssignedHour]
-	
-}
-
-struct AssignedHour: Codable{
+struct UpdateSubscriptionRequest: Encodable{
 	var employeeId: String
-	var assignedHour: Double
+	var noOfEmployees: Int
+	var businessId: String
 }
-

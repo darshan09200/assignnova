@@ -33,6 +33,8 @@ class RequestVC: UIViewController {
 		tableView.sectionHeaderTopPadding = 0
 
 		fetchData()
+		
+		addRequestButton.isHidden = !ActionsHelper.isTrialActive()
     }
 
 	func fetchData(){
@@ -65,7 +67,7 @@ class RequestVC: UIViewController {
 
 	@IBAction func onRequestTypeChanged(_ sender: UISegmentedControl) {
 		if sender.selectedSegmentIndex == 0 {
-			addRequestButton.isHidden = false
+			addRequestButton.isHidden = !ActionsHelper.isTrialActive()
 		} else {
 			addRequestButton.isHidden = true
 		}
@@ -107,7 +109,7 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 		if requestTypeSegment.selectedSegmentIndex == 0{
 			return groupedTimeOffs.count
 		}
-		return 1
+		return openShifts.count > 0 ? 1 : 0
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,7 +134,8 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 			cell.card.subtitle = item.startDate.format(to: "EEE, MMM dd, yyyy")
 			if let employee = employee{
 				if let profileUrl = employee.profileUrl{
-					cell.card.setProfileImage(withUrl: profileUrl)
+					let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
+					cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
 				} else {
 					cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
 				}
@@ -157,7 +160,8 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 			cell.card.subtitle = item.shiftStartDate.format(to: "EEE, MMM dd, yyyy")
 			if let employee = employee{
 				if let profileUrl = employee.profileUrl{
-					cell.card.setProfileImage(withUrl: profileUrl)
+					let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
+					cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
 				} else {
 					cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
 				}

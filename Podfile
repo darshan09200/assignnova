@@ -12,6 +12,8 @@ target 'AssignNova' do
 	pod 'FirebaseFunctions'
 	pod 'FirebaseAppCheck'
 	pod 'FirebaseMessaging'
+	pod 'FirebaseStorage'
+	pod 'FirebaseStorageUI'
 
 	pod 'GoogleSignIn'
 	pod 'GeoFire/Utils'
@@ -22,6 +24,7 @@ target 'AssignNova' do
 	pod "LetterAvatarKit", "1.2.5"
 	pod 'EmptyDataSet-Swift'
 	pod 'FSCalendar'
+	pod 'StripePaymentSheet'
 end
 
 post_install do |installer|

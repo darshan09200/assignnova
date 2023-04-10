@@ -31,10 +31,13 @@ class SignUpBusinessAccountVC: UIViewController {
 		confirmPwdInput.textFieldComponent.isSecureTextEntry = true
 		
         firstNameInput.textFieldComponent.textContentType = .name
+        firstNameInput.textFieldComponent.autocapitalizationType = .words
         lastNameInput.textFieldComponent.textContentType = .name
+        lastNameInput.textFieldComponent.autocapitalizationType = .words
         emailInput.textFieldComponent.textContentType = .emailAddress
         emailInput.textFieldComponent.keyboardType = .emailAddress
         phoneNumberInput.textFieldComponent.textContentType = .telephoneNumber
+        phoneNumberInput.textFieldComponent.textContentType = .none
         phoneNumberInput.textFieldComponent.keyboardType = .phonePad
         pwdInput.textFieldComponent.textContentType = .password
         confirmPwdInput.textFieldComponent.textContentType = .password
@@ -125,59 +128,73 @@ class SignUpBusinessAccountVC: UIViewController {
 			let formattedPhoneNumber = ValidationHelper.formatPhoneNumber(phoneNumberDetails!)
 			print("\(firstName), \(lastName), \(email), \(formattedPhoneNumber), \(pwd), \(confirmPwd)")
 			self.startLoading()
-			AuthHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists in
-				if let error = error {
+			CloudFunctionsHelper.isUserInvited(email: email, phoneNumber: phoneNumber){error,invited in
+				if let error = error, !error.starts(with: "No invite found") {
 					self.stopLoading(){
-						self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberInput)
+						self.showAlert(title: "Oops", message: error, textInput: self.emailInput)
 					}
-				} else if let exists = exists{
-					if exists {
-						self.showAlert(title: "Oops", message:"Phone number already linked with different account", textInput: self.phoneNumberInput)
-						return
+				} else if let invited = invited, invited{
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: "User is already invited. Please sign up as an employee", textInput: self.emailInput)
 					}
-					DispatchQueue.main.async {
-						(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
-					}
-					Auth.auth().createUser(withEmail: email, password: pwd) { authResult, error in
-						if let error = AuthHelper.getErrorMessage(error: error){
+				} else {
+					CloudFunctionsHelper.doesPhoneNumberExists(formattedPhoneNumber){ error, exists in
+						if let error = error {
 							self.stopLoading(){
-								self.showAlert(title: "Oops", message: error, textInput: self.emailInput)
+								self.showAlert(title: "Oops", message: error, textInput: self.phoneNumberInput)
 							}
-							return
-						}
-						print("created")
-						
-						let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-						changeRequest?.displayName = "\(firstName) \(lastName)"
-						
-						changeRequest?.commitChanges { error in
-							if let _ = error {
+						} else if let exists = exists{
+							if exists {
 								self.stopLoading(){
-									self.showAlert(title: "Oops", message: "Unknown error occured")
+									self.showAlert(title: "Oops", message:"Phone number already linked with different account", textInput: self.phoneNumberInput)
 								}
 								return
 							}
-							
-							if let uid = Auth.auth().currentUser?.uid
-							{
-								let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
-								let employee = Employee(userId: uid, firstName: firstName, lastName: lastName, appRole: .owner, email: email, phoneNumber: phoneNumber, color: backgroundColor.toHex ?? "")
-								FirestoreHelper.saveEmployee(employee){_ in}
+							DispatchQueue.main.async {
+								(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
 							}
-							
-							Auth.auth().currentUser?.sendEmailVerification { error in
-								if let error = error{
-									print(error.localizedDescription)
+							Auth.auth().createUser(withEmail: email, password: pwd) { authResult, error in
+								if let error = CloudFunctionsHelper.getErrorMessage(error: error){
+									self.stopLoading(){
+										self.showAlert(title: "Oops", message: error, textInput: self.emailInput)
+									}
+									return
 								}
-							}
-							
-							AuthHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
-								self.stopLoading(){
-									let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
-										.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
+								print("created")
+								
+								let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+								changeRequest?.displayName = "\(firstName) \(lastName)"
+								
+								changeRequest?.commitChanges { error in
+									if let _ = error {
+										self.stopLoading(){
+											self.showAlert(title: "Oops", message: "Unknown error occured")
+										}
+										return
+									}
 									
-									otpInputController.delegate = self
-									self.navigationController?.pushViewController(otpInputController, animated: true)
+									if let uid = Auth.auth().currentUser?.uid
+									{
+										let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
+										let employee = Employee(userId: uid, firstName: firstName, lastName: lastName, appRole: .owner, email: email, phoneNumber: phoneNumber, color: backgroundColor.toHex ?? "")
+										FirestoreHelper.saveEmployee(employee){_ in}
+									}
+									
+									Auth.auth().currentUser?.sendEmailVerification { error in
+										if let error = error{
+											print(error.localizedDescription)
+										}
+									}
+									
+									CloudFunctionsHelper.sendOtp(phoneNumber: formattedPhoneNumber){ error in
+										self.stopLoading(){
+											let otpInputController = UIStoryboard(name: "OtpInput", bundle: nil)
+												.instantiateViewController(withIdentifier: "OtpInputVC") as! OtpInputVC
+											
+											otpInputController.delegate = self
+											self.navigationController?.pushViewController(otpInputController, animated: true)
+										}
+									}
 								}
 							}
 						}
@@ -206,7 +223,7 @@ class SignUpBusinessAccountVC: UIViewController {
 				let email = user.profile?.email
 				let firstName = user.profile?.givenName
 				let lastName = user.profile?.familyName
-				AuthHelper.doesEmailExists(email ?? ""){ error, _  in
+				CloudFunctionsHelper.doesEmailExists(email ?? ""){ error, _  in
 					if let error = error {
 						self.stopLoading(){
 							self.showAlert(title: "Oops", message: error)
@@ -218,7 +235,7 @@ class SignUpBusinessAccountVC: UIViewController {
 							(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.preventRefresh = true
 						}
 						Auth.auth().signIn(with: credential) { result, error in
-							if let error = AuthHelper.getErrorMessage(error: error){
+							if let error = CloudFunctionsHelper.getErrorMessage(error: error){
 								self.stopLoading(){
 									self.showAlert(title: "Oops", message: error)
 								}

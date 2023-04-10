@@ -30,8 +30,9 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func onSignUpEmployeePress(_ sender: Any) {
-		let signUpBusinessVC = UIStoryboard(name: "SignUpEmployee", bundle: nil)
-			.instantiateViewController(withIdentifier: "SignUpEmployeeVC") as! SignUpEmployeeVC
-		self.navigationController?.pushViewController(signUpBusinessVC, animated: true)
+//		let signUpBusinessVC = UIStoryboard(name: "SignUpEmployee", bundle: nil)
+//			.instantiateViewController(withIdentifier: "SignUpEmployeeVC") as! SignUpEmployeeVC
+//		self.navigationController?.pushViewController(signUpBusinessVC, animated: true)
+		self.navigationController?.pushViewController(UIStoryboard(name: "CheckoutViewController", bundle: nil).instantiateViewController(withIdentifier: "CheckoutViewController"), animated: true)
 	}
 }

@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseStorage
+import FirebaseStorageUI
 
 class ViewEmployeeVC: UIViewController {
 	
@@ -16,6 +18,7 @@ class ViewEmployeeVC: UIViewController {
 	var employeeId: String?
 	private var employee: Employee?
 	private var listener: ListenerRegistration?
+	@IBOutlet weak var editItem: UIBarButtonItem!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -28,6 +31,11 @@ class ViewEmployeeVC: UIViewController {
 			if let employee = employee{
 				self.employee = employee
 				self.tableView.reloadData()
+				
+				if !self.isProfile {
+					let canEdit = ActionsHelper.canEdit(employee: employee)
+					self.editItem.isHidden = !canEdit
+				}
 			}
 		}
 		
@@ -66,9 +74,16 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 		if indexPath.section == 0{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "avatar", for: indexPath) as! AvatarCell
 			
-			
-			let (image, _) = UIImage.makeLetterAvatar(withName: "\(employee?.firstName ?? "") \(employee?.lastName ?? "")", backgroundColor: UIColor(hex: employee?.color ?? ""))
-			cell.profileImage.image = image
+			let (image, _) = UIImage.makeLetterAvatar(withName: employee?.name ?? "", backgroundColor: UIColor(hex: employee?.color ?? ""))
+			if let profileUrl = employee?.profileUrl{
+				let reference = ActionsHelper.getProfileImage(profileUrl: profileUrl)
+				cell.profileImage.sd_imageTransition = .fade
+				cell.profileImage.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: image, options: [.refreshCached])
+				
+			} else {
+				
+				cell.profileImage.image = image
+			}
 			
 			return cell
 		} else if indexPath.section == 1 {
@@ -95,13 +110,13 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 					cell.empIdPrivatePipe.isHidden = true
 				}
 				
-				cell.nameLabel.text = "\(employee.firstName) \(employee.lastName)"
+				cell.nameLabel.text = employee.name
 				cell.appRoleLabel.text = employee.appRole.rawValue
 				
 				cell.emailLabel.text = employee.email
 				cell.emailLabel.isHidden = false
 				
-				if let phoneNumber = employee.phoneNumber{
+				if let phoneNumber = employee.phoneNumber, !phoneNumber.isEmpty{
 					cell.phoneNumberLabel.text = phoneNumber
 					cell.phoneNumberLabel.isHidden = false
 					cell.emailPhoneNumberPipe.isHidden = false

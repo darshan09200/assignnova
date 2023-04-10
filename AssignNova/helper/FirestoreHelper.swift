@@ -20,21 +20,24 @@ class FirestoreHelper{
 		}
 	}
 
-	static func saveEmployee(_ employee: Employee, completion: @escaping(_ error: Error?)->()){
+	static func saveEmployee(_ employee: Employee, completion: @escaping(_ error: Error?)->()) -> DocumentReference?{
 		do{
 			if let employeeId = employee.id{
 				try db.collection("employee").document(employeeId).setData(from: employee){ err in FirestoreHelper.completion(err, completion)
 				}
+				
+				return nil
 			} else {
-				try db.collection("employee").addDocument(from: employee){ err in FirestoreHelper.completion(err, completion)
+				return try db.collection("employee").addDocument(from: employee){ err in FirestoreHelper.completion(err, completion)
 				}
 			}
 		} catch{
 			completion(error)
 		}
+		return nil
 	}
 
-	static func saveBusiness(_ business: Business, completion: @escaping(_ error: Error?)->()){
+	static func saveBusiness(_ business: Business, completion: @escaping(_ error: Error?)->()) -> DocumentReference?{
 		do{
 			var reference: DocumentReference?
 			reference = try db.collection("business").addDocument(from: business) { err in
@@ -45,15 +48,16 @@ class FirestoreHelper{
 				}
 				if let businessId = reference?.documentID{
 					let branch = Branch(name: business.name, address: business.address, location: business.location, businessId: businessId, color: ColorPickerVC.colors.first!.color.toHex!)
-					print(branch)
 					saveBranch(branch, completion: completion)
 				} else {
 					completion(nil)
 				}
 			}
+			return reference
 		} catch{
 			completion(error)
 		}
+		return nil
 	}
 
 	static func saveBranch(_ branch: Branch, completion: @escaping(_ error: Error?)->()){
@@ -125,12 +129,11 @@ class FirestoreHelper{
 			var filters = [
 				Filter.whereField("email", isEqualTo: email)
 			]
-			if let phoneNumber = phoneNumber {
+			if let phoneNumber = phoneNumber, !phoneNumber.isEmpty {
 				filters.append(Filter.whereField("phoneNumber", isEqualTo: phoneNumber))
 			}
 			var docRef = db.collection("employee")
 				.whereFilter(Filter.orFilter(filters))
-				.whereField("businessId", isEqualTo: businessId)
 			
 			if let employeeId = employeeId{
 				print("added employeeId \(employeeId)")
@@ -157,23 +160,23 @@ class FirestoreHelper{
 		}
 	}
 
-	static func getBusiness(employeeId: String, completion: @escaping(_ business: Business?)->()){
-		
-		let docRef = db.collection("business").whereField("managedBy", isEqualTo: employeeId)
-		docRef.getDocuments(){ snapshots, err in
+	static func getBusiness(businessId: String, completion: @escaping(_ business: Business?)->()){
+		if businessId.isEmpty{
+			completion(nil)
+			return
+		}
+		let docRef = db.collection("business").document(businessId)
+		docRef.getDocument(){ document, err in
 			if let _ = err {
 				completion(nil)
 				return
 			}
-			if let snapshot = snapshots?.documents.first{
-				do{
-					try completion(snapshot.data(as: Business.self))
-				} catch{
-					completion(nil)
-				}
-			} else{
+			do{
+				try completion(document?.data(as: Business.self))
+			} catch{
 				completion(nil)
 			}
+			
 		}
 	}
 
@@ -285,7 +288,7 @@ class FirestoreHelper{
 			let batch = db.batch()
 			try shifts.forEach{shift in
 				let ref = db.collection("shift").document()
-				try ref.setData(from: shift)				
+				try ref.setData(from: shift)
 			}
 			batch.commit(){ err in
 				FirestoreHelper.completion(err, completion)
@@ -336,7 +339,7 @@ class FirestoreHelper{
 				filters.append(Filter.whereField("eligibleEmployees", isEqualTo: []))
 			}
 		}
-        print(businessId)
+		print(businessId)
 		let docRef = db.collection("shift")
 			.whereField("businessId", isEqualTo: businessId)
 			.whereField("shiftStartDate", isGreaterThanOrEqualTo: startDate.startOfDay)
@@ -520,6 +523,98 @@ class FirestoreHelper{
 			completion(FirestoreError.breakNoteStarted)
 		}
 	}
+	
+	static func getCurrentWeekStats(completion: @escaping(_ shiftStats: ShiftStats?)->()){
+		if let employee = ActiveEmployee.instance?.employee, let employeeId = employee.id{
+			let currentDate = Date()
+			
+			let startOfWeek = currentDate.startOfWeek
+			let endOfWeek = currentDate.endOfWeek
+			db.collection("shift")
+				.whereField("employeeId", isEqualTo: employeeId)
+				.whereField("shiftStartDate", isGreaterThanOrEqualTo: startOfWeek)
+				.whereField("shiftStartDate", isLessThanOrEqualTo: endOfWeek)
+				.order(by: "shiftStartDate")
+				.addSnapshotListener(){ snapshots, err in
+					if let _ = err {
+						completion(nil)
+						return
+					}
+					
+					let shifts = snapshots?.documents.compactMap{ document in
+						return try? document.data(as: Shift.self)
+					} ?? []
+					
+					var shiftStats = ShiftStats(pendingHours: 0, completedHours: 0)
+					
+					var pendingHours = 0.0
+					var completedHours = 0.0
+					
+					let dateForUpcomingShift = Calendar.current.date(byAdding: .day, value: 1, to: currentDate.getLast15())!
+					for shift in shifts{
+						if shift.attendance?.clockedInAt != nil &&  shift.attendance?.clockedOutAt != nil{
+							completedHours += Double(Date.getMinutesDifferenceBetween(start: shift.shiftStartTime, end: shift.shiftEndTime)) / 60
+						} else {
+							pendingHours += Double(Date.getMinutesDifferenceBetween(start: shift.shiftStartTime, end: shift.shiftEndTime)) / 60
+						}
+						if shiftStats.upcomingShift == nil, shift.shiftStartTime >= currentDate.getLast15() && shift.shiftStartTime <= dateForUpcomingShift && shift.attendance == nil{
+							shiftStats.upcomingShift = shift
+						}
+						if shiftStats.ongoingShift == nil, shift.attendance?.clockedOutAt == nil && shift.attendance?.clockedInAt != nil {
+							shiftStats.ongoingShift = shift
+						}
+					}
+					
+					shiftStats.pendingHours = pendingHours
+					shiftStats.completedHours = completedHours
+					completion(shiftStats)
+				}
+		} else {
+			completion(nil)
+		}
+	}
+	
+	static func saveAvailability(_ availability: Availability, completion: @escaping(_ error: Error?)->()) {
+		do{
+			if let availabilityId = availability.id{
+				try db.collection("availability").document(availabilityId).setData(from: availability){ err in FirestoreHelper.completion(err, completion)
+				}
+			} else {
+				try db.collection("availability").addDocument(from: availability){ err in FirestoreHelper.completion(err, completion)
+				}
+			}
+		} catch{
+			completion(error)
+		}
+	}
+	
+	static func getAvailbilities(startDate: Date, endDate: Date, completion: @escaping(_ availabilities: [Availability]?)->()) -> ListenerRegistration{
+		let docRef = db.collection("availability")
+			.whereField("businessId", isEqualTo: ActiveEmployee.instance!.employee.businessId)
+			.whereField("date", isGreaterThanOrEqualTo: startDate.startOfDay)
+			.whereField("date", isLessThanOrEqualTo: endDate.endOfDay)
+			.whereField("employeeId", isEqualTo: ActiveEmployee.instance!.employee.id!)
+			.order(by: "date")
+			.order(by: "startTime")
+		return docRef.addSnapshotListener(){ snapshots, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			let availabilities = snapshots?.documents.compactMap{ document in
+				return try? document.data(as: Availability.self)
+			}
+			completion(availabilities)
+		}
+	}
+	
+	static func deleteAvailability(_ availabilityId: String, completion: @escaping(_ error: Error?)->()){
+		db.collection("availability").document(availabilityId).delete(){ err in
+			FirestoreHelper.completion(err, completion)
+		}
+	}
+	
+	
 }
 
 enum ShiftType{
@@ -530,4 +625,11 @@ enum ShiftType{
 
 enum FirestoreError: String, Error{
 	case breakNoteStarted = "Break Not Started"
+}
+
+struct ShiftStats{
+	var ongoingShift: Shift?
+	var upcomingShift: Shift?
+	var pendingHours: Double
+	var completedHours: Double
 }

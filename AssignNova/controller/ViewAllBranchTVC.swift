@@ -7,20 +7,40 @@
 
 import UIKit
 import FirebaseFirestore
+import EmptyDataSet_Swift
 
 class ViewAllBranchTVC: UITableViewController {
 
 	private let searchController = UISearchController()
 	private var branches = [Branch]()
+	private var filteredBranches = [Branch]()
 	private var listener: ListenerRegistration?
+	
+	@IBOutlet weak var mapItem: UIBarButtonItem!
+	@IBOutlet weak var addBranchItem: UIBarButtonItem!
+	var searchText: String{
+		(
+			searchController.searchBar.text?
+				.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+		).lowercased()
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		configureSearchBar()
 
+		mapItem.isHidden = true
+		
+		tableView.emptyDataSetSource = self
 		if let businessId = ActiveEmployee.instance?.business?.id{
 			listener = FirestoreHelper.getBranches(businessId: businessId){ branches in
 				self.branches = branches ?? []
+				self.filterData()
 				self.tableView.reloadData()
+				
+				let canAdd = ActionsHelper.canAdd()
+				
+				self.addBranchItem.isHidden = !canAdd
 			}
 		}
 	}
@@ -28,8 +48,6 @@ class ViewAllBranchTVC: UITableViewController {
 	private func configureSearchBar() {
 		navigationItem.searchController = searchController
 		searchController.obscuresBackgroundDuringPresentation = false
-		searchController.searchBar.delegate = self
-		searchController.delegate = self
 		definesPresentationContext = true
 		searchController.searchResultsUpdater = self
 	}
@@ -45,22 +63,19 @@ class ViewAllBranchTVC: UITableViewController {
 }
 
 extension ViewAllBranchTVC{
-	// MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-		return branches.count
+		return filteredBranches.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
 
-		let branch = branches[indexPath.row]
+		let branch = filteredBranches[indexPath.row]
 
 		cell.card.barView.backgroundColor = UIColor(hex: branch.color)
 		cell.card.title = branch.name
@@ -71,38 +86,40 @@ extension ViewAllBranchTVC{
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		let branch = branches[indexPath.row]
+		let branch = filteredBranches[indexPath.row]
 		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewBranchTVC") as! ViewBranchTVC
 		viewController.branchId = branch.id
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
-    */
-
-}
-
-extension ViewAllBranchTVC: UISearchBarDelegate{
-
-}
-
-extension ViewAllBranchTVC: UISearchControllerDelegate{
-
 }
 
 extension ViewAllBranchTVC: UISearchResultsUpdating{
 	func updateSearchResults(for searchController: UISearchController) {
-
+		filterData()
 	}
+	
+	func filterData() {
+		if searchText.isEmpty {
+			filteredBranches = branches
+		} else {
+			filteredBranches = branches.filter{
+				$0.name.lowercased().contains(
+					searchText) ||
+				$0.address.lowercased().contains(searchText)
+				
+			}
+		}
+		tableView.reloadData()
+	}
+	
+}
 
-
+extension ViewAllBranchTVC: EmptyDataSetSource{
+	func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+		let message = NSMutableAttributedString(string: searchText.isEmpty ? "No Branches Found" : "Try finding a different branch.", attributes: [
+			.font: UIFont.preferredFont(forTextStyle: .body)
+		])
+		return message
+	}
 }

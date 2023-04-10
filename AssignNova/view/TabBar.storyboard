@@ -51,16 +51,298 @@
         <!--AssignNova-->
         <scene sceneID="IQ6-dM-oKz">
             <objects>
-                <viewController id="Q42-BW-YWJ" sceneMemberID="viewController">
+                <viewController id="Q42-BW-YWJ" customClass="HomeScreenVC" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WYP-It-CqC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6LF-wR-MUi">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQW-62-zWX">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="388.33333333333331"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="T2j-0x-ZWa">
+                                                <rect key="frame" x="16" y="16" width="361" height="754.66666666666663"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Get Started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VP9-7H-rSE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RH1-Ip-7Yp" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="32.333333333333343" width="361" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Authorise Payment"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="dollarsign" catalog="system"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="v0b-u2-LvY" appends="YES" id="eOc-Iu-A8T"/>
+                                                        </connections>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10d-2r-ZeF" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="96.333333333333343" width="361" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Add Branch"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="building.2.fill" catalog="system"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="25P-6H-Ndw" appends="YES" id="y2u-Sz-OY7"/>
+                                                        </connections>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqp-aQ-f70" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="160.33333333333331" width="361" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Add Role"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="person.text.rectangle.fill" catalog="system"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="yHD-f2-mSe" appends="YES" id="5Wh-t0-kQz"/>
+                                                        </connections>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Np-1I-7n5" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="224.33333333333331" width="361" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Add Employee"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="person.3.fill" catalog="system"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="jwZ-sF-cuJ" appends="YES" id="HmP-IV-gnu"/>
+                                                        </connections>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Stats for this week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0t-2a-lwk">
+                                                        <rect key="frame" x="0.0" y="288.33333333333331" width="361" height="20.333333333333314"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="iBy-wr-2ur">
+                                                        <rect key="frame" x="0.0" y="320.66666666666669" width="361" height="102"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ov-VE-G72">
+                                                                <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="102"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbE-YZ-vud">
+                                                                        <rect key="frame" x="16" y="15.999999999999998" width="140.66666666666666" height="20.333333333333329"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30.00 hrs" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdN-Bc-VjJ">
+                                                                        <rect key="frame" x="37.666666666666657" y="52.333333333333314" width="119" height="33.666666666666657"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="XdN-Bc-VjJ" firstAttribute="top" secondItem="qbE-YZ-vud" secondAttribute="bottom" constant="16" id="ID5-G5-kci"/>
+                                                                    <constraint firstItem="qbE-YZ-vud" firstAttribute="leading" secondItem="2ov-VE-G72" secondAttribute="leading" constant="16" id="IYq-QW-V4u"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="XdN-Bc-VjJ" secondAttribute="trailing" constant="16" id="KSN-dQ-6ts"/>
+                                                                    <constraint firstItem="qbE-YZ-vud" firstAttribute="top" secondItem="2ov-VE-G72" secondAttribute="top" constant="16" id="N4M-SI-klI"/>
+                                                                    <constraint firstItem="XdN-Bc-VjJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2ov-VE-G72" secondAttribute="leading" constant="16" id="WJ9-fo-asV"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="qbE-YZ-vud" secondAttribute="trailing" constant="16" id="jy8-Xb-iU1"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="XdN-Bc-VjJ" secondAttribute="bottom" constant="16" id="qbb-Od-lvl"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray2Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="0.5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVx-jv-YZf">
+                                                                <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="102"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pending" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7R-of-hGT">
+                                                                        <rect key="frame" x="16" y="15.999999999999998" width="140.33333333333334" height="20.333333333333329"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.00 hrs" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCh-cK-zHZ">
+                                                                        <rect key="frame" x="41.333333333333343" y="52.333333333333314" width="115" height="33.666666666666657"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="a7R-of-hGT" secondAttribute="trailing" constant="16" id="87s-86-03k"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="fCh-cK-zHZ" secondAttribute="trailing" constant="16" id="BhT-ee-jyL"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="fCh-cK-zHZ" secondAttribute="bottom" constant="16" id="UXB-p8-pah"/>
+                                                                    <constraint firstItem="fCh-cK-zHZ" firstAttribute="top" secondItem="a7R-of-hGT" secondAttribute="bottom" constant="16" id="fIG-oz-S58"/>
+                                                                    <constraint firstItem="a7R-of-hGT" firstAttribute="top" secondItem="OVx-jv-YZf" secondAttribute="top" constant="16" id="gjl-sV-0Gh"/>
+                                                                    <constraint firstItem="a7R-of-hGT" firstAttribute="leading" secondItem="OVx-jv-YZf" secondAttribute="leading" constant="16" id="jAg-yn-k8t"/>
+                                                                    <constraint firstItem="fCh-cK-zHZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OVx-jv-YZf" secondAttribute="leading" constant="16" id="qky-bg-PzE"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray2Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="0.5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Next Shift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQQ-b9-kTU">
+                                                        <rect key="frame" x="0.0" y="434.66666666666663" width="361" height="20.333333333333314"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WhN-Qq-yrO" customClass="Card" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="467" width="361" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="9am - 10pm"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="OEg-h0-8Tx" appends="YES" id="Qtg-A9-vqA"/>
+                                                        </connections>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="No Shifts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGC-Pz-c8D">
+                                                        <rect key="frame" x="0.0" y="529" width="361" height="64"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="64" id="C2V-WV-rck"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="tM7-7C-k1t">
+                                                        <rect key="frame" x="0.0" y="605" width="361" height="149.66666666666663"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bulb" translatesAutoresizingMaskIntoConstraints="NO" id="U3E-Wm-luJ">
+                                                                <rect key="frame" x="16" y="16" width="329" height="64"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" name="AccentColor"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do You Know " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2h-ym-AE9">
+                                                                <rect key="frame" x="16" y="84" width="329" height="25.333333333333329"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asT-HK-haO">
+                                                                <rect key="frame" x="16" y="113.33333333333337" width="329" height="20.333333333333343"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" systemColor="systemGray2Color"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </stackView>
+                                                </subviews>
+                                                <gestureRecognizers/>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="T2j-0x-ZWa" firstAttribute="leading" secondItem="fQW-62-zWX" secondAttribute="leading" constant="16" id="17a-Fi-y62"/>
+                                            <constraint firstAttribute="trailing" secondItem="T2j-0x-ZWa" secondAttribute="trailing" constant="16" id="aEp-P2-BWY"/>
+                                            <constraint firstItem="T2j-0x-ZWa" firstAttribute="top" secondItem="fQW-62-zWX" secondAttribute="top" constant="16" id="eEn-IR-I64"/>
+                                            <constraint firstAttribute="bottom" secondItem="T2j-0x-ZWa" secondAttribute="bottom" constant="16" id="hNM-HC-SwU"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fQW-62-zWX" firstAttribute="top" secondItem="9dj-uO-wvW" secondAttribute="top" id="IGF-8s-bLD"/>
+                                    <constraint firstItem="9dj-uO-wvW" firstAttribute="bottom" secondItem="fQW-62-zWX" secondAttribute="bottom" id="MD3-jH-3ga"/>
+                                    <constraint firstItem="9dj-uO-wvW" firstAttribute="trailing" secondItem="fQW-62-zWX" secondAttribute="trailing" id="ZYH-av-Fph"/>
+                                    <constraint firstItem="fQW-62-zWX" firstAttribute="leading" secondItem="9dj-uO-wvW" secondAttribute="leading" id="keJ-Kk-faa"/>
+                                    <constraint firstItem="fQW-62-zWX" firstAttribute="width" secondItem="A91-Y9-5pO" secondAttribute="width" id="wnL-8R-TY6"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="9dj-uO-wvW"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="A91-Y9-5pO"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="BJh-Cd-k44"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6LF-wR-MUi" firstAttribute="trailing" secondItem="BJh-Cd-k44" secondAttribute="trailing" id="Bme-Al-W8k"/>
+                            <constraint firstItem="BJh-Cd-k44" firstAttribute="bottom" secondItem="6LF-wR-MUi" secondAttribute="bottom" id="JBv-Cx-eRn"/>
+                            <constraint firstItem="6LF-wR-MUi" firstAttribute="leading" secondItem="BJh-Cd-k44" secondAttribute="leading" id="Qxf-61-tkJ"/>
+                            <constraint firstItem="6LF-wR-MUi" firstAttribute="top" secondItem="BJh-Cd-k44" secondAttribute="top" id="WQX-xu-xb6"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="AssignNova" largeTitleDisplayMode="never" id="C57-3s-5jr"/>
+                    <connections>
+                        <outlet property="branchButton" destination="10d-2r-ZeF" id="WHJ-IE-ywK"/>
+                        <outlet property="completedHoursLabel" destination="XdN-Bc-VjJ" id="z8o-JB-dfl"/>
+                        <outlet property="doYouKnow" destination="asT-HK-haO" id="Rdr-rI-AIi"/>
+                        <outlet property="doYouKnowStack" destination="tM7-7C-k1t" id="EKk-JH-PJn"/>
+                        <outlet property="employeeButton" destination="3Np-1I-7n5" id="QcD-uS-raH"/>
+                        <outlet property="letsGetStartedLabel" destination="VP9-7H-rSE" id="Rvu-mQ-PMd"/>
+                        <outlet property="noRecordLabel" destination="xGC-Pz-c8D" id="2OV-no-bj1"/>
+                        <outlet property="paymentButton" destination="RH1-Ip-7Yp" id="PYn-OR-xCx"/>
+                        <outlet property="pendingHoursLabel" destination="fCh-cK-zHZ" id="KnK-dq-Foi"/>
+                        <outlet property="roleButton" destination="aqp-aQ-f70" id="UpP-Pl-aXN"/>
+                        <outlet property="shiftCard" destination="WhN-Qq-yrO" id="WOU-C1-V0R"/>
+                        <outlet property="shiftLabel" destination="rQQ-b9-kTU" id="DWM-ko-ine"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCE-i3-5Nt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="v0b-u2-LvY">
+                    <connections>
+                        <action selector="onAuthorizePayment:" destination="Q42-BW-YWJ" id="5MG-3X-UgN"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="jwZ-sF-cuJ">
+                    <connections>
+                        <action selector="addEmployeeBtn:" destination="Q42-BW-YWJ" id="TfF-YJ-q8Z"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="yHD-f2-mSe">
+                    <connections>
+                        <action selector="addRoleBtn:" destination="Q42-BW-YWJ" id="5FS-MA-h31"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="25P-6H-Ndw">
+                    <connections>
+                        <action selector="addBranchBtn:" destination="Q42-BW-YWJ" id="NDt-52-wHb"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="OEg-h0-8Tx">
+                    <connections>
+                        <action selector="onShiftPress:" destination="Q42-BW-YWJ" id="UQj-NU-nUQ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="222" y="-1232"/>
         </scene>
@@ -219,6 +501,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addShiftButton" destination="MJ4-SH-xPZ" id="OUo-2Y-zu1"/>
                         <outlet property="calendar" destination="Wyx-6G-aVE" id="Z0i-0T-V4r"/>
                         <outlet property="calendarHeightConstraint" destination="d76-iR-qL4" id="kM4-ua-zee"/>
                         <outlet property="monthLabel" destination="tyu-hA-nDP" id="cWT-D6-ShE"/>
@@ -278,10 +561,10 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVD-wI-Bwm">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="322.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="442.33333333333331"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="V7x-Wi-sal">
-                                                <rect key="frame" x="16" y="16" width="361" height="290.33333333333331"/>
+                                                <rect key="frame" x="16" y="16" width="361" height="410.33333333333331"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-c8-A3j" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="52"/>
@@ -295,43 +578,68 @@
                                                             <outletCollection property="gestureRecognizers" destination="ttG-xE-936" appends="YES" id="WaP-ss-9AY"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8m-Jv-ztE" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGf-GA-Glf" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="60" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
                                                         <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Availability"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="clock.fill" catalog="system"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="uYH-L4-d7V" appends="YES" id="8cd-md-aHv"/>
+                                                        </connections>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8m-Jv-ztE" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="120" width="361" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Branch"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="building.2.fill" catalog="system"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="Urj-OV-jGD" appends="YES" id="HOE-sP-GEf"/>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlf-us-V4D" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="120" width="361" height="52"/>
+                                                        <rect key="frame" x="0.0" y="180" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Role"/>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="person.2.fill" catalog="system"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="person.text.rectangle.fill" catalog="system"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="Fgw-cf-XOo" appends="YES" id="fNL-Qc-jft"/>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKB-uN-i3w" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="180" width="361" height="52"/>
+                                                        <rect key="frame" x="0.0" y="240" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="label" value="Employee"/>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="person.fill" catalog="system"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="person.3.fill" catalog="system"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="9Ep-bp-CFs" appends="YES" id="Zbu-0M-hYJ"/>
                                                         </connections>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-Xb-dtm" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="300" width="361" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Payment"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="dollarsign" catalog="system"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="4b8-SS-U4j" appends="YES" id="03f-Iw-Ho3"/>
+                                                        </connections>
+                                                    </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QwY-Ad-xZA">
-                                                        <rect key="frame" x="0.0" y="240.00000000000003" width="361" height="50.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="360" width="361" height="50.333333333333314"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Logout" buttonSize="large"/>
                                                         <connections>
@@ -372,6 +680,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="More" image="ellipsis" catalog="system" id="TAu-iA-HQ6"/>
                     <navigationItem key="navigationItem" title="More" largeTitleDisplayMode="never" id="rpH-bP-jo4"/>
+                    <connections>
+                        <outlet property="branchButton" destination="B8m-Jv-ztE" id="ZiU-gV-2yn"/>
+                        <outlet property="employeeButton" destination="QKB-uN-i3w" id="hGU-gW-FOQ"/>
+                        <outlet property="paymentButton" destination="rmC-Xb-dtm" id="5An-uK-9R7"/>
+                        <outlet property="profileButton" destination="ypF-c8-A3j" id="D1S-7Y-4UX"/>
+                        <outlet property="roleButton" destination="nlf-us-V4D" id="Ksx-La-QzV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irR-Ig-mvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Urj-OV-jGD">
@@ -392,6 +707,16 @@
                 <tapGestureRecognizer id="ttG-xE-936">
                     <connections>
                         <action selector="onProfilePress:" destination="cVR-a7-XBn" id="aQI-eA-XLU"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="4b8-SS-U4j">
+                    <connections>
+                        <action selector="onPaymentPress:" destination="cVR-a7-XBn" id="aOs-gS-psd"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="uYH-L4-d7V">
+                    <connections>
+                        <action selector="onAvailabilityPress:" destination="cVR-a7-XBn" id="Les-d0-DCK"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -544,24 +869,35 @@
         </scene>
     </scenes>
     <resources>
+        <image name="building.2.fill" catalog="system" width="128" height="108"/>
+        <image name="bulb" width="64" height="64"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="clock" catalog="system" width="128" height="123"/>
+        <image name="clock.fill" catalog="system" width="128" height="123"/>
+        <image name="dollarsign" catalog="system" width="89" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="house" catalog="system" width="128" height="104"/>
-        <image name="person.2.fill" catalog="system" width="128" height="81"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="person.text.rectangle.fill" catalog="system" width="128" height="93"/>
         <namedColor name="AccentColor">
             <color red="0.11800000071525574" green="0.24300000071525574" blue="0.62000000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
