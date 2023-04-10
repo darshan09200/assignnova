@@ -8,6 +8,7 @@
 import UIKit
 import LetterAvatarKit
 import FirebaseFirestore
+import CoreLocation
 
 enum ActionType{
 	case takeShift
@@ -28,6 +29,7 @@ class ViewShiftVC: UIViewController {
 	@IBOutlet weak var leftActionButton: UIButton!
 	@IBOutlet weak var rightActionButton: UIButton!
 	
+	
 	private var reference: DocumentReference?
 	var isOpenShifts: Bool{
 		if let employees = shift?.eligibleEmployees{
@@ -43,6 +45,9 @@ class ViewShiftVC: UIViewController {
 	var leftActionType: ActionType = .none
 	var rightActionType: ActionType = .none
 	
+	var locManager = CLLocationManager()
+	var currentLocation: CLLocation?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -50,6 +55,9 @@ class ViewShiftVC: UIViewController {
 		tableView.contentInset.bottom = 16
 		
 		refreshData()
+				
+		locManager.delegate = self
+		locManager.desiredAccuracy = kCLLocationAccuracyBest
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
@@ -91,6 +99,10 @@ class ViewShiftVC: UIViewController {
 					self.leftActionButton.tintColor = .systemRed
 					self.leftActionButton.isUserInteractionEnabled = false
 				} else if action == .clockIn{
+					if self.currentLocation == nil{
+						self.locManager.requestWhenInUseAuthorization()
+					}
+					
 					self.rightActionType = .clockIn
 					self.rightActionButton.isHidden = false
 					self.rightActionButton.setTitle("Clock In", for: .normal)
@@ -201,16 +213,7 @@ class ViewShiftVC: UIViewController {
 				self.stopLoading()
 			}
 		} else if rightActionType == .clockIn{
-			self.startLoading()
-			FirestoreHelper.clockIn(for: shift!){ error in
-				if let _ = error{
-					self.stopLoading(){
-						self.showAlert(title: "Oops", message: "Unknown error occured")
-					}
-					return
-				}
-				self.stopLoading()
-			}
+			clockIn()
 		} else if rightActionType == .clockOut{
 			self.startLoading()
 			FirestoreHelper.clockOut(for: shift!){ error in
@@ -222,6 +225,35 @@ class ViewShiftVC: UIViewController {
 				}
 				self.stopLoading()
 			}
+		}
+	}
+	
+	func clockIn(){
+		print(currentLocation)
+		if let currentLocation = currentLocation  {
+			if let branch = ActiveEmployee.instance?.branches.first(where: {$0.id == shift?.branchId}){
+				let shiftLocation = CLLocation(latitude: branch.location.latitude, longitude: branch.location.longitude)
+				let distance = currentLocation.distance(from: shiftLocation)
+				print(distance)
+				if distance < 50{
+					self.startLoading()
+					FirestoreHelper.clockIn(for: shift!){ error in
+						if let _ = error{
+							self.stopLoading(){
+								self.showAlert(title: "Oops", message: "Unknown error occured")
+							}
+							return
+						}
+						self.stopLoading()
+					}
+				} else {
+					self.showAlert(title: "Oops", message: "You should be within 50 meters radius of the branch where you have been assigned.")
+				}
+			} else {
+				self.showAlert(title: "Oops", message: "Unable to detect your location")
+			}
+		} else {
+			locManager.requestWhenInUseAuthorization()
 		}
 	}
 }
@@ -344,5 +376,13 @@ extension ViewShiftVC: UITableViewDelegate, UITableViewDataSource{
 extension ViewShiftVC: AddShiftDelegate{
 	func dismissScreen() {
 		navigationController?.popViewController(animated: true)
+	}
+}
+
+extension ViewShiftVC: CLLocationManagerDelegate{
+	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+		if(manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse) {
+			currentLocation = manager.location
+		}
 	}
 }

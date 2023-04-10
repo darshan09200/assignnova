@@ -231,9 +231,11 @@ extension AddEmployeeTVC{
 				  let firstName = firstNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
 				  !firstName.isEmpty,
 			   let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell,
-				  let lastName = lastNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-			   !lastName.isEmpty{
+				  let lastName = lastNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
 				let (image, _) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
+				cell.profileImage.image = image
+			} else if let employee = employee {
+				let (image, _) = UIImage.makeLetterAvatar(withName: employee.name, backgroundColor: UIColor(hex: employee.color))
 				cell.profileImage.image = image
 			} else {
 				let (image, _) = UIImage.makeLetterAvatar(withName: "John Doe")
@@ -271,7 +273,7 @@ extension AddEmployeeTVC{
 					label = "Role"
 				case 6:
 					label = "Max Hours/Week"
-					defaultValue = String(format: "%.2f", employee?.maxHours ?? 40)
+					defaultValue = String(format: "%.2f", employee?.maxHours ?? 40.0)
 				default: break
 			}
 			if indexPath.row == 5{

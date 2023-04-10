@@ -132,7 +132,9 @@ class SignUpBusinessAccountVC: UIViewController {
 					}
 				} else if let exists = exists{
 					if exists {
-						self.showAlert(title: "Oops", message:"Phone number already linked with different account", textInput: self.phoneNumberInput)
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message:"Phone number already linked with different account", textInput: self.phoneNumberInput)
+						}
 						return
 					}
 					DispatchQueue.main.async {

@@ -65,7 +65,11 @@ class MoreTabVC: UIViewController {
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
-	@IBOutlet weak var onPaymentPress: NavigationItem!
+	@IBAction func onPaymentPress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Payment", bundle: nil)
+			.instantiateViewController(withIdentifier: "PaymentVC") as! PaymentVC
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
 	
 	@IBAction func onLogoutPress(_ sender: UIButton) {
 		CloudFunctionsHelper.logout()
