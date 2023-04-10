@@ -16,7 +16,9 @@ class SetupBusinessVC: UIViewController {
 	@IBOutlet weak var businessNameInput: TextInput!
 
 	@IBOutlet weak var selectLocationLabel: UILabel!
-
+	@IBOutlet weak var selectLocationView: UIView!
+	@IBOutlet var selectLocationGesture: UITapGestureRecognizer!
+	
 	@IBOutlet weak var numberOfEmployeeInput: TextInput!
 
 	@IBOutlet weak var smallPlanCard: PlanCard!
@@ -31,7 +33,7 @@ class SetupBusinessVC: UIViewController {
 	var place: GMSPlace?
 
 	var showLogout = false
-	var paymentDetails: UpdateSubscriptionResponse?
+	var paymentDetails: PaymentDetails?
 	var business: Business?
 	
 	override func viewDidLoad() {
@@ -151,6 +153,13 @@ class SetupBusinessVC: UIViewController {
 					return
 				}
 				business.id = self.businessReference?.documentID
+				self.businessNameInput.textFieldComponent.isEnabled = false
+				self.selectLocationLabel.textColor = .placeholderText
+				self.selectLocationGesture.isEnabled = false
+				self.numberOfEmployeeInput.textFieldComponent.isEnabled = false
+				self.minusButton.isEnabled = false
+				self.addButton.isEnabled = false
+				
 				self.authorizePayment(business)
 			}
 		} else {
@@ -188,7 +197,7 @@ extension SetupBusinessVC: SelectLocationDelegate{
 
 extension SetupBusinessVC{
 	
-	func getPaymentDetails(_ business: Business, completion: @escaping(_ paymentDetails: UpdateSubscriptionResponse? )->()){
+	func getPaymentDetails(_ business: Business, completion: @escaping(_ paymentDetails: PaymentDetails? )->()){
 		if let paymentDetails = self.paymentDetails{
 			completion(paymentDetails)
 		} else {
@@ -201,46 +210,8 @@ extension SetupBusinessVC{
 	
 	func authorizePayment(_ business: Business){
 		getPaymentDetails(business){ paymentDetails in
-			if let paymentDetails = paymentDetails, let clientSecret = paymentDetails.clientSecret{
-				let customerId = paymentDetails.customerId
-				let customerEphemeralKeySecret = paymentDetails.ephemeralKey
-				let setupIntentClientSecret = clientSecret
-				let publishableKey = paymentDetails.publishableKey
+			PaymentHelper.authorizePayment(controller: self, paymentDetails: paymentDetails){paymentResult in
 				
-				STPAPIClient.shared.publishableKey = publishableKey
-				
-				var configuration = PaymentSheet.Configuration()
-				configuration.defaultBillingDetails.address = .init(country: "CA", state: "ON")
-				configuration.appearance.colors.primary = UIColor(named: "AccentColor")!
-				configuration.merchantDisplayName = "AssignNova"
-				configuration.savePaymentMethodOptInBehavior = .requiresOptIn
-				configuration.customer = .init(id: customerId, ephemeralKeySecret: customerEphemeralKeySecret)
-				configuration.allowsDelayedPaymentMethods = false
-				let paymentSheet = PaymentSheet(setupIntentClientSecret: setupIntentClientSecret, configuration: configuration)
-				self.stopLoading(){
-					paymentSheet.present(from: self) { paymentResult in
-						var title = "Oops"
-						var message = ""
-						switch paymentResult {
-							case .completed:
-								title = "Congrats"
-								message = "Your order is confirmed"
-							case .canceled:
-								message = "Canceled!"
-							case .failed(let error):
-								message = "Payment failed: \(error)"
-						}
-						self.showAlert(title: title, message: message){
-							DispatchQueue.main.async {
-								(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.refreshData()
-							}
-						}
-					}
-				}
-			} else {
-				self.stopLoading(){
-					self.showAlert(title: "Oops", message: "Error creating subscription")
-				}
 			}
 		}
 	}

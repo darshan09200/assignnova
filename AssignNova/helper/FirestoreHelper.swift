@@ -44,7 +44,7 @@ class FirestoreHelper{
 					return
 				}
 				if let businessId = reference?.documentID{
-					let branch = Branch(name: business.name, address: business.address, location: business.location, businessId: businessId, color: ColorPickerVC.colors.first!.color.toHex!)					
+					let branch = Branch(name: business.name, address: business.address, location: business.location, businessId: businessId, color: ColorPickerVC.colors.first!.color.toHex!)
 					saveBranch(branch, completion: completion)
 				} else {
 					completion(nil)
@@ -286,7 +286,7 @@ class FirestoreHelper{
 			let batch = db.batch()
 			try shifts.forEach{shift in
 				let ref = db.collection("shift").document()
-				try ref.setData(from: shift)				
+				try ref.setData(from: shift)
 			}
 			batch.commit(){ err in
 				FirestoreHelper.completion(err, completion)
@@ -337,7 +337,7 @@ class FirestoreHelper{
 				filters.append(Filter.whereField("eligibleEmployees", isEqualTo: []))
 			}
 		}
-        print(businessId)
+		print(businessId)
 		let docRef = db.collection("shift")
 			.whereField("businessId", isEqualTo: businessId)
 			.whereField("shiftStartDate", isGreaterThanOrEqualTo: startDate.startOfDay)
@@ -521,6 +521,56 @@ class FirestoreHelper{
 			completion(FirestoreError.breakNoteStarted)
 		}
 	}
+	
+	static func getCurrentWeekStats(completion: @escaping(_ shiftStats: ShiftStats?)->()){
+		if let employee = ActiveEmployee.instance?.employee, let employeeId = employee.id{
+			let currentDate = Date()
+			
+			let startOfWeek = currentDate.startOfWeek
+			let endOfWeek = currentDate.endOfWeek
+			db.collection("shift")
+				.whereField("employeeId", isEqualTo: employeeId)
+				.whereField("shiftStartDate", isGreaterThanOrEqualTo: startOfWeek)
+				.whereField("shiftStartDate", isLessThanOrEqualTo: endOfWeek)
+				.order(by: "shiftStartDate")
+				.addSnapshotListener(){ snapshots, err in
+					if let _ = err {
+						completion(nil)
+						return
+					}
+					
+					let shifts = snapshots?.documents.compactMap{ document in
+						return try? document.data(as: Shift.self)
+					} ?? []
+					
+					var shiftStats = ShiftStats(pendingHours: 0, completedHours: 0)
+					
+					var pendingHours = 0.0
+					var completedHours = 0.0
+					
+					let dateForUpcomingShift = Calendar.current.date(byAdding: .day, value: 1, to: currentDate.getLast15())!
+					for shift in shifts{
+						if shift.attendance?.clockedInAt != nil &&  shift.attendance?.clockedOutAt != nil{
+							completedHours += Double(Date.getMinutesDifferenceBetween(start: shift.shiftStartTime, end: shift.shiftEndTime)) / 60
+						} else {
+							pendingHours += Double(Date.getMinutesDifferenceBetween(start: shift.shiftStartTime, end: shift.shiftEndTime)) / 60
+						}
+						if shiftStats.upcomingShift == nil, shift.shiftStartTime >= currentDate.getLast15() && shift.shiftStartTime <= dateForUpcomingShift && shift.attendance == nil{
+							shiftStats.upcomingShift = shift
+						}
+						if shiftStats.ongoingShift == nil, shift.attendance?.clockedOutAt == nil && shift.attendance?.clockedInAt != nil {
+							shiftStats.ongoingShift = shift
+						}
+					}
+					
+					shiftStats.pendingHours = pendingHours
+					shiftStats.completedHours = completedHours
+					completion(shiftStats)
+				}
+		} else {
+			completion(nil)
+		}
+	}
 }
 
 enum ShiftType{
@@ -531,4 +581,11 @@ enum ShiftType{
 
 enum FirestoreError: String, Error{
 	case breakNoteStarted = "Break Not Started"
+}
+
+struct ShiftStats{
+	var ongoingShift: Shift?
+	var upcomingShift: Shift?
+	var pendingHours: Double
+	var completedHours: Double
 }

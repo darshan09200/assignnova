@@ -15,36 +15,36 @@ struct AddEmployeeModel{
 }
 
 class AddEmployeeTVC: UITableViewController {
-	
+
 	var data = AddEmployeeModel()
-	
+
 	var isBranchEmpty: Bool{
 		ActiveEmployee.instance!.branches.count == 0
 	}
-	
+
 	var shouldShowAddBranch: Bool{
 		data.branches.count < ActiveEmployee.instance!.branches.count
 	}
-	
+
 	var isRoleEmpty: Bool{
 		ActiveEmployee.instance!.roles.count == 0
 	}
-	
+
 	var shouldShowAddRole: Bool{
 		data.roles.count < ActiveEmployee.instance!.roles.count
 	}
-	
+
 	var isEdit: Bool = false
 	var employee: Employee?
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		tableView.sectionHeaderTopPadding = 0
 		tableView.contentInset.bottom = 16
-		
+
 		if isEdit, let employee = employee{
-			
+
 			navigationItem.title = "Edit Branch"
 //
 //			if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell{
@@ -68,11 +68,11 @@ class AddEmployeeTVC: UITableViewController {
 //			}
 		}
 	}
-	
+
 	@IBAction func onCancelPress(_ sender: Any) {
 		dismiss(animated: true)
 	}
-	
+
 	@IBAction func onSavePress(_ sender: Any) {
 		guard let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell,
 			  let firstName = firstNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -82,7 +82,7 @@ class AddEmployeeTVC: UITableViewController {
 					  textInput: (tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! InputFieldCell).inputField)
 			return
 		}
-		
+
 		guard let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell,
 			  let lastName = lastNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
 			  !lastName.isEmpty
@@ -91,7 +91,7 @@ class AddEmployeeTVC: UITableViewController {
 					  textInput: (tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! InputFieldCell).inputField)
 			return
 		}
-		
+
 		guard let emailCell = tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as? InputFieldCell,
 			  let email = emailCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
 			  !email.isEmpty
@@ -100,21 +100,21 @@ class AddEmployeeTVC: UITableViewController {
 					  textInput: (tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as! InputFieldCell).inputField)
 			return
 		}
-		
+
 		var phoneNumber: String?
 		if let phoneNumberCell = tableView.cellForRow(at: IndexPath(row: 3, section: 1)) as? InputFieldCell{
 			phoneNumber  = phoneNumberCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines)
 		} else {
 			phoneNumber = nil
 		}
-		
+
 		let employeeId: String?
 		if let employeeIdCell = tableView.cellForRow(at: IndexPath(row: 4, section: 1)) as? InputFieldCell{
 			employeeId  = employeeIdCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines)
 		} else {
 			employeeId = nil
 		}
-		
+
 		let role: AppRole
 		if let roleCell = tableView.cellForRow(at: IndexPath(row: 5, section: 1)) as? SelectFieldCell{
 			let roleIndex = roleCell.picker?.selectedRow(inComponent: 0) ?? 0
@@ -122,7 +122,7 @@ class AddEmployeeTVC: UITableViewController {
 		} else {
 			role = .employee
 		}
-		
+
 		guard let hoursCell = tableView.cellForRow(at: IndexPath(row: 6, section: 1)) as? InputFieldCell,
 			  let hours = hoursCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
 			  !hours.isEmpty
@@ -130,12 +130,12 @@ class AddEmployeeTVC: UITableViewController {
 			showAlert(title: "Oops", message: "Max Hours is empty")
 			return
 		}
-		
+
 		guard let maxHours = Double(hours) else {
 			showAlert(title: "Oops", message: "Max Hours in invalid")
 			return
 		}
-		
+
 		if !ValidationHelper.isValidEmail(email){
 			showAlert(title: "Oops", message: "Email is invalid", textInput: emailCell.inputField)
 			return
@@ -159,7 +159,7 @@ class AddEmployeeTVC: UITableViewController {
 				return
 			}
 		}
-		
+
 		self.startLoading()
 		FirestoreHelper.doesEmployeeExist(email: email, phoneNumber: phoneNumber, employeeId: employee?.id){ existingEmployee in
 			if let existingEmployee = existingEmployee {
@@ -202,7 +202,7 @@ class AddEmployeeTVC: UITableViewController {
 				}
 			}
 		}
-		
+
 	}
 }
 
@@ -226,22 +226,24 @@ extension AddEmployeeTVC{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if indexPath.section == 0{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "avatar", for: indexPath) as! AvatarCell
-			
+
 			if let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell,
 				  let firstName = firstNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
 				  !firstName.isEmpty,
 			   let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell,
-				  let lastName = lastNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-			   !lastName.isEmpty{
+				  let lastName = lastNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
 				let (image, _) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
+				cell.profileImage.image = image
+			} else if let employee = employee {
+				let (image, _) = UIImage.makeLetterAvatar(withName: employee.name, backgroundColor: UIColor(hex: employee.color))
 				cell.profileImage.image = image
 			} else {
 				let (image, _) = UIImage.makeLetterAvatar(withName: "John Doe")
 				cell.profileImage.image = image
 			}
-			
+
 			cell.addImageButton?.addTarget(self, action: #selector(onSelectImagePress), for: .touchUpInside)
-			
+
 			return cell
 		} else if indexPath.section == 1{
 			var label: String = ""
@@ -285,7 +287,7 @@ extension AddEmployeeTVC{
 				case 6:
 					label = "Max Hours/Week"
                     keyType = .decimalPad
-					defaultValue = String(format: "%.2f", employee?.maxHours ?? 40)
+					defaultValue = String(format: "%.2f", employee?.maxHours ?? 40.0)
 				default: break
 			}
 			if indexPath.row == 5{
@@ -307,7 +309,7 @@ extension AddEmployeeTVC{
 			if indexPath.row == 0 || indexPath.row == 1{
 				cell.inputField.textFieldComponent.addTarget(self, action: #selector(nameDidChange(_:)), for: .editingChanged)
 			}
-			
+
 			return cell
 		} else {
 			let isLast: Bool
@@ -345,7 +347,7 @@ extension AddEmployeeTVC{
 				configuration.textProperties.font = .preferredFont(forTextStyle: .body)
 				configuration.textProperties.color = .systemGray
 				configuration.textProperties.alignment = .center
-				
+
 				cell.contentConfiguration = configuration
 				return cell
 			} else if isLast {
@@ -355,25 +357,25 @@ extension AddEmployeeTVC{
 				return cell
 			} else {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
-				
+
 				let gestureRecognizer = CellTapGestureRecognizer( indexPath: indexPath, target: self, action: #selector(onDeletePress))
 				cell.card.rightImageView.addGestureRecognizer(gestureRecognizer)
 				cell.card.rightImageView.isUserInteractionEnabled = true
 				cell.card.title = title
 				cell.card.subtitle = subtitle
 				cell.card.barView.backgroundColor = UIColor(hex: barColor!)
-				
+
 				return cell
 			}
 		}
     }
-	
+
 	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		if section == 0 {
 			return nil
 		}
 		let header = tableView.dequeueReusableCell(withIdentifier: "header") as! SectionHeaderCell
-		
+
 		if section == 1 {
 			header.sectionTitle.text = "Details"
 		} else if section == 2 {
@@ -381,10 +383,10 @@ extension AddEmployeeTVC{
 		} else if section == 3 {
 			header.sectionTitle.text = "Role (Optional)"
 		}
-		
+
 		return header.contentView
 	}
-	
+
 	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		if section == 0{return 0}
 		return 42
@@ -396,29 +398,29 @@ extension AddEmployeeTVC: UIPickerViewDelegate, UIPickerViewDataSource{
 	func numberOfComponents(in pickerView: UIPickerView) -> Int {
 		return 1
 	}
-	
+
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		return AppRole.allCases.count
 	}
-	
+
 	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 		return AppRole.allCases[row].rawValue
 	}
-	
+
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		if let cell = tableView.cellForRow(at: IndexPath(row: 5, section: 1)) as? SelectFieldCell{
 			cell.selectButton.setTitle(AppRole.allCases[row].rawValue, for: .normal)
 		}
-		
+
 	}
 }
 
 extension AddEmployeeTVC{
-	
+
 	@objc func onSelectImagePress(){
 		print("pressed")
 	}
-	
+
 	@objc func nameDidChange(_ textField: UITextField) {
 		tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
 	}
@@ -447,11 +449,11 @@ extension AddEmployeeTVC{
 			}
 		}
 	}
-	
+
 	@objc func onAddBranchPress(){
 		DispatchQueue.main.async {
 			let viewController = UIStoryboard(name: "BranchPicker", bundle: nil).instantiateViewController(withIdentifier: "BranchPickerVC") as! BranchPickerVC
-			
+
 			viewController.delegate = self
 			viewController.branches =  viewController.branches.filter{mainBranch in
 					return !self.data.branches.contains(where: {branch in
@@ -461,11 +463,11 @@ extension AddEmployeeTVC{
 			self.present(UINavigationController(rootViewController: viewController), animated: true)
 		}
 	}
-	
+
 	@objc func onAddRolePress(){
 		DispatchQueue.main.async {
 			let viewController = UIStoryboard(name: "RolePicker", bundle: nil).instantiateViewController(withIdentifier: "RolePickerVC") as! RolePickerVC
-			
+
 			viewController.delegate = self
 			viewController.roles = viewController.roles.filter{mainRole in
 					return !self.data.roles.contains(where: {role in
@@ -475,7 +477,7 @@ extension AddEmployeeTVC{
 			self.present(UINavigationController(rootViewController: viewController), animated: true)
 		}
 	}
-	
+
 }
 
 extension AddEmployeeTVC: BranchPickerDelegate, RolePickerDelegate{
@@ -485,17 +487,17 @@ extension AddEmployeeTVC: BranchPickerDelegate, RolePickerDelegate{
 			if !shouldShowAddBranch {
 				tableView.reloadRows(at: [IndexPath(row: data.branches.count - 1, section: 2)], with: .automatic)
 			} else if data.branches.count == 1 {
-				tableView.insertRows(at: [IndexPath(row: 0, section: 2)], with: .automatic)				
+				tableView.insertRows(at: [IndexPath(row: 0, section: 2)], with: .automatic)
 			} else {
 				tableView.insertRows(at: [IndexPath(row: data.branches.count - 1, section: 2)], with: .automatic)
 			}
 		})
 	}
-	
+
 	func onCancelBranchPicker() {
 		print("branch picker cancelled")
 	}
-	
+
 	func onSelectRole(role: Role) {
 		tableView.performBatchUpdates({
 			data.roles.append(role)
@@ -508,7 +510,7 @@ extension AddEmployeeTVC: BranchPickerDelegate, RolePickerDelegate{
 			}
 		})
 	}
-	
+
 	func onCancelRolePicker() {
 		print("role picker cancelled")
 	}
@@ -516,7 +518,7 @@ extension AddEmployeeTVC: BranchPickerDelegate, RolePickerDelegate{
 
 class CellTapGestureRecognizer: UITapGestureRecognizer{
 	var indexPath: IndexPath
-	
+
 	init(indexPath: IndexPath, target: Any?, action: Selector?) {
 		self.indexPath = indexPath
 
