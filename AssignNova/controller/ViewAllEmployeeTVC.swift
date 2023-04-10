@@ -38,7 +38,7 @@ class ViewAllEmployeeTVC: UITableViewController {
 	@IBAction func onAddEmployeePress(_ sender: Any) {
 		if let noOfEmployees = ActiveEmployee.instance?.business?.noOfEmployees,
 			let employeeCount = ActiveEmployee.instance?.employees.count {
-			if noOfEmployees < employeeCount {
+			if employeeCount < noOfEmployees {
 				let viewController = self.storyboard?.instantiateViewController(withIdentifier: "AddEmployeeTVC") as! AddEmployeeTVC
 				self.present(UINavigationController(rootViewController: viewController), animated: true)
 			} else {
