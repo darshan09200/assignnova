@@ -501,6 +501,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addShiftButton" destination="MJ4-SH-xPZ" id="OUo-2Y-zu1"/>
                         <outlet property="calendar" destination="Wyx-6G-aVE" id="Z0i-0T-V4r"/>
                         <outlet property="calendarHeightConstraint" destination="d76-iR-qL4" id="kM4-ua-zee"/>
                         <outlet property="monthLabel" destination="tyu-hA-nDP" id="cWT-D6-ShE"/>

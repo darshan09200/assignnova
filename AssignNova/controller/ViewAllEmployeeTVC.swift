@@ -7,20 +7,31 @@
 
 import UIKit
 import FirebaseFirestore
+import EmptyDataSet_Swift
 
 class ViewAllEmployeeTVC: UITableViewController {
 	
 	private let searchController = UISearchController()
 	private var employees = [Employee]()
+	private var filteredEmployees = [Employee]()
 	private var listener: ListenerRegistration?
+	
+	var searchText: String{
+		(
+			searchController.searchBar.text?
+				.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+		).lowercased()
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		configureSearchBar()
 		
+		tableView.emptyDataSetSource = self
 		if let businessId = ActiveEmployee.instance?.employee.businessId{
 			listener = FirestoreHelper.getEmployees(businessId: businessId){ employees in
 				self.employees = employees ?? []
+				self.filterData()
 				self.tableView.reloadData()
 			}
 		}
@@ -29,8 +40,6 @@ class ViewAllEmployeeTVC: UITableViewController {
 	private func configureSearchBar() {
 		navigationItem.searchController = searchController
 		searchController.obscuresBackgroundDuringPresentation = false
-		searchController.searchBar.delegate = self
-		searchController.delegate = self
 		definesPresentationContext = true
 		searchController.searchResultsUpdater = self
 	}
@@ -55,13 +64,13 @@ extension ViewAllEmployeeTVC {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return employees.count
+        return filteredEmployees.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
 		
-		let employee = employees[indexPath.row]
+		let employee = filteredEmployees[indexPath.row]
 		
 		cell.card.barView.backgroundColor = .clear
 		let name = "\(employee.firstName) \(employee.lastName)"
@@ -76,38 +85,38 @@ extension ViewAllEmployeeTVC {
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		let employee = employees[indexPath.row]
+		let employee = filteredEmployees[indexPath.row]
 		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewEmployeeVC") as! ViewEmployeeVC
 		viewController.employeeId = employee.id
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-}
-
-
-extension ViewAllEmployeeTVC: UISearchBarDelegate{
-	
-}
-
-extension ViewAllEmployeeTVC: UISearchControllerDelegate{
-	
 }
 
 extension ViewAllEmployeeTVC: UISearchResultsUpdating{
 	func updateSearchResults(for searchController: UISearchController) {
-		
+		filterData()
 	}
 	
+	func filterData() {
+		if searchText.isEmpty {
+			filteredEmployees = employees
+		} else {
+			filteredEmployees = employees.filter{
+				$0.name.lowercased().contains(
+					searchText)
+				
+			}
+		}
+		tableView.reloadData()
+	}
 	
+}
+
+extension ViewAllEmployeeTVC: EmptyDataSetSource{
+	func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+		let message = NSMutableAttributedString(string: searchText.isEmpty ? "No Employees Found" : "Try finding a different employee.", attributes: [
+			.font: UIFont.preferredFont(forTextStyle: .body)
+		])
+		return message
+	}
 }

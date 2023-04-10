@@ -22,6 +22,8 @@ class SchedulerVC: UIViewController {
 	@IBOutlet weak var calendar: FSCalendar!
 	@IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
 	
+	@IBOutlet weak var addShiftButton: UIBarButtonItem!
+	
 	@IBOutlet weak var shiftTypeSegment: UISegmentedControl!
 	@IBOutlet weak var tableView: UITableView!
 	
@@ -98,6 +100,12 @@ class SchedulerVC: UIViewController {
 		
 		refreshMonthLabel()
 		monthLabel.isHidden = true
+		
+		if let appRole = ActiveEmployee.instance?.employee.appRole, appRole == .owner || appRole == .manager || appRole == .shiftSupervisor{
+			addShiftButton.isHidden = false
+		} else {
+			addShiftButton.isHidden = true
+		}
     }
     
 	func refreshData(){
@@ -105,9 +113,6 @@ class SchedulerVC: UIViewController {
 		groupedShifts = []
         if let businessId = ActiveEmployee.instance?.employee.businessId{
 			listener?.remove()
-			print(calendar.scope.rawValue)
-			print(dateGroup.first)
-			print(dateGroup.last)
 			listener = FirestoreHelper.getShifts(businessId: businessId, startDate: dateGroup.first!, endDate: dateGroup.last!, shiftType: shiftType){ shifts in
 				if let shifts = shifts, shifts.count > 0{
 					var data = self.dateGroup.compactMap{WeekDay(date: $0, shifts: [])}
@@ -125,7 +130,8 @@ class SchedulerVC: UIViewController {
 				self.calendar.reloadData()
 				self.tableView.layoutIfNeeded()
 				if self.groupedShifts.count > 0{
-					self.tableView.scrollToRow(at: IndexPath(row: 0, section: self.selectedDate.dayOfTheWeek), at: .top, animated: true)
+					let index = self.dateGroup.firstIndex(where: {Calendar.current.compare($0, to: self.selectedDate, toGranularity: .day) == .orderedSame})
+					self.tableView.scrollToRow(at: IndexPath(row: 0, section: index ?? 0), at: .top, animated: true)
 				}
 				
 			}
@@ -148,7 +154,7 @@ class SchedulerVC: UIViewController {
 	
 	@IBAction func onAddPress(_ sender: Any) {
 		let viewController = UIStoryboard(name: "Shift", bundle: nil).instantiateViewController(withIdentifier: "AddShiftTVC") as! AddShiftTVC
-		
+		viewController.data.selectedDate = selectedDate > .now.startOfDay ? selectedDate : .now.startOfDay
 		self.present(UINavigationController(rootViewController: viewController), animated: true)
 	}
 	
@@ -304,7 +310,6 @@ extension SchedulerVC: FSCalendarDataSource, FSCalendarDelegate{
 	func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 		self.configureVisibleCells()
 		if !dateGroup.contains(previousSelectedDate ?? .now.startOfDay) || (calendar.scope == .month && monthPosition != .current){
-			print("swipped")
 			calendar.setCurrentPage(date, animated: true)
 			calendar.select(date)
 			refreshData()
