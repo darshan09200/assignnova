@@ -209,12 +209,15 @@ extension SchedulerVC: UITableViewDelegate, UITableViewDataSource{
 			let employee = ActiveEmployee.instance?.getEmployee(employeeId: employeeId)
 			if let employee = employee{
 				employeeName = employee.name
+				
 				if let profileUrl = employee.profileUrl{
-					cell.card.setProfileImage(withUrl: profileUrl)
+					let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
+					cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
 				} else {
 					cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
 				}
 			}
+			
 		} else {
 			cell.card.setProfileImage(withName: employeeName)
 		}

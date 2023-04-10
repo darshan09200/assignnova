@@ -103,7 +103,8 @@ class HomeScreenVC:  UIViewController {
 				if let employee = employee{
 					employeeName = employee.name
 					if let profileUrl = employee.profileUrl{
-						shiftCard.setProfileImage(withUrl: profileUrl)
+						let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
+						shiftCard.setProfileImage(withUrl: profileUrl, placeholderImage: image)
 					} else {
 						shiftCard.setProfileImage(withName: employee.name, backgroundColor: employee.color)
 					}

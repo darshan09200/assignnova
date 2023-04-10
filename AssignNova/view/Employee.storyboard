@@ -68,24 +68,48 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="166.33333333333334"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kt1-s6-UDz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
+                                                    <rect key="frame" x="132.66666666666666" y="0.0" width="127.99999999999997" height="128"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="E0I-xg-bk6">
-                                                            <rect key="frame" x="132.66666666666666" y="0.99999999999999289" width="127.99999999999997" height="126.66666666666666"/>
+                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="E0I-xg-bk6">
+                                                            <rect key="frame" x="0.0" y="0.99999999999999289" width="128" height="126.66666666666666"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="128" id="1Hf-rY-Aau"/>
                                                                 <constraint firstAttribute="width" secondItem="E0I-xg-bk6" secondAttribute="height" multiplier="1:1" id="K95-j8-JTh"/>
                                                                 <constraint firstAttribute="width" constant="128" id="pS2-I5-OXa"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="64"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndI-1j-AeO">
+                                                            <rect key="frame" x="94" y="2" width="32" height="32"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="32" id="4z0-CN-NTk"/>
+                                                                <constraint firstAttribute="width" constant="32" id="IFY-iC-Nfv"/>
+                                                                <constraint firstAttribute="width" secondItem="ndI-1j-AeO" secondAttribute="height" multiplier="1:1" id="ZgM-Qy-M6y"/>
+                                                            </constraints>
+                                                            <color key="tintColor" systemColor="systemRedColor"/>
+                                                            <buttonConfiguration key="configuration" style="filled" cornerStyle="fixed" buttonSize="mini"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="16"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstItem="E0I-xg-bk6" firstAttribute="top" secondItem="kt1-s6-UDz" secondAttribute="top" id="1cH-ze-fSW"/>
                                                         <constraint firstItem="E0I-xg-bk6" firstAttribute="centerX" secondItem="kt1-s6-UDz" secondAttribute="centerX" id="3BA-tC-3sc"/>
+                                                        <constraint firstItem="E0I-xg-bk6" firstAttribute="trailing" secondItem="ndI-1j-AeO" secondAttribute="trailing" constant="2" id="Bt4-pM-EcX"/>
+                                                        <constraint firstAttribute="height" constant="128" id="JOI-gW-B5f"/>
                                                         <constraint firstItem="E0I-xg-bk6" firstAttribute="centerY" secondItem="kt1-s6-UDz" secondAttribute="centerY" id="P80-Ba-SJ7"/>
+                                                        <constraint firstAttribute="width" constant="128" id="Ui0-Ot-Fsg"/>
                                                         <constraint firstAttribute="bottom" secondItem="E0I-xg-bk6" secondAttribute="bottom" id="orW-Hs-b3m"/>
+                                                        <constraint firstItem="ndI-1j-AeO" firstAttribute="top" secondItem="E0I-xg-bk6" secondAttribute="top" constant="2" id="zet-u5-UOx"/>
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdm-xc-Npj">
@@ -106,6 +130,7 @@
                                 <connections>
                                     <outlet property="addImageButton" destination="qdm-xc-Npj" id="l2k-pI-lVO"/>
                                     <outlet property="profileImage" destination="E0I-xg-bk6" id="nf2-b4-uhn"/>
+                                    <outlet property="removeImageButton" destination="ndI-1j-AeO" id="Zwt-dG-zL2"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="inputForm" rowHeight="75" id="YEE-v8-CeT" customClass="InputFieldCell" customModule="AssignNova" customModuleProvider="target">
@@ -351,13 +376,18 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="im3-MS-bGx">
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1pc-j3-B6L">
+                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1pc-j3-B6L">
                                                             <rect key="frame" x="132.66666666666666" y="0.99999999999999289" width="127.99999999999997" height="126.66666666666666"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="128" id="4oI-Jg-9uk"/>
                                                                 <constraint firstAttribute="width" secondItem="1pc-j3-B6L" secondAttribute="height" multiplier="1:1" id="Tn9-6g-naS"/>
                                                                 <constraint firstAttribute="height" constant="128" id="q8y-ZM-Fg7"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="64"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

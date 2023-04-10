@@ -403,7 +403,12 @@ extension AddShiftTVC{
 					} else {
 						let item = data.employees[indexPath.row]
 						cell.card.title = item.name
-						cell.card.setProfileImage(withName: item.name, backgroundColor: item.color)
+						if let profileUrl = item.profileUrl{
+							let (image, _) = UIImage.makeLetterAvatar(withName: item.name , backgroundColor: UIColor(hex: item.color))
+							cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
+						} else {
+							cell.card.setProfileImage(withName: item.name, backgroundColor: item.color)
+						}
 						cell.card.barView.backgroundColor = UIColor(hex: item.color)
 						cell.card.rightImageContainer.isHidden = false
 					}

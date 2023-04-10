@@ -8,6 +8,7 @@
 import UIKit
 import LetterAvatarKit
 import FirebaseFirestore
+import FirebaseStorage
 
 struct AddEmployeeModel{
 	var branches = [Branch]()
@@ -36,6 +37,10 @@ class AddEmployeeTVC: UITableViewController {
 
 	var isEdit: Bool = false
 	var employee: Employee?
+	
+	var profilePath: String?
+	
+	lazy var imagePickerController = ImagePicker(presentationController: self, delegate: self)
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -174,7 +179,7 @@ class AddEmployeeTVC: UITableViewController {
 				}
 			} else {
 				let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)", backgroundColor: UIColor(hex: self.employee?.color ?? ""))
-				let employee = Employee(
+				var employee = Employee(
 					id: self.employee?.id,
 					userId: self.employee?.userId,
 					employeeId: employeeId,
@@ -183,22 +188,54 @@ class AddEmployeeTVC: UITableViewController {
 					appRole: role,
 					maxHours: maxHours,
 					isProfilePrivate: self.employee?.isProfilePrivate ?? false,
+					profileUrl: self.employee?.profileUrl,
 					email: email,
 					phoneNumber: phoneNumber,
 					invited: self.employee?.invited ?? true,
 					branches: self.data.branches.compactMap{$0.id},
 					roles: self.data.roles.compactMap{$0.id},
 					color: backgroundColor.toHex ?? "")
-				FirestoreHelper.saveEmployee(employee){error in
+				var reference: DocumentReference?
+				reference = FirestoreHelper.saveEmployee(employee){error in
 					if let _ = error {
 						self.stopLoading(){
 							self.showAlert(title: "Oops", message: "Unknown error occured")
 						}
 						return
 					}
-					self.stopLoading(){
-						self.dismiss(animated: true)
+					if let profilePath = self.profilePath,
+					   let employeeId = reference?.documentID ?? employee.id{
+					   let storageRef = Storage.storage().reference().child("profileImages").child("\(employeeId).jpg")
+						
+						storageRef.putFile(from: URL(fileURLWithPath: profilePath, isDirectory: false)) { (metadata, error) in
+							if error == nil {
+								employee.id = employeeId
+								employee.profileUrl = storageRef.fullPath
+								FirestoreHelper.saveEmployee(employee){error in
+									if let _ = error {
+										print(error?.localizedDescription)
+										self.stopLoading(){
+											self.showAlert(title: "Oops", message: "Unknown error occured")
+										}
+										return
+									}
+									self.stopLoading(){
+										self.dismiss(animated: true)
+									}
+								}
+							} else {
+								print(error?.localizedDescription)
+								self.stopLoading(){
+									self.dismiss(animated: true)
+								}
+							}
+						}
+					} else {
+						self.stopLoading(){
+							self.dismiss(animated: true)
+						}
 					}
+					
 				}
 			}
 		}
@@ -226,8 +263,17 @@ extension AddEmployeeTVC{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if indexPath.section == 0{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "avatar", for: indexPath) as! AvatarCell
-
-			if let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell,
+			cell.removeImageButton.isHidden = true
+			if let profilePath = profilePath,
+				let imageData = try? Data(contentsOf: URL(fileURLWithPath: profilePath, isDirectory: false)) {
+				cell.profileImage.image = UIImage(data: imageData)
+				cell.removeImageButton.isHidden = false
+			} else if let profileUrl = employee?.profileUrl{
+				let reference = ActionsHelper.getProfileImage(profileUrl: profileUrl)
+				cell.profileImage.sd_imageTransition = .fade
+				cell.profileImage.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: nil, options: [.refreshCached])
+				cell.removeImageButton.isHidden = false
+			} else if let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell,
 				  let firstName = firstNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
 				  !firstName.isEmpty,
 			   let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell,
@@ -243,6 +289,7 @@ extension AddEmployeeTVC{
 			}
 
 			cell.addImageButton?.addTarget(self, action: #selector(onSelectImagePress), for: .touchUpInside)
+			cell.removeImageButton?.addTarget(self, action: #selector(onRemoveImagePress), for: .touchUpInside)
 
 			return cell
 		} else if indexPath.section == 1{
@@ -415,11 +462,20 @@ extension AddEmployeeTVC: UIPickerViewDelegate, UIPickerViewDataSource{
 extension AddEmployeeTVC{
 
 	@objc func onSelectImagePress(){
-		print("pressed")
+		imagePickerController.present()
+	}
+	
+	@objc func onRemoveImagePress(){
+		print("called")
+		profilePath = nil
+		employee?.profileUrl = nil
+		tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
 	}
 
 	@objc func nameDidChange(_ textField: UITextField) {
-		tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+		if profilePath == nil && employee?.profileUrl == nil {
+			tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+		}
 	}
 
 	@objc func onDeletePress(_ recongniser: CellTapGestureRecognizer){
@@ -520,5 +576,21 @@ class CellTapGestureRecognizer: UITapGestureRecognizer{
 		self.indexPath = indexPath
 
 		super.init(target: target, action: action)
+	}
+}
+
+extension AddEmployeeTVC: ImagePickerDelegate{
+	func didSelect(image: UIImage?) {
+		if let image = image{
+			let path = FileHandling.saveToDirectory(image)
+			if let path = path{
+				self.profilePath = path
+				print(profilePath)
+				tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+				return
+			}
+			
+		}
+		print("no image")
 	}
 }

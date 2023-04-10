@@ -75,9 +75,12 @@ extension ViewAllEmployeeTVC {
 		cell.card.barView.backgroundColor = .clear
 		let name = "\(employee.firstName) \(employee.lastName)"
 		cell.card.title = name
-		cell.card.profileAvatarContainer.isHidden = false
-		let (image, _) = UIImage.makeLetterAvatar(withName: name, backgroundColor: UIColor(hex: employee.color))
-		cell.card.profileAvatar.image = image
+		if let profileUrl = employee.profileUrl{
+			let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
+			cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
+		} else {
+			cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
+		}
 		cell.card.rightIcon = UIImage(systemName: "chevron.right")
 		
 		return cell

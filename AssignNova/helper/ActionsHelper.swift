@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class ActionsHelper{
 	static func hasPrivileges(branchId: String?) -> Bool{
@@ -51,5 +52,13 @@ class ActionsHelper{
 		}
 		
 		return .none
+	}
+	
+	static func getProfileImage(profileUrl: String) -> StorageReference{
+		var filename = (profileUrl as NSString).lastPathComponent.split(separator: ".")
+		filename.popLast()
+		let reducedProfileUrl = "profileImages/\(filename.first ?? "")_200x200.jpeg"
+		print(reducedProfileUrl)
+		return Storage.storage().reference().child(reducedProfileUrl)
 	}
 }

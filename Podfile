@@ -12,6 +12,8 @@ target 'AssignNova' do
 	pod 'FirebaseFunctions'
 	pod 'FirebaseAppCheck'
 	pod 'FirebaseMessaging'
+	pod 'FirebaseStorage'
+	pod 'FirebaseStorageUI'
 
 	pod 'GoogleSignIn'
 	pod 'GeoFire/Utils'

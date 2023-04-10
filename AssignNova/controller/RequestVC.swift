@@ -132,7 +132,8 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 			cell.card.subtitle = item.startDate.format(to: "EEE, MMM dd, yyyy")
 			if let employee = employee{
 				if let profileUrl = employee.profileUrl{
-					cell.card.setProfileImage(withUrl: profileUrl)
+					let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
+					cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
 				} else {
 					cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
 				}
@@ -157,7 +158,8 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 			cell.card.subtitle = item.shiftStartDate.format(to: "EEE, MMM dd, yyyy")
 			if let employee = employee{
 				if let profileUrl = employee.profileUrl{
-					cell.card.setProfileImage(withUrl: profileUrl)
+					let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
+					cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
 				} else {
 					cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
 				}

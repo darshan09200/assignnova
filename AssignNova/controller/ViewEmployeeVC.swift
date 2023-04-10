@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseStorage
+import FirebaseStorageUI
 
 class ViewEmployeeVC: UIViewController {
 	
@@ -66,9 +68,16 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 		if indexPath.section == 0{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "avatar", for: indexPath) as! AvatarCell
 			
-			
-			let (image, _) = UIImage.makeLetterAvatar(withName: "\(employee?.firstName ?? "") \(employee?.lastName ?? "")", backgroundColor: UIColor(hex: employee?.color ?? ""))
-			cell.profileImage.image = image
+			let (image, _) = UIImage.makeLetterAvatar(withName: employee?.name ?? "", backgroundColor: UIColor(hex: employee?.color ?? ""))
+			if let profileUrl = employee?.profileUrl{
+				let reference = ActionsHelper.getProfileImage(profileUrl: profileUrl)
+				cell.profileImage.sd_imageTransition = .fade
+				cell.profileImage.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: image, options: [.refreshCached])
+				
+			} else {
+				
+				cell.profileImage.image = image
+			}
 			
 			return cell
 		} else if indexPath.section == 1 {

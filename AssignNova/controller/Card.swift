@@ -105,9 +105,11 @@ class Card: UIView {
 		profileAvatarContainer.isHidden = false
 	}
 	
-	func setProfileImage(withUrl url: String){
+	func setProfileImage(withUrl url: String, placeholderImage: UIImage?){
+		let reference = ActionsHelper.getProfileImage(profileUrl: url)
 		profileAvatar.sd_imageTransition = .fade
-		profileAvatar.sd_setImage(with: URL(string: url))
+		profileAvatar.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: placeholderImage, options: [.refreshCached])
+//		profileAvatar.sd_setImage(with: reference, placeholderImage: placeholderImage)
 		profileAvatarContainer.isHidden = false
 	}
 }

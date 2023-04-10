@@ -20,18 +20,21 @@ class FirestoreHelper{
 		}
 	}
 
-	static func saveEmployee(_ employee: Employee, completion: @escaping(_ error: Error?)->()){
+	static func saveEmployee(_ employee: Employee, completion: @escaping(_ error: Error?)->()) -> DocumentReference?{
 		do{
 			if let employeeId = employee.id{
 				try db.collection("employee").document(employeeId).setData(from: employee){ err in FirestoreHelper.completion(err, completion)
 				}
+				
+				return nil
 			} else {
-				try db.collection("employee").addDocument(from: employee){ err in FirestoreHelper.completion(err, completion)
+				return try db.collection("employee").addDocument(from: employee){ err in FirestoreHelper.completion(err, completion)
 				}
 			}
 		} catch{
 			completion(error)
 		}
+		return nil
 	}
 
 	static func saveBusiness(_ business: Business, completion: @escaping(_ error: Error?)->()) -> DocumentReference?{
@@ -126,7 +129,7 @@ class FirestoreHelper{
 			var filters = [
 				Filter.whereField("email", isEqualTo: email)
 			]
-			if let phoneNumber = phoneNumber {
+			if let phoneNumber = phoneNumber, !phoneNumber.isEmpty {
 				filters.append(Filter.whereField("phoneNumber", isEqualTo: phoneNumber))
 			}
 			var docRef = db.collection("employee")
