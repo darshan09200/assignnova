@@ -95,7 +95,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 					self.changeRootViewController(initialViewController, animated: true)
 				}
 			} else {
-				let storyboard = UIStoryboard(name: "Main", bundle: nil)
+				let storyboard = UIStoryboard(name: "DisplayScreen", bundle: nil)
 				let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginNavVC")
 				self.changeRootViewController(initialViewController, animated: true)
 			}
