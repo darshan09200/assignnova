@@ -103,7 +103,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 	func addAuthListener(){
-		Auth.auth().addStateDidChangeListener { auth, user in
+		Auth.auth().addStateDidChangeListener { auth, user in			
 			if !self.preventRefresh{
 				self.refreshData()
 			}

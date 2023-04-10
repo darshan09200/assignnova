@@ -327,6 +327,17 @@ extension Date {
 	func startOfWeek(using calendar: Calendar = .gregorian) -> Date {
 		calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self).date!
 	}
+	
+	var startOfWeek: Date {
+		let gregorian = Calendar(identifier: .gregorian)
+		return gregorian.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self).date!
+	}
+	
+	var endOfWeek: Date {
+		let gregorian = Calendar(identifier: .gregorian)
+		let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+		return gregorian.date(byAdding: .day, value: 7, to: sunday)!
+	}
 
 	var dayOfTheWeek: Int {
 		let dayNumber = Calendar.current.component(.weekday, from: self)

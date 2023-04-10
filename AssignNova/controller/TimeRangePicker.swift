@@ -154,6 +154,13 @@ extension Date {
 		return add(minute: remainder).zeroSeconds
 	}
 	
+	func getLast15() -> Date{
+		let calendar = Calendar.current
+		let comp = calendar.dateComponents([.minute], from: self)
+		let remainder =  (comp.minute ?? 0) % 15
+		return add(minute: -remainder).zeroSeconds
+	}
+	
 	func add(minute: Int) -> Date{
 		let calendar = Calendar.current
 		return calendar.date(byAdding: .minute, value: minute, to: self) ?? self

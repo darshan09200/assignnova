@@ -18,7 +18,6 @@ class CloudFunctionsHelper{
     static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil){
         if let currentUser = Auth.auth().currentUser{
             currentUser.getIDToken(){ token, error in
-                print(error?.localizedDescription)
                 if error == nil{
                     FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
                         if let employee = employee{
@@ -292,15 +291,45 @@ class CloudFunctionsHelper{
 		}
 	}
 	
-	static func updateSubscription(business: Business, completion: @escaping(_ paymentDetails: UpdateSubscriptionResponse? )->()){
-		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+	static func updateSubscription(business: Business, completion: @escaping(_ paymentDetails: PaymentDetails? )->()){
+//		Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
 		
-		let callable: Callable<UpdateSubscriptionRequest, UpdateSubscriptionResponse> = Functions.functions().httpsCallable("updateSubscription")
+		let callable: Callable<UpdateSubscriptionRequest, PaymentDetails> = Functions.functions().httpsCallable("updateSubscription")
 		callable.call(UpdateSubscriptionRequest(employeeId: business.managedBy, noOfEmployees: business.noOfEmployees, businessId: business.id!)){ result in
 			if let paymentDetails = try? result.get(){
 				completion(paymentDetails)
 				return
 			}
+			completion(nil)
+		}
+	}
+	
+	static func getSubscriptionDetails(completion: @escaping(_ subscriptionDetail: SubscriptionDetail? )->()){
+		if let businessId = ActiveEmployee.instance?.employee.businessId{
+//			Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+			let callable: Callable<SubscriptionDetailRequest, SubscriptionDetail> = Functions.functions().httpsCallable("getSubscriptionDetails")
+			callable.call(SubscriptionDetailRequest(businessId: businessId)){ result in
+				if let subscriptionDetail = try? result.get(){
+					completion(subscriptionDetail)
+					return
+				}
+				completion(nil)
+			}
+		}
+	}
+	
+	static func getSubscriptionInvoices(completion: @escaping(_ invoices: [Invoice]? )->()){
+		if let businessId = ActiveEmployee.instance?.employee.businessId{
+//			Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+			let callable: Callable<SubscriptionDetailRequest, SubscriptionInvoices> = Functions.functions().httpsCallable("getSubscriptionInvoices")
+			callable.call(SubscriptionDetailRequest(businessId: businessId)){ result in
+				if let subscriptionInvoices = try? result.get(){
+					completion(subscriptionInvoices.invoices)
+					return
+				}
+				completion(nil)
+			}
+		} else {
 			completion(nil)
 		}
 	}
@@ -340,31 +369,8 @@ struct EligibleEmployeesRequest:Codable{
 	var endTime: TimeInterval
 }
 
-struct AssignedHoursRequest: Codable{
-	var employeeIds: [String]
-	var shiftDate: TimeInterval
-}
-
-struct AssignedHoursResponse: Codable{
-	var assignedHours: [AssignedHour]
-	
-}
-
-struct AssignedHour: Codable{
-	var employeeId: String
-	var assignedHour: Double
-}
-
 struct UpdateSubscriptionRequest: Encodable{
 	var employeeId: String
 	var noOfEmployees: Int
 	var businessId: String
-}
-
-struct UpdateSubscriptionResponse: Decodable{
-	var subscriptionId: String
-	var clientSecret: String?
-	var ephemeralKey: String
-	var customerId: String
-	var publishableKey: String
 }
