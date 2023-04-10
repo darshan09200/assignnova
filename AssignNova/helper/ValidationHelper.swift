@@ -26,11 +26,11 @@ class ValidationHelper{
 		let lowerCaseRegex = ".*[a-z]+.*"
 		let lowerCasePred = NSPredicate(format:"SELF MATCHES %@", lowerCaseRegex)
 
-		if !lowerCasePred.evaluate(with: pwd){ return "Add atleast one lowercase charachter" }
+		if !lowerCasePred.evaluate(with: pwd){ return "Add atleast one lowercase character" }
 		
 		let upperCaseRegex = ".*[A-Z]+.*"
 		let upperCasePred = NSPredicate(format:"SELF MATCHES %@", upperCaseRegex)
-		if !upperCasePred.evaluate(with: pwd){ return "Add atleast one uppercase charachter" }
+		if !upperCasePred.evaluate(with: pwd){ return "Add atleast one uppercase character" }
 		
 		let digitsRegex = ".*[\\d]+.*"
 		let digitsPred = NSPredicate(format:"SELF MATCHES %@", digitsRegex)
@@ -38,7 +38,7 @@ class ValidationHelper{
 		
 		let specialCharRegex = ".*[@$!%*?&#]+.*"
 		let specialCharPred = NSPredicate(format:"SELF MATCHES %@", specialCharRegex)
-		if !specialCharPred.evaluate(with: pwd){ return "Add atleast one special charachter from \"@$!%*?&#\"" }
+		if !specialCharPred.evaluate(with: pwd){ return "Add atleast one special character from \"@$!%*?&#\"" }
 		
 		return nil
 	}

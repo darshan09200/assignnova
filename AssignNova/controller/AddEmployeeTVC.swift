@@ -298,18 +298,21 @@ extension AddEmployeeTVC{
 			var defaultValue: String? = nil
             var contentType: UITextContentType?
             var keyType: UIKeyboardType?
+            var capitalLetter: UITextAutocapitalizationType?
 			switch indexPath.row {
 				case 0:
 					label = "First Name"
 					placeholder = "John"
                     contentType = .name
                     keyType = .default
+                    capitalLetter = .words
 					defaultValue = employee?.firstName
 				case 1:
 					label = "Last Name"
 					placeholder = "Doe"
                     contentType = .name
                     keyType = .default
+                    capitalLetter = .words
 					defaultValue = employee?.lastName
 				case 2:
 					label = "Email"
@@ -349,7 +352,7 @@ extension AddEmployeeTVC{
 			cell.inputField.textFieldComponent.text = defaultValue
             cell.inputField.textFieldComponent.textContentType = contentType
             cell.inputField.textFieldComponent.keyboardType = keyType ?? .default
-
+            cell.inputField.textFieldComponent.autocapitalizationType = capitalLetter ?? .none
 			if indexPath.row == 0 || indexPath.row == 1{
 				cell.inputField.textFieldComponent.addTarget(self, action: #selector(nameDidChange(_:)), for: .editingChanged)
 			}

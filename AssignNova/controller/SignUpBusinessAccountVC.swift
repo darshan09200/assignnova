@@ -31,10 +31,13 @@ class SignUpBusinessAccountVC: UIViewController {
 		confirmPwdInput.textFieldComponent.isSecureTextEntry = true
 		
         firstNameInput.textFieldComponent.textContentType = .name
+        firstNameInput.textFieldComponent.autocapitalizationType = .words
         lastNameInput.textFieldComponent.textContentType = .name
+        lastNameInput.textFieldComponent.autocapitalizationType = .words
         emailInput.textFieldComponent.textContentType = .emailAddress
         emailInput.textFieldComponent.keyboardType = .emailAddress
         phoneNumberInput.textFieldComponent.textContentType = .telephoneNumber
+        phoneNumberInput.textFieldComponent.textContentType = .none
         phoneNumberInput.textFieldComponent.keyboardType = .phonePad
         pwdInput.textFieldComponent.textContentType = .password
         confirmPwdInput.textFieldComponent.textContentType = .password
