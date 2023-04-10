@@ -45,7 +45,7 @@ class ActionsHelper{
 				} else {
 					return .completed
 				}
-			} else if (.now.zeroSeconds >= Date.combineDateWithTime(date: shift.shiftStartDate, time: shift.shiftStartTime).zeroSeconds ) && (.now.zeroSeconds < Date.combineDateWithTime(date: shift.shiftStartDate, time: shift.shiftEndTime).zeroSeconds){
+			} else if (.now.zeroSeconds >= Date.combineDateWithTime(date: shift.shiftStartDate, time: shift.shiftStartTime).zeroSeconds.add(minute: -5) ) && (.now.zeroSeconds < Date.combineDateWithTime(date: shift.shiftStartDate, time: shift.shiftEndTime).zeroSeconds){
 				return .clockIn
 			}
 		}

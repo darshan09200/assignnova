@@ -48,9 +48,20 @@ class SchedulerVC: UIViewController {
 		selectedDate.startOfWeek()
 	}
 	
-	var week: [Date]{
-		(0...6).reduce(into: []) { result, daysToAdd in
-			result.append(Calendar.current.date(byAdding: .day, value: daysToAdd, to: firstDayOfWeek))
+	var dateGroup: [Date]{
+		let startDate: Date
+		let length: Int
+		if calendar.scope == .week{
+			startDate = firstDayOfWeek
+			length = 6
+		} else {
+			startDate = selectedDate.startOfMonth.startOfWeek
+			let endDate = selectedDate.endOfMonth.endOfWeek
+			length = Calendar.current.dateComponents([.day], from: startDate, to: endDate).day ?? 30
+		}
+		
+		return (0...length).reduce(into: []) { result, daysToAdd in
+			result.append(Calendar.current.date(byAdding: .day, value: daysToAdd, to: startDate))
 		}
 		.compactMap { $0 }
 	}
@@ -94,11 +105,14 @@ class SchedulerVC: UIViewController {
 		groupedShifts = []
         if let businessId = ActiveEmployee.instance?.employee.businessId{
 			listener?.remove()
-			listener = FirestoreHelper.getShifts(businessId: businessId, startDate: week.first!, endDate: week.last!, shiftType: shiftType){ shifts in
+			print(calendar.scope.rawValue)
+			print(dateGroup.first)
+			print(dateGroup.last)
+			listener = FirestoreHelper.getShifts(businessId: businessId, startDate: dateGroup.first!, endDate: dateGroup.last!, shiftType: shiftType){ shifts in
 				if let shifts = shifts, shifts.count > 0{
-					var data = self.week.compactMap{WeekDay(date: $0, shifts: [])}
+					var data = self.dateGroup.compactMap{WeekDay(date: $0, shifts: [])}
 					for shift in shifts{
-						let index = self.week.firstIndex(where: {Calendar.current.compare($0, to: shift.shiftStartDate, toGranularity: .day) == .orderedSame})
+						let index = self.dateGroup.firstIndex(where: {Calendar.current.compare($0, to: shift.shiftStartDate, toGranularity: .day) == .orderedSame})
 						if let index = index{
 							data[index].shifts.append(shift)
 						}
@@ -129,6 +143,7 @@ class SchedulerVC: UIViewController {
 			monthLabel.isHidden = true
 			calendar.setScope(.week, animated: true)
 		}
+		refreshData()
 	}
 	
 	@IBAction func onAddPress(_ sender: Any) {
@@ -157,8 +172,7 @@ class SchedulerVC: UIViewController {
 
 extension SchedulerVC: UITableViewDelegate, UITableViewDataSource{
 	func numberOfSections(in tableView: UITableView) -> Int {
-		if groupedShifts.count > 0{ return 7}
-		return 0
+		return groupedShifts.count ?? 0
 	}
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if groupedShifts.count > 0{
@@ -209,8 +223,8 @@ extension SchedulerVC: UITableViewDelegate, UITableViewDataSource{
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let header = tableView.dequeueReusableCell(withIdentifier: "header") as! SectionHeaderCell
-		
-		let date = week[section]
+		if dateGroup.count < section {return nil}
+		let date = dateGroup[section]
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "EEEE, MMM d"
 		
@@ -256,7 +270,7 @@ extension SchedulerVC: FSCalendarDataSource, FSCalendarDelegate{
 	}
 	
 	func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-		let index = self.week.firstIndex(where: {Calendar.current.compare($0, to: date, toGranularity: .day) == .orderedSame})
+		let index = self.dateGroup.firstIndex(where: {Calendar.current.compare($0, to: date, toGranularity: .day) == .orderedSame})
 		if let index = index, groupedShifts.count > 0 && groupedShifts[index].shifts.count > 0{
 			return 1
 		}
@@ -289,13 +303,14 @@ extension SchedulerVC: FSCalendarDataSource, FSCalendarDelegate{
 	
 	func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 		self.configureVisibleCells()
-		if calendar.scope == .week{
-			if groupedShifts.count > 0{
-				tableView.scrollToRow(at: IndexPath(row: 0, section: date.dayOfTheWeek), at: .top, animated: true)
-			}
-		} else if previousSelectedDate?.startOfWeek() != selectedDate.startOfWeek(){
-			print("called")
+		if !dateGroup.contains(previousSelectedDate ?? .now.startOfDay) || (calendar.scope == .month && monthPosition != .current){
+			print("swipped")
+			calendar.setCurrentPage(date, animated: true)
+			calendar.select(date)
 			refreshData()
+		} else if groupedShifts.count > 0{
+			let index = self.dateGroup.firstIndex(where: {Calendar.current.compare($0, to: date, toGranularity: .day) == .orderedSame})
+			tableView.scrollToRow(at: IndexPath(row: 0, section: index ?? 0), at: .top, animated: true)
 		}
 	}
 	

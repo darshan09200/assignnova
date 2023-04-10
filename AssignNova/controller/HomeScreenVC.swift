@@ -117,6 +117,7 @@ class HomeScreenVC:  UIViewController {
 				noRecordLabel.isHidden = true
 				shiftCard.isHidden = false
 			} else {
+				shiftLabel.text = "Next Shift"
 				noRecordLabel.isHidden = false
 				shiftCard.isHidden = true
 			}

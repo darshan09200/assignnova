@@ -176,4 +176,12 @@ extension Date {
 		components.second = -1
 		return Calendar.current.date(byAdding: components, to: startOfDay)!
 	}
+	
+	var startOfMonth: Date {
+		return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
+	}
+	
+	var endOfMonth: Date {
+		return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth)!
+	}
 }

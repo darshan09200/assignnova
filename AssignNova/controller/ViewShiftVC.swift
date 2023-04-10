@@ -195,8 +195,16 @@ class ViewShiftVC: UIViewController {
 					}
 					return
 				}
-				self.stopLoading()
+				self.stopLoading(){
+					if let shift = self.shift,
+						let unpaidBreak = shift.unpaidBreak,
+						let totalBreakTime = shift.attendance?.totalBreakTime,
+						unpaidBreak < totalBreakTime {
+						self.showAlert(title: "Warning", message: "You went above your specified duration for break")
+					}
+				}
 			}
+			
 		}
 	}
 	
@@ -215,15 +223,31 @@ class ViewShiftVC: UIViewController {
 		} else if rightActionType == .clockIn{
 			clockIn()
 		} else if rightActionType == .clockOut{
-			self.startLoading()
-			FirestoreHelper.clockOut(for: shift!){ error in
-				if let _ = error{
-					self.stopLoading(){
-						self.showAlert(title: "Oops", message: "Unknown error occured")
+			let clockedOutAt = Date().zeroSeconds
+			if let shift = self.shift,
+			   shift.shiftEndTime > clockedOutAt {
+				let alert = UIAlertController(title: "Warning", message: "You are going to clock out before your shift end time. Do you want to continue?", preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
+				alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
+					completion()
+				}))
+				self.present(alert, animated: true, completion: nil)
+			} else {
+				completion()
+			}
+			func completion(){
+				self.startLoading()
+				FirestoreHelper.clockOut(for: shift!){ error in
+					if let _ = error{
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: "Unknown error occured")
+						}
+						return
 					}
-					return
+					self.stopLoading(){
+						
+					}
 				}
-				self.stopLoading()
 			}
 		}
 	}
