@@ -61,6 +61,7 @@ class PaymentVC: UIViewController {
 			
 			updateCardButton.isHidden = true
 			
+			renewalOn.isHidden = false
 			if let canceledAt = subscriptionDetail.canceledAt{
 				renewalOn.text = "Cancelled on \(Date(timeIntervalSince1970: canceledAt).format(to: "EEE, MMM dd, yyyy"))"
 			} else {
@@ -75,6 +76,8 @@ class PaymentVC: UIViewController {
 			
 			updateCardButton.setTitle("Authorize Payment", for: .normal)
 			updateCardButton.setImage(UIImage(systemName: "creditcard.trianglebadge.exclamationmark"), for: .normal)
+			
+			renewalOn.isHidden = true
 		}
 	}
 	
