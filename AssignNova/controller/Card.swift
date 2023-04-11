@@ -101,7 +101,8 @@ class Card: UIView {
 	}
 	
 	func setProfileImage(withName name: String, backgroundColor: String? = nil){
-		profileAvatar.image = UIImage.makeLetterAvatar(withName: name, backgroundColor: backgroundColor != nil ? UIColor(hex: backgroundColor!) : nil).0
+		let image = UIImage.makeLetterAvatar(withName: name, backgroundColor: backgroundColor != nil ? UIColor(hex: backgroundColor!) : nil).0
+		profileAvatar.sd_setImage(with: URL(string: ""), placeholderImage: image)
 		profileAvatarContainer.isHidden = false
 	}
 	
@@ -109,7 +110,6 @@ class Card: UIView {
 		let reference = ActionsHelper.getProfileImage(profileUrl: url)
 		profileAvatar.sd_imageTransition = .fade
 		profileAvatar.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: placeholderImage, options: [.refreshCached])
-//		profileAvatar.sd_setImage(with: reference, placeholderImage: placeholderImage)
 		profileAvatarContainer.isHidden = false
 	}
 }

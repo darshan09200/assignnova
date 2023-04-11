@@ -77,7 +77,7 @@ extension ViewAllEmployeeTVC {
 		
 		let employee = filteredEmployees[indexPath.row]
 		
-		cell.card.barView.backgroundColor = .clear
+		cell.card.barView.backgroundColor = UIColor(hex: employee.color)
 		let name = "\(employee.firstName) \(employee.lastName)"
 		cell.card.title = name
 		if let profileUrl = employee.profileUrl{
