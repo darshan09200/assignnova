@@ -170,7 +170,7 @@ class AddEmployeeTVC: UITableViewController {
 			if let existingEmployee = existingEmployee {
 				self.stopLoading(){
 					var message = " already linked with another employee: \(existingEmployee.name)"
-					if existingEmployee.phoneNumber == phoneNumber{
+					if existingEmployee.phoneNumber == phoneNumber && !(existingEmployee.phoneNumber?.isEmpty ?? false){
 						message = "Phone Number"+message
 					} else {
 						message = "Email"+message
@@ -194,7 +194,9 @@ class AddEmployeeTVC: UITableViewController {
 					invited: self.employee?.invited ?? true,
 					branches: self.data.branches.compactMap{$0.id},
 					roles: self.data.roles.compactMap{$0.id},
-					color: backgroundColor.toHex ?? "")
+					color: backgroundColor.toHex ?? "",
+					fcmToken: self.employee?.fcmToken,
+					createdAt: self.employee?.createdAt)
 				var reference: DocumentReference?
 				reference = FirestoreHelper.saveEmployee(employee){error in
 					if let _ = error {

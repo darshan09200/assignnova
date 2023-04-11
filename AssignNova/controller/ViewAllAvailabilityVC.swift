@@ -177,8 +177,13 @@ extension ViewAllAvailabilityVC: UITableViewDelegate, UITableViewDataSource{
 		dateFormatter.dateFormat = "EEEE, MMM d"
 		
 		header.sectionTitle.text = dateFormatter.string(from: date)
-		header.rightButton?.tag = Int(date.timeIntervalSince1970)
-		header.rightButton?.addTarget(self, action: #selector(onAddAvailabilityPress(_:)), for: .touchUpInside)
+		if date > .now.add(days: 14).endOfDay{
+			header.rightButton?.isHidden = false
+			header.rightButton?.date = date
+			header.rightButton?.addTarget(self, action: #selector(onAddAvailabilityPress(_:)), for: .touchUpInside)
+		} else {
+			header.rightButton?.isHidden = true
+		}
 		
 		return header.contentView
 	}
@@ -293,12 +298,10 @@ extension ViewAllAvailabilityVC: EmptyDataSetSource{
 }
 
 extension ViewAllAvailabilityVC{
-	@objc func onAddAvailabilityPress(_ sender: UIButton){
-		let date = Date(timeIntervalSince1970: TimeInterval(sender.tag))
-		
+	@objc func onAddAvailabilityPress(_ sender: AddAvailabilityButton){
 		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "AddAvailabilityVC") as! AddAvailabilityVC
 		
-		viewController.startDate = date
+		viewController.startDate = sender.date ?? .now
 		
 		self.present(UINavigationController(rootViewController: viewController), animated: true)
 	}

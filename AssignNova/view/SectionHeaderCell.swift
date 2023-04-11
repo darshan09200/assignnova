@@ -10,7 +10,7 @@ import UIKit
 class SectionHeaderCell: UITableViewCell {
 
 	@IBOutlet weak var sectionTitle: UILabel!
-	@IBOutlet weak var rightButton: UIButton?
+	@IBOutlet weak var rightButton: AddAvailabilityButton?
 	
 	override func awakeFromNib() {
         super.awakeFromNib()

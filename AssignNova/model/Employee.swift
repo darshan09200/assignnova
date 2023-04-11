@@ -47,7 +47,7 @@ struct Employee: Codable{
 	@ServerTimestamp var createdAt: Date?
 	@ServerTimestamp var updatedAt: Date?
 	
-	init(id: String? = nil, userId: String? = nil, employeeId: String? = nil, firstName: String, lastName: String, appRole: AppRole, maxHours: Double = 40, isProfilePrivate: Bool = false, profileUrl: String? = nil, email: String, phoneNumber: String? = nil, invited: Bool? = nil, branches: [String] = [String](), roles: [String] = [String](), color: String, updatedAt: Date? = nil) {
+	init(id: String? = nil, userId: String? = nil, employeeId: String? = nil, firstName: String, lastName: String, appRole: AppRole, maxHours: Double = 40, isProfilePrivate: Bool = false, profileUrl: String? = nil, email: String, phoneNumber: String? = nil, invited: Bool? = nil, branches: [String] = [String](), roles: [String] = [String](), color: String, fcmToken: [String]? = nil, createdAt: Date? = nil) {
 		self.id = id
 		self.userId = userId
 		self.employeeId = employeeId
@@ -63,7 +63,8 @@ struct Employee: Codable{
 		self.branches = branches
 		self.roles = roles
 		self.color = color
-		self.updatedAt = updatedAt
+		self.fcmToken = fcmToken
+		self.createdAt = createdAt
 		
 		self.createdBy = ActiveEmployee.instance?.employee.userId ?? ""
 		self.businessId = ActiveEmployee.instance?.employee.businessId ?? ""

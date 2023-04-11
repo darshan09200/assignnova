@@ -166,6 +166,11 @@ extension Date {
 		return calendar.date(byAdding: .minute, value: minute, to: self) ?? self
 	}
 	
+	func add(days: Int) -> Date{
+		let calendar = Calendar.current
+		return calendar.date(byAdding: .day, value: days, to: self) ?? self
+	}
+	
 	var startOfDay: Date {
 		return Calendar.current.startOfDay(for: self)
 	}

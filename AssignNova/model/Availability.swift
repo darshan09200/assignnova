@@ -19,6 +19,10 @@ struct Availability: Codable{
 	var endTime: Date
 	var createdBy: String
 	var notes: String?
+	
+	var canEdit: Bool{
+		date > .now.add(days: 14).endOfDay
+	}
 	@ServerTimestamp var createdAt: Date?
 	@ServerTimestamp var updatedAt: Date?
 	
@@ -26,7 +30,7 @@ struct Availability: Codable{
 		self.id = id
 		self.allDay = allDay
 		self.isAvailable = isAvailable
-		self.date = date
+		self.date = date.startOfDay
 		self.startTime = Date.combineDateWithTime(date: date, time: startTime)
 		self.endTime = Date.combineDateWithTime(date: date, time: endTime)
 		self.notes = notes

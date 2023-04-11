@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 
 class FirestoreHelper{
 	static let db = Firestore.firestore()
+	
 	static func completion(_ error: Error?, _ completion: @escaping(_ error: Error?)->()){
 		if let error = error {
 			print(error)
@@ -124,40 +125,36 @@ class FirestoreHelper{
 	}
 	
 	static func doesEmployeeExist(email: String, phoneNumber: String?, employeeId: String? = nil, completion: @escaping(_ employee: Employee?)->()){
-		if let activeEmployee = ActiveEmployee.instance,
-		   let businessId = activeEmployee.business?.id{
-			var filters = [
-				Filter.whereField("email", isEqualTo: email)
-			]
-			if let phoneNumber = phoneNumber, !phoneNumber.isEmpty {
-				filters.append(Filter.whereField("phoneNumber", isEqualTo: phoneNumber))
-			}
-			var docRef = db.collection("employee")
-				.whereFilter(Filter.orFilter(filters))
-			
-			if let employeeId = employeeId{
-				print("added employeeId \(employeeId)")
-				docRef = docRef.whereField("__name__", isNotEqualTo: employeeId)
-			}
-			
-			docRef.limit(to: 1).getDocuments(){ snapshots, err in
-				if let _ = err {
-					completion(nil)
-					return
-				}
-				if let snapshot = snapshots?.documents.first{
-					do{
-						try completion(snapshot.data(as: Employee.self))
-					} catch{
-						completion(nil)
-					}
-				} else{
-					completion(nil)
-				}
-			}
-		} else{
-			completion(nil)
+		var filters = [
+			Filter.whereField("email", isEqualTo: email)
+		]
+		if let phoneNumber = phoneNumber, !phoneNumber.isEmpty {			
+			filters.append(Filter.whereField("phoneNumber", isEqualTo: phoneNumber))
 		}
+		var docRef = db.collection("employee")
+			.whereFilter(Filter.orFilter(filters))
+		
+		if let employeeId = employeeId{
+			print("added employeeId \(employeeId)")
+			docRef = docRef.whereField(FieldPath.documentID(), isNotEqualTo: employeeId)
+		}
+		
+		docRef.limit(to: 1).getDocuments(){ snapshots, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			if let snapshot = snapshots?.documents.first{
+				do{
+					try completion(snapshot.data(as: Employee.self))
+				} catch{
+					completion(nil)
+				}
+			} else{
+				completion(nil)
+			}
+		}
+		
 	}
 
 	static func getBusiness(businessId: String, completion: @escaping(_ business: Business?)->()){
@@ -550,7 +547,7 @@ class FirestoreHelper{
 					var pendingHours = 0.0
 					var completedHours = 0.0
 					
-					let dateForUpcomingShift = Calendar.current.date(byAdding: .day, value: 1, to: currentDate.getLast15())!
+					let dateForUpcomingShift = Calendar.current.date(byAdding: .day, value: 1, to: currentDate.getLast15())!.endOfDay
 					for shift in shifts{
 						if shift.attendance?.clockedInAt != nil &&  shift.attendance?.clockedOutAt != nil{
 							completedHours += Double(Date.getMinutesDifferenceBetween(start: shift.shiftStartTime, end: shift.shiftEndTime)) / 60
@@ -614,6 +611,26 @@ class FirestoreHelper{
 		}
 	}
 	
+	static func canAddAvailability(_ availability: Availability, completion: @escaping(_ allowed: Bool?)->()){
+		var docRef = db.collection("availability")
+			.whereField("employeeId", isEqualTo: availability.employeeId)
+			.whereField("date", isEqualTo: availability.date)
+			.whereField("endTime", isGreaterThan: availability.startTime)
+			.order(by: "endTime")
+			.order(by: "startTime")
+		docRef.getDocuments(){ snapshots, error in
+			if let _ = error {
+				completion(nil)
+				return
+			}
+			let docs = snapshots?.documents
+				.compactMap{try? $0.data(as: Availability.self)}
+				.filter{$0.startTime < availability.endTime}
+				.filter{$0.id != availability.id}
+			
+			completion((docs?.count ?? 0) == 0)
+		}
+	}
 	
 }
 

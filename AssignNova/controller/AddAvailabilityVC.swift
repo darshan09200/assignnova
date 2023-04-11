@@ -37,7 +37,6 @@ class AddAvailabilityVC: UIViewController{
 		super.viewDidLoad()
 		
 		if let availability = availability{
-			navigationItem.title = "Edit Availability"
 			startDate = availability.date
 			startTime = availability.startTime
 			endTime = availability.endTime
@@ -48,12 +47,30 @@ class AddAvailabilityVC: UIViewController{
 			
 			isAvailable = availability.isAvailable
 			
+			if availability.canEdit{
+				navigationItem.title = "Edit Availability"
+				AllDaySwitch.isEnabled = true
+				unavailableBtn.isEnabled = true
+				availableBtn.isEnabled = true
+				dateBtn.isEnabled = true
+				timeBtn.isEnabled = true
+				deleteBtn.isHidden = false
+				notesField.textFieldComponent.isEnabled = true
+			} else {
+				navigationItem.title = "View Availability"
+				AllDaySwitch.isEnabled = false
+				unavailableBtn.isEnabled = false
+				availableBtn.isEnabled = false
+				dateBtn.isEnabled = false
+				timeBtn.isEnabled = false
+				deleteBtn.isHidden = true
+				notesField.textFieldComponent.isEnabled = false
+			}
 			if isAvailable{
 				availableBtnTapped()
 			} else {
 				unavailableBtnTapped()
 			}
-			deleteBtn.isHidden = false
 		} else {
 			deleteBtn.isHidden = true
 		}
@@ -153,17 +170,26 @@ class AddAvailabilityVC: UIViewController{
 		let notes = notesField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines)
 		let availability = Availability(id: availability?.id, allDay: isAllDay, isAvailable: isAvailable, date: startDate, startTime: isAllDay ? startDate.startOfDay : startTime, endTime: isAllDay ? startDate.endOfDay : endTime, notes: notes, createdAt: availability?.createdAt)
 		self.startLoading()
-		FirestoreHelper.saveAvailability(availability){error in
-			if let _ = error {
-				self.stopLoading(){
-					self.showAlert(title: "Oops", message: "Unknown error occured")
+		FirestoreHelper.canAddAvailability(availability){allowed in
+			if let allowed = allowed, allowed{
+				FirestoreHelper.saveAvailability(availability){error in
+					if let _ = error {
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: "Unknown error occured")
+						}
+						return
+					}
+					self.stopLoading(){
+						self.dismiss(animated: true)
+					}
 				}
-				return
-			}
-			self.stopLoading(){
-				self.dismiss(animated: true)
+			} else {
+				self.stopLoading(){
+					self.showAlert(title: "Oops", message: "There is a conflict with an existing availability.")
+				}
 			}
 		}
+		
 	}
 	@IBAction func onAvailabilityPress(_ sender: Any) {
 		self.showConfirmation(title: "Warning", message: "Are you sure you want to delete the availability?"){

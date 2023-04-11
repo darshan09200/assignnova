@@ -10,7 +10,6 @@
 		330E4D6129C66743008BDE3A /* SignUpEmployee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */; };
 		330E4D6D29CBD189008BDE3A /* Availability.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330E4D6C29CBD189008BDE3A /* Availability.storyboard */; };
 		330E4D7129CBDCE7008BDE3A /* AddAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */; };
-		330E4D7329CCB644008BDE3A /* EditAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */; };
 		33255D5C29C6455D004A49FB /* SignInScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33255D5B29C6455D004A49FB /* SignInScreen.storyboard */; };
 		33255D5E29C64576004A49FB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33255D5D29C64576004A49FB /* SignInVC.swift */; };
 		33BD185629E4A93F00DC628B /* DisplayScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BD185529E4A93F00DC628B /* DisplayScreen.storyboard */; };
@@ -80,6 +79,7 @@
 		5559EE9C29E44D9C00F10C74 /* FileHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5559EE9B29E44D9C00F10C74 /* FileHandling.swift */; };
 		555F37EA29C91DCE0058EAE6 /* Branch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555F37E929C91DCE0058EAE6 /* Branch.storyboard */; };
 		55624ACE29CA4BFF00B55A7F /* BranchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */; };
+		5568480029E609E600AFE5B6 /* AddAvailabilityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556847FF29E609E600AFE5B6 /* AddAvailabilityButton.swift */; };
 		55788EFE29C9894700C352ED /* NavigationItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55788EFD29C9894700C352ED /* NavigationItem.xib */; };
 		557B933729CF8113006A3FD3 /* SetupEmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */; };
 		558DD27629C514D500909594 /* OtpInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DD27429C514D500909594 /* OtpInputVC.swift */; };
@@ -157,7 +157,6 @@
 		330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmployeeEmailViewController.swift; sourceTree = "<group>"; };
 		330E4D6C29CBD189008BDE3A /* Availability.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Availability.storyboard; sourceTree = "<group>"; };
 		330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAvailabilityVC.swift; sourceTree = "<group>"; };
-		330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvailabilityVC.swift; sourceTree = "<group>"; };
 		33255D5B29C6455D004A49FB /* SignInScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInScreen.storyboard; sourceTree = "<group>"; };
 		33255D5D29C64576004A49FB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		33BD185529E4A93F00DC628B /* DisplayScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DisplayScreen.storyboard; sourceTree = "<group>"; };
@@ -228,6 +227,7 @@
 		5559EE9B29E44D9C00F10C74 /* FileHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandling.swift; sourceTree = "<group>"; };
 		555F37E929C91DCE0058EAE6 /* Branch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Branch.storyboard; sourceTree = "<group>"; };
 		55624ACD29CA4BFF00B55A7F /* BranchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchDetailCell.swift; sourceTree = "<group>"; };
+		556847FF29E609E600AFE5B6 /* AddAvailabilityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAvailabilityButton.swift; sourceTree = "<group>"; };
 		55788EFD29C9894700C352ED /* NavigationItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationItem.xib; sourceTree = "<group>"; };
 		557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupEmployeeVC.swift; sourceTree = "<group>"; };
 		558DD27429C514D500909594 /* OtpInputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpInputVC.swift; sourceTree = "<group>"; };
@@ -384,6 +384,7 @@
 				55F2B06E29DD46E400F213D0 /* CheckoutViewController.storyboard */,
 				553F5F6329E209C1000D0B26 /* Payment.storyboard */,
 				33BD185529E4A93F00DC628B /* DisplayScreen.storyboard */,
+				556847FF29E609E600AFE5B6 /* AddAvailabilityButton.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -439,7 +440,6 @@
 				55B3445D29CA6A6000CC73DD /* ViewRoleTVC.swift */,
 				55B3445F29CA6AB000CC73DD /* AddRoleVC.swift */,
 				330E4D7029CBDCE7008BDE3A /* AddAvailabilityVC.swift */,
-				330E4D7229CCB644008BDE3A /* EditAvailabilityVC.swift */,
 				55FA521129CBD5330057CF67 /* LaunchScreenVC.swift */,
 				551B1D1329CCCD45003B9862 /* AddEmployeeTVC.swift */,
 				558DF0BC29D102D60012C87E /* AddShiftTVC.swift */,
@@ -790,7 +790,6 @@
 				5546CDE129D798EA00AECE62 /* ViewTimeOffVC.swift in Sources */,
 				55C6374529CCD5EF00A1570D /* SectionHeaderCell.swift in Sources */,
 				55C4121329C4A0000073A8CD /* AssignNova.xcdatamodeld in Sources */,
-				330E4D7329CCB644008BDE3A /* EditAvailabilityVC.swift in Sources */,
 				559C7BC029C9B9DC002BE062 /* Card.swift in Sources */,
 				552396E929C6670A00EE9323 /* PlanCard.swift in Sources */,
 				55B3445E29CA6A6000CC73DD /* ViewRoleTVC.swift in Sources */,
@@ -827,6 +826,7 @@
 				55212E8E29D1C6450094738B /* Shift.swift in Sources */,
 				5552C5BE29D781010035C982 /* ApprovalStatus.swift in Sources */,
 				55DB509129CF60610004DCF5 /* SignUpEmployeeVC.swift in Sources */,
+				5568480029E609E600AFE5B6 /* AddAvailabilityButton.swift in Sources */,
 				5549DA5F29C88EA900E51828 /* Business.swift in Sources */,
 				55FA521229CBD5330057CF67 /* LaunchScreenVC.swift in Sources */,
 				55FE062629DA21BE00DAAA99 /* Attendance.swift in Sources */,
@@ -1052,7 +1052,8 @@
 				INFOPLIST_FILE = AssignNova/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AssignNova;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera to scan cards";
+				INFOPLIST_KEY_NSCameraUsageDescription = "To capture image";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To Clock in";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1087,7 +1088,8 @@
 				INFOPLIST_FILE = AssignNova/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AssignNova;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera to scan cards";
+				INFOPLIST_KEY_NSCameraUsageDescription = "To capture image";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To Clock in";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
