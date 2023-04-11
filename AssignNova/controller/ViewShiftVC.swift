@@ -21,6 +21,7 @@ enum ActionType{
 	case declined
 	case completed
 	case none
+	case expired
 }
 
 class ViewShiftVC: UIViewController {
@@ -141,6 +142,12 @@ class ViewShiftVC: UIViewController {
 					self.leftActionButton.isHidden = false
 					self.leftActionButton.setTitle("Completed", for: .normal)
 					self.leftActionButton.tintColor = UIColor(named: "AccentColor")
+					self.leftActionButton.isUserInteractionEnabled = false
+				} else if action == .expired {
+					self.leftActionType = .none
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("Expired", for: .normal)
+					self.leftActionButton.tintColor = .systemRed
 					self.leftActionButton.isUserInteractionEnabled = false
 				}
 			}

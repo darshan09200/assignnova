@@ -25,9 +25,9 @@ class ActionsHelper{
 	static func getAction(for shift: Shift) -> ActionType{
 		guard let employee = ActiveEmployee.instance?.employee,
 			  let employeeId = employee.id else {return .none}
-		
 		if let eligibleEmployees = shift.eligibleEmployees,
 		   let noOfShifts = shift.noOfOpenShifts, noOfShifts > 0{
+			if shift.shiftStartTime <= .now.zeroSeconds { return .expired}
 			if eligibleEmployees.contains(employeeId) { return .takeShift}
 			if eligibleEmployees.count == 0 &&
 				(employee.branches.count > 0 ? employee.branches.contains(shift.branchId) : true) &&
@@ -82,7 +82,7 @@ class ActionsHelper{
 	}
 	
 	static func canEdit(shift: Shift) -> Bool{
-		if canEdit(){
+		if canEdit() && shift.shiftStartTime > .now.zeroSeconds{
 			return hasPrivileges(branchId: shift.branchId)
 		}
 		return false
