@@ -13,6 +13,8 @@ enum AppRole: String, CaseIterable, Codable {
 	case manager = "Manager"
 	case shiftSupervisor = "Shift Supervisor"
 	case employee = "Employee"
+	
+	var index: Int { AppRole.allCases.firstIndex(of: self) ?? 0 }
 }
 
 extension CaseIterable where Self: Equatable {

@@ -13,7 +13,7 @@ extension UIImage{
 		var avatarBackgroundColor: UIColor
 		let configuration = LetterAvatarBuilderConfiguration()
 		configuration.circle = true
-		configuration.username = name
+		configuration.username = name.uppercased().trimmingCharacters(in: .whitespacesAndNewlines)
 		if let backgroundColor = backgroundColor{
 			avatarBackgroundColor = backgroundColor
 		} else{

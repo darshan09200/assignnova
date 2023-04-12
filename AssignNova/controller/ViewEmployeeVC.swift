@@ -66,7 +66,7 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if section == 0 || section == 1 {return 1}
-		if section == 3 {return max(employee?.branches.count ?? 0 , 1)}
+		if section == 2 {return max(employee?.branches.count ?? 0 , 1)}
 		return max(employee?.roles.count ?? 0 , 1)
 	}
 	
@@ -76,12 +76,11 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 			
 			let (image, _) = UIImage.makeLetterAvatar(withName: employee?.name ?? "", backgroundColor: UIColor(hex: employee?.color ?? ""))
 			if let profileUrl = employee?.profileUrl{
-				let reference = ActionsHelper.getProfileImage(profileUrl: profileUrl)
+				let reference = Storage.storage().reference().child(profileUrl)
 				cell.profileImage.sd_imageTransition = .fade
 				cell.profileImage.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: image, options: [.refreshCached])
 				
 			} else {
-				
 				cell.profileImage.image = image
 			}
 			
@@ -198,6 +197,20 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 		return 42
 	}
 	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+		if indexPath.section == 2{
+			let viewController = UIStoryboard(name: "Branch", bundle: nil).instantiateViewController(withIdentifier: "ViewBranchTVC") as! ViewBranchTVC
+			let branchId = employee?.branches[indexPath.row]
+			viewController.branchId = branchId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		} else if indexPath.section == 3 {
+			let viewController = UIStoryboard(name: "Role", bundle: nil).instantiateViewController(withIdentifier: "ViewRoleTVC") as! ViewRoleTVC
+			let roleId = employee?.roles[indexPath.row]
+			viewController.roleId = roleId
+			self.navigationController?.pushViewController(viewController, animated: true)
+		}
+	}
 }
 
 extension ViewEmployeeVC{

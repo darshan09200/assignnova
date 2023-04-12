@@ -33,7 +33,6 @@ class ViewTimeOffVC: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         
-		print(self.topContent.frame.height)
 		refreshData()
 	}
 	
@@ -57,7 +56,7 @@ class ViewTimeOffVC: UIViewController {
 					self.notesLabel.isHidden = true
 					self.notesContentLabel.isHidden = true
 				}
-				if timeOff.status == .pending{
+				if timeOff.status == .pending, ActionsHelper.canEdit() {
 					self.leftActionType = .deny
 					self.leftActionButton.isHidden = false
 					self.leftActionButton.setTitle("Deny", for: .normal)

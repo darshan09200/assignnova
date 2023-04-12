@@ -331,7 +331,7 @@ class FirestoreHelper{
 		if let activeEmployee = ActiveEmployee.instance{
 			if shiftType == .myShift{
 				filters.append(Filter.whereField("employeeId", isEqualTo: activeEmployee.employee.id!))
-			} else if shiftType == .openShift{
+			} else if activeEmployee.employee.appRole == .employee {
 				filters.append(Filter.whereField("eligibleEmployees", arrayContains: activeEmployee.employee.id!))
 				filters.append(Filter.whereField("eligibleEmployees", isEqualTo: []))
 			}
@@ -349,9 +349,18 @@ class FirestoreHelper{
 				completion(nil)
 				return
 			}
-			let shifts = snapshots?.documents.compactMap{ document in
-				return try? document.data(as: Shift.self)
-			}.filter{$0.noOfOpenShifts == nil || $0.noOfOpenShifts! > 0}
+			let shifts = snapshots?.documents
+				.compactMap{ document in
+					return try? document.data(as: Shift.self)
+				}
+				.filter{shiftType == .openShift ? $0.eligibleEmployees != nil : true}
+				.filter{$0.noOfOpenShifts == nil || $0.noOfOpenShifts! > 0}
+				.filter{ shift in
+					if let employee = ActiveEmployee.instance?.employee, employee.appRole == .shiftSupervisor{
+						return employee.branches.contains(shift.branchId) && employee.roles.contains(shift.roleId)
+					}
+					return true
+				}
 			completion(shifts)
 		}
 	}
@@ -364,12 +373,14 @@ class FirestoreHelper{
 			newShift.eligibleEmployees = nil
 			newShift.noOfOpenShifts = nil
 			newShift.employeeId = employeeId
-			if ActionsHelper.hasPrivileges(branchId: shift.branchId){
+			if ActionsHelper.canEdit(){
 				newShift.status = .approved
 				newShift.acceptedBy = employeeId
 			} else {
 				newShift.status = .requested
 			}
+			
+			print(newShift)
 			return saveShift(newShift){ error in
 				if let error = error{
 					completion(error)
@@ -403,38 +414,61 @@ class FirestoreHelper{
 		}
 	}
 	
-	static func getTimeOffs(employeeId: String, completion: @escaping(_ timeOffs: [TimeOff]?)->()) -> ListenerRegistration{
-		let docRef = db.collection("timeOff")
-			.whereField("employeeId", isEqualTo: employeeId)
-			.order(by: "createdOn", descending: true)
-		return docRef.addSnapshotListener(){ snapshots, err in
-			if let _ = err {
-				completion(nil)
-				return
+	static func getTimeOffs(employeeId: String, completion: @escaping(_ timeOffs: [TimeOff]?)->()) -> ListenerRegistration?{
+		if let businessId = ActiveEmployee.instance?.employee.businessId{
+			var docRef = db.collection("timeOff")
+				.whereField("businessId", isEqualTo: businessId)
+				.order(by: "createdOn", descending: true)
+			if !ActionsHelper.canEdit(){
+				docRef = docRef.whereField("employeeId", isEqualTo: employeeId)
 			}
-			let timeOffs = snapshots?.documents.compactMap{ document in
-				return try? document.data(as: TimeOff.self)
+			return docRef.addSnapshotListener(){ snapshots, err in
+				if let _ = err {
+					completion(nil)
+					return
+				}
+				let timeOffs = snapshots?.documents.compactMap{ document in
+					return try? document.data(as: TimeOff.self)
+				}
+				completion(timeOffs)
 			}
-			completion(timeOffs)
+			
+		} else {
+			completion(nil)
 		}
+		return nil
 	}
 
-	static func getOpenShifts(employeeId: String, completion: @escaping(_ shifts: [Shift]?)->()) -> ListenerRegistration{
-		let docRef = db.collection("shift")
-			.whereField("employeeId", isEqualTo: employeeId)
-			.whereField("approvalRequired", isEqualTo: true)
-			.order(by: "shiftStartDate", descending: true)
-			.order(by: "shiftStartTime", descending: true)
-		return docRef.addSnapshotListener(){ snapshots, err in
-			if let _ = err {
-				completion(nil)
-				return
+	static func getOpenShifts(employeeId: String, completion: @escaping(_ shifts: [Shift]?)->()) -> ListenerRegistration?{
+		if let businessId = ActiveEmployee.instance?.employee.businessId{
+			var docRef = db.collection("shift")
+				.whereField("businessId", isEqualTo: businessId)
+				.whereField("status", isNotEqualTo: false)
+				.whereField("approvalRequired", isEqualTo: true)
+				.order(by: "status")
+				.order(by: "shiftStartDate", descending: true)
+				.order(by: "shiftStartTime", descending: true)
+			if !ActionsHelper.canEdit(){
+				docRef = docRef.whereField("employeeId", isEqualTo: employeeId)
 			}
-			let shifts = snapshots?.documents.compactMap{ document in
-				return try? document.data(as: Shift.self)
+			return docRef.addSnapshotListener(){ snapshots, err in
+				if let _ = err {
+					completion(nil)
+					return
+				}
+				let shifts = snapshots?.documents
+					.compactMap{ document in
+						return try? document.data(as: Shift.self)
+					}
+					.filter{$0.employeeId != nil}
+					.filter{ActiveEmployee.instance?.getEmployee(employeeId: $0.employeeId!) != nil}
+					.sorted(by: {$0.shiftStartDate > $1.shiftStartDate})
+				completion(shifts)
 			}
-			completion(shifts)
+		} else {
+			completion(nil)
 		}
+		return nil
 	}
 	
 	static func getTimeOff(timeOffId: String, completion: @escaping(_ timeOff: TimeOff?)->()) -> ListenerRegistration{

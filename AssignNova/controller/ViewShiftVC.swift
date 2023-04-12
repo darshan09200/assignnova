@@ -12,6 +12,7 @@ import CoreLocation
 
 enum ActionType{
 	case takeShift
+	case requested
 	case approve
 	case deny
 	case clockIn
@@ -33,10 +34,7 @@ class ViewShiftVC: UIViewController {
 	
 	private var reference: DocumentReference?
 	var isOpenShifts: Bool{
-		if let employees = shift?.eligibleEmployees{
-			return employees.count == 0
-		}
-		return false
+		return shift?.employeeId == nil
 	}
 	
 	private var listener: ListenerRegistration?
@@ -81,9 +79,9 @@ class ViewShiftVC: UIViewController {
 				self.rightActionButton.isHidden = true
 				
 				if ActionsHelper.canEdit(shift: shift){
-					self.editItem.isHidden = true
-				} else {
 					self.editItem.isHidden = false
+				} else {
+					self.editItem.isHidden = true
 				}
 				
 				let action = ActionsHelper.getAction(for: shift)
@@ -149,6 +147,12 @@ class ViewShiftVC: UIViewController {
 					self.leftActionButton.setTitle("Expired", for: .normal)
 					self.leftActionButton.tintColor = .systemRed
 					self.leftActionButton.isUserInteractionEnabled = false
+				} else if action == .requested {
+					self.leftActionType = .none
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("Waiting for Approval", for: .normal)
+					self.leftActionButton.tintColor = .systemYellow
+					self.leftActionButton.isUserInteractionEnabled = false
 				}
 			}
 		}
@@ -164,7 +168,7 @@ class ViewShiftVC: UIViewController {
 	
 	@IBAction func onLeftActionButtonPress(_ sender: UIButton) {
 		if leftActionType == .takeShift{
-			if let shift = shift{
+			if let shift = shift, ActionsHelper.canTake(shift: shift){
 				self.startLoading()
 				listener?.remove()
 				self.reference = FirestoreHelper.takeShift(shift){error in
@@ -179,6 +183,9 @@ class ViewShiftVC: UIViewController {
 						self.refreshData()
 					}
 				}
+			} else {
+				self.showAlert(title: "Oops", message: "Shift has expired")
+				refreshData()
 			}
 		} else if leftActionType == .deny{
 			self.startLoading()
@@ -300,17 +307,11 @@ class ViewShiftVC: UIViewController {
 extension ViewShiftVC: UITableViewDelegate, UITableViewDataSource{
 
     func numberOfSections(in tableView: UITableView) -> Int {
-		return 4 + (isOpenShifts && ((shift?.eligibleEmployees?.count ?? 0) > 0) ? 1 : 0)
+		return 4
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 || section == 1 || section == 2 {
-			return 1
-		} else if isOpenShifts {
-			if section == 3 { return 1 }
-			return shift?.eligibleEmployees?.count ?? 0
-		}
-		return 1
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -354,32 +355,23 @@ extension ViewShiftVC: UITableViewDelegate, UITableViewDataSource{
 				cell.card.barView.backgroundColor = UIColor(hex: role?.color ?? "")
 				cell.card.profileAvatarContainer.isHidden = true
 				cell.card.rightImageContainer.isHidden = false
-			} else if indexPath.section == 3 {
-				if isOpenShifts{
+			} else if isOpenShifts {
 					cell.card.title = "Open Shift (\(shift?.noOfOpenShifts ?? 0) remaining)"
 					cell.card.barView.backgroundColor = ColorPickerVC.colors.first?.color
 					cell.card.setProfileImage(withName: "Open Shift")
 					cell.card.rightImageContainer.isHidden = true
-				} else {
-					let employeeId = shift?.employeeId ?? ""
-					let item = ActiveEmployee.instance?.getEmployee(employeeId: employeeId)
-					if let employee = item{
-						if let profileUrl = employee.profileUrl{
-							let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
-							cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
-						} else {
-							cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
-						}
-					}
-					cell.card.title = item?.name
-					cell.card.barView.backgroundColor = UIColor(hex: item?.color ?? "")
-					cell.card.rightImageContainer.isHidden = false
-				}
-			} else if indexPath.section == 4{
-				let employeeId = shift?.eligibleEmployees?[indexPath.row] ?? ""
+			} else {
+				let employeeId = shift?.employeeId ?? ""
 				let item = ActiveEmployee.instance?.getEmployee(employeeId: employeeId)
+				if let employee = item{
+					if let profileUrl = employee.profileUrl{
+						let (image, _) = UIImage.makeLetterAvatar(withName: employee.name , backgroundColor: UIColor(hex: employee.color))
+						cell.card.setProfileImage(withUrl: profileUrl, placeholderImage: image)
+					} else {
+						cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
+					}
+				}
 				cell.card.title = item?.name
-				cell.card.profileAvatarContainer.isHidden = true
 				cell.card.barView.backgroundColor = UIColor(hex: item?.color ?? "")
 				cell.card.rightImageContainer.isHidden = false
 			}

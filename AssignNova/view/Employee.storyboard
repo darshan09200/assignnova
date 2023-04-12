@@ -14,7 +14,7 @@
         <scene sceneID="XVJ-sd-adc">
             <objects>
                 <tableViewController storyboardIdentifier="AddEmployeeTVC" id="XA7-bQ-8nV" customClass="AddEmployeeTVC" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="XmL-Zm-PUS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="XmL-Zm-PUS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -160,14 +160,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="card" id="jb3-jY-c9o" customClass="CardCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="337.33332824707031" width="393" height="68"/>
+                                <rect key="frame" x="0.0" y="337.33332824707031" width="393" height="8"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jb3-jY-c9o" id="Lqb-S8-KHP">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="8"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JR6-3V-TM5" customClass="Card" customModule="AssignNova" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="4" width="361" height="60"/>
+                                            <rect key="frame" x="16" y="4" width="361" height="0.0"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="Role"/>
@@ -190,7 +190,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addCard" id="RO7-Fk-hbN" customClass="AddCardCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="405.33332824707031" width="393" height="58.333332061767578"/>
+                                <rect key="frame" x="0.0" y="345.33332824707031" width="393" height="58.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RO7-Fk-hbN" id="PAc-Dh-TuN">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="58.333332061767578"/>
@@ -225,7 +225,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectForm" rowHeight="75" id="9Wr-P2-68E" customClass="SelectFieldCell" customModule="AssignNova" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="463.66666030883789" width="393" height="75"/>
+                                <rect key="frame" x="0.0" y="403.66666030883789" width="393" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Wr-P2-68E" id="cvM-u3-njh">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="75"/>

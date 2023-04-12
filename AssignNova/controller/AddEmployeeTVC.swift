@@ -24,7 +24,7 @@ class AddEmployeeTVC: UITableViewController {
 	}
 
 	var shouldShowAddBranch: Bool{
-		data.branches.count < ActiveEmployee.instance!.branches.count
+		ActionsHelper.canEdit(employee: employee) && data.branches.count < ActiveEmployee.instance!.branches.count
 	}
 
 	var isRoleEmpty: Bool{
@@ -32,7 +32,7 @@ class AddEmployeeTVC: UITableViewController {
 	}
 
 	var shouldShowAddRole: Bool{
-		data.roles.count < ActiveEmployee.instance!.roles.count
+		ActionsHelper.canEdit(employee: employee) && data.roles.count < ActiveEmployee.instance!.roles.count
 	}
 
 	var isEdit: Bool = false
@@ -48,29 +48,8 @@ class AddEmployeeTVC: UITableViewController {
 		tableView.sectionHeaderTopPadding = 0
 		tableView.contentInset.bottom = 16
 
-		if isEdit, let employee = employee{
-
-			navigationItem.title = "Edit Branch"
-//
-//			if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell{
-//				cell.inputField.textFieldComponent.text = employee.firstName
-//			}
-//
-//			if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell{
-//				cell.inputField.textFieldComponent.text = employee.lastName
-//			}
-//
-//			if let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as? InputFieldCell{
-//				cell.inputField.textFieldComponent.text = employee.email
-//			}
-//
-//			if let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 1)) as? InputFieldCell{
-//				cell.inputField.textFieldComponent.text = employee.phoneNumber
-//			}
-//
-//			if let cell = tableView.cellForRow(at: IndexPath(row: 4, section: 1)) as? InputFieldCell{
-//				cell.inputField.textFieldComponent.text = employee.employeeId
-//			}
+		if isEdit, let _ = employee{
+			navigationItem.title = "Edit Employee"
 		}
 	}
 
@@ -272,7 +251,7 @@ extension AddEmployeeTVC{
 				cell.profileImage.image = UIImage(data: imageData)
 				cell.removeImageButton.isHidden = false
 			} else if let profileUrl = employee?.profileUrl{
-				let reference = ActionsHelper.getProfileImage(profileUrl: profileUrl)
+				let reference = Storage.storage().reference().child(profileUrl)
 				cell.profileImage.sd_imageTransition = .fade
 				cell.profileImage.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: nil, options: [.refreshCached])
 				cell.removeImageButton.isHidden = false
@@ -290,7 +269,8 @@ extension AddEmployeeTVC{
 				let (image, _) = UIImage.makeLetterAvatar(withName: "John Doe")
 				cell.profileImage.image = image
 			}
-
+			cell.addImageButton?.isHidden = !ActionsHelper.isSelf(employee: employee)
+			cell.removeImageButton?.isHidden = !ActionsHelper.isSelf(employee: employee)
 			cell.addImageButton?.addTarget(self, action: #selector(onSelectImagePress), for: .touchUpInside)
 			cell.removeImageButton?.addTarget(self, action: #selector(onRemoveImagePress), for: .touchUpInside)
 
@@ -342,7 +322,7 @@ extension AddEmployeeTVC{
 			}
 			if indexPath.row == 5{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "selectForm", for: indexPath) as! SelectFieldCell
-				cell.selectButton.isEnabled = ActionsHelper.canEdit()
+				cell.selectButton.isEnabled = ActionsHelper.canEdit(employee: employee)
 				cell.picker?.delegate = self
 				cell.picker?.dataSource = self
 				cell.label.text = label
@@ -354,11 +334,15 @@ extension AddEmployeeTVC{
 			cell.inputField.label = label
 			cell.inputField.placeholder = placeholder
 			if indexPath.row == 4 || indexPath.row == 6 {
-				cell.inputField.textFieldComponent.isEnabled = ActionsHelper.canEdit()
+				cell.inputField.textFieldComponent.isEnabled = ActionsHelper.canEdit(employee: employee)
+			}
+			if isEdit && indexPath.row == 2 {
+				cell.inputField.textFieldComponent.isEnabled = false
 			}
 			cell.inputField.textFieldComponent.text = defaultValue
             cell.inputField.textFieldComponent.textContentType = contentType
             cell.inputField.textFieldComponent.keyboardType = keyType ?? .default
+            cell.inputField.textFieldComponent.autocapitalizationType = capitalLetter ?? .none
             cell.inputField.textFieldComponent.autocapitalizationType = capitalLetter ?? .none
 			if indexPath.row == 0 || indexPath.row == 1{
 				cell.inputField.textFieldComponent.addTarget(self, action: #selector(nameDidChange(_:)), for: .editingChanged)
@@ -373,6 +357,7 @@ extension AddEmployeeTVC{
 			var title: String?
 			var subtitle: String?
 			var barColor: String?
+			print("\(indexPath.section) inside")
 			if indexPath.section == 2{
 				isLast = data.branches.endIndex  == indexPath.row && shouldShowAddBranch
 				isEmpty = isBranchEmpty
@@ -413,6 +398,7 @@ extension AddEmployeeTVC{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
 
 				let gestureRecognizer = CellTapGestureRecognizer( indexPath: indexPath, target: self, action: #selector(onDeletePress))
+				cell.card.rightImageContainer.isHidden = !ActionsHelper.canEdit(employee: employee)
 				cell.card.rightImageView.addGestureRecognizer(gestureRecognizer)
 				cell.card.rightImageView.isUserInteractionEnabled = true
 				cell.card.title = title

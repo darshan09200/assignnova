@@ -14,6 +14,11 @@ struct GroupedTimeOff{
 	var timeOffs: [TimeOff]
 }
 
+struct GroupedOpenShift{
+	var status: Status
+	var shifts: [Shift]
+}
+
 class RequestVC: UIViewController {
 
 	@IBOutlet weak var addRequestButton: UIBarButtonItem!
@@ -23,7 +28,7 @@ class RequestVC: UIViewController {
 
 	private var listener: ListenerRegistration?
 	private var groupedTimeOffs = [GroupedTimeOff]()
-	private var openShifts = [Shift]()
+	private var groupedOpenShifts = [GroupedOpenShift]()
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +63,21 @@ class RequestVC: UIViewController {
 				}
 			} else {
 				listener = FirestoreHelper.getOpenShifts(employeeId: employeeId){ openShifts in
-					self.openShifts = openShifts ?? []
+					print(openShifts?.count)
+					if let openShifts = openShifts, openShifts.count > 0{
+						var groupedOpenShifts = [Status.requested, Status.approved, Status.declined].compactMap{GroupedOpenShift(status: $0, shifts: [])}
+						for openShift in openShifts {
+							let index = groupedOpenShifts.firstIndex{$0.status == openShift.status}
+							if let index = index{
+								groupedOpenShifts[index].shifts.append(openShift)
+							} else {
+								print(openShift.status?.rawValue)
+							}
+						}
+						self.groupedOpenShifts = groupedOpenShifts
+					} else {
+						self.groupedOpenShifts = []
+					}
 					self.tableView.reloadData()
 				}
 			}
@@ -88,7 +107,7 @@ class RequestVC: UIViewController {
 			viewController.timeOffId = item.id
 			return viewController
 		} else {
-			let item = openShifts[indexPath.row]
+			let item = groupedOpenShifts[indexPath.section].shifts[indexPath.row]
 			let viewController = UIStoryboard(name: "Shift", bundle: nil).instantiateViewController(withIdentifier: "ViewShiftVC") as! ViewShiftVC
 			viewController.shiftId = item.id
 			return viewController
@@ -102,14 +121,14 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 		if requestTypeSegment.selectedSegmentIndex == 0{
 			return max(groupedTimeOffs[section].timeOffs.count, 1)
 		}
-		return openShifts.count
+		return max(groupedOpenShifts[section].shifts.count, 1)
 	}
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		if requestTypeSegment.selectedSegmentIndex == 0{
 			return groupedTimeOffs.count
 		}
-		return openShifts.count > 0 ? 1 : 0
+		return groupedOpenShifts.count
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,7 +173,20 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 
 			print(cell.card.titleImageView.isHidden)
 		} else {
-			let item = openShifts[indexPath.row]
+			if groupedOpenShifts[indexPath.section].shifts.count == 0{
+				let cell = UITableViewCell()
+				
+				var configuration = cell.defaultContentConfiguration()
+				configuration.text = "No \(groupedOpenShifts[indexPath.section].status.rawValue) Open Shifts Requests Found"
+				configuration.textProperties.font = .preferredFont(forTextStyle: .body)
+				configuration.textProperties.color = .systemGray
+				configuration.textProperties.alignment = .center
+				
+				cell.contentConfiguration = configuration
+				cell.selectionStyle = .none
+				return cell
+			}
+			let item = groupedOpenShifts[indexPath.section].shifts[indexPath.row]
 			let employee = ActiveEmployee.instance?.getEmployee(employeeId: item.employeeId!)
 			cell.card.title = employee?.name
 			cell.card.subtitle = item.shiftStartDate.format(to: "EEE, MMM dd, yyyy")
@@ -187,7 +219,7 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 		if requestTypeSegment.selectedSegmentIndex == 0{
 			header.sectionTitle.text = groupedTimeOffs[section].status.rawValue
 		} else {
-			header.sectionTitle.text = "Pending"
+			header.sectionTitle.text = groupedOpenShifts[section].status.rawValue
 		}
 
 		return header.contentView

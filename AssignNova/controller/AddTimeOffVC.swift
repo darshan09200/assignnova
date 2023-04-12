@@ -142,6 +142,9 @@ class AddTimeOffVC: UIViewController {
 			}
 		}
 	}
+	@IBAction func onCancelPress(_ sender: Any) {
+		dismiss(animated: true)
+	}
 }
 
 extension AddTimeOffVC{

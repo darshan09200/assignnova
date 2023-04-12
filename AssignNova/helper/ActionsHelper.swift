@@ -10,9 +10,9 @@ import FirebaseStorage
 
 class ActionsHelper{
 	static func hasPrivileges(branchId: String?) -> Bool{
-		guard let employee = ActiveEmployee.instance?.employee else {return false}
+		guard let employee = ActiveEmployee.instance?.employee, employee.appRole != .employee else {return false}
 		if employee.appRole == .owner || employee.appRole == .manager {return true}
-		if let branchId = branchId{
+		if let branchId = branchId {
 			return employee.branches.contains(branchId)
 		}
 		return false
@@ -22,20 +22,33 @@ class ActionsHelper{
 		return branchIds.compactMap{hasPrivileges(branchId:$0)}.reduce(true){result, acc in result || acc}
 	}
 	
-	static func getAction(for shift: Shift) -> ActionType{
+	static func canTake(shift: Shift)->Bool{
 		guard let employee = ActiveEmployee.instance?.employee,
-			  let employeeId = employee.id else {return .none}
+			  let employeeId = employee.id else {return false}
 		if let eligibleEmployees = shift.eligibleEmployees,
 		   let noOfShifts = shift.noOfOpenShifts, noOfShifts > 0{
-			if shift.shiftStartTime <= .now.zeroSeconds { return .expired}
-			if eligibleEmployees.contains(employeeId) { return .takeShift}
+			if eligibleEmployees.contains(employeeId) { return true}
 			if eligibleEmployees.count == 0 &&
 				(employee.branches.count > 0 ? employee.branches.contains(shift.branchId) : true) &&
 				(employee.roles.count > 0 ? employee.roles.contains(shift.roleId) : true) {
-				return .takeShift
+				return true
 			}
-		} else if shift.approvalRequired && shift.status == .requested, hasPrivileges(branchId: shift.branchId){
-			return .approve
+		}
+		return false
+	}
+	
+	static func getAction(for shift: Shift) -> ActionType{
+		guard let employee = ActiveEmployee.instance?.employee,
+			  let employeeId = employee.id else {return .none}
+		if shift.employeeId == nil && shift.shiftStartTime <= .now.zeroSeconds { return .expired}
+		if canTake(shift: shift) {
+			return .takeShift
+		} else if shift.approvalRequired && shift.status == .requested{
+			if canEdit(){
+				return .approve
+			} else {
+				return .requested
+			}
 		} else if shift.approvalRequired && shift.status == .declined{
 			return .declined
 		} else if employeeId == shift.employeeId && (shift.approvalRequired ? shift.status == .approved : true){
@@ -61,8 +74,7 @@ class ActionsHelper{
 	static func getProfileImage(profileUrl: String) -> StorageReference{
 		var filename = (profileUrl as NSString).lastPathComponent.split(separator: ".")
 		filename.popLast()
-		let reducedProfileUrl = "profileImages/\(filename.first ?? "")_200x200.jpeg"
-		print(reducedProfileUrl)
+		let reducedProfileUrl = "profileImages/\(filename.first ?? "")_200x200.jpeg"		
 		return Storage.storage().reference().child(reducedProfileUrl)
 	}
 	
@@ -71,6 +83,12 @@ class ActionsHelper{
 			 return false
 		 }
 		 return true
+	}
+	
+	static func isSelf(employee: Employee?)->Bool{
+		guard let currentEmployee = ActiveEmployee.instance?.employee,
+				let employee = employee else {return false}
+		return currentEmployee.id == employee.id
 	}
 	
 	static func canEdit() -> Bool{
@@ -83,7 +101,7 @@ class ActionsHelper{
 	
 	static func canEdit(shift: Shift) -> Bool{
 		if canEdit() && shift.shiftStartTime > .now.zeroSeconds{
-			return hasPrivileges(branchId: shift.branchId)
+			return true
 		}
 		return false
 	}
@@ -92,9 +110,11 @@ class ActionsHelper{
 		return canEdit()
 	}
 	
-	static func canEdit(employee: Employee) -> Bool{
-		if canEdit(){
-			return hasPrivileges(branchIds: employee.branches)
+	static func canEdit(employee: Employee?) -> Bool{
+		if canEdit(),
+			let employee = employee,
+			let currentEmployee = ActiveEmployee.instance?.employee{
+			return currentEmployee.appRole.index > employee.appRole.index || currentEmployee.appRole == .owner
 		}
 		return false
 	}

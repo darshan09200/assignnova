@@ -93,7 +93,7 @@ extension ViewAllEmployeeTVC {
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		let employee = filteredEmployees[indexPath.row]
+		let employee = filteredEmployees[indexPath.row]		
 		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "ViewEmployeeVC") as! ViewEmployeeVC
 		viewController.employeeId = employee.id
 		self.navigationController?.pushViewController(viewController, animated: true)
