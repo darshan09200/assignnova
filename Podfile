@@ -1,20 +1,26 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '13.0'
 
-target 'AssignNova' do
-	use_frameworks!
-	pod 'GoogleMaps', '7.4.0'
-	pod 'GooglePlaces', '7.4.0'
-
+def shared_pods
 	pod 'FirebaseAuth'
 	pod 'FirebaseFirestore'
 	pod 'FirebaseFirestoreSwift'
-	pod 'FirebaseFunctions'
 	pod 'FirebaseAppCheck'
+end
+
+target 'AssignNova' do
+	use_frameworks!
+
+	pod 'GoogleMaps', '7.4.0'
+	pod 'GooglePlaces', '7.4.0'
+
+	shared_pods
+
 	pod 'FirebaseMessaging'
 	pod 'FirebaseStorage'
 	pod 'FirebaseStorageUI'
-
+	pod 'FirebaseFunctions'
+	
 	pod 'GoogleSignIn'
 	pod 'GeoFire/Utils'
 
@@ -25,6 +31,12 @@ target 'AssignNova' do
 	pod 'EmptyDataSet-Swift'
 	pod 'FSCalendar'
 	pod 'StripePaymentSheet'
+end
+
+target 'Siri' do
+	use_frameworks!
+
+	shared_pods
 end
 
 post_install do |installer|

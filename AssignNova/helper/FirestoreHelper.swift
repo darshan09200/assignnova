@@ -188,7 +188,7 @@ class FirestoreHelper{
 			}
 			let branches = snapshots?.documents.compactMap{ document in
 				return try? document.data(as: Branch.self)
-			}
+			}.filter{$0.isActive ?? true}
 			completion(branches)
 		}
 	}
@@ -220,7 +220,7 @@ class FirestoreHelper{
 			}
 			let roles = snapshots?.documents.compactMap{ document in
 				return try? document.data(as: Role.self)
-			}
+			}.filter{$0.isActive ?? true}
 			completion(roles)
 		}
 	}
@@ -259,7 +259,7 @@ class FirestoreHelper{
 			}
 			let employees = snapshots?.documents.compactMap{ document in
 				return try? document.data(as: Employee.self)
-			}
+			}.filter{$0.isActive ?? true}
 			completion(employees)
 		}
 	}
@@ -353,6 +353,7 @@ class FirestoreHelper{
 				.compactMap{ document in
 					return try? document.data(as: Shift.self)
 				}
+				.filter{$0.isActive}
 				.filter{shiftType == .openShift ? $0.eligibleEmployees != nil : true}
 				.filter{$0.noOfOpenShifts == nil || $0.noOfOpenShifts! > 0}
 				.filter{ shift in
@@ -677,6 +678,7 @@ enum ShiftType{
 enum FirestoreError: String, Error{
 	case breakNoteStarted = "Break Not Started"
 }
+
 
 struct ShiftStats{
 	var ongoingShift: Shift?

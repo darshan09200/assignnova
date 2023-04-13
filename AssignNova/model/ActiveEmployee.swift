@@ -13,8 +13,20 @@ class ActiveEmployee{
 	static var fcmToken: String?
 	public static var instance: ActiveEmployee? = nil{
 		didSet{
-			if instance != nil {
+			if let instance = instance {
 				FirestoreHelper.registerFCMToken()
+				if let employeeId = instance.employee.id{
+					Keychain.save(key: "employeeId", data: Data(from: employeeId))
+					
+					if let receivedData = Keychain.load(key: "employeeId") {
+						let result = receivedData.to(type: String.self)
+						print("result")
+					} else {
+						print("Not found")
+					}
+				}
+			} else {
+				Keychain.delete(key: "employeeId")
 			}
 		}
 	}
@@ -27,9 +39,20 @@ class ActiveEmployee{
 	
 	var business: Business?
 	
-	var branches = [Branch]()
-	var roles = [Role]()
-	var employees = [Employee]()
+	var allBranches = [Branch]()
+	var branches: [Branch]{
+		allBranches.filter{$0.isActive ?? true}
+	}
+	
+	var allRoles = [Role]()
+	var roles: [Role]{
+		allRoles.filter{$0.isActive ?? true}
+	}
+	
+	var allEmployees = [Employee]()
+	var employees: [Employee]{
+		allEmployees.filter{$0.isActive ?? true}
+	}
 	
 	var subscriptionDetail: SubscriptionDetail?
 	
@@ -40,34 +63,32 @@ class ActiveEmployee{
 	init(business: Business? = nil, employee: Employee, branches: [Branch] = [Branch](), roles: [Role] = [Role]()) {
 		self.business = business
 		self.employee = employee
-		self.branches = branches
-		self.roles = roles
+		self.allBranches = branches
+		self.allRoles = roles
 		
 		CloudFunctionsHelper.getSubscriptionDetails(){ subscriptionDetail in
 			self.isFetchingSubscription = false
 			self.subscriptionDetail = subscriptionDetail
 			NotificationCenter.default.post(name: Notification.Name("getSubscriptionDetails"), object: nil)
-			
-			print(subscriptionDetail)
 		}
         
         self.branchListener = FirestoreHelper.getBranches(businessId: employee.businessId){ branches in
             if let branches = branches{
-                self.branches = branches
+                self.allBranches = branches
 				NotificationCenter.default.post(name: Notification.Name("getBranches"), object: nil)
             }
         }
 
         self.roleListener = FirestoreHelper.getRoles(businessId: employee.businessId){ roles in
             if let roles = roles{
-                self.roles = roles
+                self.allRoles = roles
 				NotificationCenter.default.post(name: Notification.Name("getRoles"), object: nil)
             }
         }
         
         self.employeeListener = FirestoreHelper.getEmployees(businessId: employee.businessId){ employees in
             if let employees = employees{
-                self.employees = employees
+                self.allEmployees = employees
 				NotificationCenter.default.post(name: Notification.Name("getEmployees"), object: nil)
             }
         }
