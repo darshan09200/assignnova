@@ -170,17 +170,28 @@ class ViewShiftVC: UIViewController {
 		if leftActionType == .takeShift{
 			if let shift = shift, ActionsHelper.canTake(shift: shift){
 				self.startLoading()
-				listener?.remove()
-				self.reference = FirestoreHelper.takeShift(shift){error in
-					if let _ = error {
-						self.stopLoading(){
-							self.showAlert(title: "Oops", message: "Unknown error occured")
+				CloudFunctionsHelper.getEligibleEmployees(branchId: shift.branchId, roleId: shift.roleId, shiftDate: shift.shiftStartDate, startTime: shift.shiftStartTime, endTime: shift.shiftEndTime){groupedEmployees in
+					if let employees = groupedEmployees?.first(where: {$0.type == .eligible})?.employees,
+						let employeeId = ActiveEmployee.instance?.employee.id,
+					   employees.contains(where: {$0 == employeeId}){
+						self.listener?.remove()
+						self.reference = FirestoreHelper.takeShift(shift){error in
+							if let _ = error {
+								self.stopLoading(){
+									self.showAlert(title: "Oops", message: "Unknown error occured")
+								}
+								return
+							}
+							self.shiftId = self.reference?.documentID
+							self.stopLoading(){
+								self.refreshData()
+							}
 						}
-						return
-					}
-					self.shiftId = self.reference?.documentID
-					self.stopLoading(){
-						self.refreshData()
+					} else {
+						self.stopLoading(){
+							self.showAlert(title: "Oops", message: "You are not eligible to take the shift")
+							self.refreshData()
+						}
 					}
 				}
 			} else {
@@ -196,7 +207,9 @@ class ViewShiftVC: UIViewController {
 					}
 					return
 				}
-				self.stopLoading()
+				self.stopLoading(){
+					self.refreshData()
+				}
 			}
 		} else if leftActionType == .startBreak{
 			self.startLoading()
@@ -207,7 +220,9 @@ class ViewShiftVC: UIViewController {
 					}
 					return
 				}
-				self.stopLoading()
+				self.stopLoading(){
+					self.refreshData()
+				}
 			}
 		} else if leftActionType == .endBreak{
 			self.startLoading()
@@ -225,6 +240,7 @@ class ViewShiftVC: UIViewController {
 						unpaidBreak < totalBreakTime {
 						self.showAlert(title: "Warning", message: "You went above your specified duration for break")
 					}
+					self.refreshData()
 				}
 			}
 			
@@ -241,7 +257,9 @@ class ViewShiftVC: UIViewController {
 					}
 					return
 				}
-				self.stopLoading()
+				self.stopLoading(){
+					self.refreshData()
+				}
 			}
 		} else if rightActionType == .clockIn{
 			clockIn()
@@ -268,7 +286,7 @@ class ViewShiftVC: UIViewController {
 						return
 					}
 					self.stopLoading(){
-						
+						self.refreshData()
 					}
 				}
 			}
@@ -276,7 +294,11 @@ class ViewShiftVC: UIViewController {
 	}
 	
 	func clockIn(){
-		if let currentLocation = currentLocation  {
+		if locManager.authorizationStatus == .denied {
+			self.showAlert(title: "Oops", message: "Location services is denied. Please go to settings and enable location for the app."){
+				UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+			}
+		} else if let currentLocation = currentLocation  {
 			if let branch = ActiveEmployee.instance?.branches.first(where: {$0.id == shift?.branchId}){
 				let shiftLocation = CLLocation(latitude: branch.location.latitude, longitude: branch.location.longitude)
 				let distance = currentLocation.distance(from: shiftLocation)
@@ -290,7 +312,9 @@ class ViewShiftVC: UIViewController {
 							}
 							return
 						}
-						self.stopLoading()
+						self.stopLoading(){
+							self.refreshData()
+						}
 					}
 				} else {
 					self.showAlert(title: "Oops", message: "You should be within 50 meters radius of the branch where you have been assigned.")
