@@ -27,6 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			GMSPlacesClient.provideAPIKey(apiKey)
 		}
 		FirebaseApp.configure()
+
+		do {
+			try Auth.auth().useUserAccessGroup(Keychain.accessGroup)
+		} catch let error as NSError {
+			print("Error changing user access group: %@", error)
+			print(error.userInfo)
+		}
 		
 		Messaging.messaging().delegate = self
 		UNUserNotificationCenter.current().delegate = self

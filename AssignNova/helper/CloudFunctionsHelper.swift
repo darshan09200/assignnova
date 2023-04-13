@@ -68,22 +68,8 @@ class CloudFunctionsHelper{
 			}
 	}
 
-	static func call(apiName: String, with data: Any)-> URLRequest{
-		let url = URL(string:"https://us-central1-assignnova.cloudfunctions.net/\(apiName)")!
-		var request = URLRequest(url: url)
-		request.httpMethod = "POST"
-
-		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.addValue("application/json", forHTTPHeaderField: "Accept")
-		do{
-			request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-		} catch{}
-
-		return request
-	}
-
 	static func doesPhoneNumberExists(_ phoneNumber: String, completion: @escaping(_ error: String?, _ exists: Bool?)->()){
-		let request = call(apiName: "doesPhoneNumberExists", with: ["phoneNumber": phoneNumber])
+		let request = Shared.call(apiName: "doesPhoneNumberExists", with: ["phoneNumber": phoneNumber])
 
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if error != nil {
@@ -116,7 +102,7 @@ class CloudFunctionsHelper{
 	}
 
 	static func doesEmailExists(_ email: String, completion: @escaping(_ error: String?, _ exists: Bool? )->()){
-		let request = call(apiName: "doesEmailExists", with: ["email": email])
+		let request = Shared.call(apiName: "doesEmailExists", with: ["email": email])
 
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if let _ = error {
@@ -174,7 +160,7 @@ class CloudFunctionsHelper{
 		}
 		print(data)
 
-		let request = call(apiName: "isUserInvited", with: data)
+		let request = Shared.call(apiName: "isUserInvited", with: data)
 
 		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if let error = error {

@@ -46,6 +46,7 @@ struct Employee: Codable{
 	var color: String
 	var fcmToken: [String]?
 	var createdBy: String
+	var isActive: Bool?
 	@ServerTimestamp var createdAt: Date?
 	@ServerTimestamp var updatedAt: Date?
 	

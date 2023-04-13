@@ -25,6 +25,9 @@ struct Shift: Codable{
 	var approvalRequired: Bool = false
 	var status: Status?
 	var attendance: Attendance?
+	var isActive: Bool {
+		ActiveEmployee.instance?.branches.contains(where: {$0.id == branchId}) ?? false && ActiveEmployee.instance?.roles.contains(where: {$0.id == roleId}) ?? false
+	}
 	var acceptedBy: String?{
 		didSet{
 			acceptedOn = .now

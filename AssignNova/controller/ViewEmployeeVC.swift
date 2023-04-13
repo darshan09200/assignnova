@@ -163,6 +163,8 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 			configuration.textProperties.alignment = .center
 			
 			cell.contentConfiguration = configuration
+			
+			cell.selectionStyle = .none
 			return cell
 		} else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
@@ -199,12 +201,12 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		if indexPath.section == 2{
+		if indexPath.section == 2 && (employee?.branches.count ?? 0) > 0{
 			let viewController = UIStoryboard(name: "Branch", bundle: nil).instantiateViewController(withIdentifier: "ViewBranchTVC") as! ViewBranchTVC
 			let branchId = employee?.branches[indexPath.row]
 			viewController.branchId = branchId
 			self.navigationController?.pushViewController(viewController, animated: true)
-		} else if indexPath.section == 3 {
+		} else if indexPath.section == 3 && (employee?.roles.count ?? 0) > 0{
 			let viewController = UIStoryboard(name: "Role", bundle: nil).instantiateViewController(withIdentifier: "ViewRoleTVC") as! ViewRoleTVC
 			let roleId = employee?.roles[indexPath.row]
 			viewController.roleId = roleId

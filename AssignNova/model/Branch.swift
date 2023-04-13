@@ -21,6 +21,7 @@ struct Branch: Codable{
 	var businessId: String
 	var color: String
 	var createdBy: String
+	var isActive: Bool?
 	@ServerTimestamp var createdAt: Date?
 	@ServerTimestamp var updatedAt: Date?
 	

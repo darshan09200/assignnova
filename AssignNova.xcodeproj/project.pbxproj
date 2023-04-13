@@ -15,7 +15,7 @@
 		33BD185629E4A93F00DC628B /* DisplayScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BD185529E4A93F00DC628B /* DisplayScreen.storyboard */; };
 		33BD185829E4A97900DC628B /* DisplayScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD185729E4A97900DC628B /* DisplayScreenVC.swift */; };
 		33BD185A29E4B73600DC628B /* SignUpCardsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD185929E4B73600DC628B /* SignUpCardsVC.swift */; };
-		4279AD138642C5F9FB5498E4 /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F9DE35043EA4BBDDA60684 /* Pods_AssignNova.framework */; };
+		4EC220D67F284BF62F14135F /* Pods_Siri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E611A8E9065F6C586B8291 /* Pods_Siri.framework */; };
 		5507D68929CFE209003297B4 /* UIImage+Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507D68829CFE209003297B4 /* UIImage+Avatar.swift */; };
 		5507D68B29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */; };
 		550DF20C29E222DD00DAF6ED /* CreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550DF20B29E222DD00DAF6ED /* CreditCardView.swift */; };
@@ -38,6 +38,11 @@
 		552396E729C6665600EE9323 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E629C6665600EE9323 /* UIView+CornerRadius.swift */; };
 		552396E929C6670A00EE9323 /* PlanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396E829C6670A00EE9323 /* PlanCard.swift */; };
 		552396EB29C668D500EE9323 /* SetupBusinessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552396EA29C668D500EE9323 /* SetupBusinessVC.swift */; };
+		552C099529E741FD00969DC9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 552C099429E741FD00969DC9 /* Intents.intentdefinition */; };
+		552C09AD29E7432D00969DC9 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552C099B29E742EC00969DC9 /* Intents.framework */; };
+		552C09B029E7432D00969DC9 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C09AF29E7432D00969DC9 /* IntentHandler.swift */; };
+		552C09B429E7432D00969DC9 /* Siri.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 552C09AC29E7432D00969DC9 /* Siri.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		552C09B929E744B800969DC9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 552C09B829E744B800969DC9 /* GoogleService-Info.plist */; };
 		552DC82029E0CF4D00301312 /* PaymentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552DC81F29E0CF4D00301312 /* PaymentHelper.swift */; };
 		552EF6AA29CA14D700BF5EDA /* ViewAllBranchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552EF6A929CA14D700BF5EDA /* ViewAllBranchTVC.swift */; };
 		552EF6AC29CA159100BF5EDA /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552EF6AB29CA159100BF5EDA /* CardCell.swift */; };
@@ -88,6 +93,16 @@
 		558DF0BF29D1255B0012C87E /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0BE29D1255B0012C87E /* Date+Format.swift */; };
 		558DF0C129D127B70012C87E /* TimeRangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0C029D127B70012C87E /* TimeRangePicker.swift */; };
 		558DF0C329D170FD0012C87E /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0C229D170FD0012C87E /* ColorPickerCell.swift */; };
+		558FD5B429E74B2E00B2CA02 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 552C099429E741FD00969DC9 /* Intents.intentdefinition */; };
+		558FD5B529E74BF700B2CA02 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DF0BE29D1255B0012C87E /* Date+Format.swift */; };
+		558FD5B629E74C1000B2CA02 /* Facts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7781BCC29D7909500121D16 /* Facts.swift */; };
+		558FD5C029E74CC700B2CA02 /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE062529DA21BE00DAAA99 /* Attendance.swift */; };
+		558FD5C129E74CD500B2CA02 /* ApprovalStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552C5BD29D781010035C982 /* ApprovalStatus.swift */; };
+		558FD5C329E74D2C00B2CA02 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD5C229E74D2C00B2CA02 /* Keychain.swift */; };
+		558FD5C429E74DCD00B2CA02 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD5C229E74D2C00B2CA02 /* Keychain.swift */; };
+		558FD5C529E74F9700B2CA02 /* SiriHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5522343A29E7473700543274 /* SiriHelper.swift */; };
+		558FD5C829E7630800B2CA02 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD5C729E7630800B2CA02 /* Shared.swift */; };
+		558FD5C929E7632B00B2CA02 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FD5C729E7630800B2CA02 /* Shared.swift */; };
 		5593F5EF29DCC42800E1F278 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593F5EE29DCC42800E1F278 /* UIViewController+Keyboard.swift */; };
 		559C7BBE29C9B781002BE062 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559C7BBD29C9B781002BE062 /* Card.xib */; };
 		559C7BC029C9B9DC002BE062 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7BBF29C9B9DC002BE062 /* Card.swift */; };
@@ -129,6 +144,7 @@
 		55FA521429CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */; };
 		55FE062429DA1A0A00DAAA99 /* ActionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE062329DA1A0A00DAAA99 /* ActionsHelper.swift */; };
 		55FE062629DA21BE00DAAA99 /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE062529DA21BE00DAAA99 /* Attendance.swift */; };
+		A96DD43F00D87440E041F33A /* Pods_AssignNova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584B29AC74461F9EE4705A2 /* Pods_AssignNova.framework */; };
 		B7781BCD29D7909500121D16 /* Facts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7781BCC29D7909500121D16 /* Facts.swift */; };
 		B7BB6FD529C7C15700F4AF8B /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */; };
 		B7DAB7FD29DB759F00207B4A /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7DAB7FC29DB759F00207B4A /* HomeScreen.storyboard */; };
@@ -136,6 +152,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		552C09B229E7432D00969DC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55C411FD29C4A0000073A8CD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 552C09AB29E7432D00969DC9;
+			remoteInfo = Siri;
+		};
 		55C4121F29C4A0010073A8CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55C411FD29C4A0000073A8CD /* Project object */;
@@ -152,7 +175,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		552C09A729E742ED00969DC9 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				552C09B429E7432D00969DC9 /* Siri.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		03E69B8AD902C51FA04F8931 /* Pods-AssignNova.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.debug.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.debug.xcconfig"; sourceTree = "<group>"; };
 		330E4D6029C66743008BDE3A /* SignUpEmployee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpEmployee.storyboard; sourceTree = "<group>"; };
 		330E4D6629C67F4B008BDE3A /* ConfirmEmployeeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmployeeEmailViewController.swift; sourceTree = "<group>"; };
 		330E4D6C29CBD189008BDE3A /* Availability.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Availability.storyboard; sourceTree = "<group>"; };
@@ -162,7 +200,7 @@
 		33BD185529E4A93F00DC628B /* DisplayScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DisplayScreen.storyboard; sourceTree = "<group>"; };
 		33BD185729E4A97900DC628B /* DisplayScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayScreenVC.swift; sourceTree = "<group>"; };
 		33BD185929E4B73600DC628B /* SignUpCardsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCardsVC.swift; sourceTree = "<group>"; };
-		33F9DE35043EA4BBDDA60684 /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38E611A8E9065F6C586B8291 /* Pods_Siri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Siri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5507D68829CFE209003297B4 /* UIImage+Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Avatar.swift"; sourceTree = "<group>"; };
 		5507D68A29CFE7CD003297B4 /* ViewAllEmployeeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllEmployeeTVC.swift; sourceTree = "<group>"; };
 		550DF20B29E222DD00DAF6ED /* CreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardView.swift; sourceTree = "<group>"; };
@@ -181,11 +219,19 @@
 		55212E8D29D1C6450094738B /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
 		55212E8F29D211610094738B /* ViewShiftVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewShiftVC.swift; sourceTree = "<group>"; };
 		55212E9129D222D10094738B /* ShiftDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftDetailsCell.swift; sourceTree = "<group>"; };
+		5522343A29E7473700543274 /* SiriHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriHelper.swift; sourceTree = "<group>"; };
 		552396E229C6592C00EE9323 /* SignUpBusinessAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBusinessAccountVC.swift; sourceTree = "<group>"; };
 		552396E429C6647700EE9323 /* PlanCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanCard.xib; sourceTree = "<group>"; };
 		552396E629C6665600EE9323 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		552396E829C6670A00EE9323 /* PlanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCard.swift; sourceTree = "<group>"; };
 		552396EA29C668D500EE9323 /* SetupBusinessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupBusinessVC.swift; sourceTree = "<group>"; };
+		552C099429E741FD00969DC9 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		552C099B29E742EC00969DC9 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		552C09AC29E7432D00969DC9 /* Siri.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Siri.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		552C09AF29E7432D00969DC9 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		552C09B129E7432D00969DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		552C09B829E744B800969DC9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		552C09BA29E744FD00969DC9 /* Siri.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Siri.entitlements; sourceTree = "<group>"; };
 		552DC81F29E0CF4D00301312 /* PaymentHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHelper.swift; sourceTree = "<group>"; };
 		552EF6A929CA14D700BF5EDA /* ViewAllBranchTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllBranchTVC.swift; sourceTree = "<group>"; };
 		552EF6AB29CA159100BF5EDA /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
@@ -230,12 +276,15 @@
 		556847FF29E609E600AFE5B6 /* AddAvailabilityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAvailabilityButton.swift; sourceTree = "<group>"; };
 		55788EFD29C9894700C352ED /* NavigationItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationItem.xib; sourceTree = "<group>"; };
 		557B933629CF8113006A3FD3 /* SetupEmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupEmployeeVC.swift; sourceTree = "<group>"; };
+		5584B29AC74461F9EE4705A2 /* Pods_AssignNova.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssignNova.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		558DD27429C514D500909594 /* OtpInputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpInputVC.swift; sourceTree = "<group>"; };
 		558DF0BA29D102680012C87E /* Shift.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shift.storyboard; sourceTree = "<group>"; };
 		558DF0BC29D102D60012C87E /* AddShiftTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddShiftTVC.swift; sourceTree = "<group>"; };
 		558DF0BE29D1255B0012C87E /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		558DF0C029D127B70012C87E /* TimeRangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangePicker.swift; sourceTree = "<group>"; };
 		558DF0C229D170FD0012C87E /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
+		558FD5C229E74D2C00B2CA02 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		558FD5C729E7630800B2CA02 /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		5593F5EE29DCC42800E1F278 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		559C7BBD29C9B781002BE062 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		559C7BBF29C9B9DC002BE062 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -282,20 +331,30 @@
 		55FA521329CBD6AF0057CF67 /* DecoyLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DecoyLaunchScreen.storyboard; sourceTree = "<group>"; };
 		55FE062329DA1A0A00DAAA99 /* ActionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsHelper.swift; sourceTree = "<group>"; };
 		55FE062529DA21BE00DAAA99 /* Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendance.swift; sourceTree = "<group>"; };
-		A63BFCE1EF2BC1AA20E05DD6 /* Pods-AssignNova.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.release.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.release.xcconfig"; sourceTree = "<group>"; };
+		6187A25DF4E7644F9C7BA40B /* Pods-AssignNova.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.release.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.release.xcconfig"; sourceTree = "<group>"; };
+		B1BFF45F0AE1B259A43ED812 /* Pods-Siri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.release.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.release.xcconfig"; sourceTree = "<group>"; };
 		B7781BCC29D7909500121D16 /* Facts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facts.swift; sourceTree = "<group>"; };
 		B7BB6FD429C7C15700F4AF8B /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
 		B7DAB7FC29DB759F00207B4A /* HomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreen.storyboard; sourceTree = "<group>"; };
 		B7DAB7FE29DB75FB00207B4A /* HomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
-		D232B3FF1B990E78975BB94A /* Pods-AssignNova.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssignNova.debug.xcconfig"; path = "Target Support Files/Pods-AssignNova/Pods-AssignNova.debug.xcconfig"; sourceTree = "<group>"; };
+		FADA4E86BD83CBDDC2B8917A /* Pods-Siri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siri.debug.xcconfig"; path = "Target Support Files/Pods-Siri/Pods-Siri.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		552C09A929E7432D00969DC9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				552C09AD29E7432D00969DC9 /* Intents.framework in Frameworks */,
+				4EC220D67F284BF62F14135F /* Pods_Siri.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		55C4120229C4A0000073A8CD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4279AD138642C5F9FB5498E4 /* Pods_AssignNova.framework in Frameworks */,
+				A96DD43F00D87440E041F33A /* Pods_AssignNova.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +397,25 @@
 				5593F5EE29DCC42800E1F278 /* UIViewController+Keyboard.swift */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		552C099329E741EE00969DC9 /* extras */ = {
+			isa = PBXGroup;
+			children = (
+				552C099429E741FD00969DC9 /* Intents.intentdefinition */,
+			);
+			path = extras;
+			sourceTree = "<group>";
+		};
+		552C09AE29E7432D00969DC9 /* Siri */ = {
+			isa = PBXGroup;
+			children = (
+				552C09BA29E744FD00969DC9 /* Siri.entitlements */,
+				552C09B829E744B800969DC9 /* GoogleService-Info.plist */,
+				552C09AF29E7432D00969DC9 /* IntentHandler.swift */,
+				552C09B129E7432D00969DC9 /* Info.plist */,
+			);
+			path = Siri;
 			sourceTree = "<group>";
 		};
 		554917B329C4E58C00132051 /* view */ = {
@@ -474,6 +552,9 @@
 				552DC81F29E0CF4D00301312 /* PaymentHelper.swift */,
 				5559EE9929E44CF700F10C74 /* ImagePicker.swift */,
 				5559EE9B29E44D9C00F10C74 /* FileHandling.swift */,
+				5522343A29E7473700543274 /* SiriHelper.swift */,
+				558FD5C229E74D2C00B2CA02 /* Keychain.swift */,
+				558FD5C729E7630800B2CA02 /* Shared.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -484,6 +565,7 @@
 				55C4120729C4A0000073A8CD /* AssignNova */,
 				55C4122129C4A0010073A8CD /* AssignNovaTests */,
 				55C4122B29C4A0010073A8CD /* AssignNovaUITests */,
+				552C09AE29E7432D00969DC9 /* Siri */,
 				55C4120629C4A0000073A8CD /* Products */,
 				B15CD8872D00593289DD5294 /* Pods */,
 				84FAFF25A4BCA465E4CE9102 /* Frameworks */,
@@ -496,6 +578,7 @@
 				55C4120529C4A0000073A8CD /* AssignNova.app */,
 				55C4121E29C4A0010073A8CD /* AssignNovaTests.xctest */,
 				55C4122829C4A0010073A8CD /* AssignNovaUITests.xctest */,
+				552C09AC29E7432D00969DC9 /* Siri.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -504,6 +587,7 @@
 			isa = PBXGroup;
 			children = (
 				55DB509229CF6A130004DCF5 /* AssignNova.entitlements */,
+				552C099329E741EE00969DC9 /* extras */,
 				5549DA5B29C7F15200E51828 /* model */,
 				552396DF29C6589400EE9323 /* extensions */,
 				55B3B8C329C60BE100B3DA5E /* helper */,
@@ -539,7 +623,9 @@
 		84FAFF25A4BCA465E4CE9102 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				33F9DE35043EA4BBDDA60684 /* Pods_AssignNova.framework */,
+				552C099B29E742EC00969DC9 /* Intents.framework */,
+				5584B29AC74461F9EE4705A2 /* Pods_AssignNova.framework */,
+				38E611A8E9065F6C586B8291 /* Pods_Siri.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -547,8 +633,10 @@
 		B15CD8872D00593289DD5294 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D232B3FF1B990E78975BB94A /* Pods-AssignNova.debug.xcconfig */,
-				A63BFCE1EF2BC1AA20E05DD6 /* Pods-AssignNova.release.xcconfig */,
+				03E69B8AD902C51FA04F8931 /* Pods-AssignNova.debug.xcconfig */,
+				6187A25DF4E7644F9C7BA40B /* Pods-AssignNova.release.xcconfig */,
+				FADA4E86BD83CBDDC2B8917A /* Pods-Siri.debug.xcconfig */,
+				B1BFF45F0AE1B259A43ED812 /* Pods-Siri.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -556,20 +644,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		55C4120429C4A0000073A8CD /* AssignNova */ = {
+		552C09AB29E7432D00969DC9 /* Siri */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 55C4123229C4A0010073A8CD /* Build configuration list for PBXNativeTarget "AssignNova" */;
+			buildConfigurationList = 552C09B529E7432D00969DC9 /* Build configuration list for PBXNativeTarget "Siri" */;
 			buildPhases = (
-				940D58032E984E1F63424E05 /* [CP] Check Pods Manifest.lock */,
-				55C4120129C4A0000073A8CD /* Sources */,
-				55C4120229C4A0000073A8CD /* Frameworks */,
-				55C4120329C4A0000073A8CD /* Resources */,
-				54878A410B3FA6EEDB904842 /* [CP] Embed Pods Frameworks */,
-				4632370ED0208C092346B115 /* [CP] Copy Pods Resources */,
+				5F6365671BE7678D040E6946 /* [CP] Check Pods Manifest.lock */,
+				552C09A829E7432D00969DC9 /* Sources */,
+				552C09A929E7432D00969DC9 /* Frameworks */,
+				552C09AA29E7432D00969DC9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			name = Siri;
+			productName = Siri;
+			productReference = 552C09AC29E7432D00969DC9 /* Siri.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		55C4120429C4A0000073A8CD /* AssignNova */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55C4123229C4A0010073A8CD /* Build configuration list for PBXNativeTarget "AssignNova" */;
+			buildPhases = (
+				B6D817317349818C973876E1 /* [CP] Check Pods Manifest.lock */,
+				55C4120129C4A0000073A8CD /* Sources */,
+				55C4120229C4A0000073A8CD /* Frameworks */,
+				55C4120329C4A0000073A8CD /* Resources */,
+				552C09A729E742ED00969DC9 /* Embed Foundation Extensions */,
+				9CAED5E6248057EFEF9F5293 /* [CP] Embed Pods Frameworks */,
+				B98464EF86473A3ACEBC754C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				552C09B329E7432D00969DC9 /* PBXTargetDependency */,
 			);
 			name = AssignNova;
 			productName = AssignNova;
@@ -619,9 +727,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					552C09AB29E7432D00969DC9 = {
+						CreatedOnToolsVersion = 14.3;
+					};
 					55C4120429C4A0000073A8CD = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -651,11 +762,20 @@
 				55C4120429C4A0000073A8CD /* AssignNova */,
 				55C4121D29C4A0010073A8CD /* AssignNovaTests */,
 				55C4122729C4A0010073A8CD /* AssignNovaUITests */,
+				552C09AB29E7432D00969DC9 /* Siri */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		552C09AA29E7432D00969DC9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				552C09B929E744B800969DC9 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		55C4120329C4A0000073A8CD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -710,24 +830,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4632370ED0208C092346B115 /* [CP] Copy Pods Resources */ = {
+		5F6365671BE7678D040E6946 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Siri-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		54878A410B3FA6EEDB904842 /* [CP] Embed Pods Frameworks */ = {
+		9CAED5E6248057EFEF9F5293 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -744,7 +869,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		940D58032E984E1F63424E05 /* [CP] Check Pods Manifest.lock */ = {
+		B6D817317349818C973876E1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -766,9 +891,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B98464EF86473A3ACEBC754C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssignNova/Pods-AssignNova-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		552C09A829E7432D00969DC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				558FD5C029E74CC700B2CA02 /* Attendance.swift in Sources */,
+				558FD5B429E74B2E00B2CA02 /* Intents.intentdefinition in Sources */,
+				558FD5C529E74F9700B2CA02 /* SiriHelper.swift in Sources */,
+				558FD5B529E74BF700B2CA02 /* Date+Format.swift in Sources */,
+				558FD5C129E74CD500B2CA02 /* ApprovalStatus.swift in Sources */,
+				558FD5B629E74C1000B2CA02 /* Facts.swift in Sources */,
+				558FD5C929E7632B00B2CA02 /* Shared.swift in Sources */,
+				558FD5C429E74DCD00B2CA02 /* Keychain.swift in Sources */,
+				552C09B029E7432D00969DC9 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		55C4120129C4A0000073A8CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -778,6 +936,7 @@
 				551B1D1429CCCD45003B9862 /* AddEmployeeTVC.swift in Sources */,
 				553F5F5E29E20535000D0B26 /* PaymentDetails.swift in Sources */,
 				55FE062429DA1A0A00DAAA99 /* ActionsHelper.swift in Sources */,
+				558FD5C829E7630800B2CA02 /* Shared.swift in Sources */,
 				550DF20C29E222DD00DAF6ED /* CreditCardView.swift in Sources */,
 				5530836D29C99E0E00080070 /* ActiveEmployee.swift in Sources */,
 				5549DA5829C7E38E00E51828 /* LoadingViewController.swift in Sources */,
@@ -803,6 +962,7 @@
 				553F5F6029E20562000D0B26 /* AssignedHour.swift in Sources */,
 				552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */,
 				55C4120D29C4A0000073A8CD /* ViewController.swift in Sources */,
+				552C099529E741FD00969DC9 /* Intents.intentdefinition in Sources */,
 				552EF6AA29CA14D700BF5EDA /* ViewAllBranchTVC.swift in Sources */,
 				55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */,
 				55B3446429CA6C5300CC73DD /* RoleDetailCell.swift in Sources */,
@@ -821,6 +981,7 @@
 				552DC82029E0CF4D00301312 /* PaymentHelper.swift in Sources */,
 				55F2B06A29DD447300F213D0 /* CheckoutViewController.swift in Sources */,
 				553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */,
+				558FD5C329E74D2C00B2CA02 /* Keychain.swift in Sources */,
 				55DBD91A29E4A3B4003F31A4 /* Availability.swift in Sources */,
 				55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */,
 				55212E8E29D1C6450094738B /* Shift.swift in Sources */,
@@ -888,6 +1049,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		552C09B329E7432D00969DC9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 552C09AB29E7432D00969DC9 /* Siri */;
+			targetProxy = 552C09B229E7432D00969DC9 /* PBXContainerItemProxy */;
+		};
 		55C4122029C4A0010073A8CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 55C4120429C4A0000073A8CD /* AssignNova */;
@@ -920,6 +1086,65 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		552C09B629E7432D00969DC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FADA4E86BD83CBDDC2B8917A /* Pods-Siri.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Siri/Siri.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9Z24WLH63;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Siri/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AssignNova;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnova.siri;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		552C09B729E7432D00969DC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1BFF45F0AE1B259A43ED812 /* Pods-Siri.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Siri/Siri.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L9Z24WLH63;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Siri/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AssignNova;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnova.siri;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		55C4123029C4A0010073A8CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1038,7 +1263,7 @@
 		};
 		55C4123329C4A0010073A8CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D232B3FF1B990E78975BB94A /* Pods-AssignNova.debug.xcconfig */;
+			baseConfigurationReference = 03E69B8AD902C51FA04F8931 /* Pods-AssignNova.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1075,7 +1300,7 @@
 		};
 		55C4123429C4A0010073A8CD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A63BFCE1EF2BC1AA20E05DD6 /* Pods-AssignNova.release.xcconfig */;
+			baseConfigurationReference = 6187A25DF4E7644F9C7BA40B /* Pods-AssignNova.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1188,6 +1413,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		552C09B529E7432D00969DC9 /* Build configuration list for PBXNativeTarget "Siri" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				552C09B629E7432D00969DC9 /* Debug */,
+				552C09B729E7432D00969DC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		55C4120029C4A0000073A8CD /* Build configuration list for PBXProject "AssignNova" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
