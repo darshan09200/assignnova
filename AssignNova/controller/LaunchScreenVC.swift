@@ -23,7 +23,6 @@ class LaunchScreenVC: UIViewController {
 
 		
 		CloudFunctionsHelper.refreshData(){ activeEmployee in
-            print(activeEmployee)
 			UIView.animate(withDuration: 0.5, delay: activeEmployee == nil ? 0.2 :0, options: .transitionCrossDissolve ,animations: {
 				self.logo.transform = CGAffineTransform.identity.scaledBy(x: 50, y: 50)
 				self.gradient.alpha = 0
@@ -31,7 +30,8 @@ class LaunchScreenVC: UIViewController {
 				self.logo.tintColor = .systemBackground
 			}){ finished in
 				let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-				delegate?.addAuthListener()
+				delegate?.addAuthListener(navigateDirectly: true)
+				delegate?.onRefresh()
 			}
 		}
 	}

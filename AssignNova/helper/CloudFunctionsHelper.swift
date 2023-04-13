@@ -15,24 +15,27 @@ class CloudFunctionsHelper{
 		return Auth.auth().currentUser?.uid
 	}
 
-    static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil){
-        if let currentUser = Auth.auth().currentUser{
-            currentUser.getIDToken(){ token, error in
+    static func refreshData(completion: ((_ activeEmployee: ActiveEmployee?)->())? = nil) {
+        if let currentUser = Auth.auth().currentUser {
+			currentUser.getIDToken(){ token, error in
                 if error == nil{
                     FirestoreHelper.getEmployee(userId: userId ?? ""){ employee in
                         if let employee = employee{
                             let activeEmployee = ActiveEmployee(employee: employee)
-                            FirestoreHelper.getBusiness(businessId: employee.businessId ){ business in
-                                if let business = business, let _ = business.id{
-                                    activeEmployee.business = business
-                                    ActiveEmployee.instance = activeEmployee
-                                } else {
-                                    ActiveEmployee.instance = activeEmployee
-                                }
-                                if let completion = completion{
-                                    completion(ActiveEmployee.instance)
-                                }
-                            }
+							FirestoreHelper.getBusiness(businessId: employee.businessId ){ business in
+								if let business = business, let _ = business.id{
+									activeEmployee.business = business
+								}
+								getSubscriptionDetails(businessId: employee.businessId){ subscriptionDetail in
+									activeEmployee.isFetchingSubscription = false
+									activeEmployee.subscriptionDetail = subscriptionDetail
+									
+									ActiveEmployee.instance = activeEmployee
+									if let completion = completion{
+										completion(ActiveEmployee.instance)
+									}
+								}
+							}
                         } else {
                             ActiveEmployee.instance = nil
                             if let completion = completion{
@@ -54,6 +57,7 @@ class CloudFunctionsHelper{
             }
         }
     }
+	
 	static func sendOtp(phoneNumber: String, completion: @escaping(_ error: Error?)->()){
 		PhoneAuthProvider.provider()
 			.verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
@@ -290,17 +294,15 @@ class CloudFunctionsHelper{
 		}
 	}
 
-	static func getSubscriptionDetails(completion: @escaping(_ subscriptionDetail: SubscriptionDetail? )->()){
-		if let businessId = ActiveEmployee.instance?.employee.businessId{
-			// Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
-			let callable: Callable<SubscriptionDetailRequest, SubscriptionDetail> = Functions.functions().httpsCallable("getSubscriptionDetails")
-			callable.call(SubscriptionDetailRequest(businessId: businessId)){ result in
-				if let subscriptionDetail = try? result.get(){
-					completion(subscriptionDetail)
-					return
-				}
-				completion(nil)
+	static func getSubscriptionDetails(businessId: String, completion: @escaping(_ subscriptionDetail: SubscriptionDetail? )->()){
+		// Functions.functions().useEmulator(withHost: "127.0.0.1", port: 5001)
+		let callable: Callable<SubscriptionDetailRequest, SubscriptionDetail> = Functions.functions().httpsCallable("getSubscriptionDetails")
+		callable.call(SubscriptionDetailRequest(businessId: businessId)){ result in
+			if let subscriptionDetail = try? result.get(){
+				completion(subscriptionDetail)
+				return
 			}
+			completion(nil)
 		}
 	}
 

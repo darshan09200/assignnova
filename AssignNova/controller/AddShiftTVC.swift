@@ -53,7 +53,12 @@ class AddShiftTVC: UITableViewController {
 	
 	var isEdit: Bool = false
 	var shift: Shift?
+	
 	var delegate: AddShiftDelegate?
+	
+	var noOfShiftsInput = "1"
+	var unpaidBreakInput = ""
+	var notesInput = ""
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -64,6 +69,14 @@ class AddShiftTVC: UITableViewController {
 		if isEdit, let shift = shift{
 			
 			navigationItem.title = "Edit Shift"
+						
+			if let noOfOpenShifts = shift.noOfOpenShifts{
+				noOfShiftsInput = "\(noOfOpenShifts)"
+			}
+			
+			if let unpaidBreak = shift.unpaidBreak{
+				unpaidBreakInput = "\(unpaidBreak)"
+			}
 			
 			data.selectedDate = shift.shiftStartDate.timeIntervalSinceNow.sign == .minus ? .now : shift.shiftStartDate
 			
@@ -107,26 +120,18 @@ class AddShiftTVC: UITableViewController {
 		let color = data.color
 		
 		let unpaidBreak: Int?
-		if let unpaidBreakCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? InputFieldCell{
-			if let unpaidBreakInput  = unpaidBreakCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines), !unpaidBreakInput.isEmpty{
-				guard let convertedUnpaidBreak = Int(unpaidBreakInput) else {
-					showAlert(title: "Oops", message: "Unpaid break in invalid")
-					return
-				}
-				unpaidBreak = convertedUnpaidBreak
-			}else {
-				unpaidBreak = nil
+		let unpaidBreakInput  = unpaidBreakInput.trimmingCharacters(in: .whitespacesAndNewlines)
+		if !unpaidBreakInput.isEmpty{
+			guard let convertedUnpaidBreak = Int(unpaidBreakInput) else {
+				showAlert(title: "Oops", message: "Unpaid break in invalid")
+				return
 			}
+			unpaidBreak = convertedUnpaidBreak
 		} else {
 			unpaidBreak = nil
 		}
 		
-		let notes: String?
-		if let notesCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? InputFieldCell{
-			notes  = notesCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-		}else {
-			notes = nil
-		}
+		let notes = notesInput.trimmingCharacters(in: .whitespacesAndNewlines)
 		
 		guard let branch = data.branch else {
 			showAlert(title: "Oops", message: "Select a branch for the shift")
@@ -139,10 +144,8 @@ class AddShiftTVC: UITableViewController {
 		
 		let noOfShifts: Int?
 		if isOpenShifts{
-			guard let noOfShiftsCell = tableView.cellForRow(at: IndexPath(row: 2, section: 3)) as? InputFieldCell,
-				  let noOfShiftsInput = noOfShiftsCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-				  !noOfShiftsInput.isEmpty
-			else {
+			let noOfShiftsInput = noOfShiftsInput.trimmingCharacters(in: .whitespacesAndNewlines)
+			if noOfShiftsInput.isEmpty {
 				showAlert(title: "Oops", message: "No of Shifts is empty")
 				return
 			}
@@ -237,7 +240,6 @@ class AddShiftTVC: UITableViewController {
 				}
 			}
 		}
-		
 	}
 	
 	func refreshEligibleEmployees(){
@@ -277,9 +279,10 @@ extension AddShiftTVC{
 			var placeholder: String = ""
 			var defaultValue: String? = nil
 			var tintColor: UIColor? = nil
-			var isMultiline = false
+//			var isMultiline = false
             var contentType: UITextContentType?
             var keyType: UIKeyboardType?
+			var selector: Selector?
 			switch indexPath.row {
 				case 0:
 					label = "Date"
@@ -295,10 +298,14 @@ extension AddShiftTVC{
 					label = "Unpaid Break(minutes)"
 					placeholder = "30"
                     keyType = .numberPad
+					defaultValue = unpaidBreakInput
+					selector = #selector(unpaidBreakDidChange(_ :))
 				case 4:
 					label = "Notes"
                     contentType = .none
-                    isMultiline = true
+//                    isMultiline = true
+					defaultValue = notesInput
+					selector = #selector(notesDidChange(_ :))
                 default: break
 			}
 			if indexPath.row == 0 {
@@ -338,11 +345,11 @@ extension AddShiftTVC{
 			cell.inputField.textFieldComponent.text = defaultValue
             cell.inputField.textFieldComponent.keyboardType = keyType ?? .default
             cell.inputField.textFieldComponent.textContentType = contentType
-			if isMultiline{
-				
-			}
+			cell.inputField.textFieldComponent.autocapitalizationType = .sentences
 			cell.inputField.leftIconColor = tintColor
-			
+			if let selector = selector{
+				cell.inputField.textFieldComponent.addTarget(self, action: selector, for: .editingChanged)
+			}
 			return cell
 		} else{
 			if (indexPath.section == 1 && isBranchEmpty) || (indexPath.section == 2 && isRoleEmpty){
@@ -373,8 +380,10 @@ extension AddShiftTVC{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "inputForm", for: indexPath) as! InputFieldCell
 				cell.inputField.label = "Number of Open Shifts"
 				cell.inputField.placeholder = "1"
-				cell.inputField.textFieldComponent.text = "1"
+				cell.inputField.textFieldComponent.text = noOfShiftsInput
                 cell.inputField.textFieldComponent.keyboardType = .numberPad
+				cell.inputField.textFieldComponent.addTarget(self, action: #selector(noOfShiftsDidChange(_ :)), for: .editingChanged)
+
 				return cell
 			} else {
 				print(indexPath)
@@ -459,6 +468,18 @@ extension AddShiftTVC{
 
 
 extension AddShiftTVC{
+	
+	@objc func unpaidBreakDidChange(_ textField: UITextField) {
+		unpaidBreakInput = textField.text ?? ""
+	}
+	
+	@objc func notesDidChange(_ textField: UITextField) {
+		notesInput = textField.text ?? ""
+	}
+	
+	@objc func noOfShiftsDidChange(_ textField: UITextField) {
+		noOfShiftsInput = textField.text ?? ""
+	}
 	
 	@objc func onSelectImagePress(){
 		print("pressed")

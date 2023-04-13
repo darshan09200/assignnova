@@ -24,7 +24,7 @@ class AddEmployeeTVC: UITableViewController {
 	}
 
 	var shouldShowAddBranch: Bool{
-		ActionsHelper.canEdit(employee: employee) && data.branches.count < ActiveEmployee.instance!.branches.count
+		(isEdit ? ActionsHelper.canEdit(employee: employee) : true) && data.branches.count < ActiveEmployee.instance!.branches.count
 	}
 
 	var isRoleEmpty: Bool{
@@ -32,11 +32,14 @@ class AddEmployeeTVC: UITableViewController {
 	}
 
 	var shouldShowAddRole: Bool{
-		ActionsHelper.canEdit(employee: employee) && data.roles.count < ActiveEmployee.instance!.roles.count
+		(isEdit ? ActionsHelper.canEdit(employee: employee) : true)  && data.roles.count < ActiveEmployee.instance!.roles.count
 	}
 
 	var isEdit: Bool = false
 	var employee: Employee?
+	var currentEmployee: Employee?
+	
+	var maxHoursInput = "40"
 	
 	var profilePath: String?
 	
@@ -48,8 +51,12 @@ class AddEmployeeTVC: UITableViewController {
 		tableView.sectionHeaderTopPadding = 0
 		tableView.contentInset.bottom = 16
 
-		if isEdit, let _ = employee{
+		if isEdit, let employee = employee{
 			navigationItem.title = "Edit Employee"
+			
+			self.currentEmployee = employee
+		} else {
+			self.currentEmployee = Employee(firstName: "", lastName: "", appRole: .employee, email: "", color: "")
 		}
 	}
 
@@ -58,59 +65,35 @@ class AddEmployeeTVC: UITableViewController {
 	}
 
 	@IBAction func onSavePress(_ sender: Any) {
-		guard let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell,
-			  let firstName = firstNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+		guard let firstName = currentEmployee?.firstName.trimmingCharacters(in: .whitespacesAndNewlines),
 				!firstName.isEmpty
 		else {
-			showAlert(title: "Oops", message: "First Name is empty",
-					  textInput: (tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! InputFieldCell).inputField)
+			showAlert(title: "Oops", message: "First Name is empty")
 			return
 		}
 
-		guard let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell,
-			  let lastName = lastNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+		guard let lastName = currentEmployee?.lastName.trimmingCharacters(in: .whitespacesAndNewlines),
 			  !lastName.isEmpty
 		else {
-			showAlert(title: "Oops", message: "Last Name is empty",
-					  textInput: (tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! InputFieldCell).inputField)
+			showAlert(title: "Oops", message: "Last Name is empty")
 			return
 		}
 
-		guard let emailCell = tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as? InputFieldCell,
-			  let email = emailCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+		guard let email = currentEmployee?.email.trimmingCharacters(in: .whitespacesAndNewlines),
 			  !email.isEmpty
 		else {
-			showAlert(title: "Oops", message: "Email is empty",
-					  textInput: (tableView.cellForRow(at: IndexPath(row: 2, section: 1)) as! InputFieldCell).inputField)
+			showAlert(title: "Oops", message: "Email is empty")
 			return
 		}
 
-		var phoneNumber: String?
-		if let phoneNumberCell = tableView.cellForRow(at: IndexPath(row: 3, section: 1)) as? InputFieldCell{
-			phoneNumber  = phoneNumberCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-		} else {
-			phoneNumber = nil
-		}
+		var phoneNumber = currentEmployee?.phoneNumber?.isEmpty ?? true ? nil : currentEmployee?.phoneNumber
+		
+		let employeeId = currentEmployee?.employeeId?.isEmpty ?? true ? nil : currentEmployee?.employeeId
 
-		let employeeId: String?
-		if let employeeIdCell = tableView.cellForRow(at: IndexPath(row: 4, section: 1)) as? InputFieldCell{
-			employeeId  = employeeIdCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-		} else {
-			employeeId = nil
-		}
+		let role = currentEmployee?.appRole ?? .employee
 
-		let role: AppRole
-		if let roleCell = tableView.cellForRow(at: IndexPath(row: 5, section: 1)) as? SelectFieldCell{
-			let roleIndex = roleCell.picker?.selectedRow(inComponent: 0) ?? 0
-			role = AppRole.allCases[roleIndex]
-		} else {
-			role = .employee
-		}
-
-		guard let hoursCell = tableView.cellForRow(at: IndexPath(row: 6, section: 1)) as? InputFieldCell,
-			  let hours = hoursCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-			  !hours.isEmpty
-		else {
+		let hours = maxHoursInput.trimmingCharacters(in: .whitespacesAndNewlines)
+		if hours.isEmpty{
 			showAlert(title: "Oops", message: "Max Hours is empty")
 			return
 		}
@@ -121,16 +104,15 @@ class AddEmployeeTVC: UITableViewController {
 		}
 
 		if !ValidationHelper.isValidEmail(email){
-			showAlert(title: "Oops", message: "Email is invalid", textInput: emailCell.inputField)
+			showAlert(title: "Oops", message: "Email is invalid")
 			return
 		} else if let nestedPhoneNumber = phoneNumber, !nestedPhoneNumber.isEmpty{
 			if let phoneNumberDetails = ValidationHelper.phoneNumberDetails(nestedPhoneNumber){
 				if let region = phoneNumberDetails.regionID, region != "US" && region != "CA" {
-					let phoneNumberCell = tableView.cellForRow(at: IndexPath(row: 3, section: 1)) as! InputFieldCell
 					if let regionName = ValidationHelper.getRegionName(phoneNumberDetails){
-						showAlert(title: "Oops", message: "\(regionName) is not yet supported", textInput: phoneNumberCell.inputField)
+						showAlert(title: "Oops", message: "\(regionName) is not yet supported")
 					} else {
-						showAlert(title: "Oops", message: "Country not supported", textInput: phoneNumberCell.inputField)
+						showAlert(title: "Oops", message: "Country not supported")
 					}
 					return
 				} else {
@@ -138,8 +120,7 @@ class AddEmployeeTVC: UITableViewController {
 					phoneNumber = formattedPhoneNumber
 				}
 			} else {
-				let phoneNumberCell = tableView.cellForRow(at: IndexPath(row: 3, section: 1)) as! InputFieldCell
-				showAlert(title: "Oops", message: "Phone Number is invalid", textInput: phoneNumberCell.inputField)
+				showAlert(title: "Oops", message: "Phone Number is invalid")
 				return
 			}
 		}
@@ -157,7 +138,7 @@ class AddEmployeeTVC: UITableViewController {
 					self.showAlert(title: "Oops", message: message )
 				}
 			} else {
-				let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)", backgroundColor: UIColor(hex: self.employee?.color ?? ""))
+				let (_, backgroundColor) = UIImage.makeLetterAvatar(withName: self.currentEmployee?.name ?? "", backgroundColor: UIColor(hex: self.employee?.color ?? ""))
 				var employee = Employee(
 					id: self.employee?.id,
 					userId: self.employee?.userId,
@@ -167,7 +148,7 @@ class AddEmployeeTVC: UITableViewController {
 					appRole: role,
 					maxHours: maxHours,
 					isProfilePrivate: self.employee?.isProfilePrivate ?? false,
-					profileUrl: self.employee?.profileUrl,
+					profileUrl: self.currentEmployee?.profileUrl,
 					email: email,
 					phoneNumber: phoneNumber,
 					invited: self.employee?.invited ?? true,
@@ -227,7 +208,6 @@ class AddEmployeeTVC: UITableViewController {
 extension AddEmployeeTVC{
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-//		return ActionsHelper.canEdit() ? 4 : 2
 		return 4
     }
 
@@ -250,19 +230,12 @@ extension AddEmployeeTVC{
 				let imageData = try? Data(contentsOf: URL(fileURLWithPath: profilePath, isDirectory: false)) {
 				cell.profileImage.image = UIImage(data: imageData)
 				cell.removeImageButton.isHidden = false
-			} else if let profileUrl = employee?.profileUrl{
+			} else if let profileUrl = currentEmployee?.profileUrl{
 				let reference = Storage.storage().reference().child(profileUrl)
 				cell.profileImage.sd_imageTransition = .fade
 				cell.profileImage.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: nil, options: [.refreshCached])
 				cell.removeImageButton.isHidden = false
-			} else if let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? InputFieldCell,
-				  let firstName = firstNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-				  !firstName.isEmpty,
-			   let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? InputFieldCell,
-				  let lastName = lastNameCell.inputField.textFieldComponent.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-				let (image, _) = UIImage.makeLetterAvatar(withName: "\(firstName) \(lastName)")
-				cell.profileImage.image = image
-			} else if let employee = employee {
+			} else if let employee = currentEmployee, !employee.name.isEmpty {
 				let (image, _) = UIImage.makeLetterAvatar(withName: employee.name, backgroundColor: UIColor(hex: employee.color))
 				cell.profileImage.image = image
 			} else {
@@ -276,12 +249,30 @@ extension AddEmployeeTVC{
 
 			return cell
 		} else if indexPath.section == 1{
+			
+			
+			if indexPath.row == 5{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "selectForm", for: indexPath) as! SelectFieldCell
+				cell.selectButton.isEnabled = isEdit ? ActionsHelper.canEdit(employee: employee) : true
+				cell.picker?.delegate = self
+				cell.picker?.dataSource = self
+				cell.label.text = "Role"
+				cell.selectButton.setTitle((currentEmployee?.appRole ?? .employee).rawValue, for: .normal)
+				cell.picker?.selectRow((currentEmployee?.appRole ?? .employee).index ?? 0, inComponent: 0, animated: true)
+				return cell
+			}
+			
+			
+			
 			var label: String = ""
 			var placeholder: String = ""
 			var defaultValue: String? = nil
             var contentType: UITextContentType?
             var keyType: UIKeyboardType?
             var capitalLetter: UITextAutocapitalizationType?
+
+			let cell = tableView.dequeueReusableCell(withIdentifier: "inputForm", for: indexPath) as! InputFieldCell
+
 			switch indexPath.row {
 				case 0:
 					label = "First Name"
@@ -289,52 +280,51 @@ extension AddEmployeeTVC{
                     contentType = .name
                     keyType = .default
                     capitalLetter = .words
-					defaultValue = employee?.firstName
+					defaultValue = currentEmployee?.firstName
+					cell.inputField.textFieldComponent.addTarget(self, action: #selector(firstNameDidChange(_:)), for: .editingChanged)
 				case 1:
 					label = "Last Name"
 					placeholder = "Doe"
                     contentType = .name
                     keyType = .default
                     capitalLetter = .words
-					defaultValue = employee?.lastName
+					defaultValue = currentEmployee?.lastName
+					cell.inputField.textFieldComponent.addTarget(self, action: #selector(lastNameDidChange(_:)), for: .editingChanged)
+
 				case 2:
 					label = "Email"
 					placeholder = "abc@xyz.com"
                     contentType = .emailAddress
                     keyType = .emailAddress
-					defaultValue = employee?.email
+					defaultValue = currentEmployee?.email
+					cell.inputField.textFieldComponent.addTarget(self, action: #selector(emailDidChange(_:)), for: .editingChanged)
+
 				case 3:
 					label = "Phone Number (Optional)"
 					placeholder = "+12345678901"
                     contentType = .telephoneNumber
                     keyType = .phonePad
-					defaultValue = employee?.phoneNumber
+					defaultValue = currentEmployee?.phoneNumber
+					cell.inputField.textFieldComponent.addTarget(self, action: #selector(phoneNumberDidChange(_:)), for: .editingChanged)
+
 				case 4:
 					label = "Employee Id (Optional)"
-					defaultValue = employee?.employeeId
-				case 5:
-					label = "Role"
+					defaultValue = currentEmployee?.employeeId
+					cell.inputField.textFieldComponent.addTarget(self, action: #selector(employeeIdDidChange(_:)), for: .editingChanged)
+
 				case 6:
 					label = "Max Hours/Week"
                     keyType = .decimalPad
-					defaultValue = String(format: "%.2f", employee?.maxHours ?? 40.0)
+					defaultValue = String(format: "%.2f", currentEmployee?.maxHours ?? 40.0)
+					cell.inputField.textFieldComponent.addTarget(self, action: #selector(hoursDidChange(_:)), for: .editingChanged)
+
 				default: break
 			}
-			if indexPath.row == 5{
-				let cell = tableView.dequeueReusableCell(withIdentifier: "selectForm", for: indexPath) as! SelectFieldCell
-				cell.selectButton.isEnabled = ActionsHelper.canEdit(employee: employee)
-				cell.picker?.delegate = self
-				cell.picker?.dataSource = self
-				cell.label.text = label
-				cell.selectButton.setTitle((employee?.appRole ?? AppRole.employee).rawValue, for: .normal)
-				cell.picker?.selectRow((employee?.appRole ?? AppRole.employee).index ?? 0, inComponent: 0, animated: true)
-				return cell
-			}
-			let cell = tableView.dequeueReusableCell(withIdentifier: "inputForm", for: indexPath) as! InputFieldCell
+			
 			cell.inputField.label = label
 			cell.inputField.placeholder = placeholder
 			if indexPath.row == 4 || indexPath.row == 6 {
-				cell.inputField.textFieldComponent.isEnabled = ActionsHelper.canEdit(employee: employee)
+				cell.inputField.textFieldComponent.isEnabled = isEdit ? ActionsHelper.canEdit(employee: employee) : true
 			}
 			if isEdit && indexPath.row == 2 {
 				cell.inputField.textFieldComponent.isEnabled = false
@@ -344,10 +334,7 @@ extension AddEmployeeTVC{
             cell.inputField.textFieldComponent.keyboardType = keyType ?? .default
             cell.inputField.textFieldComponent.autocapitalizationType = capitalLetter ?? .none
             cell.inputField.textFieldComponent.autocapitalizationType = capitalLetter ?? .none
-			if indexPath.row == 0 || indexPath.row == 1{
-				cell.inputField.textFieldComponent.addTarget(self, action: #selector(nameDidChange(_:)), for: .editingChanged)
-			}
-
+			
 			return cell
 		} else {
 			let isLast: Bool
@@ -449,7 +436,9 @@ extension AddEmployeeTVC: UIPickerViewDelegate, UIPickerViewDataSource{
 
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		if let cell = tableView.cellForRow(at: IndexPath(row: 5, section: 1)) as? SelectFieldCell{
-			cell.selectButton.setTitle(AppRole.allCases[row].rawValue, for: .normal)
+			let appRole = AppRole.allCases[row]
+			cell.selectButton.setTitle(appRole.rawValue, for: .normal)
+			currentEmployee?.appRole = appRole
 		}
 
 	}
@@ -464,14 +453,41 @@ extension AddEmployeeTVC{
 	@objc func onRemoveImagePress(){
 		print("called")
 		profilePath = nil
-		employee?.profileUrl = nil
+		currentEmployee?.profileUrl = nil
 		tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
 	}
 
-	@objc func nameDidChange(_ textField: UITextField) {
-		if profilePath == nil && employee?.profileUrl == nil {
+	@objc func firstNameDidChange(_ textField: UITextField) {
+		if profilePath == nil && currentEmployee?.profileUrl == nil {
 			tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
 		}
+		
+		currentEmployee?.firstName = textField.text ?? ""
+
+	}
+	
+	@objc func lastNameDidChange(_ textField: UITextField) {
+		if profilePath == nil && currentEmployee?.profileUrl == nil {
+			tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+		}
+		currentEmployee?.lastName = textField.text ?? ""
+
+	}
+
+	@objc func emailDidChange(_ textField: UITextField) {
+		currentEmployee?.email = textField.text ?? ""
+	}
+
+	@objc func phoneNumberDidChange(_ textField: UITextField) {
+		currentEmployee?.phoneNumber = textField.text ?? ""
+	}
+
+	@objc func employeeIdDidChange(_ textField: UITextField) {
+		currentEmployee?.employeeId = textField.text ?? ""
+	}
+	
+	@objc func hoursDidChange(_ textField: UITextField) {
+		maxHoursInput = textField.text ?? ""
 	}
 
 	@objc func onDeletePress(_ recongniser: CellTapGestureRecognizer){

@@ -14,7 +14,7 @@ class ViewEmployeeVC: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	
-	var isProfile = false
+	var isProfile = false	
 	var employeeId: String?
 	private var employee: Employee?
 	private var listener: ListenerRegistration?

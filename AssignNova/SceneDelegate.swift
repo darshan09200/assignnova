@@ -76,35 +76,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 							  completion: nil)
 		}
 	}
+	
+	func onRefresh(){
+		if let activeEmployee = ActiveEmployee.instance {
+			print(activeEmployee.employee)
+			if activeEmployee.employee.appRole == .owner && activeEmployee.business == nil {
+				let storyboard = UIStoryboard(name: "SignUpBusiness", bundle: nil)
+				let initialViewController = storyboard.instantiateViewController(withIdentifier: "SetupBusinessVC") as! SetupBusinessVC
+				initialViewController.showLogout = true
+				let navigationController = UINavigationController(rootViewController: initialViewController)
+				navigationController.navigationBar.prefersLargeTitles = true
+				self.changeRootViewController(navigationController, animated: true)
+			} else {
+				let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
+				let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeNavVC")
+				self.changeRootViewController(initialViewController, animated: true)
+			}
+		} else {
+			let storyboard = UIStoryboard(name: "DisplayScreen", bundle: nil)
+			let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginNavVC")
+			self.changeRootViewController(initialViewController, animated: true)
+		}
+	}
 
 	func refreshData(){
 		preventRefresh = false
 		CloudFunctionsHelper.refreshData(){ activeEmployee in
-			if let activeEmployee = activeEmployee {
-				print(activeEmployee.employee)
-				if activeEmployee.employee.appRole == .owner && activeEmployee.business == nil {
-					let storyboard = UIStoryboard(name: "SignUpBusiness", bundle: nil)
-					let initialViewController = storyboard.instantiateViewController(withIdentifier: "SetupBusinessVC") as! SetupBusinessVC
-					initialViewController.showLogout = true
-					let navigationController = UINavigationController(rootViewController: initialViewController)
-					navigationController.navigationBar.prefersLargeTitles = true
-					self.changeRootViewController(navigationController, animated: true)
-				} else {
-					let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
-					let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeNavVC")
-					self.changeRootViewController(initialViewController, animated: true)
-				}
-			} else {
-				let storyboard = UIStoryboard(name: "DisplayScreen", bundle: nil)
-				let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginNavVC")
-				self.changeRootViewController(initialViewController, animated: true)
-			}
+			self.onRefresh()
 		}
 	}
 
-	func addAuthListener(){
-		Auth.auth().addStateDidChangeListener { auth, user in			
-			if !self.preventRefresh{
+	func addAuthListener(navigateDirectly: Bool = false){
+		preventRefresh = navigateDirectly
+		Auth.auth().addStateDidChangeListener { auth, user in
+			if !self.preventRefresh {
 				self.refreshData()
 			}
 		}

@@ -113,7 +113,7 @@ class ActionsHelper{
 	static func canEdit(employee: Employee?) -> Bool{
 		if canEdit(),
 			let employee = employee,
-			let currentEmployee = ActiveEmployee.instance?.employee{
+			let currentEmployee = ActiveEmployee.instance?.employee {
 			return currentEmployee.appRole.index > employee.appRole.index || currentEmployee.appRole == .owner
 		}
 		return false

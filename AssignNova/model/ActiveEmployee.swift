@@ -66,13 +66,7 @@ class ActiveEmployee{
 		self.allBranches = branches
 		self.allRoles = roles
 		
-		CloudFunctionsHelper.getSubscriptionDetails(){ subscriptionDetail in
-			self.isFetchingSubscription = false
-			self.subscriptionDetail = subscriptionDetail
-			NotificationCenter.default.post(name: Notification.Name("getSubscriptionDetails"), object: nil)
-		}
-        
-        self.branchListener = FirestoreHelper.getBranches(businessId: employee.businessId){ branches in
+		self.branchListener = FirestoreHelper.getBranches(businessId: employee.businessId){ branches in
             if let branches = branches{
                 self.allBranches = branches
 				NotificationCenter.default.post(name: Notification.Name("getBranches"), object: nil)

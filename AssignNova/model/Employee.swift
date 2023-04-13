@@ -32,7 +32,7 @@ struct Employee: Codable{
 	var firstName: String
 	var lastName: String
 	var name: String{
-		"\(firstName) \(lastName)"
+		"\(firstName) \(lastName)".trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 	var appRole: AppRole
 	var maxHours: Double = 40
