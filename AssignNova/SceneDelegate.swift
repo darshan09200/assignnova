@@ -78,6 +78,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 	
 	func onRefresh(){
+		preventRefresh = false
+
 		if let activeEmployee = ActiveEmployee.instance {
 			print(activeEmployee.employee)
 			if activeEmployee.employee.appRole == .owner && activeEmployee.business == nil {
