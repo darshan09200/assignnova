@@ -63,15 +63,12 @@ class RequestVC: UIViewController {
 				}
 			} else {
 				listener = FirestoreHelper.getOpenShifts(employeeId: employeeId){ openShifts in
-					print(openShifts?.count)
 					if let openShifts = openShifts, openShifts.count > 0{
 						var groupedOpenShifts = [Status.requested, Status.approved, Status.declined].compactMap{GroupedOpenShift(status: $0, shifts: [])}
 						for openShift in openShifts {
 							let index = groupedOpenShifts.firstIndex{$0.status == openShift.status}
 							if let index = index{
 								groupedOpenShifts[index].shifts.append(openShift)
-							} else {
-								print(openShift.status?.rawValue)
 							}
 						}
 						self.groupedOpenShifts = groupedOpenShifts
@@ -101,17 +98,18 @@ class RequestVC: UIViewController {
 	}
 	
 	func getController(for indexPath: IndexPath) -> UIViewController?{
-		if requestTypeSegment.selectedSegmentIndex == 0{
+		if requestTypeSegment.selectedSegmentIndex == 0 && groupedTimeOffs.count > 0 && groupedTimeOffs[indexPath.section].timeOffs.count > 0{
 			let item = groupedTimeOffs[indexPath.section].timeOffs[indexPath.row]
 			let viewController = UIStoryboard(name: "TimeOff", bundle: nil).instantiateViewController(withIdentifier: "ViewTimeOffVC") as! ViewTimeOffVC
 			viewController.timeOffId = item.id
 			return viewController
-		} else {
+		} else if groupedOpenShifts.count > 0 && groupedOpenShifts[indexPath.section].shifts.count > 0 {
 			let item = groupedOpenShifts[indexPath.section].shifts[indexPath.row]
 			let viewController = UIStoryboard(name: "Shift", bundle: nil).instantiateViewController(withIdentifier: "ViewShiftVC") as! ViewShiftVC
 			viewController.shiftId = item.id
 			return viewController
 		}
+		return nil
 	}
 }
 
