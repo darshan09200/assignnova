@@ -241,11 +241,13 @@ class CloudFunctionsHelper{
 		}
 	}
 
-	static func getEligibleEmployees(branchId: String?, roleId: String?, shiftDate: Date, startTime: Date, endTime: Date, completion: @escaping(_ groupedEmployees: [GroupedEmployee]? )->()){
+	static func getEligibleEmployees(branchId: String?, roleId: String?, shiftDate: Date, startTime: Date, endTime: Date, skipAvailability: Bool = false, completion: @escaping(_ groupedEmployees: [GroupedEmployee]? )->()){
 		var data = EligibleEmployeesRequest(
 			shiftDate:  Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
 			startTime: Date.combineDateWithTime(date: shiftDate, time: startTime).timeIntervalSince1970,
-			endTime: Date.combineDateWithTime(date: shiftDate, time: endTime).timeIntervalSince1970)
+			endTime: Date.combineDateWithTime(date: shiftDate, time: endTime).timeIntervalSince1970,
+			skipAvailability: skipAvailability
+		)
 		let employee = ActiveEmployee.instance?.employee
 		if let businessId = employee?.businessId{
 			data.businessId = businessId
@@ -355,6 +357,7 @@ struct EligibleEmployeesRequest:Codable{
 	var shiftDate: TimeInterval
 	var startTime: TimeInterval
 	var endTime: TimeInterval
+	var skipAvailability: Bool
 }
 
 struct UpdateSubscriptionRequest: Encodable{

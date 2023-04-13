@@ -24,7 +24,7 @@ class ActionsHelper{
 	
 	static func canTake(shift: Shift)->Bool{
 		guard let employee = ActiveEmployee.instance?.employee,
-			  let employeeId = employee.id else {return false}
+			  let employeeId = employee.id , shift.employeeId == nil else {return false}
 		if let eligibleEmployees = shift.eligibleEmployees,
 		   let noOfShifts = shift.noOfOpenShifts, noOfShifts > 0{
 			if eligibleEmployees.contains(employeeId) { return true}
@@ -33,7 +33,12 @@ class ActionsHelper{
 				(employee.roles.count > 0 ? employee.roles.contains(shift.roleId) : true) {
 				return true
 			}
+		} else if (employee.branches.count > 0 ? employee.branches.contains(shift.branchId) : true) &&
+					(employee.roles.count > 0 ? employee.roles.contains(shift.roleId) : true){
+			return true
 		}
+		print(employee)
+		print(shift)
 		return false
 	}
 	
@@ -71,6 +76,15 @@ class ActionsHelper{
 		return .none
 	}
 	
+	static func canTakeBreak(shift: Shift)->Bool{
+		if let unpaidBreak = shift.unpaidBreak,
+			let totalBreakTime = shift.attendance?.totalBreakTime,
+			totalBreakTime < unpaidBreak{
+			return true
+		}
+		return false
+	}
+	
 	static func getProfileImage(profileUrl: String) -> StorageReference{
 		var filename = (profileUrl as NSString).lastPathComponent.split(separator: ".")
 		filename.popLast()
@@ -100,7 +114,7 @@ class ActionsHelper{
 	}
 	
 	static func canEdit(shift: Shift) -> Bool{
-		if canEdit() && shift.shiftStartTime > .now.zeroSeconds{
+		if canEdit() && shift.shiftStartTime > .now.zeroSeconds && shift.employeeId == nil{
 			return true
 		}
 		return false

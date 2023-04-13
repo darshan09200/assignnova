@@ -13,9 +13,7 @@ struct Attendance: Codable{
 	var breaks = [Break]()
 	var totalBreakTime: Int{
 		return breaks.reduce(0) {
-			$0 + (
-				$1.end != nil ? Date.getMinutesDifferenceBetween(start: $1.start, end: $1.end!) : 0
-			)
+			$0 + Date.getMinutesDifferenceBetween(start: $1.start, end: $1.end ?? .now)
 		}
 	}
 }

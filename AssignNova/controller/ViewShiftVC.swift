@@ -46,6 +46,8 @@ class ViewShiftVC: UIViewController {
 	
 	var locManager = CLLocationManager()
 	var currentLocation: CLLocation?
+	
+	var timer: Timer?
 
 	@IBOutlet weak var editItem: UIBarButtonItem!
 	
@@ -54,7 +56,7 @@ class ViewShiftVC: UIViewController {
 		
 		tableView.sectionHeaderTopPadding = 0
 		tableView.contentInset.bottom = 16
-		
+		print(shiftId)
 		refreshData()
 				
 		locManager.delegate = self
@@ -73,7 +75,6 @@ class ViewShiftVC: UIViewController {
 		listener = FirestoreHelper.getShift(shiftId: shiftId ?? ""){ shift in
 			if let shift = shift{
 				self.shift = shift
-				self.tableView.reloadData()
 				
 				self.leftActionButton.isHidden = true
 				self.rightActionButton.isHidden = true
@@ -116,16 +117,17 @@ class ViewShiftVC: UIViewController {
 					self.rightActionButton.setTitle("Clock In", for: .normal)
 					self.rightActionButton.tintColor = UIColor(named: "AccentColor")
 				} else if action == .clockOut{
-					self.leftActionType = .startBreak
-					self.leftActionButton.isHidden = false
-					self.leftActionButton.setTitle("Start Break", for: .normal)
-					self.leftActionButton.tintColor = .systemGreen
-					if let attendance = shift.attendance, let allowedBreakTime = shift.unpaidBreak, allowedBreakTime > attendance.totalBreakTime {
-						self.leftActionButton.isEnabled = true
-					} else {
-						self.leftActionButton.isEnabled = false
+					if ActionsHelper.canTakeBreak(shift: shift) {
+						self.leftActionType = .startBreak
+						self.leftActionButton.isHidden = false
+						self.leftActionButton.setTitle("Start Break", for: .normal)
+						self.leftActionButton.tintColor = .systemGreen
+						if let attendance = shift.attendance, let allowedBreakTime = shift.unpaidBreak, allowedBreakTime > attendance.totalBreakTime {
+							self.leftActionButton.isEnabled = true
+						} else {
+							self.leftActionButton.isEnabled = false
+						}
 					}
-					
 					self.rightActionType = .clockOut
 					self.rightActionButton.isHidden = false
 					self.rightActionButton.setTitle("Clock Out", for: .normal)
@@ -154,6 +156,11 @@ class ViewShiftVC: UIViewController {
 					self.leftActionButton.tintColor = .systemYellow
 					self.leftActionButton.isUserInteractionEnabled = false
 				}
+				
+				self.stopLoading(){
+					self.tableView.reloadData()
+				}
+
 			}
 		}
 	}
@@ -170,7 +177,7 @@ class ViewShiftVC: UIViewController {
 		if leftActionType == .takeShift{
 			if let shift = shift, ActionsHelper.canTake(shift: shift){
 				self.startLoading()
-				CloudFunctionsHelper.getEligibleEmployees(branchId: shift.branchId, roleId: shift.roleId, shiftDate: shift.shiftStartDate, startTime: shift.shiftStartTime, endTime: shift.shiftEndTime){groupedEmployees in
+				CloudFunctionsHelper.getEligibleEmployees(branchId: shift.branchId, roleId: shift.roleId, shiftDate: shift.shiftStartDate, startTime: shift.shiftStartTime, endTime: shift.shiftEndTime, skipAvailability: true){groupedEmployees in
 					if let employees = groupedEmployees?.first(where: {$0.type == .eligible})?.employees,
 						let employeeId = ActiveEmployee.instance?.employee.id,
 					   employees.contains(where: {$0 == employeeId}){
@@ -462,5 +469,19 @@ extension ViewShiftVC: CLLocationManagerDelegate{
 		if(manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse) {
 			currentLocation = manager.location
 		}
+	}
+}
+
+extension ViewShiftVC{
+	func startTimer(){
+		timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+	}
+	
+	func stopTimer(){
+		timer?.invalidate()
+	}
+	
+	@objc func updateTime() {
+		print(shift?.attendance?.totalBreakTime)
 	}
 }
