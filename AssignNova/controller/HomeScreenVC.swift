@@ -9,6 +9,8 @@ import UIKit
 
 class HomeScreenVC:  UIViewController {
 	
+	@IBOutlet weak var helloLabel: UILabel!
+	
 	@IBOutlet weak var letsGetStartedLabel: UILabel!
 	@IBOutlet weak var paymentButton: NavigationItem!
 	@IBOutlet weak var branchButton: NavigationItem!
@@ -45,6 +47,20 @@ class HomeScreenVC:  UIViewController {
 		
 		let gesture = UITapGestureRecognizer(target: self, action: #selector(onShiftPress(_ :)))
 		shiftCard.addGestureRecognizer(gesture)
+		
+		
+		let greeting = {
+			let hour = Calendar.current.component(.hour, from: Date())
+			switch hour {
+				case 4..<12 : return "Morning"
+				case 12..<18 : return "Afternoon"
+				default: return "Evening"
+			}
+		}()
+		
+		if let employee = ActiveEmployee.instance?.employee{
+			helloLabel.text = "Good \(greeting), \(employee.firstName)"
+		}
 	}
 	
 	func refreshUI(){
