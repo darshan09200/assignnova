@@ -60,6 +60,19 @@ class FirestoreHelper{
 		}
 		return nil
 	}
+	
+	static func editBusiness(_ business: Business, completion: @escaping(_ error: Error?)->()) {
+		do{
+			if let businessId = business.id{
+				try db.collection("business").document(businessId).setData(from: business){ err in FirestoreHelper.completion(err, completion)
+				}
+			} else {
+				completion(nil)
+			}
+		} catch{
+			completion(error)
+		}
+	}
 
 	static func saveBranch(_ branch: Branch, completion: @escaping(_ error: Error?)->()){
 		do{

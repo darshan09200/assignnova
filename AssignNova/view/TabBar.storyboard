@@ -618,10 +618,10 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVD-wI-Bwm">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="502.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="562.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="V7x-Wi-sal">
-                                                <rect key="frame" x="16" y="16" width="361" height="470.33333333333331"/>
+                                                <rect key="frame" x="16" y="16" width="361" height="530.33333333333337"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-c8-A3j" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="52"/>
@@ -647,8 +647,20 @@
                                                             <outletCollection property="gestureRecognizers" destination="uYH-L4-d7V" appends="YES" id="8cd-md-aHv"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8m-Jv-ztE" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cz9-GM-x7M" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="120" width="361" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <gestureRecognizers/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="label" value="Business"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="building.fill" catalog="system"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="MDO-jw-dF6" appends="YES" id="JMC-u4-s4H"/>
+                                                        </connections>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8m-Jv-ztE" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="180" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
                                                         <userDefinedRuntimeAttributes>
@@ -660,7 +672,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlf-us-V4D" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="180" width="361" height="52"/>
+                                                        <rect key="frame" x="0.0" y="240" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
                                                         <userDefinedRuntimeAttributes>
@@ -672,7 +684,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKB-uN-i3w" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="240" width="361" height="52"/>
+                                                        <rect key="frame" x="0.0" y="300" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
                                                         <userDefinedRuntimeAttributes>
@@ -684,7 +696,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-Xb-dtm" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="300" width="361" height="52"/>
+                                                        <rect key="frame" x="0.0" y="360" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
                                                         <userDefinedRuntimeAttributes>
@@ -696,7 +708,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOd-xE-iVv" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="360" width="361" height="52"/>
+                                                        <rect key="frame" x="0.0" y="420" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
                                                         <userDefinedRuntimeAttributes>
@@ -708,7 +720,7 @@
                                                         </connections>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QwY-Ad-xZA">
-                                                        <rect key="frame" x="0.0" y="420" width="361" height="50.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="480" width="361" height="50.333333333333371"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Logout" buttonSize="large"/>
                                                         <connections>
@@ -791,6 +803,11 @@
                 <tapGestureRecognizer id="HhT-hM-hQ1">
                     <connections>
                         <action selector="onChangePasswordPress:" destination="cVR-a7-XBn" id="iou-n5-w2I"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="MDO-jw-dF6">
+                    <connections>
+                        <action selector="onBusinessPress:" destination="cVR-a7-XBn" id="YHB-cV-Pqa"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -943,6 +960,7 @@
     </scenes>
     <resources>
         <image name="building.2.fill" catalog="system" width="128" height="108"/>
+        <image name="building.fill" catalog="system" width="106" height="128"/>
         <image name="bulb" width="64" height="64"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>

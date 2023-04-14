@@ -43,16 +43,19 @@ class PaymentVC: UIViewController {
 		tableView.sectionHeaderTopPadding = 0
 		
 		tableView.emptyDataSetSource = self
+		
+		invoices = ActiveEmployee.instance?.invoices ?? []
+				
+		tableView.reloadData()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		CloudFunctionsHelper.getSubscriptionInvoices(){ invoices in
+		ActiveEmployee.instance?.refreshInvoices(){ invoices in
 			self.invoices = invoices ?? []
 			self.tableView.reloadData()
 		}
-		
 	}
 	
 	func updateCardDetails(){

@@ -80,7 +80,7 @@ extension ViewBranchTVC{
 					baseUrl?.appendQueryItem(name: "zoom", value: "15")
 					baseUrl?.appendQueryItem(name: "size", value: "300x300")
 					baseUrl?.appendQueryItem(name: "scale", value: "2")
-					baseUrl?.appendQueryItem(name: "markers", value: "label:\(branch.name.first)|\(branch.location.latitude), \(branch.location.longitude)")
+					baseUrl?.appendQueryItem(name: "markers", value: "label:\(branch.name)|\(branch.location.latitude), \(branch.location.longitude)")
 					baseUrl?.appendQueryItem(name: "key", value: apiKey)
 					cell.branchMapImage.sd_setImage(with: baseUrl)
 				}

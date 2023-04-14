@@ -50,7 +50,41 @@ extension UIViewController{
 			$0.keyboardDismissMode = .interactive
 			$0.alwaysBounceVertical = true
 		}
+		
+		let offlineView = UIStackView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: self.navigationController?.navigationBar.frame.height ?? 32))
+		let label = UILabel()
+		label.text = "Device is offline"
+		offlineView.addArrangedSubview(label)
+		offlineView.isLayoutMarginsRelativeArrangement = true
+		offlineView.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+		offlineView.backgroundColor = .systemYellow
+		
+//		self.navigationController?.navigationBar.addSubview(offlineView)
+		
+//		NotificationCenter.default.addObserver(self, selector: #selector(onUpdateConnectionStatus), name: .ConnectivityDidChange, object: offlineView)
+		
 		_swizzled_viewWillAppear(animated)
+	}
+	
+	@objc func onUpdateConnectionStatus(notification: NSNotification) {
+		print("notif")
+		let connectivity = notification.object as? Connectivity
+		switch connectivity?.status{
+			case .connected: fallthrough
+			case .connectedViaCellular: fallthrough
+			case .connectedViaEthernet: fallthrough
+			case .connectedViaWiFi:
+				(notification.object as? UIView)?.removeFromSuperview()
+			case .connectedViaEthernetWithoutInternet: fallthrough
+			case .connectedViaCellularWithoutInternet: fallthrough
+			case .connectedViaWiFiWithoutInternet: fallthrough
+			case .determining: fallthrough
+			case .notConnected: fallthrough
+			case .none:
+				if let offlineView = notification.object as? UIView{
+					self.navigationController?.navigationBar.addSubview(offlineView)
+				}
+		}
 	}
 	
 	@objc func _swizzled_viewWillDisappear(_ animated: Bool){
@@ -79,46 +113,6 @@ extension UIViewController{
 		
 		scrollViews.forEach{$0.scrollIndicatorInsets = $0.contentInset}
 
-	}
-	
-}
-
-extension UINavigationController{
-	static var offlineView: UIView?
-	
-	open override func viewDidLoad() {
-		super.viewDidLoad()
-		let offlineView = UIStackView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: navigationBar.frame.height))
-		let label = UILabel()
-		label.text = "Device is offline"
-		offlineView.addArrangedSubview(label)
-		offlineView.isLayoutMarginsRelativeArrangement = true
-		offlineView.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-		offlineView.backgroundColor = .systemYellow
-//		navigationBar.addSubview(offlineView)
-		
-//		NotificationCenter.default.addObserver(self, selector: #selector(onUpdateConnectionStatus), name: NSNotification.Name.ConnectivityDidChange, object: nil)
-//		UINavigationController.offlineView = offlineView
-//		OfflineHelper.instance
-	}
-	
-	@objc func onUpdateConnectionStatus(notification: NSNotification) {
-		print("notif")
-		let connectivity = notification.object as? Connectivity
-		switch connectivity?.status{
-			case .connected: fallthrough
-			case .connectedViaCellular: fallthrough
-			case .connectedViaEthernet: fallthrough
-			case .connectedViaWiFi:
-				UINavigationController.offlineView?.isHidden = true
-			case .connectedViaEthernetWithoutInternet: fallthrough
-			case .connectedViaCellularWithoutInternet: fallthrough
-			case .connectedViaWiFiWithoutInternet: fallthrough
-			case .determining: fallthrough
-			case .notConnected: fallthrough
-			case .none:
-				UINavigationController.offlineView?.isHidden = false
-		}
 	}
 	
 }

@@ -1,5 +1,5 @@
 //
-//  SetupBusinessVC.swift
+//  EditBusinessVC.swift
 //  AssignNova
 //
 //  Created by Darshan Jain on 2023-03-18.
@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import StripePaymentSheet
 
-class SetupBusinessVC: UIViewController {
+class EditBusinessVC: UIViewController {
 
 	@IBOutlet weak var businessNameInput: TextInput!
 
@@ -34,7 +34,6 @@ class SetupBusinessVC: UIViewController {
 
 	var place: GMSPlace?
 
-	var showLogout = false
 	var paymentDetails: PaymentDetails?
 	var business: Business?
 	
@@ -42,7 +41,15 @@ class SetupBusinessVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-		numberOfEmployeeInput.textFieldComponent.text = "5"
+		if let business = business{
+			businessNameInput.textFieldComponent.text = business.name
+			selectLocationLabel.text = business.address
+			selectLocationLabel.textColor = .label
+			numberOfEmployeeInput.textFieldComponent.text = String(business.noOfEmployees)
+			
+		} else {
+			numberOfEmployeeInput.textFieldComponent.text = "5"
+		}
 		numberOfEmployeeInput.textFieldComponent.delegate = self
 		numberOfEmployeeInput.textFieldComponent.keyboardType = .numberPad
 
@@ -65,10 +72,6 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.rightView = addBtnView
 		addButton.addTarget(self, action: #selector(onAddPress(_:)), for: .touchUpInside)
 
-		if showLogout{
-			let logout = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(onLogoutPress))
-			navigationItem.rightBarButtonItem = logout
-		}
 		
 		refreshPlans()
 	}
@@ -127,20 +130,20 @@ class SetupBusinessVC: UIViewController {
 			price = 50 * 4 + 150 * 3.8 + (Double(count) - 150) * 3.6
 		}
 		
-		makePaymentButton.setTitle("Authorize Payment - $\(String(format: "%.2f", price))", for: .normal)
+		makePaymentButton.setTitle("New Cost - $\(String(format: "%.2f", price))", for: .normal)
 	}
 
 
 	@IBAction func onMakePaymentBtnPress(_ sender: UIButton) {
-		if business == nil{
+		
+	}
+	
+	@IBAction func onSavePress(_ sender: Any) {
 			guard let businessName = businessNameInput.textFieldComponent.text, !businessName.isEmpty else {
 				showAlert(title: "Oops", message: "Business name is empty", textInput: businessNameInput)
 				return
 			}
-			guard let selectedPlace = place else {
-				showAlert(title: "Oops", message: "Location for business is not selected")
-				return
-			}
+		
 			guard let numberOfEmployees = numberOfEmployeeInput.textFieldComponent.text, !numberOfEmployees.isEmpty else {
 				showAlert(title: "Oops", message: "Number of Employees is empty", textInput: businessNameInput)
 				return
@@ -150,44 +153,32 @@ class SetupBusinessVC: UIViewController {
 				return
 			}
 			
-			var business = Business(name: businessName, address: selectedPlace.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: GeoPoint(latitude: selectedPlace.coordinate.latitude, longitude: selectedPlace.coordinate.longitude))
+		var business = Business(id: business?.id, name: businessName, address: place == nil ? business!.address : place!.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: place == nil ? business!.location: GeoPoint(latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude), createdAt: business?.createdAt)
+		if let managedBy = self.business?.managedBy{
+			business.managedBy = managedBy
+		}
 			self.startLoading()
-			self.businessReference = FirestoreHelper.saveBusiness(business){ error in
+			FirestoreHelper.editBusiness(business){ error in
 				if let error = error{
-					if let error = error as NSError?{
-						let errorCode = FirestoreErrorCode(_nsError: error).code
-						if errorCode == .permissionDenied{
-							self.stopLoading(){
-								self.showAlert(title: "Oops", message: "Seems like you are not logged in. Login to setup business"){
-									self.navigationController?.popToRootViewController(animated: true)
-								}
-							}
-							return
-						}
-						self.stopLoading(){
-							self.showAlert(title: "Oops", message: "Unknown error occured")
-						}
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: "Unknown error occured")
 					}
-					print(error.localizedDescription)
 					return
 				}
-				business.id = self.businessReference?.documentID
-				self.businessNameInput.textFieldComponent.isEnabled = false
-				self.selectLocationLabel.textColor = .placeholderText
-				self.selectLocationGesture.isEnabled = false
-				self.numberOfEmployeeInput.textFieldComponent.isEnabled = false
-				self.minusButton.isEnabled = false
-				self.addButton.isEnabled = false
-				
-				self.authorizePayment(business)
+				self.stopLoading(){
+					self.dismiss(animated: true)
+				}
 			}
-		} else {
-			self.authorizePayment(business!)
-		}
+		
 	}
+	
+	@IBAction func onCancelPress(_ sender: Any) {
+		self.dismiss(animated: true)
+	}
+	
 }
 
-extension SetupBusinessVC: UITextFieldDelegate{
+extension EditBusinessVC: UITextFieldDelegate{
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		guard let count = Int(textField.text!), count < 5 else {
 			refreshPlans()
@@ -199,7 +190,7 @@ extension SetupBusinessVC: UITextFieldDelegate{
 	}
 }
 
-extension SetupBusinessVC: SelectLocationDelegate{
+extension EditBusinessVC: SelectLocationDelegate{
 	func onSelectLocation(place: GMSPlace) {
 		self.place = place
 		if let text = businessNameInput.textFieldComponent.text{
@@ -217,7 +208,7 @@ extension SetupBusinessVC: SelectLocationDelegate{
 
 }
 
-extension SetupBusinessVC{
+extension EditBusinessVC{
 	
 	func getPaymentDetails(_ business: Business, completion: @escaping(_ paymentDetails: PaymentDetails? )->()){
 		if let paymentDetails = self.paymentDetails{

@@ -49,6 +49,11 @@ class MoreTabVC: UIViewController {
 	}
 	
 	
+	@IBAction func onBusinessPress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Business", bundle: nil)
+			.instantiateViewController(withIdentifier: "ViewBusinessVC") as! ViewBusinessVC
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
 	
 	@IBAction func onBranchPress(_ sender: Any) {
 		let viewController = UIStoryboard(name: "Branch", bundle: nil)

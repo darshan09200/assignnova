@@ -28,6 +28,11 @@ class PlanCard: UIView {
 	var planDetails: String?{
 		didSet{
 			self.planDetailsLabel.text = planDetails
+			if planDetails == nil || planDetails!.isEmpty{
+				planDetailsLabel.isHidden = true
+			} else {
+				planDetailsLabel.isHidden = false
+			}
 		}
 	}
 	
@@ -73,6 +78,8 @@ class PlanCard: UIView {
 		contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		
 		addSubview(contentView)
+		
+		planDetailsLabel.isHidden = true
 	}
 
 }

@@ -16,15 +16,9 @@ class ActiveEmployee{
 			if let instance = instance {
 				FirestoreHelper.registerFCMToken()
 				if let employeeId = instance.employee.id{
-					Keychain.save(key: "employeeId", data: Data(from: employeeId))
-					
-					if let receivedData = Keychain.load(key: "employeeId") {
-						let result = receivedData.to(type: String.self)
-						print("result")
-					} else {
-						print("Not found")
-					}
+					Keychain.save(key: "employeeId", data: Data(from: employeeId))					
 				}
+				instance.refreshInvoices()
 			} else {
 				Keychain.delete(key: "employeeId")
 			}
@@ -36,10 +30,9 @@ class ActiveEmployee{
 	var roleListener: ListenerRegistration?
 	var employeeListener: ListenerRegistration?
 	
-    var employee: Employee
+	var employee: Employee
 	
 	var business: Business?
-	
 	var allBranches = [Branch]()
 	var branches: [Branch]{
 		allBranches.filter{$0.isActive ?? true}
@@ -60,6 +53,8 @@ class ActiveEmployee{
     var factOfTheDay = Facts.randomElement()
 	
 	var isFetchingSubscription = true
+	
+	var invoices: [Invoice]?
 	
 	init(business: Business? = nil, employee: Employee, branches: [Branch] = [Branch](), roles: [Role] = [Role]()) {
 		self.business = business
@@ -97,9 +92,21 @@ class ActiveEmployee{
 	}
 	
 	deinit {
+		businessListener?.remove()
 		branchListener?.remove()
 		roleListener?.remove()
         employeeListener?.remove()
+	}
+	
+	func refreshInvoices(completion: ((_ invoices: [Invoice]? )->())? = nil){
+		if employee.appRole == .owner {
+			CloudFunctionsHelper.getSubscriptionInvoices(){ invoices in
+				self.invoices = invoices
+				completion?(invoices)
+			}
+		} else {
+			completion?(nil)
+		}
 	}
 	
 	func getBranch(branchId: String)->Branch?{
