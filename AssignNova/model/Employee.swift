@@ -60,7 +60,7 @@ struct Employee: Codable{
 		self.maxHours = maxHours
 		self.isProfilePrivate = isProfilePrivate
 		self.profileUrl = profileUrl
-		self.email = email
+		self.email = email.lowercased()
 		self.phoneNumber = phoneNumber
 		self.invited = invited
 		self.branches = branches
