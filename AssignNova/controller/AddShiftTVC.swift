@@ -516,15 +516,12 @@ extension AddShiftTVC{
 			tableView.deleteRows(at: [indexPath], with: .automatic)
 		} else {
 			let wasOpenShifts = isOpenShifts
-			data.employees.remove(at: indexPath.row)
-			tableView.performBatchUpdates({
-				if wasOpenShifts && !isOpenShifts{
-					tableView.deleteSections(IndexSet(integer: 4), with: .none)
-				} else if !wasOpenShifts && isOpenShifts{
-					tableView.insertSections(IndexSet(integer: 4), with: .none)
-				}
-				tableView.reloadSections(IndexSet(integer: 3), with: .none)
-			})
+			if indexPath.section == 3{
+				data.employees.remove(at: indexPath.row)
+			} else {
+				data.eligibileEmployees.remove(at: indexPath.row)
+			}
+			tableView.reloadData()
 		}
 		self.refreshEligibleEmployees()
 	}
