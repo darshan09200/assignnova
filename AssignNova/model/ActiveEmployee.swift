@@ -31,6 +31,7 @@ class ActiveEmployee{
 		}
 	}
 	
+	var businessListener: ListenerRegistration?
 	var branchListener: ListenerRegistration?
 	var roleListener: ListenerRegistration?
 	var employeeListener: ListenerRegistration?
@@ -65,6 +66,13 @@ class ActiveEmployee{
 		self.employee = employee
 		self.allBranches = branches
 		self.allRoles = roles
+		
+		self.businessListener = FirestoreHelper.getBusinessWithListener(businessId: employee.businessId){ business in
+            if let business = business{
+                self.business = business
+				NotificationCenter.default.post(name: Notification.Name("getBusiness"), object: nil)
+            }
+        }
 		
 		self.branchListener = FirestoreHelper.getBranches(businessId: employee.businessId){ branches in
             if let branches = branches{

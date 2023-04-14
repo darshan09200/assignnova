@@ -176,6 +176,26 @@ class FirestoreHelper{
 			
 		}
 	}
+	
+	static func getBusinessWithListener(businessId: String, completion: @escaping(_ business: Business?)->()) -> ListenerRegistration?{
+		if businessId.isEmpty{
+			completion(nil)
+			return nil
+		}
+		let docRef = db.collection("business").document(businessId)
+		return docRef.addSnapshotListener(){ document, err in
+			if let _ = err {
+				completion(nil)
+				return
+			}
+			do{
+				try completion(document?.data(as: Business.self))
+			} catch{
+				completion(nil)
+			}
+			
+		}
+	}
 
 	static func getBranches(businessId: String, completion: @escaping(_ branch: [Branch]?)->()) -> ListenerRegistration{
 		let docRef = db.collection("branch")

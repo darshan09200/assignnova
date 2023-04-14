@@ -48,9 +48,7 @@ class PaymentVC: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		self.startLoading()
 		CloudFunctionsHelper.getSubscriptionInvoices(){ invoices in
-			self.stopLoading()
 			self.invoices = invoices ?? []
 			self.tableView.reloadData()
 		}
@@ -159,6 +157,19 @@ extension PaymentVC: UITableViewDelegate, UITableViewDataSource{
 		
 		let swipeConfiguration = UISwipeActionsConfiguration(actions: [downloadAction])
 		return swipeConfiguration
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+		
+		let item = self.invoices[indexPath.row]
+
+		if let url = URL(string: item.hostedUrl!) {
+			let vc = SFSafariViewController(url: url)
+			vc.delegate = self
+			
+			self.present(vc, animated: true)
+		}
 	}
 }
 

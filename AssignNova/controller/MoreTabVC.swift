@@ -80,6 +80,12 @@ class MoreTabVC: UIViewController {
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
+	@IBAction func onChangePasswordPress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Password", bundle: nil)
+			.instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
+	
 	@IBAction func onLogoutPress(_ sender: UIButton) {
 		CloudFunctionsHelper.logout()
 	}

@@ -19,7 +19,9 @@ class SignInVC: UIViewController {
     @IBOutlet weak var googleLoginBtn: UIButton!
     @IBOutlet weak var loginMethodSegment: UISegmentedControl!
     
-    @IBOutlet weak var phoneNumberTxt: TextInput!
+	@IBOutlet weak var forgotPwdButton: UIButton!
+	
+	@IBOutlet weak var phoneNumberTxt: TextInput!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,6 +174,7 @@ class SignInVC: UIViewController {
     @IBAction func loginModeChanged(_ sender: UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
 			case 0:
+				self.forgotPwdButton.isHidden = false
 				UIView.animate(withDuration: 0.3) {
 					self.emailTxt.isHidden = false
 					self.passwordTxt.isHidden = false
@@ -179,6 +182,7 @@ class SignInVC: UIViewController {
 					self.phoneNumberTxt.isHidden = true
 				}
 			case 1:
+				self.forgotPwdButton.isHidden = true
 				UIView.animate(withDuration: 0.3) {
 					self.emailTxt.isHidden = true
 					self.passwordTxt.isHidden = true
@@ -190,6 +194,11 @@ class SignInVC: UIViewController {
 		}
     }
     
+	@IBAction func onForgotPasswordBtnPressed(_ sender: Any) {
+		let viewController = UIStoryboard(name: "Password", bundle: nil)
+			.instantiateViewController(withIdentifier: "ResetPasswordVC") as! ResetPasswordVC
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
 }
 
 extension SignInVC: OtpInputDelegate{

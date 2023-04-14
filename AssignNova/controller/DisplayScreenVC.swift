@@ -12,14 +12,24 @@ class DisplayScreenVC: UIViewController {
     @IBOutlet weak var loginNavBtn: UIButton!
     @IBOutlet weak var signupNavBtn: UIButton!
     
-    
-    
-
-    override func viewDidLoad() {
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		navigationController?.setNavigationBarHidden(true, animated: true)
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		navigationController?.setNavigationBarHidden(false, animated: true)
+		
+		super.viewWillDisappear(animated)
+	}
     
     @IBAction func loginNavPressed(_ sender: UIButton) {
         navigationController?.pushViewController(UIStoryboard(name: "SignInScreen", bundle: nil).instantiateViewController(withIdentifier: "SignInVC"), animated: true)

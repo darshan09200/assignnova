@@ -66,7 +66,7 @@ class ViewShiftVC: UIViewController {
 	
 	override func viewDidDisappear(_ animated: Bool) {
 		listener?.remove()
-		
+		endTimer()
 		super.viewDidDisappear(animated)
 	}
 	
@@ -86,6 +86,10 @@ class ViewShiftVC: UIViewController {
 				}
 				
 				let action = ActionsHelper.getAction(for: shift)
+				
+				self.leftActionType = .none
+				self.rightActionType = .none
+				
 				if action == .takeShift{
 					self.leftActionType = .takeShift
 					self.leftActionButton.isHidden = false
@@ -500,6 +504,8 @@ extension ViewShiftVC: CLLocationManagerDelegate{
 
 extension ViewShiftVC{
 	func startTimer(){
+		endTimer()
+		updateTime()
 		timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 	}
 	
@@ -508,9 +514,18 @@ extension ViewShiftVC{
 	}
 	
 	@objc func updateTime() {
-		if let attendance = shift?.attendance{
-			print(attendance.totalBreakTime)
-			print(Date.getSecondsDifferenceBetween(start: attendance.clockedInAt, end: .now))
+		if let attendance = shift?.attendance {
+			if rightActionType == .clockOut {
+				let time = Date.getSecondsDifferenceBetween(start: attendance.clockedInAt, end: .now)
+				rightActionButton.setTitle("Clock Out - \(secondsToHoursMinutes(time))", for: .normal)
+			} else if leftActionType == .endBreak {
+				let time = attendance.totalBreakTime * 60
+				leftActionButton.setTitle("End Break - \(secondsToHoursMinutes(time))", for: .normal)
+			}
+		}
+		
+		func secondsToHoursMinutes(_ seconds: Int) -> String {
+			return "\(String(format: "%02d", seconds / 3600)):\(String(format:"%02d", (seconds % 3600) / 60))"
 		}
 	}
 }

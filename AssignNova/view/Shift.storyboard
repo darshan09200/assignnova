@@ -457,7 +457,7 @@
                                 <rect key="frame" x="0.0" y="818" width="393" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xT6-ma-ORe">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="50.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="0.0"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Button" buttonSize="large"/>
                                         <connections>
@@ -465,7 +465,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGI-RL-x4H">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="50.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="0.0"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Button" buttonSize="large"/>
                                         <connections>
@@ -473,6 +473,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <variation key="heightClass=regular-widthClass=compact" axis="vertical"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mw9-uY-iaA"/>

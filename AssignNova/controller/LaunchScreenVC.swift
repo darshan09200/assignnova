@@ -29,8 +29,10 @@ class LaunchScreenVC: UIViewController {
 				self.view.backgroundColor = .systemBackground
 				self.logo.tintColor = .systemBackground
 			}){ finished in
+				print("closed")
 				let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
 				delegate?.addAuthListener(navigateDirectly: true)
+				print("closed")
 				delegate?.onRefresh()
 			}
 		}

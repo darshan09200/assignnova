@@ -6,6 +6,9 @@ def shared_pods
 	pod 'FirebaseFirestore'
 	pod 'FirebaseFirestoreSwift'
 	pod 'FirebaseAppCheck'
+	
+	pod "Connectivity"
+
 end
 
 target 'AssignNova' do

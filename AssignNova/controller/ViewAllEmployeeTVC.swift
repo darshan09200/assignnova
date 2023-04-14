@@ -50,11 +50,18 @@ class ViewAllEmployeeTVC: UITableViewController {
 	}
 	
 	@IBAction func onAddEmployeePress(_ sender: Any) {
-		if let noOfEmployees = ActiveEmployee.instance?.business?.noOfEmployees,
+		if let employee = ActiveEmployee.instance?.employee,
+			   let noOfEmployees = ActiveEmployee.instance?.business?.noOfEmployees,
 			let employeeCount = ActiveEmployee.instance?.employees.count {
+				print(employeeCount, noOfEmployees)
 			if employeeCount < noOfEmployees {
 				let viewController = self.storyboard?.instantiateViewController(withIdentifier: "AddEmployeeTVC") as! AddEmployeeTVC
 				self.present(UINavigationController(rootViewController: viewController), animated: true)
+			} else if employee.appRole == .owner{
+				self.showConfirmation(title: "Oops", message: "You have reached the maximum number of employees you can add. Do you want to add more? You would be charged automatically at the end of the billing period if you press 'Yes'"){
+					let viewController = self.storyboard?.instantiateViewController(withIdentifier: "AddEmployeeTVC") as! AddEmployeeTVC
+					self.present(UINavigationController(rootViewController: viewController), animated: true)
+				}
 			} else {
 				self.showAlert(title: "Oops", message: "You have reached the maximum number of employees you can add. Please ask the owner to increase it in the settings if you want to add more.")
 			}

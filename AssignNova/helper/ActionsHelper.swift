@@ -81,10 +81,13 @@ class ActionsHelper{
 			let totalBreakTime = shift.attendance?.totalBreakTime,
 			totalBreakTime < unpaidBreak {
 			let remainingBreakTime = unpaidBreak - totalBreakTime
+			print(remainingBreakTime)
 			if shift.shiftEndTime > .now.add(minute: remainingBreakTime){
 				return true
 			}
 		}
+		print(shift.attendance?.totalBreakTime)
+		print(shift.unpaidBreak)
 		return false
 	}
 	

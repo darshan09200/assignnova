@@ -76,7 +76,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 							  completion: nil)
 		}
 	}
-	
+
 	func onRefresh(){
 		preventRefresh = false
 
@@ -102,16 +102,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 	func refreshData(){
-		preventRefresh = false
+		preventRefresh = true
 		CloudFunctionsHelper.refreshData(){ activeEmployee in
+			self.preventRefresh = false
 			self.onRefresh()
 		}
 	}
 
 	func addAuthListener(navigateDirectly: Bool = false){
 		preventRefresh = navigateDirectly
+		var currentUser = Auth.auth().currentUser
+
 		Auth.auth().addStateDidChangeListener { auth, user in
-			if !self.preventRefresh {
+			if !self.preventRefresh && user != currentUser{
+				currentUser = user
 				self.refreshData()
 			}
 		}

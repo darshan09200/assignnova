@@ -25,77 +25,77 @@ struct AddShiftModel{
 }
 
 class AddShiftTVC: UITableViewController {
-	
+
 	var data = AddShiftModel()
-	
+
 	var isBranchEmpty: Bool{
 		ActiveEmployee.instance!.branches.count == 0
 	}
-	
+
 	var isBranchSelected: Bool{
 		data.branch != nil
 	}
-	
+
 	var isRoleEmpty: Bool{
 		ActiveEmployee.instance!.roles.count == 0
 	}
-	
+
 	var isRoleSelecetd: Bool{
 		data.role != nil
 	}
-	
+
 	var isOpenShifts: Bool{
 		data.employees.count == 0
 	}
-	
+
 	var eligibleEmployees = [Employee]()
 	var didOpenFromEligibileEmployees = false
-	
+
 	var isEdit: Bool = false
 	var shift: Shift?
-	
+
 	var delegate: AddShiftDelegate?
-	
+
 	var noOfShiftsInput = "1"
 	var unpaidBreakInput = ""
 	var notesInput = ""
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		tableView.sectionHeaderTopPadding = 0
 		tableView.contentInset.bottom = 16
-		
+
 		if isEdit, let shift = shift{
-			
+
 			navigationItem.title = "Edit Shift"
-						
+
 			if let noOfOpenShifts = shift.noOfOpenShifts{
 				noOfShiftsInput = "\(noOfOpenShifts)"
 			}
-			
+
 			if let unpaidBreak = shift.unpaidBreak{
 				unpaidBreakInput = "\(unpaidBreak)"
 			}
-			
+
 			data.selectedDate = shift.shiftStartDate.timeIntervalSinceNow.sign == .minus ? .now : shift.shiftStartDate
-			
+
 			data.startTime = shift.shiftStartTime
 			data.endTime = shift.shiftEndTime
-			
+
 			data.color = ColorPickerVC.colors.first{shift.color == $0.color.toHex} ?? data.color
 			if let branch = ActiveEmployee.instance?.branches.first(where: {$0.id == shift.branchId}){
 				data.branch = branch
 			}
-			
+
 			if let role = ActiveEmployee.instance?.roles.first(where: {$0.id == shift.roleId}){
 				data.role = role
 			}
-			
+
 			if let employee = ActiveEmployee.instance?.employees.first(where: {$0.id == shift.employeeId}){
 				data.employees = [employee]
 			}
-			
+
 			if let eligibileEmployees = ActiveEmployee.instance?.employees.filter({employee in
 				return shift.eligibleEmployees?.contains{employee.id == $0} ?? false
 			}){
@@ -103,25 +103,25 @@ class AddShiftTVC: UITableViewController {
 			}
 
 		}
-		
+
 		self.refreshEligibleEmployees()
 	}
-	
+
 	@IBAction func onCancelPress(_ sender: Any) {
 		dismiss(animated: true)
 	}
-	
+
 	@IBAction func onSavePress(_ sender: Any) {
 		let shiftDate = data.selectedDate.startOfDay
-		
+
 		let startTime = data.startTime
 		let endTime = data.endTime
-		
+
 		let color = data.color
-		
+
 		let unpaidBreak: Int?
 		let unpaidBreakInput  = unpaidBreakInput.trimmingCharacters(in: .whitespacesAndNewlines)
-		if !unpaidBreakInput.isEmpty{
+		if !unpaidBreakInput.isEmpty {
 			guard let convertedUnpaidBreak = Int(unpaidBreakInput) else {
 				showAlert(title: "Oops", message: "Unpaid break in invalid")
 				return
@@ -130,9 +130,9 @@ class AddShiftTVC: UITableViewController {
 		} else {
 			unpaidBreak = nil
 		}
-		
+
 		let notes = notesInput.trimmingCharacters(in: .whitespacesAndNewlines)
-		
+
 		guard let branch = data.branch else {
 			showAlert(title: "Oops", message: "Select a branch for the shift")
 			return
@@ -141,7 +141,7 @@ class AddShiftTVC: UITableViewController {
 			showAlert(title: "Oops", message: "Select a role for the shift")
 			return
 		}
-		
+
 		let noOfShifts: Int?
 		if isOpenShifts{
 			let noOfShiftsInput = noOfShiftsInput.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -149,7 +149,7 @@ class AddShiftTVC: UITableViewController {
 				showAlert(title: "Oops", message: "No of Shifts is empty")
 				return
 			}
-			
+
 			guard let convertedNoOfShifts = Int(noOfShiftsInput) else {
 				showAlert(title: "Oops", message: "No of Shifts in invalid")
 				return
@@ -158,25 +158,25 @@ class AddShiftTVC: UITableViewController {
 		} else{
 			noOfShifts = nil
 		}
-		
+
 		let shiftTime = Date.combineDateWithTime(date: data.selectedDate, time: data.startTime)
-		
+
 		if shiftTime < .now{
 			showAlert(title: "Oops", message: "Please select a future time")
 			return
 		}
-		
+
 		let shiftDuration = Date.getMinutesDifferenceBetween(start: data.startTime, end: data.endTime)
 		if let unpaidBreak = unpaidBreak, unpaidBreak > (shiftDuration / 2) {
 			showAlert(title: "Oops", message: "Break cannot be more than half time of the total shift")
 			return
 		}
-		
+
 		self.startLoading()
 		CloudFunctionsHelper.getAssignedHours(employeeIds: (isOpenShifts ? data.eligibileEmployees : data.employees).compactMap{$0.id}, shiftDate: data.selectedDate){ assignedHours in
 			if let assignedHours = assignedHours{
 				let diff = Int(self.data.endTime.timeIntervalSince1970 - self.data.startTime.timeIntervalSince1970)
-				
+
 				let hours = diff / 3600
 				let overtimeEmployees = assignedHours.filter{
 					let employee = ActiveEmployee.instance?.getEmployee(employeeId:$0.employeeId)
@@ -201,7 +201,7 @@ class AddShiftTVC: UITableViewController {
 					onComplete()
 				}
 			}
-			
+
 		}
 		func onComplete(){
 			var shouldDelete = false
@@ -219,7 +219,7 @@ class AddShiftTVC: UITableViewController {
 			}
 			if self.isOpenShifts || !shouldDelete{
 				let shift = Shift(id: self.shift?.id, shiftStartDate: shiftDate, shiftStartTime: startTime, shiftEndTime: endTime, unpaidBreak: unpaidBreak, branchId: branch.id!, roleId: role.id!, color: color.color.toHex ?? "", notes: notes, employeeId: employeeId, eligibleEmployees: isOpenShifts ? self.data.eligibileEmployees.compactMap{$0.id} : nil, noOfOpenShifts: noOfShifts, updatedAt: self.shift?.updatedAt)
-				
+
 				FirestoreHelper.saveShift(shift){error in
 					if let _ = error {
 						self.stopLoading(){
@@ -235,7 +235,7 @@ class AddShiftTVC: UITableViewController {
 				let shifts = self.data.employees.compactMap{
 					Shift(shiftStartDate: shiftDate, shiftStartTime: startTime, shiftEndTime: endTime, unpaidBreak: unpaidBreak, branchId: branch.id!, roleId: role.id!, color: color.color.toHex ?? "", notes: notes, employeeId: $0.id)
 				}
-				
+
 				FirestoreHelper.saveShifts(shifts){error in
 					if let _ = error {
 						self.stopLoading(){
@@ -254,7 +254,7 @@ class AddShiftTVC: UITableViewController {
 			}
 		}
 	}
-	
+
 	func refreshEligibleEmployees(){
 		CloudFunctionsHelper.getEligibleEmployees(branchId: data.branch?.id, roleId: data.role?.id, shiftDate: data.selectedDate, startTime: data.startTime, endTime: data.endTime){groupedEmployees in
 			var employees = [Employee]()
@@ -334,15 +334,15 @@ extension AddShiftTVC{
 				return cell
 			} else if indexPath.row == 1{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "selectForm", for: indexPath) as! SelectFieldCell
-				
+
 				cell.delegate = self
-				
+
 				cell.picker?.delegate = self
 				cell.picker?.dataSource = self
-				
+
 				cell.label.text = label
 				cell.selectButton.setTitle(placeholder, for: .normal)
-				
+
 				return cell
 			} else if indexPath.row == 2{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "color", for: indexPath) as! ColorPickerCell
@@ -372,7 +372,7 @@ extension AddShiftTVC{
 				configuration.textProperties.font = .preferredFont(forTextStyle: .body)
 				configuration.textProperties.color = .systemGray
 				configuration.textProperties.alignment = .center
-				
+
 				cell.contentConfiguration = configuration
 				return cell
 			} else if (indexPath.section == 1 && indexPath.row == (isBranchSelected ? 1 : 0)) ||
@@ -401,7 +401,7 @@ extension AddShiftTVC{
 			} else {
 				print(indexPath)
 				let cell = tableView.dequeueReusableCell(withIdentifier: "card", for: indexPath) as! CardCell
-				
+
 				cell.card.rightIconClosure = {
 					self.onDeletePress(indexPath)
 				}
@@ -448,18 +448,18 @@ extension AddShiftTVC{
 						cell.card.rightImageContainer.isHidden = false
 					}
 				}
-				
+
 				return cell
 			}
 		}
     }
-	
+
 	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		if section == 0 {
 			return nil
 		}
 		let header = tableView.dequeueReusableCell(withIdentifier: "header") as! SectionHeaderCell
-		
+
 		if section == 1 {
 			header.sectionTitle.text = "Branch"
 		} else if section == 2 {
@@ -469,10 +469,10 @@ extension AddShiftTVC{
 		} else if section == 4 {
 			header.sectionTitle.text = "Eligible Employees"
 		}
-		
+
 		return header.contentView
 	}
-	
+
 	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		if section == 0{return 0}
 		return 42
@@ -481,23 +481,23 @@ extension AddShiftTVC{
 
 
 extension AddShiftTVC{
-	
+
 	@objc func unpaidBreakDidChange(_ textField: UITextField) {
 		unpaidBreakInput = textField.text ?? ""
 	}
-	
+
 	@objc func notesDidChange(_ textField: UITextField) {
 		notesInput = textField.text ?? ""
 	}
-	
+
 	@objc func noOfShiftsDidChange(_ textField: UITextField) {
 		noOfShiftsInput = textField.text ?? ""
 	}
-	
+
 	@objc func onSelectImagePress(){
 		print("pressed")
 	}
-	
+
 	@objc func nameDidChange(_ textField: UITextField) {
 		tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
 	}
@@ -523,27 +523,27 @@ extension AddShiftTVC{
 		}
 		self.refreshEligibleEmployees()
 	}
-	
+
 	@objc func onAddBranchPress(){
 		DispatchQueue.main.async {
 			let viewController = UIStoryboard(name: "BranchPicker", bundle: nil).instantiateViewController(withIdentifier: "BranchPickerVC") as! BranchPickerVC
-			
+
 			viewController.delegate = self
 			viewController.selectedBranch = self.data.branch
 			self.present(UINavigationController(rootViewController: viewController), animated: true)
 		}
 	}
-	
+
 	@objc func onAddRolePress(){
 		DispatchQueue.main.async {
 			let viewController = UIStoryboard(name: "RolePicker", bundle: nil).instantiateViewController(withIdentifier: "RolePickerVC") as! RolePickerVC
-			
+
 			viewController.delegate = self
 			viewController.selectedRole = self.data.role
 			self.present(UINavigationController(rootViewController: viewController), animated: true)
 		}
 	}
-	
+
 	@objc func onAddEmployeePress(){
 		DispatchQueue.main.async {
 			self.present(
@@ -551,12 +551,12 @@ extension AddShiftTVC{
 				animated: true)
 		}
 	}
-	
+
 	@objc func onAddEligibleEmployeePress(){
 		didOpenFromEligibileEmployees = true
 		onAddEmployeePress()
 	}
-	
+
 	@objc func onSelectColorPress() {
 		self.present(ColorPickerVC.getController(delegate: self, selectedColor: data.color.color),
 					 animated:true, completion: nil)
@@ -569,12 +569,12 @@ extension AddShiftTVC:ColorPickerDelegate{
 		data.color = color
 		tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
 	}
-	
+
 	func onCancelColorPicker() {
 		print("cancelled color picker")
 	}
-	
-	
+
+
 }
 
 extension AddShiftTVC: BranchPickerDelegate, RolePickerDelegate, EmployeePickerDelegate{
@@ -590,11 +590,11 @@ extension AddShiftTVC: BranchPickerDelegate, RolePickerDelegate, EmployeePickerD
 			tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
 		}
 	}
-	
+
 	func onCancelBranchPicker() {
 		print("branch picker cancelled")
 	}
-	
+
 	func onSelectRole(role: Role) {
 		let previousIsRoleSelected = isRoleSelecetd
 		if data.role?.id != role.id {
@@ -607,11 +607,11 @@ extension AddShiftTVC: BranchPickerDelegate, RolePickerDelegate, EmployeePickerD
 			tableView.reloadRows(at: [IndexPath(row: 0, section: 2)], with: .automatic)
 		}
 	}
-	
+
 	func onCancelRolePicker() {
 		print("role picker cancelled")
 	}
-	
+
 	func onSelectEmployees(employees: [Employee]) {
 		let wasOpenShifts = isOpenShifts
 		if didOpenFromEligibileEmployees {
@@ -630,7 +630,7 @@ extension AddShiftTVC: BranchPickerDelegate, RolePickerDelegate, EmployeePickerD
 		}
 		didOpenFromEligibileEmployees = false
 	}
-	
+
 	func onCancelEmployeePicker() {
 		print("cancelled employee picker")
 	}
@@ -640,15 +640,15 @@ extension AddShiftTVC: UIPickerViewDelegate, UIPickerViewDataSource{
 	func numberOfComponents(in pickerView: UIPickerView) -> Int {
 		return TimeRangePicker.numberOfComponents(in: pickerView)
 	}
-	
+
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		return TimeRangePicker.pickerView(pickerView, numberOfRowsInComponent: component)
 	}
-	
+
 	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 		return TimeRangePicker.pickerView(pickerView, titleForRow: row, forComponent: component)
 	}
-	
+
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		if let (startTime, endTime) = TimeRangePicker.pickerView(pickerView, didSelectRow: row, inComponent: component){
 			if data.startTime != startTime || data.endTime != endTime{
@@ -656,36 +656,36 @@ extension AddShiftTVC: UIPickerViewDelegate, UIPickerViewDataSource{
 			}
 			data.startTime = startTime
 			data.endTime = endTime
-			
+
 			if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? SelectFieldCell{
 				cell.selectButton.setTitle(Date.buildTimeRangeString(startDate: data.startTime, endDate: data.endTime), for: .normal)
 			}
 		}
 	}
-	
+
 }
 
 extension AddShiftTVC: SelectFieldDelegate{
 	func onDonePress(cell: SelectFieldCell) {}
-	
+
 	func onOpen(cell: SelectFieldCell){
 		let startTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: data.startTime)
 		let endTimeComponents = Calendar.current.dateComponents([.hour, .minute], from: data.endTime)
-		
+
 		let startTimeIndex = TimeRangePicker.startTimes.firstIndex(where: {
 			let components = Calendar.current.dateComponents([.hour, .year, .minute], from: $0)
 			return components.minute == startTimeComponents.minute && components.hour == startTimeComponents.hour
 		}) ?? 0
-		
+
 		let endTimeIndex = TimeRangePicker.endTimes.firstIndex(where:{
 			let components = Calendar.current.dateComponents([.hour, .year, .minute], from: $0)
 			return components.minute == endTimeComponents.minute && components.hour == endTimeComponents.hour
 		}) ?? 0
-		
+
 		cell.picker?.selectRow(startTimeIndex, inComponent: 0, animated: true)
 		cell.picker?.selectRow(endTimeIndex, inComponent: 1, animated: true)
 	}
-	
+
 	@objc func onShiftDateChanged(_ datePicker: UIDatePicker){
 		if data.selectedDate != datePicker.date{
 			self.refreshEligibleEmployees()
