@@ -257,17 +257,38 @@ class ViewShiftVC: UIViewController {
 	@IBAction func onRightActionButtonPress(_ sender: UIButton) {
 		if rightActionType == .approve{
 			self.startLoading()
-			FirestoreHelper.updateShiftStatus(shiftId: shiftId!, status: .approved){ error in
-				if let _ = error{
-					self.stopLoading(){
-						self.showAlert(title: "Oops", message: "Unknown error occured")
-					}
-					return
-				}
+			let employeeId = shift!.employeeId!
+			CloudFunctionsHelper.getAssignedHours(employeeIds: [employeeId], shiftDate: shift!.shiftStartDate){
+				assignedHours in
+				let hours = (assignedHours?.first?.assignedHour ?? 0) + Double(Date.getMinutesDifferenceBetween(start: self.shift!.shiftStartTime, end: self.shift!.shiftEndTime))
+				
+				let maxHours = ActiveEmployee.instance?.getEmployee(employeeId: employeeId)?.maxHours ?? 40
+				
 				self.stopLoading(){
-					self.refreshData()
+					if hours > maxHours{
+						self.showConfirmation(title: "Warning", message: "The user will go overtime if you approve this shift. Do you want to process?"){
+							completeion()
+						}
+					} else {
+						completeion()
+					}
+					
+					func completeion(){
+						FirestoreHelper.updateShiftStatus(shiftId: self.shiftId!, status: .approved){ error in
+							if let _ = error{
+								self.stopLoading(){
+									self.showAlert(title: "Oops", message: "Unknown error occured")
+								}
+								return
+							}
+							self.stopLoading(){
+								self.refreshData()
+							}
+						}
+					}
 				}
 			}
+			
 		} else if rightActionType == .clockIn{
 			clockIn()
 		} else if rightActionType == .clockOut{
