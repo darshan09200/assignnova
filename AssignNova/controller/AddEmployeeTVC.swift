@@ -157,6 +157,7 @@ class AddEmployeeTVC: UITableViewController {
 					color: backgroundColor.toHex ?? "",
 					fcmToken: self.employee?.fcmToken,
 					createdAt: self.employee?.createdAt)
+				employee.customerId = self.employee?.customerId
 				var reference: DocumentReference?
 				reference = FirestoreHelper.saveEmployee(employee){error in
 					if let _ = error {

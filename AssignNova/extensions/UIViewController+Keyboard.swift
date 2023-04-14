@@ -7,6 +7,7 @@
 
 import UIKit
 import Connectivity
+import FirebaseAnalytics
 
 extension UIViewController{
 	static func swizzle() {
@@ -58,6 +59,11 @@ extension UIViewController{
 		offlineView.isLayoutMarginsRelativeArrangement = true
 		offlineView.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
 		offlineView.backgroundColor = .systemYellow
+		
+		Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+			AnalyticsParameterScreenClass: String(describing: self),
+			AnalyticsParameterScreenName: self.navigationItem.title ?? "Unknown"
+		])
 		
 //		self.navigationController?.navigationBar.addSubview(offlineView)
 		

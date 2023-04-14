@@ -2,6 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '13.0'
 
 def shared_pods
+	pod 'FirebaseAnalytics'
 	pod 'FirebaseAuth'
 	pod 'FirebaseFirestore'
 	pod 'FirebaseFirestoreSwift'

@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 import GoogleSignIn
+import FirebaseAnalytics
 
 class SignInVC: UIViewController {
 
@@ -78,6 +79,9 @@ class SignInVC: UIViewController {
 						}
 						return
 					}
+					Analytics.logEvent(AnalyticsEventLogin, parameters: [
+						AnalyticsParameterMethod : "email"
+					])
 //					self.navigateToHome()
 				}
 			}
@@ -149,7 +153,9 @@ class SignInVC: UIViewController {
 									}
 									return
 								}
-								
+								Analytics.logEvent(AnalyticsEventLogin, parameters: [
+									AnalyticsParameterMethod : "google"
+								])
 //								self.navigateToHome()
 							}
 						} else {
@@ -208,15 +214,10 @@ extension SignInVC: OtpInputDelegate{
 				self.showAlert(title: "Oops", message: "Unknown error occured.")
 				return
 			}
+			Analytics.logEvent(AnalyticsEventLogin, parameters: [
+				AnalyticsParameterMethod : "phone"
+			])
 		}
 	}
 	
-	func navigateToHome(){
-		DispatchQueue.main.async {
-			let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
-			let mainTabBarController = storyboard.instantiateViewController(identifier: "HomeNavVC")
-			
-			(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
-		}
-	}
 }

@@ -367,6 +367,9 @@ class FirestoreHelper{
 			} else if activeEmployee.employee.appRole == .employee {
 				filters.append(Filter.whereField("eligibleEmployees", arrayContains: activeEmployee.employee.id!))
 				filters.append(Filter.whereField("eligibleEmployees", isEqualTo: []))
+				if shiftType != .openShift {
+					filters.append(Filter.whereField("employeeId", isEqualTo: activeEmployee.employee.id!))
+				}
 			}
 		}
 		print(businessId)
@@ -426,6 +429,39 @@ class FirestoreHelper{
 			}
 		}
 		return nil
+	}
+	
+	static func offerShift(_ shift: Shift, completion: @escaping(_ error: Error?)->()){
+		if let shiftId = shift.id, let employeeId = ActiveEmployee.instance?.employee.id{
+			
+			var oldShift = shift
+			if ActionsHelper.canEdit(){
+				oldShift.offerStatus = .approved
+			} else {
+				oldShift.offerStatus = .requested
+			}
+			
+			saveShift(oldShift){ error in
+				if let error = error{
+					completion(error)
+					return
+				}
+				if ActionsHelper.canEdit(){
+					var newShift = shift
+					newShift.id = nil
+					newShift.updatedAt = nil
+					newShift.eligibleEmployees = nil
+					newShift.noOfOpenShifts = 1
+					newShift.approvalRequired = true
+					newShift.offered = nil
+					newShift.offerStatus = nil
+					newShift.offerNotes = nil
+					saveShift(newShift, completion: completion)
+				} else {
+					completion(nil)
+				}
+			}
+		}
 	}
 	
 	static func deleteShift(_ shiftId: String, completion: @escaping(_ error: Error?)->()){
@@ -505,6 +541,38 @@ class FirestoreHelper{
 		return nil
 	}
 	
+	static func getOfferdShifts(employeeId: String, completion: @escaping(_ shifts: [Shift]?)->()) -> ListenerRegistration?{
+		if let businessId = ActiveEmployee.instance?.employee.businessId{
+			var docRef = db.collection("shift")
+				.whereField("businessId", isEqualTo: businessId)
+				.whereField("offerStatus", isNotEqualTo: false)
+				.whereField("approvalRequired", isEqualTo: true)
+				.order(by: "offerStatus")
+				.order(by: "shiftStartDate", descending: true)
+				.order(by: "shiftStartTime", descending: true)
+			if !ActionsHelper.canEdit(){
+				docRef = docRef.whereField("employeeId", isEqualTo: employeeId)
+			}
+			return docRef.addSnapshotListener(){ snapshots, err in
+				if let _ = err {
+					completion(nil)
+					return
+				}
+				let shifts = snapshots?.documents
+					.compactMap{ document in
+						return try? document.data(as: Shift.self)
+					}
+					.filter{$0.employeeId != nil}
+					.filter{ActiveEmployee.instance?.getEmployee(employeeId: $0.employeeId!) != nil}
+					.sorted(by: {$0.shiftStartDate > $1.shiftStartDate})
+				completion(shifts)
+			}
+		} else {
+			completion(nil)
+		}
+		return nil
+	}
+	
 	static func getTimeOff(timeOffId: String, completion: @escaping(_ timeOff: TimeOff?)->()) -> ListenerRegistration{
 		let docRef = db.collection("timeOff")
 			.document(timeOffId)
@@ -527,10 +595,39 @@ class FirestoreHelper{
 		], completion: completion)
 	}
 	
-	static func updateShiftStatus(shiftId: String, status: Status, completion: @escaping(_ error: Error?)->()){
-		db.collection("shift").document(shiftId).updateData([
-			"status": status.rawValue
-		], completion: completion)
+	static func updateShiftStatus(shift: Shift, status: Status, completion: @escaping(_ error: Error?)->()){
+		var shift = shift
+		if shift.offered == nil {
+			shift.status = status
+		} else {
+			shift.offerStatus = status
+		}
+		do{
+			try db.collection("shift").document(shift.id!).setData(from: shift){ error in
+				if let error = error{
+					completion(error)
+					return
+				}
+				if shift.offered != nil, shift.offerStatus == .approved{
+					var newShift = shift
+					newShift.id = nil
+					newShift.updatedAt = nil
+					newShift.eligibleEmployees = nil
+					newShift.employeeId = nil
+					newShift.noOfOpenShifts = 1
+					newShift.approvalRequired = true
+					newShift.offered = nil
+					newShift.offerStatus = nil
+					newShift.offerNotes = nil
+					saveShift(newShift, completion: completion)
+				} else {
+					completion(nil)
+				}
+			}
+		}
+		catch{
+			completion(error)
+		}
 	}
 	
 	static func clockIn(for shift: Shift, completion: @escaping(_ error: Error?)->()){

@@ -37,18 +37,17 @@ class ActionsHelper{
 					(employee.roles.count > 0 ? employee.roles.contains(shift.roleId) : true){
 			return true
 		}
-		print(employee)
-		print(shift)
 		return false
 	}
 	
 	static func getAction(for shift: Shift) -> ActionType{
 		guard let employee = ActiveEmployee.instance?.employee,
 			  let employeeId = employee.id else {return .none}
-		if shift.employeeId == nil && shift.shiftStartTime <= .now.zeroSeconds { return .expired}
+		if shift.shiftStartTime <= .now.zeroSeconds && shift.attendance == nil && shift.offered == nil { return .expired}
 		if canTake(shift: shift) {
 			return .takeShift
-		} else if shift.approvalRequired && shift.status == .requested{
+		}
+		if shift.approvalRequired && shift.status == .requested{
 			if canEdit(){
 				return .approve
 			} else {
@@ -56,7 +55,9 @@ class ActionsHelper{
 			}
 		} else if shift.approvalRequired && shift.status == .declined{
 			return .declined
-		} else if employeeId == shift.employeeId && (shift.approvalRequired ? shift.status == .approved : true){
+		}
+		
+		if employeeId == shift.employeeId && (shift.approvalRequired ? shift.status == .approved : true){
 			if let attendance = shift.attendance {
 				let breaks = attendance.breaks
 				if attendance.clockedOutAt == nil{
@@ -70,7 +71,21 @@ class ActionsHelper{
 				}
 			} else if (.now.zeroSeconds >= Date.combineDateWithTime(date: shift.shiftStartDate, time: shift.shiftStartTime).zeroSeconds.add(minute: -5) ) && (.now.zeroSeconds < Date.combineDateWithTime(date: shift.shiftStartDate, time: shift.shiftEndTime).zeroSeconds){
 				return .clockIn
+			} else if shift.offered == nil {
+				return .offerShift
 			}
+		}
+		if let offered = shift.offered, offered,
+					let offerStatus = shift.offerStatus{
+			if offerStatus == .requested {
+				if canEdit(){
+					return .approve
+				} else {
+					return .requested
+				}
+			}
+			if offerStatus == .approved {return .offerApproved}
+			if offerStatus == .declined {return .offerDeclined}
 		}
 		
 		return .none
@@ -86,8 +101,6 @@ class ActionsHelper{
 				return true
 			}
 		}
-		print(shift.attendance?.totalBreakTime)
-		print(shift.unpaidBreak)
 		return false
 	}
 	

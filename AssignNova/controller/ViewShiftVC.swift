@@ -10,7 +10,7 @@ import LetterAvatarKit
 import FirebaseFirestore
 import CoreLocation
 
-enum ActionType{
+enum ActionType: String{
 	case takeShift
 	case requested
 	case approve
@@ -23,6 +23,11 @@ enum ActionType{
 	case completed
 	case none
 	case expired
+	case offerShift
+	case offerApprove
+	case offerDeny
+	case offerApproved
+	case offerDeclined
 }
 
 class ViewShiftVC: UIViewController {
@@ -30,7 +35,7 @@ class ViewShiftVC: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var leftActionButton: UIButton!
 	@IBOutlet weak var rightActionButton: UIButton!
-	
+	var okAction: UIAlertAction?
 	
 	private var reference: DocumentReference?
 	var isOpenShifts: Bool{
@@ -87,30 +92,46 @@ class ViewShiftVC: UIViewController {
 				
 				let action = ActionsHelper.getAction(for: shift)
 				
+				print(action.rawValue)
+				
 				self.leftActionType = .none
 				self.rightActionType = .none
+				
+				self.leftActionButton.isUserInteractionEnabled = true
+				self.rightActionButton.isUserInteractionEnabled = true
 				
 				if action == .takeShift{
 					self.leftActionType = .takeShift
 					self.leftActionButton.isHidden = false
 					self.leftActionButton.setTitle("Take Shift", for: .normal)
 					self.leftActionButton.tintColor = UIColor(named: "AccentColor")
-				} else if action == .approve{
-					self.leftActionType = .deny
+				} else if action == .approve || action == .offerApprove{
+					self.leftActionType = action == .offerApprove ? .offerDeny : .deny
 					self.leftActionButton.isHidden = false
 					self.leftActionButton.setTitle("Deny", for: .normal)
 					self.leftActionButton.tintColor = .systemRed
 					
-					self.rightActionType = .approve
+					self.rightActionType = action == .offerApprove ? .offerApprove : .approve
 					self.rightActionButton.isHidden = false
 					self.rightActionButton.setTitle("Approve", for: .normal)
 					self.rightActionButton.tintColor = UIColor(named: "AccentColor")
-				} else if action == .declined{
+				} else if action == .declined || action == .offerDeclined{
 					self.leftActionType = .none
 					self.leftActionButton.isHidden = false
 					self.leftActionButton.setTitle("Declined", for: .normal)
 					self.leftActionButton.tintColor = .systemRed
 					self.leftActionButton.isUserInteractionEnabled = false
+				} else if action == .offerApproved {
+					self.leftActionType = .none
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("Offered", for: .normal)
+					self.leftActionButton.tintColor = .systemYellow
+					self.leftActionButton.isUserInteractionEnabled = false
+				} else if action == .offerShift{
+					self.leftActionType = .offerShift
+					self.leftActionButton.isHidden = false
+					self.leftActionButton.setTitle("Offer Shift", for: .normal)
+					self.leftActionButton.tintColor = .systemYellow
 				} else if action == .clockIn{
 					if self.currentLocation == nil{
 						self.locManager.requestWhenInUseAuthorization()
@@ -155,7 +176,7 @@ class ViewShiftVC: UIViewController {
 					self.leftActionButton.setTitle("Expired", for: .normal)
 					self.leftActionButton.tintColor = .systemRed
 					self.leftActionButton.isUserInteractionEnabled = false
-				} else if action == .requested {
+				} else if action == .requested  {
 					self.leftActionType = .none
 					self.leftActionButton.isHidden = false
 					self.leftActionButton.setTitle("Waiting for Approval", for: .normal)
@@ -211,9 +232,9 @@ class ViewShiftVC: UIViewController {
 				self.showAlert(title: "Oops", message: "Shift has expired")
 				refreshData()
 			}
-		} else if leftActionType == .deny{
+		} else if leftActionType == .deny || leftActionType == .offerDeny{
 			self.startLoading()
-			FirestoreHelper.updateShiftStatus(shiftId: shiftId!, status: .declined){ error in
+			FirestoreHelper.updateShiftStatus(shift: shift!, status: .declined){ error in
 				if let _ = error{
 					self.stopLoading(){
 						self.showAlert(title: "Oops", message: "Unknown error occured")
@@ -258,8 +279,43 @@ class ViewShiftVC: UIViewController {
 					self.refreshData()
 				}
 			}
+		} else if leftActionType == .offerShift {
+			let alert = UIAlertController(title: "Offer Shift", message: "Enter some additional notes for the owner/manager regarding why you want to offer this shift.", preferredStyle: .alert)
 			
+			self.okAction = UIAlertAction(title: "OK", style: .default, handler: {_ in
+				self.shift?.offerNotes = alert.textFields![0].text
+				self.shift?.offered = true
+				if let shift = self.shift{
+					self.startLoading()
+					FirestoreHelper.offerShift(shift){error in
+						if let _ = error{
+							self.stopLoading(){
+								self.showAlert(title: "Oops", message: "Unknown error occured")
+							}
+							return
+						}
+						self.stopLoading(){
+							self.refreshData()
+						}
+					}
+					
+				}
+			})
+			
+			alert.addTextField { (textField) in
+				textField.placeholder = "Notes"
+				textField.addTarget(self, action: #selector(self.offerNotesTextFieldChanged(_:)), for: .editingChanged)
+				self.okAction?.isEnabled = false
+			}
+			
+			alert.addAction(okAction!)
+			
+			self.present(alert, animated: true, completion: nil)
 		}
+	}
+	
+	@objc func offerNotesTextFieldChanged(_ textfield: UITextField) {
+		self.okAction?.isEnabled = (textfield.text?.count ?? 0) > 0
 	}
 	
 	@IBAction func onRightActionButtonPress(_ sender: UIButton) {
@@ -282,7 +338,7 @@ class ViewShiftVC: UIViewController {
 					}
 					
 					func completeion(){
-						FirestoreHelper.updateShiftStatus(shiftId: self.shiftId!, status: .approved){ error in
+						FirestoreHelper.updateShiftStatus(shift: self.shift!, status: .approved){ error in
 							if let _ = error{
 								self.stopLoading(){
 									self.showAlert(title: "Oops", message: "Unknown error occured")
@@ -294,6 +350,21 @@ class ViewShiftVC: UIViewController {
 							}
 						}
 					}
+				}
+			}
+			
+		} else if rightActionType == .offerApprove{
+			self.startLoading()
+			
+			FirestoreHelper.updateShiftStatus(shift: self.shift!, status: .approved){ error in
+				if let _ = error{
+					self.stopLoading(){
+						self.showAlert(title: "Oops", message: "Unknown error occured")
+					}
+					return
+				}
+				self.stopLoading(){
+					self.refreshData()
 				}
 			}
 			
@@ -397,6 +468,32 @@ extension ViewShiftVC: UITableViewDelegate, UITableViewDataSource{
 				} else {
 					cell.noteHeadingLabel.isHidden = true
 					cell.noteLabel.isHidden = true
+				}
+				
+				if let offerNotes = shift.offerNotes{
+					cell.offerNoteHeadingLabel.isHidden = false
+					cell.offerNoteLabel.isHidden = false
+					cell.offerNoteLabel.text = offerNotes
+				} else {
+					cell.offerNoteHeadingLabel.isHidden = true
+					cell.offerNoteLabel.isHidden = true
+				}
+				
+				if let attendance = shift.attendance{
+					cell.clockedInLabel.isHidden = false
+					cell.clockedInLabel.text = "Clocked In At: " + attendance.clockedInAt.format(to: "EEEE, MMM d, YYYY 'at' hh:mm a")
+					
+					if let clockedOutAt = attendance.clockedOutAt{
+						cell.clockedOutLabel.text = "Clocked Out At: " + clockedOutAt.format(to: "EEEE, MMM d, YYYY 'at' hh:mm a")
+					} else {
+						cell.clockedOutLabel.isHidden = false
+					}
+					cell.breakTimeLabel.isHidden = false
+					cell.breakTimeLabel.text = "Total Break Time: \(attendance.totalBreakTime) mins"
+				} else {
+					cell.clockedInLabel.isHidden = true
+					cell.clockedOutLabel.isHidden = true
+					cell.breakTimeLabel.isHidden = true
 				}
 			}
 			return cell
@@ -524,8 +621,8 @@ extension ViewShiftVC{
 			}
 		}
 		
-		func secondsToHoursMinutes(_ seconds: Int) -> String {
-			return "\(String(format: "%02d", seconds / 3600)):\(String(format:"%02d", (seconds % 3600) / 60))"
-		}
+	}
+	func secondsToHoursMinutes(_ seconds: Int) -> String {
+		return "\(String(format: "%02d", seconds / 3600)):\(String(format:"%02d", (seconds % 3600) / 60))"
 	}
 }

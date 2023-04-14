@@ -139,36 +139,37 @@ class EditBusinessVC: UIViewController {
 	}
 	
 	@IBAction func onSavePress(_ sender: Any) {
-			guard let businessName = businessNameInput.textFieldComponent.text, !businessName.isEmpty else {
-				showAlert(title: "Oops", message: "Business name is empty", textInput: businessNameInput)
-				return
-			}
+		guard let businessName = businessNameInput.textFieldComponent.text, !businessName.isEmpty else {
+			showAlert(title: "Oops", message: "Business name is empty", textInput: businessNameInput)
+			return
+		}
 		
-			guard let numberOfEmployees = numberOfEmployeeInput.textFieldComponent.text, !numberOfEmployees.isEmpty else {
-				showAlert(title: "Oops", message: "Number of Employees is empty", textInput: businessNameInput)
-				return
-			}
-			guard let noOfEmpCount = Int(numberOfEmployees) else {
-				showAlert(title: "Oops", message: "Number of Employees is invalid", textInput: businessNameInput)
-				return
-			}
-			
+		guard let numberOfEmployees = numberOfEmployeeInput.textFieldComponent.text, !numberOfEmployees.isEmpty else {
+			showAlert(title: "Oops", message: "Number of Employees is empty", textInput: businessNameInput)
+			return
+		}
+		guard let noOfEmpCount = Int(numberOfEmployees) else {
+			showAlert(title: "Oops", message: "Number of Employees is invalid", textInput: businessNameInput)
+			return
+		}
+		
 		var business = Business(id: business?.id, name: businessName, address: place == nil ? business!.address : place!.formattedAddress ?? "", noOfEmployees: noOfEmpCount, location: place == nil ? business!.location: GeoPoint(latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude), createdAt: business?.createdAt)
 		if let managedBy = self.business?.managedBy{
 			business.managedBy = managedBy
 		}
-			self.startLoading()
-			FirestoreHelper.editBusiness(business){ error in
-				if let error = error{
-					self.stopLoading(){
-						self.showAlert(title: "Oops", message: "Unknown error occured")
-					}
-					return
-				}
+		business.subscriptionId = self.business?.subscriptionId
+		self.startLoading()
+		FirestoreHelper.editBusiness(business){ error in
+			if let error = error{
 				self.stopLoading(){
-					self.dismiss(animated: true)
+					self.showAlert(title: "Oops", message: "Unknown error occured")
 				}
+				return
 			}
+			self.stopLoading(){
+				self.dismiss(animated: true)
+			}
+		}
 		
 	}
 	

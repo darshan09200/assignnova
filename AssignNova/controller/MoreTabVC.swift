@@ -10,30 +10,39 @@ import FirebaseAuth
 
 class MoreTabVC: UIViewController {
 
+	@IBOutlet weak var employeeNameLabel: UILabel!
+	@IBOutlet weak var businessNameLabel: UILabel!
+	
 	@IBOutlet weak var profileButton: NavigationItem!
 	@IBOutlet weak var branchButton: NavigationItem!
 	@IBOutlet weak var roleButton: NavigationItem!
 	@IBOutlet weak var employeeButton: NavigationItem!
 	@IBOutlet weak var paymentButton: NavigationItem!
 	
+	@IBOutlet weak var changePasswordButton: NavigationItem!
+	
+	@IBOutlet weak var logoutButton: NavigationItem!
+	
 	var employee: Employee?
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 
+		logoutButton.labelComponent.textColor = .systemRed
+		logoutButton.imageView.tintColor = .systemRed
+		logoutButton.rightImageComponent.isHidden = true
+		
 		if let employee = ActiveEmployee.instance?.employee{
 			self.employee = employee
-			profileButton.isHidden = false
-			branchButton.isHidden = true
+			employeeNameLabel.text = employee.name
+			businessNameLabel.text = ActiveEmployee.instance?.business?.name ?? "Business"
 			roleButton.isHidden = true
 			employeeButton.isHidden = true
 			paymentButton.isHidden = true
 			if employee.appRole == .manager || employee.appRole == .shiftSupervisor{
-				branchButton.isHidden = false
 				roleButton.isHidden = false
 				employeeButton.isHidden = false
 			} else if employee.appRole == .owner{
-				branchButton.isHidden = false
 				roleButton.isHidden = false
 				employeeButton.isHidden = false
 				paymentButton.isHidden = false
@@ -91,7 +100,7 @@ class MoreTabVC: UIViewController {
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
-	@IBAction func onLogoutPress(_ sender: UIButton) {
+	@IBAction func onLogoutPress(_ sender: Any) {
 		CloudFunctionsHelper.logout()
 	}
 }

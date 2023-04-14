@@ -26,7 +26,7 @@ class CloudFunctionsHelper{
 								if let business = business, let _ = business.id{
 									activeEmployee.business = business
 								}
-								if OfflineHelper.instance.isConnected{
+//								if OfflineHelper.instance.isConnected{
 									getSubscriptionDetails(businessId: employee.businessId){ subscriptionDetail in
 										activeEmployee.isFetchingSubscription = false
 										activeEmployee.subscriptionDetail = subscriptionDetail
@@ -36,12 +36,12 @@ class CloudFunctionsHelper{
 											completion(ActiveEmployee.instance)
 										}
 									}
-								} else {
-									ActiveEmployee.instance = activeEmployee
-									if let completion = completion{
-										completion(ActiveEmployee.instance)
-									}
-								}
+//								} else {
+//									ActiveEmployee.instance = activeEmployee
+//									if let completion = completion{
+//										completion(ActiveEmployee.instance)
+//									}
+//								}
 							}
                         } else {
                             ActiveEmployee.instance = nil

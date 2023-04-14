@@ -119,6 +119,7 @@
 		55B3446429CA6C5300CC73DD /* RoleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3446329CA6C5300CC73DD /* RoleDetailCell.swift */; };
 		55B3B8C529C60C4000B3DA5E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B3B8C429C60C4000B3DA5E /* UIHelper.swift */; };
 		55B3B8C729C6122600B3DA5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */; };
+		55BBD9DE29E9DA2700DEDF7E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BBD9DD29E9DA2700DEDF7E /* AdSupport.framework */; };
 		55BDF09429C93FB00050D223 /* AddBranchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BDF09329C93FB00050D223 /* AddBranchVC.swift */; };
 		55C4120929C4A0000073A8CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120829C4A0000073A8CD /* AppDelegate.swift */; };
 		55C4120B29C4A0000073A8CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4120A29C4A0000073A8CD /* SceneDelegate.swift */; };
@@ -308,6 +309,7 @@
 		55B3446329CA6C5300CC73DD /* RoleDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleDetailCell.swift; sourceTree = "<group>"; };
 		55B3B8C429C60C4000B3DA5E /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		55B3B8C629C6122600B3DA5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55BBD9DD29E9DA2700DEDF7E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		55BDF09329C93FB00050D223 /* AddBranchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBranchVC.swift; sourceTree = "<group>"; };
 		55C4120529C4A0000073A8CD /* AssignNova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssignNova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C4120829C4A0000073A8CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96DD43F00D87440E041F33A /* Pods_AssignNova.framework in Frameworks */,
+				55BBD9DE29E9DA2700DEDF7E /* AdSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +647,7 @@
 		84FAFF25A4BCA465E4CE9102 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55BBD9DD29E9DA2700DEDF7E /* AdSupport.framework */,
 				552C099B29E742EC00969DC9 /* Intents.framework */,
 				5584B29AC74461F9EE4705A2 /* Pods_AssignNova.framework */,
 				38E611A8E9065F6C586B8291 /* Pods_Siri.framework */,

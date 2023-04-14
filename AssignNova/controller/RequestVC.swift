@@ -61,8 +61,24 @@ class RequestVC: UIViewController {
 					}
 					self.tableView.reloadData()
 				}
-			} else {
+			} else if requestTypeSegment.selectedSegmentIndex == 1 {
 				listener = FirestoreHelper.getOpenShifts(employeeId: employeeId){ openShifts in
+					if let openShifts = openShifts, openShifts.count > 0{
+						var groupedOpenShifts = [Status.requested, Status.approved, Status.declined].compactMap{GroupedOpenShift(status: $0, shifts: [])}
+						for openShift in openShifts {
+							let index = groupedOpenShifts.firstIndex{$0.status == openShift.status}
+							if let index = index{
+								groupedOpenShifts[index].shifts.append(openShift)
+							}
+						}
+						self.groupedOpenShifts = groupedOpenShifts
+					} else {
+						self.groupedOpenShifts = []
+					}
+					self.tableView.reloadData()
+				}
+			} else {
+				listener = FirestoreHelper.getOfferdShifts(employeeId: employeeId){ openShifts in
 					if let openShifts = openShifts, openShifts.count > 0{
 						var groupedOpenShifts = [Status.requested, Status.approved, Status.declined].compactMap{GroupedOpenShift(status: $0, shifts: [])}
 						for openShift in openShifts {

@@ -16,6 +16,8 @@ class NavigationItem: UIView {
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var labelComponent: UILabel!
 	
+	@IBOutlet weak var rightImageComponent: UIImageView!
+	
 	@IBInspectable
 	var label: String?{
 		didSet{

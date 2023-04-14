@@ -11,5 +11,5 @@ enum Status: String, CaseIterable, Codable {
 	case requested = "Requested"
 	case pending = "Pending"
 	case approved = "Approved"
-	case declined = "Declined"
+	case declined = "Declined"	
 }
