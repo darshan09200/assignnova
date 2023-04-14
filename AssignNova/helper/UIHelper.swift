@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class UIHelper{
 	static func getTopConstraintToMakeBottom(contentView: UIView, view: UIView, topContentHeight: CGFloat, padding: CGFloat = 16, navbarHeight: CGFloat? = 0)-> CGFloat{
@@ -19,6 +21,22 @@ class UIHelper{
 			return mainViewHeight - topContentHeight - (padding * 2) - view.frame.height
 		}
 		return padding
+	}
+	
+	static func openInMap(latitude: CLLocationDegrees, longitude: CLLocationDegrees, name: String){
+		let regionDistance:CLLocationDistance = 10000
+		let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+		let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+		let options = [
+			MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+			MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+		]
+		let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+		let mapItem = MKMapItem(placemark: placemark)
+		mapItem.name = name
+		mapItem.openInMaps(launchOptions: options)
+		
+		print("called")
 	}
 	
 }

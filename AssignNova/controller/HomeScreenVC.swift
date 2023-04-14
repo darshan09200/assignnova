@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class HomeScreenVC:  UIViewController {
 	
@@ -17,6 +18,7 @@ class HomeScreenVC:  UIViewController {
 	@IBOutlet weak var roleButton: NavigationItem!
 	@IBOutlet weak var employeeButton: NavigationItem!
 	
+	@IBOutlet weak var shiftTravelLabel: UIButton!
 	
 	@IBOutlet weak var completedHoursLabel: UILabel!
 	@IBOutlet weak var pendingHoursLabel: UILabel!
@@ -29,7 +31,8 @@ class HomeScreenVC:  UIViewController {
 	@IBOutlet weak var noRecordLabel: UILabel!
 	
 	var shiftStats: ShiftStats?
-	
+
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -43,6 +46,7 @@ class HomeScreenVC:  UIViewController {
 		FirestoreHelper.getCurrentWeekStats(){ shiftStats in
 			self.shiftStats = shiftStats
 			self.refreshUI()
+			
 		}
 		
 		let gesture = UITapGestureRecognizer(target: self, action: #selector(onShiftPress(_ :)))
@@ -60,6 +64,14 @@ class HomeScreenVC:  UIViewController {
 		
 		if let employee = ActiveEmployee.instance?.employee{
 			helloLabel.text = "Good \(greeting), \(employee.firstName)"
+		}
+
+	}
+	
+	@IBAction func onOpenInMaps(_ sender: Any) {
+		if let branchId = shiftStats?.upcomingShift?.branchId,
+		let branch = ActiveEmployee.instance?.getBranch(branchId: branchId){
+			UIHelper.openInMap(latitude: branch.location.latitude, longitude: branch.location.longitude, name: branch.name)
 		}
 	}
 	
@@ -104,12 +116,14 @@ class HomeScreenVC:  UIViewController {
 			pendingHoursLabel.text = "\(String(format:"%.2f",shiftStats.pendingHours)) hrs"
 			
 			var shift: Shift?
+			shiftTravelLabel.isHidden = true
 			if let ongoingShift = shiftStats.ongoingShift{
 				shift = ongoingShift
 				shiftLabel.text = "Ongoing Shift"
 			} else if let upcomingShift = shiftStats.upcomingShift{
 				shift = upcomingShift
 				shiftLabel.text = "Next Shift"
+				shiftTravelLabel.isHidden = false
 			}
 			
 			if let shift = shift{
@@ -178,7 +192,22 @@ class HomeScreenVC:  UIViewController {
 	}
 }
 
-
-
-
-
+//extension HomeScreenVC: CLLocationManagerDelegate{
+//	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+//		if(manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse) {
+//			self.currentLocation = manager.location
+//
+//			print(currentLocation)
+//			getStats()
+//		}
+//	}
+//
+//	func getStats(){
+//		if let branchId = shiftStats?.upcomingShift?.branchId,
+//		   let branch = ActiveEmployee.instance?.getBranch(branchId: branchId),
+//		   let currentLocation = currentLocation {
+//			let source = currentLocation.coordinate
+//			CloudFunctionsHelper.getTravelTime(source: source, dest: CLLocationCoordinate2D(latitude: branch.location.latitude, longitude: branch.location.longitude))
+//		}
+//	}
+//}

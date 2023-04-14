@@ -72,10 +72,17 @@ class EditBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.rightView = addBtnView
 		addButton.addTarget(self, action: #selector(onAddPress(_:)), for: .touchUpInside)
 
+		numberOfEmployeeInput.textFieldComponent.addTarget(self, action: #selector(onNumberOfEmployeeChange), for: .editingChanged)
 		
 		refreshPlans()
 	}
 
+	
+	@objc func onNumberOfEmployeeChange(){
+		refreshPlans()
+	}
+
+	
 	@objc func onLogoutPress(){
 		CloudFunctionsHelper.logout()
 	}

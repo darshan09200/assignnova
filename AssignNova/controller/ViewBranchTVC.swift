@@ -45,6 +45,11 @@ class ViewBranchTVC: UITableViewController {
 		viewController.branch = branch
 		self.present(UINavigationController(rootViewController: viewController), animated: true)
 	}
+	@IBAction func onMapPress(_ sender: Any) {
+		if let branch = branch {
+			UIHelper.openInMap(latitude: branch.location.latitude, longitude: branch.location.longitude, name: branch.name)
+		}
+	}
 }
 extension ViewBranchTVC{
 

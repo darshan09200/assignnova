@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFunctions
 import FirebaseSharedSwift
+import CoreLocation
 
 class CloudFunctionsHelper{
 	static var userId: String?{
@@ -330,6 +331,49 @@ class CloudFunctionsHelper{
 			completion(nil)
 		}
 	}
+	
+//	static func getTravelTime(source: CLLocationCoordinate2D, dest: CLLocationCoordinate2D){
+//		if let apiKey = ProcessInfo.processInfo.environment["MAPS_API_KEY"]{
+//			
+//			let url = URL(string:"https://maps.googleapis.com/maps/api/directions/json")!
+//			let data = [
+//				"origin": "\(source.latitude),\(source.longitude)",
+//				"destination": "\(dest.latitude),\(dest.longitude)",
+//				"key": apiKey
+//			]
+//			var request = URLRequest(url: url)
+//			request.httpMethod = "POST"
+//			
+//			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//			request.addValue("application/json", forHTTPHeaderField: "Accept")
+//			do{
+//				request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+//			} catch{
+//				
+//			}
+//			
+//			let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+//				if error != nil {
+//					return
+//				}
+//				
+//				guard let httpResponse = response as? HTTPURLResponse,
+//					  (200...299).contains(httpResponse.statusCode) else {
+//					return
+//				}
+//				
+//				if let data = data,
+//				   let json = try? JSONSerialization.jsonObject(with: data, options: []),
+//				   let responseJSON = json as? [String: Any],
+//					let arrivalTime = responseJSON["arrivalTime"] as? String,
+//					let transitMode = responseJSON["transit_mode"] as? String{
+//					
+//					"\(transitMode.uppercased()) - "
+//				}
+//			})
+//			task.resume()
+//		}
+//	}
 }
 
 struct AccountExistResponse: Decodable{

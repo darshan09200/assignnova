@@ -53,17 +53,17 @@
             <objects>
                 <viewController id="Q42-BW-YWJ" customClass="HomeScreenVC" customModule="AssignNova" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WYP-It-CqC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6LF-wR-MUi">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6LF-wR-MUi">
+                                <rect key="frame" x="0.0" y="103" width="393" height="814"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQW-62-zWX">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="927.66666666666663"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQW-62-zWX">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="990"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="T2j-0x-ZWa">
-                                                <rect key="frame" x="16" y="16" width="361" height="895.66666666666663"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="T2j-0x-ZWa">
+                                                <rect key="frame" x="16" y="16" width="361" height="958"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAF-nw-lbl">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="26.333333333333332"/>
@@ -96,7 +96,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RH1-Ip-7Yp" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RH1-Ip-7Yp" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="99.333333333333343" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
@@ -108,7 +108,7 @@
                                                             <outletCollection property="gestureRecognizers" destination="v0b-u2-LvY" appends="YES" id="eOc-Iu-A8T"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10d-2r-ZeF" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="10d-2r-ZeF" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="163.33333333333331" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
@@ -120,7 +120,7 @@
                                                             <outletCollection property="gestureRecognizers" destination="25P-6H-Ndw" appends="YES" id="y2u-Sz-OY7"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqp-aQ-f70" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqp-aQ-f70" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="227.33333333333331" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
@@ -132,7 +132,7 @@
                                                             <outletCollection property="gestureRecognizers" destination="yHD-f2-mSe" appends="YES" id="5Wh-t0-kQz"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Np-1I-7n5" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Np-1I-7n5" customClass="NavigationItem" customModule="AssignNova" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="291.33333333333331" width="361" height="52"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <gestureRecognizers/>
@@ -144,7 +144,7 @@
                                                             <outletCollection property="gestureRecognizers" destination="jwZ-sF-cuJ" appends="YES" id="HmP-IV-gnu"/>
                                                         </connections>
                                                     </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3JX-8p-KaF">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3JX-8p-KaF">
                                                         <rect key="frame" x="0.0" y="355.33333333333331" width="361" height="166.33333333333331"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stats for this week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0t-2a-lwk">
@@ -249,8 +249,8 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="COO-eI-1Fd">
-                                                        <rect key="frame" x="0.0" y="533.66666666666663" width="361" height="200.33333333333337"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="COO-eI-1Fd">
+                                                        <rect key="frame" x="0.0" y="533.66666666666663" width="361" height="262.66666666666663"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Shift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQQ-b9-kTU">
                                                                 <rect key="frame" x="16" y="15.999999999999998" width="329" height="20.333333333333329"/>
@@ -258,7 +258,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WhN-Qq-yrO" customClass="Card" customModule="AssignNova" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WhN-Qq-yrO" customClass="Card" customModule="AssignNova" customModuleProvider="target">
                                                                 <rect key="frame" x="16" y="48.333333333333371" width="329" height="60"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <gestureRecognizers/>
@@ -269,7 +269,7 @@
                                                                     <outletCollection property="gestureRecognizers" destination="OEg-h0-8Tx" appends="YES" id="Qtg-A9-vqA"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="No Shifts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGC-Pz-c8D">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Shifts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGC-Pz-c8D">
                                                                 <rect key="frame" x="16" y="120.33333333333337" width="329" height="64"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="64" id="C2V-WV-rck"/>
@@ -278,6 +278,15 @@
                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXo-Zz-tKJ">
+                                                                <rect key="frame" x="16" y="196.33333333333337" width="329" height="50.333333333333343"/>
+                                                                <color key="tintColor" name="AccentColor"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="filled" title="Open Branch in Maps" buttonSize="large"/>
+                                                                <connections>
+                                                                    <action selector="onOpenInMaps:" destination="Q42-BW-YWJ" eventType="touchUpInside" id="vXF-11-qcC"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                         <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
@@ -287,8 +296,8 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="tM7-7C-k1t">
-                                                        <rect key="frame" x="0.0" y="746" width="361" height="149.66666666666663"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="tM7-7C-k1t">
+                                                        <rect key="frame" x="0.0" y="808.33333333333337" width="361" height="149.66666666666663"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bulb" translatesAutoresizingMaskIntoConstraints="NO" id="U3E-Wm-luJ">
                                                                 <rect key="frame" x="16" y="16" width="329" height="64"/>
@@ -358,6 +367,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="AssignNova" largeTitleDisplayMode="never" id="C57-3s-5jr"/>
+                    <size key="freeformSize" width="393" height="1000"/>
                     <connections>
                         <outlet property="branchButton" destination="10d-2r-ZeF" id="WHJ-IE-ywK"/>
                         <outlet property="completedHoursLabel" destination="XdN-Bc-VjJ" id="z8o-JB-dfl"/>
@@ -372,6 +382,7 @@
                         <outlet property="roleButton" destination="aqp-aQ-f70" id="UpP-Pl-aXN"/>
                         <outlet property="shiftCard" destination="WhN-Qq-yrO" id="WOU-C1-V0R"/>
                         <outlet property="shiftLabel" destination="rQQ-b9-kTU" id="DWM-ko-ine"/>
+                        <outlet property="shiftTravelLabel" destination="nXo-Zz-tKJ" id="4Sn-kV-VIu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCE-i3-5Nt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -839,6 +850,7 @@
                     <navigationItem key="navigationItem" title="More" largeTitleDisplayMode="never" id="rpH-bP-jo4"/>
                     <size key="freeformSize" width="393" height="1000"/>
                     <connections>
+                        <outlet property="appStack" destination="zKn-6b-cPf" id="M5T-Ty-Dtp"/>
                         <outlet property="branchButton" destination="B8m-Jv-ztE" id="ZiU-gV-2yn"/>
                         <outlet property="businessNameLabel" destination="a8E-Qq-57g" id="per-oz-P2I"/>
                         <outlet property="changePasswordButton" destination="jOd-xE-iVv" id="MSG-ss-ZhL"/>

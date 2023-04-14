@@ -228,7 +228,8 @@ extension SchedulerVC: UITableViewDelegate, UITableViewDataSource{
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let header = tableView.dequeueReusableCell(withIdentifier: "header") as! SectionHeaderCell
-		if dateGroup.count < section {return nil}
+
+		if section >= dateGroup.count {return nil}
 		let date = dateGroup[section]
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "EEEE, MMM d"

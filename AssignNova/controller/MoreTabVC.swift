@@ -7,9 +7,11 @@
 
 import UIKit
 import FirebaseAuth
+import IntentsUI
 
 class MoreTabVC: UIViewController {
 
+	@IBOutlet weak var appStack: UIStackView!
 	@IBOutlet weak var employeeNameLabel: UILabel!
 	@IBOutlet weak var businessNameLabel: UILabel!
 	
@@ -22,6 +24,12 @@ class MoreTabVC: UIViewController {
 	@IBOutlet weak var changePasswordButton: NavigationItem!
 	
 	@IBOutlet weak var logoutButton: NavigationItem!
+	
+	public var intent: MyShiftIntent {
+		let testIntent = MyShiftIntent()
+		testIntent.suggestedInvocationPhrase = "Show My Shifts"
+		return testIntent
+	}
 	
 	var employee: Employee?
 	
@@ -48,6 +56,12 @@ class MoreTabVC: UIViewController {
 				paymentButton.isHidden = false
 			}
 		}
+		
+		let button = INUIAddVoiceShortcutButton(style: .automaticOutline)
+		button.shortcut = INShortcut(intent: intent )
+		button.delegate = self
+		
+		appStack.addArrangedSubview(button)
     }
 
 	@IBAction func onProfilePress(_ sender: Any) {
@@ -104,3 +118,46 @@ class MoreTabVC: UIViewController {
 		CloudFunctionsHelper.logout()
 	}
 }
+
+extension MoreTabVC: INUIAddVoiceShortcutButtonDelegate {
+	func present(_ addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
+		addVoiceShortcutViewController.delegate = self
+		addVoiceShortcutViewController.modalPresentationStyle = .formSheet
+		present(addVoiceShortcutViewController, animated: true, completion: nil)
+	}
+	
+	func present(_ editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
+		editVoiceShortcutViewController.delegate = self
+		editVoiceShortcutViewController.modalPresentationStyle = .formSheet
+		present(editVoiceShortcutViewController, animated: true, completion: nil)
+	}
+	
+	
+}
+
+extension MoreTabVC: INUIAddVoiceShortcutViewControllerDelegate {
+	func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
+		controller.dismiss(animated: true, completion: nil)
+	}
+	
+	func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
+		controller.dismiss(animated: true, completion: nil)
+	}
+	
+	
+}
+
+extension MoreTabVC: INUIEditVoiceShortcutViewControllerDelegate {
+	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didUpdate voiceShortcut: INVoiceShortcut?, error: Error?) {
+		controller.dismiss(animated: true, completion: nil)
+	}
+	
+	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID) {
+		controller.dismiss(animated: true, completion: nil)
+	}
+	
+	func editVoiceShortcutViewControllerDidCancel(_ controller: INUIEditVoiceShortcutViewController) {
+		controller.dismiss(animated: true, completion: nil)
+	}
+}
+

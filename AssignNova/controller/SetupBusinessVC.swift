@@ -65,6 +65,7 @@ class SetupBusinessVC: UIViewController {
 		numberOfEmployeeInput.textFieldComponent.rightView = addBtnView
 		addButton.addTarget(self, action: #selector(onAddPress(_:)), for: .touchUpInside)
 
+		numberOfEmployeeInput.textFieldComponent.addTarget(self, action: #selector(onNumberOfEmployeeChange), for: .editingChanged)
 		if showLogout{
 			let logout = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(onLogoutPress))
 			navigationItem.rightBarButtonItem = logout
@@ -128,6 +129,10 @@ class SetupBusinessVC: UIViewController {
 		}
 		
 		makePaymentButton.setTitle("Authorize Payment - $\(String(format: "%.2f", price))", for: .normal)
+	}
+	
+	@objc func onNumberOfEmployeeChange(){
+		refreshPlans()
 	}
 
 

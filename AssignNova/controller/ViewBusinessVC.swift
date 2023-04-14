@@ -13,7 +13,7 @@ class ViewBusinessVC: UIViewController {
 	@IBOutlet weak var businessAddressLabel: UILabel!
 	@IBOutlet weak var businessMap: UIImageView!
 	@IBOutlet weak var priceCard: PlanCard!
-	
+	@IBOutlet weak var priceNotes: UILabel!
 	@IBOutlet weak var editBtn: UIBarButtonItem!
 	var business: Business?
 	
@@ -24,6 +24,13 @@ class ViewBusinessVC: UIViewController {
 		
 		if let employee = ActiveEmployee.instance?.employee{
 			self.editBtn.isHidden = employee.appRole != .owner
+			if employee.appRole == .owner {
+				priceCard.isHidden = false
+				priceNotes.isHidden = false
+			} else {
+				priceCard.isHidden = true
+				priceNotes.isHidden = true
+			}
 			let businessId = employee.businessId
 			FirestoreHelper.getBusinessWithListener(businessId: businessId){ business in
 				self.business = business
@@ -61,5 +68,10 @@ class ViewBusinessVC: UIViewController {
 		let viewController = self.storyboard!.instantiateViewController(withIdentifier: "EditBusinessVC") as! EditBusinessVC
 		viewController.business = business
 		self.present(UINavigationController(rootViewController: viewController), animated: true)
+	}
+	@IBAction func onMapPress(_ sender: Any) {
+		if let business = business {
+			UIHelper.openInMap(latitude: business.location.latitude, longitude: business.location.longitude, name: business.name)
+		}
 	}
 }
