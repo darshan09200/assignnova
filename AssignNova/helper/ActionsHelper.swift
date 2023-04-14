@@ -79,8 +79,11 @@ class ActionsHelper{
 	static func canTakeBreak(shift: Shift)->Bool{
 		if let unpaidBreak = shift.unpaidBreak,
 			let totalBreakTime = shift.attendance?.totalBreakTime,
-			totalBreakTime < unpaidBreak{
-			return true
+			totalBreakTime < unpaidBreak {
+			let remainingBreakTime = unpaidBreak - totalBreakTime
+			if shift.shiftEndTime > .now.add(minute: remainingBreakTime){
+				return true
+			}
 		}
 		return false
 	}

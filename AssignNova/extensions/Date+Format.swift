@@ -17,10 +17,14 @@ extension Date{
 		
 		let diff = Int(end.timeIntervalSince1970 - start.timeIntervalSince1970)
 		
-		let hours = diff / 3600
-		let minutes = (diff - hours * 3600) / 60
-		return minutes
+		return diff / 60
 	}
+	
+	static func getSecondsDifferenceBetween(start: Date, end: Date) -> Int{
+		
+		return Int(end.timeIntervalSince1970 - start.timeIntervalSince1970)
+	}
+	
 	static func combineDateWithTime(date: Date, time: Date) -> Date {
 		let calendar = Calendar.current
 		

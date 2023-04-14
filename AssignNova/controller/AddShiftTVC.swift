@@ -159,6 +159,19 @@ class AddShiftTVC: UITableViewController {
 			noOfShifts = nil
 		}
 		
+		let shiftTime = Date.combineDateWithTime(date: data.selectedDate, time: data.startTime)
+		
+		if shiftTime < .now{
+			showAlert(title: "Oops", message: "Please select a future time")
+			return
+		}
+		
+		let shiftDuration = Date.getMinutesDifferenceBetween(start: data.startTime, end: data.endTime)
+		if let unpaidBreak = unpaidBreak, unpaidBreak > (shiftDuration / 2) {
+			showAlert(title: "Oops", message: "Break cannot be more than half time of the total shift")
+			return
+		}
+		
 		self.startLoading()
 		CloudFunctionsHelper.getAssignedHours(employeeIds: (isOpenShifts ? data.eligibileEmployees : data.employees).compactMap{$0.id}, shiftDate: data.selectedDate){ assignedHours in
 			if let assignedHours = assignedHours{

@@ -117,6 +117,7 @@ class ViewShiftVC: UIViewController {
 					self.rightActionButton.setTitle("Clock In", for: .normal)
 					self.rightActionButton.tintColor = UIColor(named: "AccentColor")
 				} else if action == .clockOut{
+					self.startTimer()
 					if ActionsHelper.canTakeBreak(shift: shift) {
 						self.leftActionType = .startBreak
 						self.leftActionButton.isHidden = false
@@ -133,6 +134,7 @@ class ViewShiftVC: UIViewController {
 					self.rightActionButton.setTitle("Clock Out", for: .normal)
 					self.rightActionButton.tintColor = UIColor(named: "AccentColor")
 				} else if action == .endBreak{
+					self.startTimer()
 					self.leftActionType = .endBreak
 					self.leftActionButton.isHidden = false
 					self.leftActionButton.setTitle("End Break", for: .normal)
@@ -219,6 +221,7 @@ class ViewShiftVC: UIViewController {
 				}
 			}
 		} else if leftActionType == .startBreak{
+			startTimer()
 			self.startLoading()
 			FirestoreHelper.startBreak(for: shift!){ error in
 				if let _ = error{
@@ -232,6 +235,7 @@ class ViewShiftVC: UIViewController {
 				}
 			}
 		} else if leftActionType == .endBreak{
+			endTimer()
 			self.startLoading()
 			FirestoreHelper.endBreak(for: shift!){ error in
 				if let _ = error{
@@ -331,7 +335,8 @@ class ViewShiftVC: UIViewController {
 				let shiftLocation = CLLocation(latitude: branch.location.latitude, longitude: branch.location.longitude)
 				let distance = currentLocation.distance(from: shiftLocation)
 				print(distance)
-				if distance < 50{
+				if distance < 100{
+					startTimer()
 					self.startLoading()
 					FirestoreHelper.clockIn(for: shift!){ error in
 						if let _ = error{
@@ -498,11 +503,14 @@ extension ViewShiftVC{
 		timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 	}
 	
-	func stopTimer(){
+	func endTimer(){
 		timer?.invalidate()
 	}
 	
 	@objc func updateTime() {
-		print(shift?.attendance?.totalBreakTime)
+		if let attendance = shift?.attendance{
+			print(attendance.totalBreakTime)
+			print(Date.getSecondsDifferenceBetween(start: attendance.clockedInAt, end: .now))
+		}
 	}
 }
