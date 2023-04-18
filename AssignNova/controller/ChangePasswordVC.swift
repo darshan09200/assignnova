@@ -114,7 +114,7 @@ class ChangePasswordVC: UIViewController {
 			Auth.auth().currentUser?.reauthenticate(with: credential){ result, error  in
 				if error != nil {
 					self.stopLoading(){
-						self.showAlert(title: "Oops", message: "Incorrecnt password", textInput: self.emailTxt)
+						self.showAlert(title: "Oops", message: "Incorrect password", textInput: self.emailTxt)
 					}
 					return
 				} else {

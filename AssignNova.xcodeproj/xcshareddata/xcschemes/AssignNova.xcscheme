@@ -76,7 +76,7 @@
          <EnvironmentVariable
             key = "MAPS_API_KEY"
             value = "AIzaSyDP7oReCvzqncISxD2kWq2IforlvvRd6Nc"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>

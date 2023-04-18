@@ -8,6 +8,7 @@
 import UIKit
 import Connectivity
 import FirebaseAnalytics
+import Network
 
 extension UIViewController{
 	static func swizzle() {
@@ -65,7 +66,25 @@ extension UIViewController{
 			AnalyticsParameterScreenName: self.navigationItem.title ?? "Unknown"
 		])
 		
-//		self.navigationController?.navigationBar.addSubview(offlineView)
+		let monitor = NWPathMonitor()
+		
+		monitor.pathUpdateHandler = {path in
+			DispatchQueue.main.async {
+				self.navigationItem.title?.replace(" - Offline", with: "")
+				if path.status != .satisfied{
+					if let title = self.navigationItem.title{
+						self.navigationItem.title = title + " - Offline"
+					} else {
+						self.navigationItem.title = "Offline"
+					}
+				}
+			}
+		}
+		
+		let queue = DispatchQueue(label: "Network")
+		monitor.start(queue: queue)
+		
+//
 		
 //		NotificationCenter.default.addObserver(self, selector: #selector(onUpdateConnectionStatus), name: .ConnectivityDidChange, object: offlineView)
 		

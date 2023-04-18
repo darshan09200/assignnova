@@ -15,6 +15,10 @@ enum AppRole: String, CaseIterable, Codable {
 	case employee = "Employee"
 	
 	var index: Int { AppRole.allCases.firstIndex(of: self) ?? 0 }
+	
+	static var selectCases: [AppRole]{
+		AppRole.allCases.filter{$0 != .owner}
+	}
 }
 
 extension CaseIterable where Self: Equatable {

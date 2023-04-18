@@ -53,7 +53,6 @@ class AddEmployeeTVC: UITableViewController {
 
 		if isEdit, let employee = employee{
 			navigationItem.title = "Edit Employee"
-			
 			self.currentEmployee = employee
 		} else {
 			self.currentEmployee = Employee(firstName: "", lastName: "", appRole: .employee, email: "", color: "")
@@ -227,11 +226,13 @@ extension AddEmployeeTVC{
 		if indexPath.section == 0{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "avatar", for: indexPath) as! AvatarCell
 			cell.removeImageButton.isHidden = true
+			print(profilePath)
+			print(currentEmployee?.profileUrl)
 			if let profilePath = profilePath,
 				let imageData = try? Data(contentsOf: URL(fileURLWithPath: profilePath, isDirectory: false)) {
 				cell.profileImage.image = UIImage(data: imageData)
 				cell.removeImageButton.isHidden = false
-			} else if let profileUrl = currentEmployee?.profileUrl{
+			} else if let profileUrl = currentEmployee?.profileUrl, !profileUrl.isEmpty{
 				let reference = Storage.storage().reference().child(profileUrl)
 				cell.profileImage.sd_imageTransition = .fade
 				cell.profileImage.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: nil, options: [.refreshCached])
@@ -244,7 +245,9 @@ extension AddEmployeeTVC{
 				cell.profileImage.image = image
 			}
 			cell.addImageButton?.isHidden = !ActionsHelper.isSelf(employee: employee)
-			cell.removeImageButton?.isHidden = !ActionsHelper.isSelf(employee: employee)
+			if !cell.removeImageButton.isHidden {
+				cell.removeImageButton.isHidden = !ActionsHelper.isSelf(employee: employee)
+			}
 			cell.addImageButton?.addTarget(self, action: #selector(onSelectImagePress), for: .touchUpInside)
 			cell.removeImageButton?.addTarget(self, action: #selector(onRemoveImagePress), for: .touchUpInside)
 
@@ -254,12 +257,12 @@ extension AddEmployeeTVC{
 			
 			if indexPath.row == 5{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "selectForm", for: indexPath) as! SelectFieldCell
-				cell.selectButton.isEnabled = isEdit ? ActionsHelper.canEdit(employee: employee) : true
+				cell.selectButton.isEnabled = isEdit ? ActionsHelper.canEdit(employee: employee) && employee?.appRole != .owner : true
 				cell.picker?.delegate = self
 				cell.picker?.dataSource = self
-				cell.label.text = "Role"
+				cell.label.text = "App Role"
 				cell.selectButton.setTitle((currentEmployee?.appRole ?? .employee).rawValue, for: .normal)
-				cell.picker?.selectRow((currentEmployee?.appRole ?? .employee).index ?? 0, inComponent: 0, animated: true)
+				cell.picker?.selectRow(max((currentEmployee?.appRole ?? .employee).index ?? 0, AppRole.selectCases.count) , inComponent: 0, animated: true)
 				return cell
 			}
 			
@@ -428,16 +431,16 @@ extension AddEmployeeTVC: UIPickerViewDelegate, UIPickerViewDataSource{
 	}
 
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		return AppRole.allCases.count
+		return AppRole.selectCases.count
 	}
 
 	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		return AppRole.allCases[row].rawValue
+		return AppRole.selectCases[row].rawValue
 	}
 
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		if let cell = tableView.cellForRow(at: IndexPath(row: 5, section: 1)) as? SelectFieldCell{
-			let appRole = AppRole.allCases[row]
+			let appRole = AppRole.selectCases[row]
 			cell.selectButton.setTitle(appRole.rawValue, for: .normal)
 			currentEmployee?.appRole = appRole
 		}

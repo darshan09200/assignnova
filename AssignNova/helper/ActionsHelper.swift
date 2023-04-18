@@ -147,7 +147,7 @@ class ActionsHelper{
 		if canEdit(),
 			let employee = employee,
 			let currentEmployee = ActiveEmployee.instance?.employee {
-			return currentEmployee.appRole.index > employee.appRole.index || currentEmployee.appRole == .owner
+			return currentEmployee.appRole.index < employee.appRole.index || currentEmployee.appRole == .owner
 		}
 		return false
 	}

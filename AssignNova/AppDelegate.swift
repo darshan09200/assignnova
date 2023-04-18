@@ -22,10 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-		if let apiKey = ProcessInfo.processInfo.environment["MAPS_API_KEY"]{
+//		print(Bundle.main.infoDictionary?["LSEnvironment"] as! Dictionary<String, String>)
+		let apiKey = "AIzaSyDP7oReCvzqncISxD2kWq2IforlvvRd6Nc"
 			GMSServices.provideAPIKey(apiKey)
 			GMSPlacesClient.provideAPIKey(apiKey)
-		}
+			print("configured")
+		
+		
 		FirebaseApp.configure()
 
 		do {

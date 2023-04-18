@@ -161,7 +161,7 @@ class AddShiftTVC: UITableViewController {
 
 		let shiftTime = Date.combineDateWithTime(date: data.selectedDate, time: data.startTime)
 		
-		if shiftDate < .now{
+		if shiftDate.endOfDay < .now.startOfDay{
 			showAlert(title: "Oops", message: "Please select a future date")
 			return
 		}

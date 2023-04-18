@@ -33,7 +33,7 @@ class ViewEmployeeVC: UIViewController {
 				self.tableView.reloadData()
 				
 				if !self.isProfile {
-					let canEdit = ActionsHelper.canEdit(employee: employee)
+					let canEdit = ActionsHelper.canEdit(employee: employee) || ActionsHelper.isSelf(employee: employee)
 					self.editItem.isHidden = !canEdit
 				}
 			}
@@ -78,8 +78,8 @@ extension ViewEmployeeVC: UITableViewDelegate, UITableViewDataSource{
 			if let profileUrl = employee?.profileUrl{
 				let reference = Storage.storage().reference().child(profileUrl)
 				cell.profileImage.sd_imageTransition = .fade
-				cell.profileImage.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: image, options: [.refreshCached])
-				
+				cell.profileImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
+				cell.profileImage.sd_setImage(with: reference, maxImageSize: 1 * 1024 * 1024, placeholderImage: image, options: [.refreshCached])				
 			} else {
 				cell.profileImage.image = image
 			}

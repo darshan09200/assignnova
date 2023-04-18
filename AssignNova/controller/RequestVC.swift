@@ -82,7 +82,7 @@ class RequestVC: UIViewController {
 					if let openShifts = openShifts, openShifts.count > 0{
 						var groupedOpenShifts = [Status.requested, Status.approved, Status.declined].compactMap{GroupedOpenShift(status: $0, shifts: [])}
 						for openShift in openShifts {
-							let index = groupedOpenShifts.firstIndex{$0.status == openShift.status}
+							let index = groupedOpenShifts.firstIndex{$0.status == openShift.offerStatus}
 							if let index = index{
 								groupedOpenShifts[index].shifts.append(openShift)
 							}
@@ -212,11 +212,13 @@ extension RequestVC: UITableViewDelegate, UITableViewDataSource{
 					cell.card.setProfileImage(withName: employee.name, backgroundColor: employee.color)
 				}
 			}
-			if item.status == .approved{
+			
+			let status = indexPath.section == 1 ? item.status : item.offerStatus
+			if status == .approved{
 				cell.card.titleImageView.isHidden = false
 				cell.card.titleImageView.image = UIImage(systemName: "checkmark.circle.fill")
 				cell.card.titleImageView.tintColor = .systemGreen
-			} else if item.status == .declined{
+			} else if status == .declined{
 				cell.card.titleImageView.isHidden = false
 				cell.card.titleImageView.image = UIImage(systemName: "x.circle")
 				cell.card.titleImageView.tintColor = .systemRed

@@ -5,6 +5,7 @@
 //  Created by Darshan Jain on 2023-03-18.
 //
 
+import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseFunctions
@@ -332,48 +333,54 @@ class CloudFunctionsHelper{
 		}
 	}
 	
-//	static func getTravelTime(source: CLLocationCoordinate2D, dest: CLLocationCoordinate2D){
-//		if let apiKey = ProcessInfo.processInfo.environment["MAPS_API_KEY"]{
-//			
-//			let url = URL(string:"https://maps.googleapis.com/maps/api/directions/json")!
-//			let data = [
-//				"origin": "\(source.latitude),\(source.longitude)",
-//				"destination": "\(dest.latitude),\(dest.longitude)",
-//				"key": apiKey
-//			]
-//			var request = URLRequest(url: url)
-//			request.httpMethod = "POST"
-//			
-//			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//			request.addValue("application/json", forHTTPHeaderField: "Accept")
-//			do{
-//				request.httpBody = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-//			} catch{
-//				
-//			}
-//			
-//			let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-//				if error != nil {
-//					return
-//				}
-//				
-//				guard let httpResponse = response as? HTTPURLResponse,
-//					  (200...299).contains(httpResponse.statusCode) else {
-//					return
-//				}
-//				
-//				if let data = data,
-//				   let json = try? JSONSerialization.jsonObject(with: data, options: []),
-//				   let responseJSON = json as? [String: Any],
-//					let arrivalTime = responseJSON["arrivalTime"] as? String,
-//					let transitMode = responseJSON["transit_mode"] as? String{
-//					
-//					"\(transitMode.uppercased()) - "
-//				}
-//			})
-//			task.resume()
-//		}
-//	}
+	static func getTravelTime(source: CLLocationCoordinate2D, dest: CLLocationCoordinate2D, completion: @escaping(_ travelStats: TravelStats? )->()){
+		//		if let apiKey = ProcessInfo.processInfo.environment["MAPS_API_KEY"]{
+		
+		let url = URL(string:"https://maps.googleapis.com/maps/api/distancematrix/json")!
+		let data = [
+			"origins": "\(source.latitude),\(source.longitude)",
+			"destinations": "\(dest.latitude),\(dest.longitude)",
+			"transit_routing_preference": "less_walking",
+			"mode": "transit",
+			"key": "AIzaSyDP7oReCvzqncISxD2kWq2IforlvvRd6Nc"
+		]
+		
+		var components = URLComponents(string: "https://maps.googleapis.com/maps/api/distancematrix/json")!
+		components.queryItems = data.map { (key, value) in
+			URLQueryItem(name: key, value: value)
+		}
+		components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: ",", with: "%2C")
+		
+		var request = URLRequest(url: components.url!)
+		
+		let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+			if error != nil {
+				completion(nil)
+				return
+			}
+			
+			guard let httpResponse = response as? HTTPURLResponse,
+				  (200...299).contains(httpResponse.statusCode) else {
+				completion(nil)
+				return
+			}
+			
+			if let data = data,
+			   let json = try? JSONSerialization.jsonObject(with: data){
+				if let responseJSON = json as? [String: Any],
+				   let row = (responseJSON["rows"] as? [Any])?.first as? [String: Any],
+				   let stats = (row["elements"] as? [Any])?.first as? [String: Any],
+				   let travelDistance = (stats["distance"] as? [String: Any])?["text"] as? String,
+				   let travelTime = (stats["duration"]as? [String: Any])?["text"] as? String{
+					completion(TravelStats(distance: travelDistance, duration: travelTime))
+				} else {
+					completion(nil)
+				}
+			}
+		})
+		task.resume()
+		//		}
+	}
 }
 
 struct AccountExistResponse: Decodable{
@@ -415,4 +422,10 @@ struct UpdateSubscriptionRequest: Encodable{
 	var employeeId: String
 	var noOfEmployees: Int
 	var businessId: String
+}
+
+
+struct TravelStats{
+	let distance: String
+	let duration: String
 }

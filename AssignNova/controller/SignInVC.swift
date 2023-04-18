@@ -75,7 +75,7 @@ class SignInVC: UIViewController {
 				Auth.auth().signIn(withEmail: email, password: pwd) { authResult, error in
 					if error != nil {
 						self.stopLoading(){
-							self.showAlert(title: "Oops", message: "Incorrecnt username or password", textInput: self.emailTxt)
+							self.showAlert(title: "Oops", message: "Incorrect username or password", textInput: self.emailTxt)
 						}
 						return
 					}

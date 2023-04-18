@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import IntentsUI
+import SafariServices
 
 class MoreTabVC: UIViewController {
 
@@ -117,6 +118,19 @@ class MoreTabVC: UIViewController {
 	@IBAction func onLogoutPress(_ sender: Any) {
 		CloudFunctionsHelper.logout()
 	}
+	
+	@IBAction func onAboutAppPress(_ sender: Any) {
+		let viewController = UIStoryboard(name: "AboutApp", bundle: nil)
+			.instantiateViewController(withIdentifier: "AboutAppVC") as! AboutAppVC
+		self.navigationController?.pushViewController(viewController, animated: true)
+	}
+	
+	@IBAction func onSupportPress(_ sender: Any){
+		let vc = SFSafariViewController(url: URL(string: "https://help-assignnova.web.app/submit-a-ticket")!)
+		vc.delegate = self
+		
+		self.present(vc, animated: true)
+	}
 }
 
 extension MoreTabVC: INUIAddVoiceShortcutButtonDelegate {
@@ -161,3 +175,9 @@ extension MoreTabVC: INUIEditVoiceShortcutViewControllerDelegate {
 	}
 }
 
+
+extension MoreTabVC: SFSafariViewControllerDelegate{
+	func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+		dismiss(animated: true)
+	}
+}

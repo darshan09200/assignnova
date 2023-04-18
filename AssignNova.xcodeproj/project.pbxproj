@@ -48,6 +48,8 @@
 		552EF6AC29CA159100BF5EDA /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552EF6AB29CA159100BF5EDA /* CardCell.swift */; };
 		5530836B29C98C1800080070 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530836A29C98C1800080070 /* NavigationItem.swift */; };
 		5530836D29C99E0E00080070 /* ActiveEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530836C29C99E0E00080070 /* ActiveEmployee.swift */; };
+		553175EB29EEF7720005881C /* AboutApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553175EA29EEF7720005881C /* AboutApp.storyboard */; };
+		553175ED29EEF9140005881C /* AboutAppVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553175EC29EEF9140005881C /* AboutAppVC.swift */; };
 		553D02A429C9539B0076AEBD /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02A329C9539B0076AEBD /* UIViewController+Alert.swift */; };
 		553D02A629C955EE0076AEBD /* ColorPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D02A529C955EE0076AEBD /* ColorPicker.storyboard */; };
 		553D02AA29C956FA0076AEBD /* ColorPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553D02A929C956FA0076AEBD /* ColorPickerVC.swift */; };
@@ -245,6 +247,8 @@
 		552EF6AB29CA159100BF5EDA /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		5530836A29C98C1800080070 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		5530836C29C99E0E00080070 /* ActiveEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveEmployee.swift; sourceTree = "<group>"; };
+		553175EA29EEF7720005881C /* AboutApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutApp.storyboard; sourceTree = "<group>"; };
+		553175EC29EEF9140005881C /* AboutAppVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppVC.swift; sourceTree = "<group>"; };
 		553D02A329C9539B0076AEBD /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		553D02A529C955EE0076AEBD /* ColorPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorPicker.storyboard; sourceTree = "<group>"; };
 		553D02A929C956FA0076AEBD /* ColorPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerVC.swift; sourceTree = "<group>"; };
@@ -482,6 +486,7 @@
 				556847FF29E609E600AFE5B6 /* AddAvailabilityButton.swift */,
 				55E9A8FF29E97FBE00EF80B1 /* Password.storyboard */,
 				5578188D29E9914000CB14D6 /* Business.storyboard */,
+				553175EA29EEF7720005881C /* AboutApp.storyboard */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -559,6 +564,7 @@
 				33BD185729E4A97900DC628B /* DisplayScreenVC.swift */,
 				33BD185929E4B73600DC628B /* SignUpCardsVC.swift */,
 				5578188F29E9929E00CB14D6 /* ViewBusinessVC.swift */,
+				553175EC29EEF9140005881C /* AboutAppVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -836,6 +842,7 @@
 				B7DAB7FD29DB759F00207B4A /* HomeScreen.storyboard in Resources */,
 				330E4D6D29CBD189008BDE3A /* Availability.storyboard in Resources */,
 				55C4121029C4A0000073A8CD /* Main.storyboard in Resources */,
+				553175EB29EEF7720005881C /* AboutApp.storyboard in Resources */,
 				55D95F2C29C514FC0098B3CC /* OtpInput.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -987,6 +994,7 @@
 				5549DA5A29C7F11300E51828 /* FirestoreHelper.swift in Sources */,
 				558DF0BD29D102D60012C87E /* AddShiftTVC.swift in Sources */,
 				55212E9029D211610094738B /* ViewShiftVC.swift in Sources */,
+				553175ED29EEF9140005881C /* AboutAppVC.swift in Sources */,
 				33BD185A29E4B73600DC628B /* SignUpCardsVC.swift in Sources */,
 				553F5F6029E20562000D0B26 /* AssignedHour.swift in Sources */,
 				552396E329C6592C00EE9323 /* SignUpBusinessAccountVC.swift in Sources */,
@@ -1320,13 +1328,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MAPS_API_KEY = AIzaSyDP7oReCvzqncISxD2kWq2IforlvvRd6Nc;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1356,13 +1368,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MAPS_API_KEY = AIzaSyDP7oReCvzqncISxD2kWq2IforlvvRd6Nc;
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.techtoids.assignnova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

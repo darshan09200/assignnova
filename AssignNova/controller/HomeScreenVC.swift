@@ -19,6 +19,7 @@ class HomeScreenVC:  UIViewController {
 	@IBOutlet weak var employeeButton: NavigationItem!
 	
 	@IBOutlet weak var shiftTravelLabel: UIButton!
+	@IBOutlet weak var routeLabel: UILabel!
 	
 	@IBOutlet weak var completedHoursLabel: UILabel!
 	@IBOutlet weak var pendingHoursLabel: UILabel!
@@ -32,6 +33,8 @@ class HomeScreenVC:  UIViewController {
 	
 	var shiftStats: ShiftStats?
 
+	var locManager = CLLocationManager()
+	var currentLocation: CLLocation?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -65,7 +68,12 @@ class HomeScreenVC:  UIViewController {
 		if let employee = ActiveEmployee.instance?.employee{
 			helloLabel.text = "Good \(greeting), \(employee.firstName)"
 		}
+		
+		routeLabel.isHidden = true
 
+		locManager.delegate = self
+		locManager.desiredAccuracy = kCLLocationAccuracyBest
+		
 	}
 	
 	@IBAction func onOpenInMaps(_ sender: Any) {
@@ -148,6 +156,13 @@ class HomeScreenVC:  UIViewController {
 				shiftCard.subtitle = "\(employeeName) \(roleName)"
 				noRecordLabel.isHidden = true
 				shiftCard.isHidden = false
+				
+				if locManager.authorizationStatus == .authorizedAlways || locManager.authorizationStatus == .authorizedWhenInUse {
+					self.currentLocation = locManager.location
+					getStats()
+				} else if currentLocation == nil{
+					locManager.requestWhenInUseAuthorization()
+				}
 			} else {
 				shiftLabel.text = "Next Shift"
 				noRecordLabel.isHidden = false
@@ -192,22 +207,35 @@ class HomeScreenVC:  UIViewController {
 	}
 }
 
-//extension HomeScreenVC: CLLocationManagerDelegate{
-//	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-//		if(manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse) {
-//			self.currentLocation = manager.location
-//
-//			print(currentLocation)
-//			getStats()
-//		}
-//	}
-//
-//	func getStats(){
-//		if let branchId = shiftStats?.upcomingShift?.branchId,
-//		   let branch = ActiveEmployee.instance?.getBranch(branchId: branchId),
-//		   let currentLocation = currentLocation {
-//			let source = currentLocation.coordinate
-//			CloudFunctionsHelper.getTravelTime(source: source, dest: CLLocationCoordinate2D(latitude: branch.location.latitude, longitude: branch.location.longitude))
-//		}
-//	}
-//}
+extension HomeScreenVC: CLLocationManagerDelegate{
+	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+		if(manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse) {
+			self.currentLocation = manager.location
+
+			print(currentLocation)
+			getStats()
+		} else {
+			self.routeLabel.isHidden = true
+		}
+	}
+
+	func getStats(){
+		if let branchId = shiftStats?.upcomingShift?.branchId,
+		   let branch = ActiveEmployee.instance?.getBranch(branchId: branchId),
+		   let currentLocation = currentLocation {
+			let source = currentLocation.coordinate
+			CloudFunctionsHelper.getTravelTime(source: source, dest: CLLocationCoordinate2D(latitude: branch.location.latitude, longitude: branch.location.longitude)){ travelStats in
+				DispatchQueue.main.async {
+					if let travelStats = travelStats{
+						self.routeLabel.isHidden = false
+						self.routeLabel.text = "You can reach the branch(\(travelStats.distance) away) in \(travelStats.duration) if you board a transit now."
+					} else {
+						self.routeLabel.isHidden = true
+					}
+				}
+			}
+		} else {
+			self.routeLabel.isHidden = true
+		}
+	}
+}
