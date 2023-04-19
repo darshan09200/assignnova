@@ -27,6 +27,10 @@
 	<dict/>
 	<key>MAPS_API_KEY</key>
 	<string>$(MAPS_API_KEY)</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>MyShiftIntent</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
