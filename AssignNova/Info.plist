@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSEnvironment</key>
-	<dict/>
-	<key>MAPS_API_KEY</key>
-	<string>$(MAPS_API_KEY)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -16,7 +12,21 @@
 				<string>com.googleusercontent.apps.426429803905-f3cbdr26lul652h69asv6bpm17ru45q4</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>assignnova</string>
+			</array>
+		</dict>
 	</array>
+	<key>LSEnvironment</key>
+	<dict/>
+	<key>MAPS_API_KEY</key>
+	<string>$(MAPS_API_KEY)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

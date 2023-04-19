@@ -38,7 +38,8 @@ class ViewBusinessVC: UIViewController {
 					self.businessNameLabel.text = business.name
 					self.businessAddressLabel.text = business.address
 					
-					if let apiKey = ProcessInfo.processInfo.environment["MAPS_API_KEY"]{
+//					if let apiKey = ProcessInfo.processInfo.environment["MAPS_API_KEY"]{
+					let apiKey = "AIzaSyDP7oReCvzqncISxD2kWq2IforlvvRd6Nc"
 						var baseUrl = URL(string: "https://maps.googleapis.com/maps/api/staticmap")
 						baseUrl?.appendQueryItem(name: "zoom", value: "15")
 						baseUrl?.appendQueryItem(name: "size", value: "300x300")
@@ -46,7 +47,7 @@ class ViewBusinessVC: UIViewController {
 						baseUrl?.appendQueryItem(name: "markers", value: "label:\(business.name)|\(business.location.latitude), \(business.location.longitude)")
 						baseUrl?.appendQueryItem(name: "key", value: apiKey)
 						self.businessMap.sd_setImage(with: baseUrl)
-					}
+//					}
 					
 					self.priceCard.planDetails = "\(business.noOfEmployees) Employees"
 					var price = 0.0
